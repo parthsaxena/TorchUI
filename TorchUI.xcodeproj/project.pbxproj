@@ -99,6 +99,7 @@
 		C855B5912B10883F007DA332 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5472B10883F007DA332 /* Enums.swift */; };
 		C855B5922B10883F007DA332 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5482B10883F007DA332 /* CustomButton.swift */; };
 		C855B5932B10883F007DA332 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5492B10883F007DA332 /* CustomColors.swift */; };
+		C855B5952B11100A007DA332 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5942B11100A007DA332 /* Strings.swift */; };
 		C90ACD43E25E1D462AC68CC1 /* Pods_TorchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A1525F6FC18D092DF0909 /* Pods_TorchUITests.framework */; };
 		FADFD6D29C0D959575FAAFCB /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = CE715C78ED08B54E16060133 /* awsconfiguration.json */; };
 /* End PBXBuildFile section */
@@ -219,6 +220,7 @@
 		C855B5472B10883F007DA332 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		C855B5482B10883F007DA332 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		C855B5492B10883F007DA332 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		C855B5942B11100A007DA332 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		CE715C78ED08B54E16060133 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		DE4A1525F6FC18D092DF0909 /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -610,6 +612,7 @@
 				C855B5472B10883F007DA332 /* Enums.swift */,
 				C855B5482B10883F007DA332 /* CustomButton.swift */,
 				C855B5492B10883F007DA332 /* CustomColors.swift */,
+				C855B5942B11100A007DA332 /* Strings.swift */,
 			);
 			path = CustomControllers;
 			sourceTree = "<group>";
@@ -988,6 +991,7 @@
 				C855B5642B10883F007DA332 /* PlaceSensorViewControllerBridge.swift in Sources */,
 				C855B56D2B10883F007DA332 /* MapboxViewController.swift in Sources */,
 				C855B5572B10883F007DA332 /* SensorSetupView.swift in Sources */,
+				C855B5952B11100A007DA332 /* Strings.swift in Sources */,
 				C855B5522B10883F007DA332 /* PropertiesView.swift in Sources */,
 				C855B55D2B10883F007DA332 /* VisualEffectView.swift in Sources */,
 				C855B5802B10883F007DA332 /* WebSocketManager.swift in Sources */,
