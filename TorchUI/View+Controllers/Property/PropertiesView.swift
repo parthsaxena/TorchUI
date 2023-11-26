@@ -22,7 +22,7 @@ struct PropertiesView: View {
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
     
-    @State var selectedIndex = 0
+    @State var selectedTab: Tab = .home
     
     var body: some View {
         ZStack {
@@ -38,7 +38,8 @@ struct PropertiesView: View {
                     
                     Spacer()
 
-                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
+//                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
+                    CustomTabBar(selectedTab: $selectedTab)
                         .frame(alignment: .bottom)
                 }
             } else if SessionManager.shared.properties.count > 0 {
@@ -49,7 +50,8 @@ struct PropertiesView: View {
                     
                     Spacer()
 
-                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
+//                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
+                    CustomTabBar(selectedTab: $selectedTab)
                         .frame(alignment: .bottom)
                 }
             } else if SessionManager.shared.propertiesLoaded && SessionManager.shared.unparsedProperties == 0 {
@@ -60,7 +62,8 @@ struct PropertiesView: View {
                     
                     Spacer()
 
-                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
+//                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
+                    CustomTabBar(selectedTab: $selectedTab)
                         .frame(alignment: .bottom)
                 }
             }

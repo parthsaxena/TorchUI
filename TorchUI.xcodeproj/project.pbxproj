@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		063E3AEDB341E890B74EBA44 /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C19AF3ABE563F725FAD2649 /* Pods_TorchUI_TorchUIUITests.framework */; };
 		0E2DB57146C4AC62F707E171 /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA61948B1D99B51DFBD2E8D /* Pods_TorchUI.framework */; };
+		4BFD31B52B1345C2007D0E27 /* DropDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */; };
+		4BFD31B72B134605007D0E27 /* TabbarAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */; };
+		4BFD31B92B134620007D0E27 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFD31B82B134620007D0E27 /* Tabbar.swift */; };
 		7264CE919C89CB52F285A91A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */; };
 		8B88C8FE2A70450F008B90A2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 8B88C8FD2A70450F008B90A2 /* CodeScanner */; };
 		8BA867BF2A80869D00BEED38 /* PinCodeTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 8BA867BE2A80869D00BEED38 /* PinCodeTextField */; };
@@ -126,6 +129,9 @@
 		09926F4222A147A0A0724977 /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
 		0C19AF3ABE563F725FAD2649 /* Pods_TorchUI_TorchUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI_TorchUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3543DCA965350F51F6C6E4E1 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownModifier.swift; sourceTree = "<group>"; };
+		4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabbarAssets.xcassets; sourceTree = "<group>"; };
+		4BFD31B82B134620007D0E27 /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
 		5F678EE1FE285173C6694EAF /* Pods-TorchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8B4A07AE2AE1FB81005731F6 /* ZXCodeTextfield */ = {isa = PBXFileReference; lastKnownFileType = text; path = ZXCodeTextfield; sourceTree = SOURCE_ROOT; };
 		8BF7FC4F2A4D1488005D1160 /* TorchUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TorchUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +264,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BFD31B32B1345A3007D0E27 /* New Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */,
+				4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */,
+				4BFD31B82B134620007D0E27 /* Tabbar.swift */,
+			);
+			path = "New Tabbar";
+			sourceTree = "<group>";
+		};
 		6366AC1F6C9E6BCB8261CB46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +428,7 @@
 		C855B4FD2B10883E007DA332 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				4BFD31B32B1345A3007D0E27 /* New Tabbar */,
 				C855B4FE2B10883E007DA332 /* TabBarItemView.swift */,
 				C855B4FF2B10883E007DA332 /* TabBarView.swift */,
 				C855B5002B10883E007DA332 /* VisualEffectView.swift */,
@@ -753,6 +770,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BFD31B72B134605007D0E27 /* TabbarAssets.xcassets in Resources */,
 				C855B54B2B10883F007DA332 /* PropertyIconView.xib in Resources */,
 				8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */,
 				8BF7FC5A2A4D1489005D1160 /* Preview Assets.xcassets in Resources */,
@@ -932,6 +950,7 @@
 				C855B5722B10883F007DA332 /* DetectorIconView.swift in Sources */,
 				C855B58C2B10883F007DA332 /* PropertyViewModel.swift in Sources */,
 				C855B5762B10883F007DA332 /* WelcomeView.swift in Sources */,
+				4BFD31B92B134620007D0E27 /* Tabbar.swift in Sources */,
 				C855B5512B10883F007DA332 /* MainPropertiesView.swift in Sources */,
 				C855B58F2B10883F007DA332 /* PropertyPhotoViewModel.swift in Sources */,
 				C855B58D2B10883F007DA332 /* PropertyModel.swift in Sources */,
@@ -943,6 +962,7 @@
 				C855B55F2B10883F007DA332 /* HalfCircleShape.swift in Sources */,
 				C855B5782B10883F007DA332 /* AccountCompanyNameView.swift in Sources */,
 				C855B5702B10883F007DA332 /* MapboxPlaceSensorViewController.swift in Sources */,
+				4BFD31B52B1345C2007D0E27 /* DropDownModifier.swift in Sources */,
 				C855B57B2B10883F007DA332 /* TorchUIApp.swift in Sources */,
 				C855B57E2B10883F007DA332 /* AppDelegate.swift in Sources */,
 				C855B5892B10883F007DA332 /* PropertyAddressViewModel.swift in Sources */,
