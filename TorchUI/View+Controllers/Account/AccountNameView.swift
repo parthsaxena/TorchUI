@@ -144,24 +144,6 @@ struct AccountNameView: View {
                     .padding(.bottom, 20)
                 }
                 .disabled(!nextButtonEnabled)
-                
-//                Button("Next") {
-//                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-//                    impactMed.impactOccurred()
-//
-//                    AuthenticationManager.shared.authState = .accountEmail
-//                }
-//                    .disabled(!nextButtonEnabled)
-//                    .font(.custom("Manrope-SemiBold", size: 16))
-//                    .frame(maxWidth: .infinity)
-//                    .frame(height: 60)
-//                    .foregroundColor(.white)
-//                    .background(
-//                        RoundedRectangle(cornerRadius: 100)
-//                            .foregroundColor(self.nextButtonColor)
-//                    )
-//                    .padding(.horizontal, 16)
-//                    .padding(.bottom, 20)
                 Spacer()
             }
             .padding(.top, 60)

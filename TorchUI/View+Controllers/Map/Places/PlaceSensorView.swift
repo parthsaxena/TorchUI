@@ -77,7 +77,7 @@ struct PlaceSensorView: View {
                                                 let impactMed = UIImpactFeedbackGenerator(style: .heavy)
                                                 impactMed.impactOccurred()
                                                 isPresentingScanner = false
-                                                var detector = Detector(id: result.string, deviceName: String(sessionManager.newProperty!.detectors.count + 1), deviceBattery: 0.0, coordinate: nil, selected: true, sensorIdx: sessionManager.newProperty!.detectors.count + 1)
+                                                var detector = Detector(id: result.string, deviceName: String((sessionManager.newProperty?.detectors.count ?? 0) + 1), deviceBattery: 0.0, coordinate: nil, selected: true, sensorIdx: (sessionManager.newProperty?.detectors.count ?? 0) + 1)
                                                 sessionManager.addNewDetector(detector: detector)
                                                 self.selectedSensor = detector
                                                 self.selectedDetector = detector
@@ -139,7 +139,7 @@ struct PlaceSensorView: View {
                     if SessionManager.shared.selectedPropertyIndex < SessionManager.shared.properties.count {
                         SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].loadingData = true
                     }
-                    SessionManager.shared.newProperty!.loadingData = true
+                    SessionManager.shared.newProperty?.loadingData = true
                     SessionManager.shared.uploadNewDetectors()
                     dismiss()
                     SessionManager.shared.newProperty = nil
@@ -149,7 +149,7 @@ struct PlaceSensorView: View {
                 Button("Quit without saving", role: .destructive) {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
-                    SessionManager.shared.newProperty!.detectors = []
+                    SessionManager.shared.newProperty?.detectors = []
                     SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors = []
                     dismiss()
                     SessionManager.shared.newProperty = nil

@@ -9,15 +9,14 @@ import SwiftUI
 
 
 struct DetectorDetailOverlayView: View {
+    
     @Environment(\.colorScheme) var colorScheme
     
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
     @Binding var size: CGSize
     @Binding var mapOffset: CGSize
-    
-    //    let detector: Detector
-    
+
     @ObservedObject var sessionManager: SessionManager
     
     @Binding var showingDeleteDetectorOptions: Bool
@@ -33,14 +32,11 @@ struct DetectorDetailOverlayView: View {
                 VStack {
                     HStack {
                         Spacer()
-                        
                         RoundedRectangle(cornerRadius: 5.0)
                             .frame(width: 30, height: 4)
                             .foregroundColor(AuthenticationManager.shared.authState.rawValue >= AuthState.accountName.rawValue ? CustomColors.TorchGreen : Color(red: 227/255, green: 231/255, blue: 232/255))
-                        
                         Spacer()
                     }
-                    
                     ZStack {
                         Rectangle()
                             .cornerRadius(15.0)
@@ -53,40 +49,27 @@ struct DetectorDetailOverlayView: View {
                             VStack {
                                 HStack(spacing: 1) {
                                     
-                                    let x = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].sensorIdx as! Int
-                                    
-                                    
-                                    Text("Sensor \(x)")
-                                        .font(Font.custom("Manrope-SemiBold", size: 24.0))
-                                        .kerning(-1)
-                                        .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                                        .padding(.leading, 15)
-                                        .padding(.top, 20)
-                                    
+                                    if let x = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].sensorIdx {
+                                        
+                                        Text("Sensor \(x)")
+                                            .font(Font.custom("Manrope-SemiBold", size: 24.0))
+                                            .kerning(-1)
+                                            .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
+                                            .padding(.leading, 15)
+                                            .padding(.top, 20)
+                                    }
                                     Spacer()
                                     
-                                    Text("\(Int(sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].deviceBattery as! Double))%")
+                                    Text("\(Int(sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].deviceBattery))%")
                                         .font(Font.custom("Manrope-SemiBold", size: 13.0))
                                         .foregroundColor(CustomColors.LightGray)
                                         .padding(.top, 20)
-                                    //                            .padding(.leading, 20)
-                                    
-                                    
-                                    let deviceBattery = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].deviceBattery as! Double
+                                    let deviceBattery = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].deviceBattery 
                                     BatteryView(batteryLevel: deviceBattery)
                                         .frame(width: 25, height: 10)
                                         .padding(.top, 20)
                                         .padding(.trailing, 15)
                                         .padding(.leading, 5)
-                                    
-                                    //                                    Image(systemName: "ellipsis")
-                                    //                                        .foregroundColor(CustomColors.LightGray)
-                                    //                                        .padding(.trailing, 23.0)
-                                    //                                        .padding(.top, 20)
-                                    //                                        .onTapGesture {
-                                    //                                            print("Dots tapped")
-                                    //                                            showingDeleteDetectorOptions.toggle()
-                                    //                                        }
                                     Image(systemName: "ellipsis")
                                         .foregroundColor(CustomColors.LightGray)
                                         .padding(.trailing, 23.0)
@@ -110,15 +93,11 @@ struct DetectorDetailOverlayView: View {
                                         .font(Font.custom("Manrope-Medium", size: 18.0))
                                         .kerning(-1)
                                         .foregroundColor(Color(red: 115.0/255.0, green: 136.0/255.0, blue: 140.0/255.0))
-                                    //                        115, 136, 140
                                         .padding(.top, 1)
-                                    
                                     Spacer()
                                 }
                                 .padding(.leading, 15)
-                                
                                 HStack {
-                                    
                                     let fireRating = Int(sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].measurements["fire_rating"] ?? "80")
                                     let highRisk = (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].threat == Threat.Red)
                                     let mediumRisk = !highRisk && (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].threat == Threat.Yellow)
@@ -143,11 +122,8 @@ struct DetectorDetailOverlayView: View {
                                     .cornerRadius(12.0)
                                     .shadow(color: CustomColors.DetectorDetailsShadow, radius: 12.0, x: 0.0, y: 4.0)
                                     .padding(.leading, 15)
-                                    
-                                    
                                     Spacer()
                                         .frame(width: 10)
-                                    
                                     HStack {
                                         VStack(alignment: .leading) {
                                             HStack(spacing: 5) {
@@ -155,7 +131,6 @@ struct DetectorDetailOverlayView: View {
                                                     .font(Font.custom("Manrope-SemiBold", size: 13.0))
                                                     .kerning(-0.5)
                                                     .foregroundColor(CustomColors.LightGray)
-                                                //                                        .padding(.leading, 5)
                                                 Image("Thermometer")
                                                     .resizable()
                                                     .frame(width: 20.0, height: 20.0)
@@ -166,24 +141,18 @@ struct DetectorDetailOverlayView: View {
                                                     .font(Font.custom("Manrope-SemiBold", size: 13.0))
                                                     .kerning(-0.5)
                                                     .foregroundColor(CustomColors.LightGray)
-                                                //                                        .padding(.leading, 5)
                                                 Image("Humidity")
                                                     .resizable()
                                                     .frame(width: 20.0, height: 20.0)
                                             }
                                         }
                                         .padding(.trailing, 12)
-                                        
-                                        //                            Spacer()
-                                        
                                         VStack {
                                             Text("\(sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].measurements["temperature"] ?? "28")°C")
                                                 .font(Font.custom("Manrope-Bold", size: 14.0))
                                                 .foregroundColor(CustomColors.TorchRed)
-                                            
                                             Spacer()
                                                 .frame(height: 12)
-                                            
                                             Text("\(sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].measurements["humidity"] ?? "85")%")
                                                 .font(Font.custom("Manrope-Bold", size: 14.0))
                                                 .foregroundColor(CustomColors.GoodGreen)
@@ -194,27 +163,19 @@ struct DetectorDetailOverlayView: View {
                                                 Image(systemName: "arrow.up")
                                                     .foregroundColor(CustomColors.LightGray)
                                                     .font(.system(size: 13.0))
-                                                //                                        .padding(.leading, 10)
-                                                
                                                 Text("2°C")
                                                     .font(Font.custom("Manrope-Bold", size: 14.0))
                                                     .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                                                //                                        .padding(.trailing, 10)
                                             }
-                                            
                                             Spacer()
                                                 .frame(height: 12)
-                                            
                                             HStack(spacing: 1) {
                                                 Image(systemName: "arrow.up")
                                                     .foregroundColor(CustomColors.LightGray)
                                                     .font(.system(size: 13.0))
-                                                //                                        .font(.system(Font.TextStyle.body))
-                                                
                                                 Text("5%")
                                                     .font(Font.custom("Manrope-Bold", size: 14.0))
                                                     .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                                                //                                        .padding(.trailing, 10)
                                             }
                                         }
                                         .padding(.leading, 7)
@@ -254,41 +215,22 @@ struct DetectorDetailOverlayView: View {
                                         
                                         Spacer()
                                             .frame(height: 10)
-                                        
-                                        //                                HStack {
-                                        //                                    Text("95%")
-                                        //                                        .font(Font.custom("Manrope-SemiBold", size: 30.0))
-                                        //                                        .kerning(-1)
-                                        //                                        .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                                        //
-                                        //                                    Spacer()
-                                        //                                }
-                                        //                                .padding(.leading, 15)
-                                        
                                         ZStack {
                                             HStack {
-                                                //                                        let img = Image("Fire65")
-                                                
-                                                //                                        var fireImage = UIImage(named: "FireYellow")
-                                                //                                        let uiImggg = UIImage(cgImage: (fireImage?.cgImage)!, scale: 5.0, orientation: (fireImage?.imageOrientation)!)
-                                                //                                        let imgggg = Image.init(uiImage: uiImggg)
-                                                
                                                 let highRisk = (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].thermalStatus == Threat.Red)
                                                 let mediumRisk = !highRisk && (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].thermalStatus == Threat.Yellow)
                                                 let riskText = highRisk ? "Red alert" : (mediumRisk ? "Warning" : "Normal")
                                                 let riskImage = highRisk ? "FireRed" : (mediumRisk ? "FireYellow" : "Checkmark")
                                                 let riskColor = highRisk ? CustomColors.TorchRed : (mediumRisk ? CustomColors.WarningYellow : CustomColors.GoodGreen)
-                                                
-                                                Text("\(riskText)  \(Image.init(uiImage: UIImage(cgImage: UIImage(named: riskImage)!.cgImage!, scale: 5.0, orientation: UIImage(named: riskImage)!.imageOrientation)))")
-                                                //                                        .frame(width: 60)
-                                                    .font(Font.custom("Manrope-Bold", size: 14))
-                                                    .kerning(-0.5)
-                                                    .foregroundColor(riskColor)
-                                                
+                                                if let image = UIImage(named: riskImage)?.cgImage, let imageOrientation = UIImage(named: riskImage)?.imageOrientation {
+                                                    Text("\(riskText)  \(Image.init(uiImage: UIImage(cgImage: image, scale: 5.0, orientation: imageOrientation)))")
+                                                        .font(Font.custom("Manrope-Bold", size: 14))
+                                                        .kerning(-0.5)
+                                                        .foregroundColor(riskColor)
+                                                }
                                                 Spacer()
                                             }
                                         }
-                                        //                            .frame(width: .infinity, height: 1)
                                         .padding(.horizontal, 15)
                                     }
                                     .frame(maxWidth: .infinity)
@@ -326,37 +268,18 @@ struct DetectorDetailOverlayView: View {
                                         
                                         Spacer()
                                             .frame(height: 10)
-                                        
-                                        //                                HStack {
-                                        //                                    Text("82%")
-                                        //                                        .font(Font.custom("Manrope-SemiBold", size: 30.0))
-                                        //                                        .kerning(-1)
-                                        //                                        .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                                        //
-                                        //                                    Spacer()
-                                        //                                }
-                                        //                                .padding(.leading, 15)
-                                        
                                         HStack {
-                                            //                                    var fireImage = UIImage(named: "FireRed")
-                                            //                                    let uiImg = UIImage(cgImage: (fireImage?.cgImage)!, scale: 5.0, orientation: (fireImage?.imageOrientation)!)
-                                            //                                    let img1 = Image(uiImage: uiImg)
-                                            //
-                                            
-                                            //                                    Text("Red alert  \(img1)")
-                                            
                                             let highRisk = (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].spectralStatus == Threat.Red)
                                             let mediumRisk = !highRisk && (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].spectralStatus == Threat.Yellow)
                                             let riskText = highRisk ? "Red alert" : (mediumRisk ? "Warning" : "Normal")
                                             let riskImage = highRisk ? "FireRed" : (mediumRisk ? "FireYellow" : "Checkmark")
                                             let riskColor = highRisk ? CustomColors.TorchRed : (mediumRisk ? CustomColors.WarningYellow : CustomColors.GoodGreen)
-                                            
-                                            Text("\(riskText)  \(Image.init(uiImage: UIImage(cgImage: UIImage(named: riskImage)!.cgImage!, scale: 5.0, orientation: UIImage(named: riskImage)!.imageOrientation)))")
-                                            //                                        .frame(width: 60)
-                                                .font(Font.custom("Manrope-Bold", size: 14))
-                                                .kerning(-0.5)
-                                                .foregroundColor(riskColor)
-                                            
+                                            if let image = UIImage(named: riskImage)?.cgImage, let imageOrientation = UIImage(named: riskImage)?.imageOrientation {
+                                                Text("\(riskText)  \(Image.init(uiImage: UIImage(cgImage: image, scale: 5.0, orientation: imageOrientation)))")
+                                                    .font(Font.custom("Manrope-Bold", size: 14))
+                                                    .kerning(-0.5)
+                                                    .foregroundColor(riskColor)
+                                            }
                                             Spacer()
                                         }
                                         .padding(.leading, 15)
@@ -369,8 +292,6 @@ struct DetectorDetailOverlayView: View {
                                     
                                     Spacer()
                                         .frame(width: 10)
-                                    
-                                    
                                     // Smoke
                                     VStack {
                                         ZStack {
@@ -396,31 +317,18 @@ struct DetectorDetailOverlayView: View {
                                         
                                         Spacer()
                                             .frame(height: 10)
-                                        
-                                        //                                HStack {
-                                        //                                    Text("25%")
-                                        //                                        .font(Font.custom("Manrope-SemiBold", size: 30.0))
-                                        //                                        .kerning(-1)
-                                        //                                        .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                                        //
-                                        //                                    Spacer()
-                                        //                                }
-                                        //                                .padding(.leading, 15)
-                                        
                                         HStack {
-                                            //                                    let smokeStatus =
                                             let highRisk = (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].smokeStatus == Threat.Red)
                                             let mediumRisk = !highRisk && (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].smokeStatus == Threat.Yellow)
                                             let riskText = highRisk ? "Red alert" : (mediumRisk ? "Warning" : "Normal")
                                             let riskImage = highRisk ? "FireRed" : (mediumRisk ? "FireYellow" : "Checkmark")
                                             let riskColor = highRisk ? CustomColors.TorchRed : (mediumRisk ? CustomColors.WarningYellow : CustomColors.GoodGreen)
-                                            
-                                            Text("\(riskText)  \(Image.init(uiImage: UIImage(cgImage: UIImage(named: riskImage)!.cgImage!, scale: 5.0, orientation: UIImage(named: riskImage)!.imageOrientation)))")
-                                            //                                        .frame(width: 60)
+                                            if let image = UIImage(named: riskImage)?.cgImage, let imageOrientation = UIImage(named: riskImage)?.imageOrientation {
+                                                Text("\(riskText)  \(Image.init(uiImage: UIImage(cgImage: image, scale: 5.0, orientation: imageOrientation)))")
                                                 .font(Font.custom("Manrope-Bold", size: 14))
                                                 .kerning(-0.5)
                                                 .foregroundColor(riskColor)
-                                            
+                                            }
                                             Spacer()
                                         }
                                         .padding(.leading, 15)
@@ -461,8 +369,6 @@ struct DetectorDetailOverlayView: View {
                         print("Det Set mapOffset 3 \(self.mapOffset)")
                     }
                 }
-                
-                
             }
         }
     }

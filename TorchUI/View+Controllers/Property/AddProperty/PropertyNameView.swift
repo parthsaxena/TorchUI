@@ -148,34 +148,9 @@ struct PropertyNameView: View {
                         .padding(.bottom, 20)
                 }
                 .disabled(!nextButtonEnabled)
-                
-                //                Button("Next") {
-                //                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                //                    impactMed.impactOccurred()
-                //
-                //                    SessionManager.shared.newProperty = Property(id: "", propertyName: binding.wrappedValue, propertyAddress: "", propertyImage: "")
-                //                    self.state = .propertyAddress
-                //                }
-                //                    .disabled(!nextButtonEnabled)
-                //                    .font(.custom("Manrope-SemiBold", size: 16))
-                //                    .frame(maxWidth: .infinity)
-                //                    .frame(height: 60)
-                //                    .foregroundColor(.white)
-                //                    .background(
-                //                        RoundedRectangle(cornerRadius: 100)
-                //                            .foregroundColor(self.nextButtonColor)
-                //                    )
-                //                    .padding(.horizontal, 16)
-                //                    .padding(.bottom, 20)
                 Spacer()
             }
             .padding(.top, 60)
         }
     }
 }
-
-//struct PropertyNameView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PropertyNameView(state: <#Binding<OnboardingState>#>, propertyName: <#Binding<String>#>)
-//    }
-//}

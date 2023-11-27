@@ -21,7 +21,6 @@ struct NoPropertiesView: View {
                 VStack {
                     HStack {
                         Spacer()
-                        
                         ZStack {
                             Circle()
                                 .fill(colorScheme == .dark ? CustomColors.DarkModeOverlayBackground : Color.white)

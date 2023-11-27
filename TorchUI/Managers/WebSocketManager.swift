@@ -8,16 +8,9 @@
 import Foundation
 import Starscream
 
-struct SocketRequest {
-    var route: String
-    var data: [String: Any]
-    var completion: (([String: Any]) -> ())?
-}
-
 class WebSocketManager {
     
     static let shared = WebSocketManager()
-    
     private var socket: WebSocket?
     private var isConnected: Bool = false
     private var requests: [String: SocketRequest] = [:]
@@ -32,17 +25,19 @@ class WebSocketManager {
     }
     
     func generateRequestID() -> String {
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        return String((0 ..< ID_LENGTH).map{ _ in letters.randomElement()! })
+        guard let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".randomElement() else { return "" }
+        return String((0 ..< ID_LENGTH).map{ _ in letters })
     }
     
     func connect() {
         
-        var request = URLRequest(url: URL(string: SOCKET_URL)!)
-        request.timeoutInterval = 5 // sets the timeout for the connection
-        socket = WebSocket(request: request)
-        socket?.delegate = self
-        socket?.connect()
+        if let url = URL(string: SOCKET_URL) {
+            var request = URLRequest(url: url)
+            request.timeoutInterval = 5 // sets the timeout for the connection
+            socket = WebSocket(request: request)
+            socket?.delegate = self
+            socket?.connect()
+        }
     }
     
     func sendData(socketRequest: SocketRequest) {
@@ -50,10 +45,7 @@ class WebSocketManager {
         let requestID = generateRequestID()
         requests[requestID] = socketRequest
         
-        if (!isConnected) {
-            // print("[WebSocketManager] Tried to send data but disconnected")
-            return
-        }
+        if (!isConnected) { return }
         
         let route = socketRequest.route
         let data = socketRequest.data
@@ -65,57 +57,22 @@ class WebSocketManager {
         }
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []), let jsonString = String(data: jsonData, encoding: .utf8) else { return }
-        // print("[WebSocketManager] Sending JSON: \(jsonString)")
         socket?.write(string: jsonString)
     }
 }
 
-
 extension WebSocketManager: WebSocketDelegate {
-    
-    private func handleError(_ error: Error?) {
-        // handle the error, for example by logging it or showing an alert to the user
-        // print("[WebSocketManager] WebSocket error: \(error?.localizedDescription ?? "unknown")")
-        self.connect()
-    }
     
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
             
-        case .connected(let headers):
-            isConnected = true
-            // print("[WebSocketManager] websocket is connected: \(headers)")
-            // print("[WebSocketManager] Reconnected, requests looks like: \(self.requests)")
-            for (id, request) in requests {
-                self.requests.removeValue(forKey: id)
-                sendData(socketRequest: request)
-            }
-            
-        case .disconnected(let reason, let code):
+        case .connected(_):
+            self.loadConnectedCase()
+        case .disconnected(_, _):
             isConnected = false
-            // print("[WebSocketManager] websocket is disconnected: \(reason) with code: \(code)")
-            // print("[WebSocketManager] Attempting to reconnect...")
             self.connect()
-            
         case .text(let string):
-            //            // print("[WebSocketManager] Received text: \(string)")
-            let data = string.data(using: .utf8)!
-            if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) {
-                
-                let jsonDict = jsonObject as! [String: Any]
-                guard let requestID = jsonDict["request_id"] as? String else {
-                    return
-                }
-                //                // print("[WebSocketManager] Received text for id: \(requestID), requests looks like: \(self.requests)")
-                if self.requests.keys.contains(requestID) {
-                    guard let completion = self.requests[requestID]?.completion! else {
-                        return
-                    }
-                    self.requests.removeValue(forKey: requestID)
-                    //                    // print("[WebSocketManager] Fulfilled request with id: \(requestID), requests looks like: \(self.requests)")
-                    completion(jsonDict)
-                }
-            }
+            self.loadTextCase(string: string)
         case .binary(let data):
             print("[WebSocketManager] Received data: \(data.count)")
         case .ping(_):
@@ -131,6 +88,39 @@ extension WebSocketManager: WebSocketDelegate {
         case .error(let error):
             isConnected = false
             handleError(error)
+        }
+    }
+    
+    private func handleError(_ error: Error?) {
+        self.connect()
+    }
+    
+    func loadConnectedCase() {
+        
+        isConnected = true
+        for (id, request) in requests {
+            self.requests.removeValue(forKey: id)
+            self.sendData(socketRequest: request)
+        }
+    }
+    
+    func loadTextCase(string: String) {
+        
+        if let data = string.data(using: .utf8) {
+            if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) {
+                
+                let jsonDict = jsonObject as? [String: Any] ?? [:]
+                guard let requestID = jsonDict["request_id"] as? String else {
+                    return
+                }
+                if self.requests.keys.contains(requestID) {
+                    guard let completion = self.requests[requestID]?.completion else {
+                        return
+                    }
+                    self.requests.removeValue(forKey: requestID)
+                    completion(jsonDict)
+                }
+            }
         }
     }
 }

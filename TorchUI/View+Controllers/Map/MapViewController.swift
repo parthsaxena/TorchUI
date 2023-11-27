@@ -31,22 +31,3 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         clusterManager.add(markers)
     }
 }
-
-//      self.map = GMSMapView(frame: .zero, camera: GMSCameraPosition(
-//        latitude: -33.8683,
-//        longitude: 151.2086,
-//        zoom: 16
-//      ))
-
-//    self.map.padding = UIEdgeInsets(top: 0, left: 0, bottom: 300, right: 0)
-//      do {
-//            // Set the map style by passing a valid JSON string.
-//          if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-//              self.map.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-//              // print("set map style")
-//            } else {
-//              // print("Unable to find style.json")
-//            }
-//      } catch {
-//        // print("One or more of the map styles failed to load. \(error)")
-//      }

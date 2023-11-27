@@ -3419,23 +3419,11 @@ class MapboxPlaceSensorViewController: UIViewController {
     var selectedProperty: Property!
     var selectedDetector: Detector!
     var annotationManager: PointAnnotationManager!
-    //    var zoomLevel: CGFloat!
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
-        //       // print("got zoom: \(self.zoomLevel)")
-        //       // print("got prop: \(self.zoomLevel)")
-        //
-        //       let myResourceOptions = ResourceOptions(accessToken: "pk.eyJ1IjoidnRyZW1zaW4iLCJhIjoiY2xsNzE0M2lmMGd0eTNnazRjM2s3MndvZCJ9.z9GP9XylmH4RKR-swu14nA")
-        ////       // print("prop: \(self.selectedProperty!)")
-        //       let cameraOptions = CameraOptions(zoom: self.zoomLevel, bearing: 0.0, pitch: 0.0)
-        //       let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions, styleJSON: self.jsonString)
-        //       mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
-        //       mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
         self.view.addSubview(mapView)
-        //       self.view.addSubview(mapView)
-        
         self.pinImageView.frame = CGRectMake(self.view.center.x - 30, self.view.center.y - 210, 60, 69)
         self.view.addSubview(pinImageView)
     }

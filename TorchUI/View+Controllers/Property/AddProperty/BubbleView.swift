@@ -10,12 +10,9 @@ import SwiftUI
 struct BubbleView: View {
     
     @Binding var data: [DataItem]
-    
-    // Spacing between bubbles
+
     var spacing: CGFloat
-    // startAngle in degrees -360 to 360 from left horizontal
     var startAngle: Int
-    // direction
     var clockwise: Bool
     
     @State private var mySize = ViewSize()
@@ -26,25 +23,19 @@ struct BubbleView: View {
         let ySize = (mySize.yMax - mySize.yMin) == 0 ? 1 : (mySize.yMax - mySize.yMin)
         
         GeometryReader { geo in
-            
-            let xScale = geo.size.width / xSize
-            let yScale = geo.size.height / ySize
-            //            let scale = min(xScale, yScale)
+ 
             let scale = 1.0
-            
             ZStack {
                 ForEach(data, id: \.id) { item in
                     ZStack {
                         Circle()
                             .strokeBorder(CustomColors.NormalSensorGray, lineWidth: 2)
                             .background(Circle().fill(.white))
-                        //                            .fill(Color.white)
                             .frame(width: CGFloat(item.size) * scale, height: CGFloat(item.size) * scale)
                         Text(item.title)
                             .font(Font.custom("Manrope-Medium", size: 18.0))
                             .foregroundColor(CustomColors.TorchGreen)
                         Button {
-                            // print("Clicked 1 sensor")
                         } label: {
                             Circle()
                                 .fill(Color.clear)
@@ -52,15 +43,6 @@ struct BubbleView: View {
                         }
                     }
                     .offset(x: item.offset.width * scale, y: item.offset.height * scale)
-                    
-                    //                    ZStack {
-                    //                        Circle()
-                    //                            .frame(width: CGFloat(item.size) * scale,
-                    //                                   height: CGFloat(item.size) * scale)
-                    //                            .foregroundColor(item.color)
-                    //                        Text(item.title)
-                    //                    }
-                    //                    .offset(x: item.offset.width * scale, y: item.offset.height * scale)
                 }
             }
             .offset(x: xOffset() * scale, y: yOffset() * scale)
@@ -70,9 +52,7 @@ struct BubbleView: View {
             mySize = absoluteSize()
         }
     }
-    
-    
-    // taken out of main for compiler complexity issue
+
     func xOffset() -> CGFloat {
         let size = data[0].size
         let xOffset = mySize.xMin + size / 2
@@ -84,27 +64,17 @@ struct BubbleView: View {
         let yOffset = mySize.yMin + size / 2
         return -yOffset
     }
-    
-    
-    // calculate and set the offsets
+
     func setOffets() {
         if data.isEmpty { return }
-        // first circle
         data[0].offset = CGSize.zero
-        
         if data.count < 2 { return }
         // second circle
         let b = (data[0].size + data[1].size) / 2 + spacing
-        
-        // start Angle
         var alpha: CGFloat = CGFloat(startAngle) / 180 * CGFloat.pi
-        
-        data[1].offset = CGSize(width:  cos(alpha) * b,
-                                height: sin(alpha) * b)
-        
+        data[1].offset = CGSize(width:  cos(alpha) * b, height: sin(alpha) * b)
         // other circles
         for i in 2..<data.count {
-            
             // sides of the triangle from circle center points
             let c = (data[0].size + data[i-1].size) / 2 + spacing
             let b = (data[0].size + data[i].size) / 2 + spacing

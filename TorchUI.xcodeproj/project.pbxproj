@@ -25,6 +25,7 @@
 		8BF7FC8A2A4D14D0005D1160 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */; };
 		8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */; };
 		8BFF26B62A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */; };
+		C827EA4C2B146935009E6EC8 /* SocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4B2B146935009E6EC8 /* SocketRequest.swift */; };
 		C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */; };
 		C855B54B2B10883F007DA332 /* PropertyIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C855B4EB2B10883D007DA332 /* PropertyIconView.xib */; };
 		C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */; };
@@ -146,6 +147,7 @@
 		8F706F06206D41120E6CC971 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BCA61948B1D99B51DFBD2E8D /* Pods_TorchUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBD6483B88502D280F216F2 /* Pods-TorchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C827EA4B2B146935009E6EC8 /* SocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRequest.swift; sourceTree = "<group>"; };
 		C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPropertiesView.swift; sourceTree = "<group>"; };
 		C855B4EB2B10883D007DA332 /* PropertyIconView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyIconView.xib; sourceTree = "<group>"; };
 		C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPropertiesView.swift; sourceTree = "<group>"; };
@@ -594,6 +596,7 @@
 				C855B5412B10883E007DA332 /* PropertyModel.swift */,
 				C855B5422B10883E007DA332 /* ViewSize.swift */,
 				C855B5432B10883E007DA332 /* PropertyPhotoViewModel.swift */,
+				C827EA4B2B146935009E6EC8 /* SocketRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -989,6 +992,7 @@
 				C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */,
 				C855B5732B10883F007DA332 /* AccountEmailView.swift in Sources */,
 				C855B5642B10883F007DA332 /* PlaceSensorViewControllerBridge.swift in Sources */,
+				C827EA4C2B146935009E6EC8 /* SocketRequest.swift in Sources */,
 				C855B56D2B10883F007DA332 /* MapboxViewController.swift in Sources */,
 				C855B5572B10883F007DA332 /* SensorSetupView.swift in Sources */,
 				C855B5952B11100A007DA332 /* Strings.swift in Sources */,

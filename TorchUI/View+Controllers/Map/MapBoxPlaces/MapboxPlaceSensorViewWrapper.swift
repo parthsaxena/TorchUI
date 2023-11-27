@@ -69,15 +69,17 @@ struct MapboxPlaceSensorViewWrapper: UIViewControllerRepresentable {
         vc.annotationManager = vc.mapView.annotations.makePointAnnotationManager()
         
         let customView = self.createCustomView()
-        let propertyAnnotationOptions = ViewAnnotationOptions(
-            geometry: Point(sessionManager.selectedProperty!.coordinate!),
-            width: customView.frame.width,
-            height: 50,
-            allowOverlap: false,
-            anchor: .left
-        )
-        try? vc.mapView.viewAnnotations.add(customView, options: propertyAnnotationOptions)
-        vc.annotationManager.delegate = context.coordinator
+        if let coordinate = sessionManager.selectedProperty?.coordinate {
+            let propertyAnnotationOptions = ViewAnnotationOptions(
+                geometry: Point(coordinate),
+                width: customView.frame.width,
+                height: 50,
+                allowOverlap: false,
+                anchor: .left
+            )
+            try? vc.mapView.viewAnnotations.add(customView, options: propertyAnnotationOptions)
+            vc.annotationManager.delegate = context.coordinator
+        }
     }
     
     func createMapboxPlaceSensorViewController() -> MapboxPlaceSensorViewController {
@@ -141,21 +143,22 @@ struct MapboxPlaceSensorViewWrapper: UIViewControllerRepresentable {
         uiViewController.annotationManager.annotations = []
         if let detectors = sessionManager.selectedProperty?.detectors {
             for detector in detectors {
-                
-                var pointAnnotation = PointAnnotation(id: detector.id, coordinate: detector.coordinate!)
-                var annotationIcon = "DetectorIcons/\(detector.sensorIdx!)"
-                if detector.threat == Threat.Red {
-                    annotationIcon = "DetectorIcons/ThreatRed"
-                } else if detector.threat == Threat.Yellow {
-                    annotationIcon = "DetectorIcons/ThreatYellow"
-                }
-                
-                if let annotationImage = UIImage(named: annotationIcon) {
+                if let coordinate = detector.coordinate {
+                    var pointAnnotation = PointAnnotation(id: detector.id, coordinate: coordinate)
+                    var annotationIcon = "DetectorIcons/\(detector.sensorIdx ?? 0)"
+                    if detector.threat == Threat.Red {
+                        annotationIcon = "DetectorIcons/ThreatRed"
+                    } else if detector.threat == Threat.Yellow {
+                        annotationIcon = "DetectorIcons/ThreatYellow"
+                    }
                     
-                    pointAnnotation.image = .init(image: annotationImage, name: annotationIcon)
-                    pointAnnotation.iconAnchor = .bottom
-                    pointAnnotation.iconSize = 0.25
-                    uiViewController.annotationManager.annotations.append(pointAnnotation)
+                    if let annotationImage = UIImage(named: annotationIcon) {
+                        
+                        pointAnnotation.image = .init(image: annotationImage, name: annotationIcon)
+                        pointAnnotation.iconAnchor = .bottom
+                        pointAnnotation.iconSize = 0.25
+                        uiViewController.annotationManager.annotations.append(pointAnnotation)
+                    }
                 }
             }
         }
@@ -185,7 +188,7 @@ struct MapboxPlaceSensorViewWrapper: UIViewControllerRepresentable {
     func createCustomView() -> PropertyIconView {
         
         let customView = PropertyIconView.instanceFromNib()
-        customView.configure(with: SessionManager.shared.selectedProperty!.propertyName)
+        customView.configure(with: SessionManager.shared.selectedProperty?.propertyName ?? "")
         customView.propertyMainView.layer.mask = self.makeRectShape(customView: customView)
         customView.layer.shadowColor = UIColor.black.cgColor
         customView.layer.shadowOpacity = 0.2
@@ -193,10 +196,12 @@ struct MapboxPlaceSensorViewWrapper: UIViewControllerRepresentable {
         customView.layer.shadowRadius = 4
         
         customView.propertyMainView.layoutIfNeeded()
-        customView.propertyLabel.text = SessionManager.shared.selectedProperty!.propertyName
-        customView.propertyLabel.textColor = UIColor(cgColor: CustomColors.TorchGreen.cgColor!)
+        customView.propertyLabel.text = SessionManager.shared.selectedProperty?.propertyName
+        if let torchGreen = CustomColors.TorchGreen.cgColor {
+            customView.propertyLabel.textColor = UIColor(cgColor: torchGreen)
+        }
         customView.propertyMainView.backgroundColor = UIColor.white
-        customView.configure(with: SessionManager.shared.selectedProperty!.propertyName)
+        customView.configure(with: SessionManager.shared.selectedProperty?.propertyName ?? "")
         return customView
     }
 }

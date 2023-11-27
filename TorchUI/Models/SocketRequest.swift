@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct SocketRequest {
+    var route: String
+    var data: [String: Any]
+    var completion: (([String: Any]) -> ())?
+}
