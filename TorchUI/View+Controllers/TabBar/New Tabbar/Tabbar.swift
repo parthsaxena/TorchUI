@@ -16,7 +16,9 @@ enum Tab: String, CaseIterable {
 }
 
 struct CustomTabBar: View {
+    @Environment(\.colorScheme) var colorScheme
     @Binding var selectedTab: Tab
+    
     var body: some View {
         VStack {
             HStack {
@@ -24,11 +26,11 @@ struct CustomTabBar: View {
                     if(tab == .sensor) {
                         ZStack {
                             Image("\(tab.self)")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
+                                //                                .resizable()
+                                //                                .scaledToFit()
                                 .frame(width: 70, height: 70)
                                 .foregroundStyle(selectedTab == tab ? Color("mainColor") : Color("secColor"))
-                                .offset(y: -10)
+                                .offset(y: 10)
                                 .onTapGesture {
                                     withAnimation(.easeInOut(duration: 0.1)) {
                                         selectedTab = tab
@@ -43,8 +45,8 @@ struct CustomTabBar: View {
                             Image("\(tab.self)")
                                 .renderingMode(.template)
                                 .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 19, height: 19)
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 22, height: 22)
                                 .foregroundStyle(selectedTab == tab ? Color("mainColor") : Color("secColor"))
                             Spacer()
                             if(selectedTab == tab) {
@@ -67,16 +69,14 @@ struct CustomTabBar: View {
             .padding(.horizontal, 20)
             .padding(.vertical, 10)
             .background(
-                RoundedRectangle(cornerRadius: 39)
-                    .foregroundStyle(Color.white)
+                GlassyEffectView(effect: UIBlurEffect(style: (colorScheme == .dark) ? .dark : .light), cornerRadius: 36.0)
             )
-            .background(
-                RoundedRectangle(cornerRadius: 39)
-                .stroke(.white, lineWidth: 1)
-            )
+            .dropShadow(type: .color(c: Color("fillColor").opacity(0.03)), radius: 8, offset: .init(x: 0, y: 8), spread: CGSize(width: 4, height: 4))
+            .dropShadow(type: .color(c: Color("fillColor").opacity(0.08)), radius: 24, offset: .init(x: 0, y: 20), spread: CGSize(width: 4, height: 4))
         }
-        .dropShadow(type: .color(c: Color("fillColor").opacity(0.03)), radius: 8, offset: .init(x: 0, y: 8), spread: CGSize(width: 4, height: 4))
-        .dropShadow(type: .color(c: Color("fillColor").opacity(0.08)), radius: 24, offset: .init(x: 0, y: 20), spread: CGSize(width: 4, height: 4))
     }
 }
 
+#Preview {
+    CustomTabBar(selectedTab: .constant(.home))
+}

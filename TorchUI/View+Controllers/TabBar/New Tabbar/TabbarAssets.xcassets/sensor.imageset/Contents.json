@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "Main Button_nav.png",
+      "filename" : "Main Button_nav@3x 2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Main Button_nav@2x.png",
+      "filename" : "Main Button_nav@3x 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
