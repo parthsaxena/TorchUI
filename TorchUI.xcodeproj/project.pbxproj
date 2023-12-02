@@ -9,43 +9,13 @@
 /* Begin PBXBuildFile section */
 		063E3AEDB341E890B74EBA44 /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C19AF3ABE563F725FAD2649 /* Pods_TorchUI_TorchUIUITests.framework */; };
 		0E2DB57146C4AC62F707E171 /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA61948B1D99B51DFBD2E8D /* Pods_TorchUI.framework */; };
+		4BFD31B52B1345C2007D0E27 /* DropDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */; };
+		4BFD31B72B134605007D0E27 /* TabbarAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */; };
+		4BFD31B92B134620007D0E27 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFD31B82B134620007D0E27 /* Tabbar.swift */; };
 		7264CE919C89CB52F285A91A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */; };
-		8B2534D72AFB375900461AAE /* DetectorIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2534D62AFB375900461AAE /* DetectorIconView.swift */; };
-		8B2534D92AFC587400461AAE /* DetectorIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2534D82AFC587400461AAE /* DetectorIconView.xib */; };
-		8B69B8542A7DF1FE001F4F79 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8532A7DF1FE001F4F79 /* AuthenticationManager.swift */; };
-		8B69B8562A7DF338001F4F79 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8552A7DF338001F4F79 /* WebSocketManager.swift */; };
-		8B69B8582A7DFE6B001F4F79 /* AccountVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B8572A7DFE6B001F4F79 /* AccountVerificationCodeView.swift */; };
-		8B73EBEF2ABB5CBA00A44117 /* MapboxMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B73EBEE2ABB5CBA00A44117 /* MapboxMap.swift */; };
-		8B73EBF32ABB721800A44117 /* MapboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B73EBF22ABB721800A44117 /* MapboxViewController.swift */; };
-		8B73EBF52ABB72D100A44117 /* MapboxMapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B73EBF42ABB72D100A44117 /* MapboxMapViewWrapper.swift */; };
-		8B73EBF72ABBCC3300A44117 /* MapboxPlaceSensorViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B73EBF62ABBCC3300A44117 /* MapboxPlaceSensorViewWrapper.swift */; };
-		8B73EBF92ABBD06D00A44117 /* MapboxPlaceSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B73EBF82ABBD06D00A44117 /* MapboxPlaceSensorViewController.swift */; };
-		8B78C42D2AAAA76F00BC2F10 /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B78C42C2AAAA76F00BC2F10 /* HeadingView.swift */; };
-		8B88C8F32A5FC9EA008B90A2 /* PromptInstallationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B88C8F22A5FC9EA008B90A2 /* PromptInstallationView.swift */; };
-		8B88C8F52A60A992008B90A2 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B88C8F42A60A992008B90A2 /* BubbleView.swift */; };
-		8B88C8F72A60AA45008B90A2 /* SensorSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B88C8F62A60AA45008B90A2 /* SensorSetupView.swift */; };
-		8B88C8F92A65E172008B90A2 /* PlaceSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B88C8F82A65E172008B90A2 /* PlaceSensorView.swift */; };
-		8B88C8FB2A6F4BAB008B90A2 /* PlaceSensorViewControllerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B88C8FA2A6F4BAB008B90A2 /* PlaceSensorViewControllerBridge.swift */; };
 		8B88C8FE2A70450F008B90A2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 8B88C8FD2A70450F008B90A2 /* CodeScanner */; };
-		8B88C9002A70903B008B90A2 /* PlaceSensorMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B88C8FF2A70903B008B90A2 /* PlaceSensorMapViewController.swift */; };
-		8B8FCCFE2A57AB3C000D23CA /* PropertyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8FCCFD2A57AB3C000D23CA /* PropertyViewModel.swift */; };
-		8B8FCD002A57AD9D000D23CA /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8FCCFF2A57AD9D000D23CA /* SessionManager.swift */; };
 		8BA867BF2A80869D00BEED38 /* PinCodeTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 8BA867BE2A80869D00BEED38 /* PinCodeTextField */; };
-		8BADE2CE2A577C2200BAC03F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BADE2CD2A577C2200BAC03F /* MapViewController.swift */; };
-		8BADE2D02A577C6C00BAC03F /* MapViewControllerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BADE2CF2A577C6C00BAC03F /* MapViewControllerBridge.swift */; };
-		8BADE2D22A577CA900BAC03F /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BADE2D12A577CA900BAC03F /* City.swift */; };
 		8BC224842A859A07000958AA /* ZXCodeTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC224832A859A07000958AA /* ZXCodeTextField */; };
-		8BDE0B742A58BD6B007AD0FD /* PropertyIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BDE0B732A58BD6B007AD0FD /* PropertyIconView.xib */; };
-		8BDE0B762A58C026007AD0FD /* PropertyIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE0B752A58C026007AD0FD /* PropertyIconView.swift */; };
-		8BDE0B7A2A5B9708007AD0FD /* AddPropertySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE0B792A5B9708007AD0FD /* AddPropertySheetView.swift */; };
-		8BDE0B7C2A5CE89B007AD0FD /* PropertyAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE0B7B2A5CE89B007AD0FD /* PropertyAddressView.swift */; };
-		8BDE0B7E2A5CE909007AD0FD /* PropertyAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE0B7D2A5CE909007AD0FD /* PropertyAddressViewModel.swift */; };
-		8BDE0B802A5E3E8C007AD0FD /* PropertyPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE0B7F2A5E3E8C007AD0FD /* PropertyPhotoView.swift */; };
-		8BDE0B822A5E3EF0007AD0FD /* PropertyPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE0B812A5E3EF0007AD0FD /* PropertyPhotoViewModel.swift */; };
-		8BDE0B852A5E4822007AD0FD /* PropertyNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE0B842A5E4822007AD0FD /* PropertyNameView.swift */; };
-		8BF7FC532A4D1488005D1160 /* TorchUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC522A4D1488005D1160 /* TorchUIApp.swift */; };
-		8BF7FC552A4D1488005D1160 /* PropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC542A4D1488005D1160 /* PropertiesView.swift */; };
-		8BF7FC572A4D1489005D1160 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC562A4D1489005D1160 /* Assets.xcassets */; };
 		8BF7FC5A2A4D1489005D1160 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC592A4D1489005D1160 /* Preview Assets.xcassets */; };
 		8BF7FC642A4D1489005D1160 /* TorchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC632A4D1489005D1160 /* TorchUITests.swift */; };
 		8BF7FC6E2A4D1489005D1160 /* TorchUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC6D2A4D1489005D1160 /* TorchUIUITests.swift */; };
@@ -57,21 +27,82 @@
 		8BF7FC892A4D14D0005D1160 /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC822A4D14D0005D1160 /* Manrope-Regular.ttf */; };
 		8BF7FC8A2A4D14D0005D1160 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */; };
 		8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */; };
-		8BF7FC8E2A4D159C005D1160 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC8D2A4D159C005D1160 /* TabBarView.swift */; };
-		8BF7FC902A4D15B0005D1160 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC8F2A4D15B0005D1160 /* TabBarItemView.swift */; };
-		8BF7FC932A4D1BAC005D1160 /* PropertyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC922A4D1BAB005D1160 /* PropertyModel.swift */; };
-		8BF7FC962A4D1BC2005D1160 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC952A4D1BC2005D1160 /* PropertyView.swift */; };
-		8BF7FC982A4D2944005D1160 /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC972A4D2944005D1160 /* MainMapView.swift */; };
-		8BF7FC9A2A4D2D0A005D1160 /* DetectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC992A4D2D0A005D1160 /* DetectorModel.swift */; };
-		8BF7FC9C2A577AAE005D1160 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC9B2A577AAE005D1160 /* AppDelegate.swift */; };
-		8BFF26A72A7AE7E500FDCBD9 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF26A62A7AE7E500FDCBD9 /* WelcomeView.swift */; };
-		8BFF26A92A7AEB3E00FDCBD9 /* AccountNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF26A82A7AEB3E00FDCBD9 /* AccountNameView.swift */; };
-		8BFF26AB2A7AEFEA00FDCBD9 /* AccountEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF26AA2A7AEFEA00FDCBD9 /* AccountEmailView.swift */; };
-		8BFF26AD2A7AF05100FDCBD9 /* AccountCompanyNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF26AC2A7AF05100FDCBD9 /* AccountCompanyNameView.swift */; };
-		8BFF26AF2A7AF15D00FDCBD9 /* AccountPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF26AE2A7AF15D00FDCBD9 /* AccountPasswordView.swift */; };
-		8BFF26B12A7AF82000FDCBD9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF26B02A7AF82000FDCBD9 /* LoginView.swift */; };
-		8BFF26B32A7AFC4C00FDCBD9 /* LaunchScreenStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BFF26B22A7AFC4C00FDCBD9 /* LaunchScreenStoryboard.storyboard */; };
 		8BFF26B62A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */; };
+		C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */; };
+		C855B54B2B10883F007DA332 /* PropertyIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C855B4EB2B10883D007DA332 /* PropertyIconView.xib */; };
+		C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */; };
+		C855B54D2B10883F007DA332 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4ED2B10883D007DA332 /* SearchResultView.swift */; };
+		C855B54E2B10883F007DA332 /* PropertyIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EE2B10883E007DA332 /* PropertyIconView.swift */; };
+		C855B54F2B10883F007DA332 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EF2B10883E007DA332 /* AlertView.swift */; };
+		C855B5502B10883F007DA332 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4F02B10883E007DA332 /* PropertyView.swift */; };
+		C855B5512B10883F007DA332 /* MainPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4F12B10883E007DA332 /* MainPropertiesView.swift */; };
+		C855B5522B10883F007DA332 /* PropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4F22B10883E007DA332 /* PropertiesView.swift */; };
+		C855B5532B10883F007DA332 /* PropertyAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4F42B10883E007DA332 /* PropertyAddressView.swift */; };
+		C855B5542B10883F007DA332 /* PropertyNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4F52B10883E007DA332 /* PropertyNameView.swift */; };
+		C855B5552B10883F007DA332 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4F62B10883E007DA332 /* BubbleView.swift */; };
+		C855B5562B10883F007DA332 /* PropertyPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4F72B10883E007DA332 /* PropertyPhotoView.swift */; };
+		C855B5572B10883F007DA332 /* SensorSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4F82B10883E007DA332 /* SensorSetupView.swift */; };
+		C855B5582B10883F007DA332 /* AddPropertySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4F92B10883E007DA332 /* AddPropertySheetView.swift */; };
+		C855B5592B10883F007DA332 /* PromptInstallationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4FA2B10883E007DA332 /* PromptInstallationView.swift */; };
+		C855B55A2B10883F007DA332 /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4FC2B10883E007DA332 /* HeadingView.swift */; };
+		C855B55B2B10883F007DA332 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4FE2B10883E007DA332 /* TabBarItemView.swift */; };
+		C855B55C2B10883F007DA332 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4FF2B10883E007DA332 /* TabBarView.swift */; };
+		C855B55D2B10883F007DA332 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5002B10883E007DA332 /* VisualEffectView.swift */; };
+		C855B55E2B10883F007DA332 /* PropertyDetailOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5022B10883E007DA332 /* PropertyDetailOverlayView.swift */; };
+		C855B55F2B10883F007DA332 /* HalfCircleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5032B10883E007DA332 /* HalfCircleShape.swift */; };
+		C855B5602B10883F007DA332 /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5042B10883E007DA332 /* MainMapView.swift */; };
+		C855B5612B10883F007DA332 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5052B10883E007DA332 /* MapViewController.swift */; };
+		C855B5622B10883F007DA332 /* PlaceSensorMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5072B10883E007DA332 /* PlaceSensorMapViewController.swift */; };
+		C855B5632B10883F007DA332 /* SensorIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5082B10883E007DA332 /* SensorIconView.swift */; };
+		C855B5642B10883F007DA332 /* PlaceSensorViewControllerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5092B10883E007DA332 /* PlaceSensorViewControllerBridge.swift */; };
+		C855B5652B10883F007DA332 /* SensorSetupOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B50A2B10883E007DA332 /* SensorSetupOverlayView.swift */; };
+		C855B5662B10883F007DA332 /* SensorConfirmLocationOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B50B2B10883E007DA332 /* SensorConfirmLocationOverlayView.swift */; };
+		C855B5672B10883F007DA332 /* PlaceSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B50C2B10883E007DA332 /* PlaceSensorView.swift */; };
+		C855B5682B10883F007DA332 /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B50D2B10883E007DA332 /* BatteryView.swift */; };
+		C855B5692B10883F007DA332 /* AddDetectorConfirmLocationOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B50E2B10883E007DA332 /* AddDetectorConfirmLocationOverlayView.swift */; };
+		C855B56A2B10883F007DA332 /* MapViewControllerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B50F2B10883E007DA332 /* MapViewControllerBridge.swift */; };
+		C855B56B2B10883F007DA332 /* DetectorDetailOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5102B10883E007DA332 /* DetectorDetailOverlayView.swift */; };
+		C855B56C2B10883F007DA332 /* MapboxMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5122B10883E007DA332 /* MapboxMap.swift */; };
+		C855B56D2B10883F007DA332 /* MapboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5132B10883E007DA332 /* MapboxViewController.swift */; };
+		C855B56E2B10883F007DA332 /* MapboxMapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5142B10883E007DA332 /* MapboxMapViewWrapper.swift */; };
+		C855B56F2B10883F007DA332 /* MapboxPlaceSensorViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5162B10883E007DA332 /* MapboxPlaceSensorViewWrapper.swift */; };
+		C855B5702B10883F007DA332 /* MapboxPlaceSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5172B10883E007DA332 /* MapboxPlaceSensorViewController.swift */; };
+		C855B5712B10883F007DA332 /* DetectorIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C855B5192B10883E007DA332 /* DetectorIconView.xib */; };
+		C855B5722B10883F007DA332 /* DetectorIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B51A2B10883E007DA332 /* DetectorIconView.swift */; };
+		C855B5732B10883F007DA332 /* AccountEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B51C2B10883E007DA332 /* AccountEmailView.swift */; };
+		C855B5742B10883F007DA332 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B51D2B10883E007DA332 /* LoginView.swift */; };
+		C855B5752B10883F007DA332 /* AccountVerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B51E2B10883E007DA332 /* AccountVerificationCodeView.swift */; };
+		C855B5762B10883F007DA332 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B51F2B10883E007DA332 /* WelcomeView.swift */; };
+		C855B5772B10883F007DA332 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5202B10883E007DA332 /* AccountView.swift */; };
+		C855B5782B10883F007DA332 /* AccountCompanyNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5212B10883E007DA332 /* AccountCompanyNameView.swift */; };
+		C855B5792B10883F007DA332 /* AccountPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5222B10883E007DA332 /* AccountPasswordView.swift */; };
+		C855B57A2B10883F007DA332 /* AccountNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5232B10883E007DA332 /* AccountNameView.swift */; };
+		C855B57B2B10883F007DA332 /* TorchUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5252B10883E007DA332 /* TorchUIApp.swift */; };
+		C855B57C2B10883F007DA332 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C855B5262B10883E007DA332 /* Assets.xcassets */; };
+		C855B57D2B10883F007DA332 /* xcschememanagement.plist in Resources */ = {isa = PBXBuildFile; fileRef = C855B52D2B10883E007DA332 /* xcschememanagement.plist */; };
+		C855B57E2B10883F007DA332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B52F2B10883E007DA332 /* AppDelegate.swift */; };
+		C855B57F2B10883F007DA332 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5312B10883E007DA332 /* AuthenticationManager.swift */; };
+		C855B5802B10883F007DA332 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5322B10883E007DA332 /* WebSocketManager.swift */; };
+		C855B5812B10883F007DA332 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5332B10883E007DA332 /* SessionManager.swift */; };
+		C855B5822B10883F007DA332 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5352B10883E007DA332 /* UIApplication+Extension.swift */; };
+		C855B5832B10883F007DA332 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5362B10883E007DA332 /* UIImage+Extension.swift */; };
+		C855B5842B10883F007DA332 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5372B10883E007DA332 /* String+Extension.swift */; };
+		C855B5852B10883F007DA332 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5382B10883E007DA332 /* Color+Extension.swift */; };
+		C855B5862B10883F007DA332 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5392B10883E007DA332 /* View+Extension.swift */; };
+		C855B5872B10883F007DA332 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B53B2B10883E007DA332 /* City.swift */; };
+		C855B5882B10883F007DA332 /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B53C2B10883E007DA332 /* DataItem.swift */; };
+		C855B5892B10883F007DA332 /* PropertyAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B53D2B10883E007DA332 /* PropertyAddressViewModel.swift */; };
+		C855B58A2B10883F007DA332 /* DetectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B53E2B10883E007DA332 /* DetectorModel.swift */; };
+		C855B58B2B10883F007DA332 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B53F2B10883E007DA332 /* AlertModel.swift */; };
+		C855B58C2B10883F007DA332 /* PropertyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5402B10883E007DA332 /* PropertyViewModel.swift */; };
+		C855B58D2B10883F007DA332 /* PropertyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5412B10883E007DA332 /* PropertyModel.swift */; };
+		C855B58E2B10883F007DA332 /* ViewSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5422B10883E007DA332 /* ViewSize.swift */; };
+		C855B58F2B10883F007DA332 /* PropertyPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5432B10883E007DA332 /* PropertyPhotoViewModel.swift */; };
+		C855B5902B10883F007DA332 /* LaunchScreenStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C855B5452B10883E007DA332 /* LaunchScreenStoryboard.storyboard */; };
+		C855B5912B10883F007DA332 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5472B10883F007DA332 /* Enums.swift */; };
+		C855B5922B10883F007DA332 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5482B10883F007DA332 /* CustomButton.swift */; };
+		C855B5932B10883F007DA332 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5492B10883F007DA332 /* CustomColors.swift */; };
+		C855B5952B11100A007DA332 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5942B11100A007DA332 /* Strings.swift */; };
 		C90ACD43E25E1D462AC68CC1 /* Pods_TorchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A1525F6FC18D092DF0909 /* Pods_TorchUITests.framework */; };
 		FADFD6D29C0D959575FAAFCB /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = CE715C78ED08B54E16060133 /* awsconfiguration.json */; };
 /* End PBXBuildFile section */
@@ -98,42 +129,12 @@
 		09926F4222A147A0A0724977 /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
 		0C19AF3ABE563F725FAD2649 /* Pods_TorchUI_TorchUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI_TorchUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3543DCA965350F51F6C6E4E1 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownModifier.swift; sourceTree = "<group>"; };
+		4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabbarAssets.xcassets; sourceTree = "<group>"; };
+		4BFD31B82B134620007D0E27 /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
 		5F678EE1FE285173C6694EAF /* Pods-TorchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.release.xcconfig"; sourceTree = "<group>"; };
-		8B2534D62AFB375900461AAE /* DetectorIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectorIconView.swift; sourceTree = "<group>"; };
-		8B2534D82AFC587400461AAE /* DetectorIconView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetectorIconView.xib; sourceTree = "<group>"; };
 		8B4A07AE2AE1FB81005731F6 /* ZXCodeTextfield */ = {isa = PBXFileReference; lastKnownFileType = text; path = ZXCodeTextfield; sourceTree = SOURCE_ROOT; };
-		8B69B8532A7DF1FE001F4F79 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
-		8B69B8552A7DF338001F4F79 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
-		8B69B8572A7DFE6B001F4F79 /* AccountVerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationCodeView.swift; sourceTree = "<group>"; };
-		8B73EBEE2ABB5CBA00A44117 /* MapboxMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxMap.swift; sourceTree = "<group>"; };
-		8B73EBF22ABB721800A44117 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
-		8B73EBF42ABB72D100A44117 /* MapboxMapViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxMapViewWrapper.swift; sourceTree = "<group>"; };
-		8B73EBF62ABBCC3300A44117 /* MapboxPlaceSensorViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxPlaceSensorViewWrapper.swift; sourceTree = "<group>"; };
-		8B73EBF82ABBD06D00A44117 /* MapboxPlaceSensorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxPlaceSensorViewController.swift; sourceTree = "<group>"; };
-		8B78C42C2AAAA76F00BC2F10 /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
-		8B88C8F22A5FC9EA008B90A2 /* PromptInstallationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptInstallationView.swift; sourceTree = "<group>"; };
-		8B88C8F42A60A992008B90A2 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
-		8B88C8F62A60AA45008B90A2 /* SensorSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorSetupView.swift; sourceTree = "<group>"; };
-		8B88C8F82A65E172008B90A2 /* PlaceSensorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceSensorView.swift; sourceTree = "<group>"; };
-		8B88C8FA2A6F4BAB008B90A2 /* PlaceSensorViewControllerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSensorViewControllerBridge.swift; sourceTree = "<group>"; };
-		8B88C8FF2A70903B008B90A2 /* PlaceSensorMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSensorMapViewController.swift; sourceTree = "<group>"; };
-		8B8FCCFD2A57AB3C000D23CA /* PropertyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyViewModel.swift; sourceTree = "<group>"; };
-		8B8FCCFF2A57AD9D000D23CA /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		8BADE2CD2A577C2200BAC03F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		8BADE2CF2A577C6C00BAC03F /* MapViewControllerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerBridge.swift; sourceTree = "<group>"; };
-		8BADE2D12A577CA900BAC03F /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
-		8BDE0B732A58BD6B007AD0FD /* PropertyIconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PropertyIconView.xib; sourceTree = "<group>"; };
-		8BDE0B752A58C026007AD0FD /* PropertyIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyIconView.swift; sourceTree = "<group>"; };
-		8BDE0B792A5B9708007AD0FD /* AddPropertySheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPropertySheetView.swift; sourceTree = "<group>"; };
-		8BDE0B7B2A5CE89B007AD0FD /* PropertyAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAddressView.swift; sourceTree = "<group>"; };
-		8BDE0B7D2A5CE909007AD0FD /* PropertyAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAddressViewModel.swift; sourceTree = "<group>"; };
-		8BDE0B7F2A5E3E8C007AD0FD /* PropertyPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyPhotoView.swift; sourceTree = "<group>"; };
-		8BDE0B812A5E3EF0007AD0FD /* PropertyPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyPhotoViewModel.swift; sourceTree = "<group>"; };
-		8BDE0B842A5E4822007AD0FD /* PropertyNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyNameView.swift; sourceTree = "<group>"; };
 		8BF7FC4F2A4D1488005D1160 /* TorchUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TorchUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BF7FC522A4D1488005D1160 /* TorchUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorchUIApp.swift; sourceTree = "<group>"; };
-		8BF7FC542A4D1488005D1160 /* PropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesView.swift; sourceTree = "<group>"; };
-		8BF7FC562A4D1489005D1160 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BF7FC592A4D1489005D1160 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8BF7FC5F2A4D1489005D1160 /* TorchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TorchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF7FC632A4D1489005D1160 /* TorchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorchUITests.swift; sourceTree = "<group>"; };
@@ -148,23 +149,84 @@
 		8BF7FC822A4D14D0005D1160 /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Regular.ttf"; sourceTree = "<group>"; };
 		8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Medium.ttf"; sourceTree = "<group>"; };
 		8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
-		8BF7FC8D2A4D159C005D1160 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
-		8BF7FC8F2A4D15B0005D1160 /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
-		8BF7FC922A4D1BAB005D1160 /* PropertyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyModel.swift; sourceTree = "<group>"; };
-		8BF7FC952A4D1BC2005D1160 /* PropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyView.swift; sourceTree = "<group>"; };
-		8BF7FC972A4D2944005D1160 /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
-		8BF7FC992A4D2D0A005D1160 /* DetectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectorModel.swift; sourceTree = "<group>"; };
-		8BF7FC9B2A577AAE005D1160 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8BFF26A62A7AE7E500FDCBD9 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		8BFF26A82A7AEB3E00FDCBD9 /* AccountNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNameView.swift; sourceTree = "<group>"; };
-		8BFF26AA2A7AEFEA00FDCBD9 /* AccountEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEmailView.swift; sourceTree = "<group>"; };
-		8BFF26AC2A7AF05100FDCBD9 /* AccountCompanyNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCompanyNameView.swift; sourceTree = "<group>"; };
-		8BFF26AE2A7AF15D00FDCBD9 /* AccountPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPasswordView.swift; sourceTree = "<group>"; };
-		8BFF26B02A7AF82000FDCBD9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		8BFF26B22A7AFC4C00FDCBD9 /* LaunchScreenStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenStoryboard.storyboard; sourceTree = "<group>"; };
 		8F706F06206D41120E6CC971 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BCA61948B1D99B51DFBD2E8D /* Pods_TorchUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBD6483B88502D280F216F2 /* Pods-TorchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPropertiesView.swift; sourceTree = "<group>"; };
+		C855B4EB2B10883D007DA332 /* PropertyIconView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyIconView.xib; sourceTree = "<group>"; };
+		C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPropertiesView.swift; sourceTree = "<group>"; };
+		C855B4ED2B10883D007DA332 /* SearchResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		C855B4EE2B10883E007DA332 /* PropertyIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyIconView.swift; sourceTree = "<group>"; };
+		C855B4EF2B10883E007DA332 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		C855B4F02B10883E007DA332 /* PropertyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyView.swift; sourceTree = "<group>"; };
+		C855B4F12B10883E007DA332 /* MainPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPropertiesView.swift; sourceTree = "<group>"; };
+		C855B4F22B10883E007DA332 /* PropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertiesView.swift; sourceTree = "<group>"; };
+		C855B4F42B10883E007DA332 /* PropertyAddressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyAddressView.swift; sourceTree = "<group>"; };
+		C855B4F52B10883E007DA332 /* PropertyNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyNameView.swift; sourceTree = "<group>"; };
+		C855B4F62B10883E007DA332 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
+		C855B4F72B10883E007DA332 /* PropertyPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyPhotoView.swift; sourceTree = "<group>"; };
+		C855B4F82B10883E007DA332 /* SensorSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorSetupView.swift; sourceTree = "<group>"; };
+		C855B4F92B10883E007DA332 /* AddPropertySheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPropertySheetView.swift; sourceTree = "<group>"; };
+		C855B4FA2B10883E007DA332 /* PromptInstallationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptInstallationView.swift; sourceTree = "<group>"; };
+		C855B4FC2B10883E007DA332 /* HeadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
+		C855B4FE2B10883E007DA332 /* TabBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
+		C855B4FF2B10883E007DA332 /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		C855B5002B10883E007DA332 /* VisualEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		C855B5022B10883E007DA332 /* PropertyDetailOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyDetailOverlayView.swift; sourceTree = "<group>"; };
+		C855B5032B10883E007DA332 /* HalfCircleShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfCircleShape.swift; sourceTree = "<group>"; };
+		C855B5042B10883E007DA332 /* MainMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
+		C855B5052B10883E007DA332 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C855B5072B10883E007DA332 /* PlaceSensorMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceSensorMapViewController.swift; sourceTree = "<group>"; };
+		C855B5082B10883E007DA332 /* SensorIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorIconView.swift; sourceTree = "<group>"; };
+		C855B5092B10883E007DA332 /* PlaceSensorViewControllerBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceSensorViewControllerBridge.swift; sourceTree = "<group>"; };
+		C855B50A2B10883E007DA332 /* SensorSetupOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorSetupOverlayView.swift; sourceTree = "<group>"; };
+		C855B50B2B10883E007DA332 /* SensorConfirmLocationOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorConfirmLocationOverlayView.swift; sourceTree = "<group>"; };
+		C855B50C2B10883E007DA332 /* PlaceSensorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceSensorView.swift; sourceTree = "<group>"; };
+		C855B50D2B10883E007DA332 /* BatteryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
+		C855B50E2B10883E007DA332 /* AddDetectorConfirmLocationOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDetectorConfirmLocationOverlayView.swift; sourceTree = "<group>"; };
+		C855B50F2B10883E007DA332 /* MapViewControllerBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewControllerBridge.swift; sourceTree = "<group>"; };
+		C855B5102B10883E007DA332 /* DetectorDetailOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorDetailOverlayView.swift; sourceTree = "<group>"; };
+		C855B5122B10883E007DA332 /* MapboxMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxMap.swift; sourceTree = "<group>"; };
+		C855B5132B10883E007DA332 /* MapboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
+		C855B5142B10883E007DA332 /* MapboxMapViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxMapViewWrapper.swift; sourceTree = "<group>"; };
+		C855B5162B10883E007DA332 /* MapboxPlaceSensorViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxPlaceSensorViewWrapper.swift; sourceTree = "<group>"; };
+		C855B5172B10883E007DA332 /* MapboxPlaceSensorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxPlaceSensorViewController.swift; sourceTree = "<group>"; };
+		C855B5192B10883E007DA332 /* DetectorIconView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetectorIconView.xib; sourceTree = "<group>"; };
+		C855B51A2B10883E007DA332 /* DetectorIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorIconView.swift; sourceTree = "<group>"; };
+		C855B51C2B10883E007DA332 /* AccountEmailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountEmailView.swift; sourceTree = "<group>"; };
+		C855B51D2B10883E007DA332 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C855B51E2B10883E007DA332 /* AccountVerificationCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountVerificationCodeView.swift; sourceTree = "<group>"; };
+		C855B51F2B10883E007DA332 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		C855B5202B10883E007DA332 /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		C855B5212B10883E007DA332 /* AccountCompanyNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCompanyNameView.swift; sourceTree = "<group>"; };
+		C855B5222B10883E007DA332 /* AccountPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPasswordView.swift; sourceTree = "<group>"; };
+		C855B5232B10883E007DA332 /* AccountNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountNameView.swift; sourceTree = "<group>"; };
+		C855B5252B10883E007DA332 /* TorchUIApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorchUIApp.swift; sourceTree = "<group>"; };
+		C855B5262B10883E007DA332 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C855B52D2B10883E007DA332 /* xcschememanagement.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = xcschememanagement.plist; sourceTree = "<group>"; };
+		C855B52F2B10883E007DA332 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C855B5312B10883E007DA332 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		C855B5322B10883E007DA332 /* WebSocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
+		C855B5332B10883E007DA332 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		C855B5352B10883E007DA332 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		C855B5362B10883E007DA332 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		C855B5372B10883E007DA332 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		C855B5382B10883E007DA332 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		C855B5392B10883E007DA332 /* View+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		C855B53B2B10883E007DA332 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		C855B53C2B10883E007DA332 /* DataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
+		C855B53D2B10883E007DA332 /* PropertyAddressViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyAddressViewModel.swift; sourceTree = "<group>"; };
+		C855B53E2B10883E007DA332 /* DetectorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectorModel.swift; sourceTree = "<group>"; };
+		C855B53F2B10883E007DA332 /* AlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		C855B5402B10883E007DA332 /* PropertyViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyViewModel.swift; sourceTree = "<group>"; };
+		C855B5412B10883E007DA332 /* PropertyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyModel.swift; sourceTree = "<group>"; };
+		C855B5422B10883E007DA332 /* ViewSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSize.swift; sourceTree = "<group>"; };
+		C855B5432B10883E007DA332 /* PropertyPhotoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyPhotoViewModel.swift; sourceTree = "<group>"; };
+		C855B5452B10883E007DA332 /* LaunchScreenStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreenStoryboard.storyboard; sourceTree = "<group>"; };
+		C855B5472B10883F007DA332 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		C855B5482B10883F007DA332 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		C855B5492B10883F007DA332 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		C855B5942B11100A007DA332 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		CE715C78ED08B54E16060133 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		DE4A1525F6FC18D092DF0909 /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +264,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BFD31B32B1345A3007D0E27 /* New Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */,
+				4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */,
+				4BFD31B82B134620007D0E27 /* Tabbar.swift */,
+			);
+			path = "New Tabbar";
+			sourceTree = "<group>";
+		};
 		6366AC1F6C9E6BCB8261CB46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,20 +282,6 @@
 				DE4A1525F6FC18D092DF0909 /* Pods_TorchUITests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8B88C8F12A5FC9CF008B90A2 /* AddProperty */ = {
-			isa = PBXGroup;
-			children = (
-				8BDE0B792A5B9708007AD0FD /* AddPropertySheetView.swift */,
-				8BDE0B842A5E4822007AD0FD /* PropertyNameView.swift */,
-				8BDE0B7B2A5CE89B007AD0FD /* PropertyAddressView.swift */,
-				8BDE0B7F2A5E3E8C007AD0FD /* PropertyPhotoView.swift */,
-				8B88C8F42A60A992008B90A2 /* BubbleView.swift */,
-				8B88C8F22A5FC9EA008B90A2 /* PromptInstallationView.swift */,
-				8B88C8F62A60AA45008B90A2 /* SensorSetupView.swift */,
-			);
-			path = AddProperty;
 			sourceTree = "<group>";
 		};
 		8BF7FC462A4D1488005D1160 = {
@@ -252,38 +310,17 @@
 		8BF7FC512A4D1488005D1160 /* TorchUI */ = {
 			isa = PBXGroup;
 			children = (
-				8B4A07AE2AE1FB81005731F6 /* ZXCodeTextfield */,
-				8B69B8552A7DF338001F4F79 /* WebSocketManager.swift */,
-				8B69B8532A7DF1FE001F4F79 /* AuthenticationManager.swift */,
-				8BFF26A52A7AE7BD00FDCBD9 /* Login */,
-				8BDE0B732A58BD6B007AD0FD /* PropertyIconView.xib */,
-				8B2534D82AFC587400461AAE /* DetectorIconView.xib */,
-				8BDE0B752A58C026007AD0FD /* PropertyIconView.swift */,
-				8B2534D62AFB375900461AAE /* DetectorIconView.swift */,
-				8BF7FC912A4D1BA2005D1160 /* ViewModels */,
-				8BF7FC8C2A4D1593005D1160 /* TabBar */,
+				C855B5462B10883F007DA332 /* CustomControllers */,
+				C855B52E2B10883E007DA332 /* Delegate */,
+				C855B5342B10883E007DA332 /* Extensions */,
+				C855B5302B10883E007DA332 /* Managers */,
+				C855B53A2B10883E007DA332 /* Models */,
+				C855B5242B10883E007DA332 /* Resources */,
+				C855B5442B10883E007DA332 /* Storyboards */,
+				C855B4E82B10883D007DA332 /* View+Controllers */,
 				8BF7FC7D2A4D14C2005D1160 /* Fonts */,
-				8BF7FC7C2A4D14AF005D1160 /* Info.plist */,
-				8BFF26B22A7AFC4C00FDCBD9 /* LaunchScreenStoryboard.storyboard */,
-				8B88C8F82A65E172008B90A2 /* PlaceSensorView.swift */,
-				8B88C8FA2A6F4BAB008B90A2 /* PlaceSensorViewControllerBridge.swift */,
-				8BF7FC522A4D1488005D1160 /* TorchUIApp.swift */,
-				8BF7FC9B2A577AAE005D1160 /* AppDelegate.swift */,
-				8BADE2CD2A577C2200BAC03F /* MapViewController.swift */,
-				8B88C8FF2A70903B008B90A2 /* PlaceSensorMapViewController.swift */,
-				8BADE2CF2A577C6C00BAC03F /* MapViewControllerBridge.swift */,
-				8B73EBEE2ABB5CBA00A44117 /* MapboxMap.swift */,
-				8B73EBF22ABB721800A44117 /* MapboxViewController.swift */,
-				8B73EBF42ABB72D100A44117 /* MapboxMapViewWrapper.swift */,
-				8B73EBF62ABBCC3300A44117 /* MapboxPlaceSensorViewWrapper.swift */,
-				8B73EBF82ABBD06D00A44117 /* MapboxPlaceSensorViewController.swift */,
-				8BF7FC542A4D1488005D1160 /* PropertiesView.swift */,
-				8B78C42C2AAAA76F00BC2F10 /* HeadingView.swift */,
-				8BF7FC562A4D1489005D1160 /* Assets.xcassets */,
-				8BF7FC972A4D2944005D1160 /* MainMapView.swift */,
 				8BF7FC582A4D1489005D1160 /* Preview Content */,
-				8B8FCCFF2A57AD9D000D23CA /* SessionManager.swift */,
-				8B88C8F12A5FC9CF008B90A2 /* AddProperty */,
+				8BF7FC7C2A4D14AF005D1160 /* Info.plist */,
 			);
 			path = TorchUI;
 			sourceTree = "<group>";
@@ -327,51 +364,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		8BF7FC8C2A4D1593005D1160 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				8BF7FC8D2A4D159C005D1160 /* TabBarView.swift */,
-				8BF7FC8F2A4D15B0005D1160 /* TabBarItemView.swift */,
-			);
-			path = TabBar;
-			sourceTree = "<group>";
-		};
-		8BF7FC912A4D1BA2005D1160 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				8BDE0B7D2A5CE909007AD0FD /* PropertyAddressViewModel.swift */,
-				8BF7FC942A4D1BB7005D1160 /* Property */,
-				8BADE2D12A577CA900BAC03F /* City.swift */,
-				8BDE0B812A5E3EF0007AD0FD /* PropertyPhotoViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		8BF7FC942A4D1BB7005D1160 /* Property */ = {
-			isa = PBXGroup;
-			children = (
-				8BF7FC922A4D1BAB005D1160 /* PropertyModel.swift */,
-				8BF7FC952A4D1BC2005D1160 /* PropertyView.swift */,
-				8BF7FC992A4D2D0A005D1160 /* DetectorModel.swift */,
-				8B8FCCFD2A57AB3C000D23CA /* PropertyViewModel.swift */,
-			);
-			path = Property;
-			sourceTree = "<group>";
-		};
-		8BFF26A52A7AE7BD00FDCBD9 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				8BFF26A62A7AE7E500FDCBD9 /* WelcomeView.swift */,
-				8BFF26A82A7AEB3E00FDCBD9 /* AccountNameView.swift */,
-				8BFF26AA2A7AEFEA00FDCBD9 /* AccountEmailView.swift */,
-				8BFF26AC2A7AF05100FDCBD9 /* AccountCompanyNameView.swift */,
-				8BFF26AE2A7AF15D00FDCBD9 /* AccountPasswordView.swift */,
-				8BFF26B02A7AF82000FDCBD9 /* LoginView.swift */,
-				8B69B8572A7DFE6B001F4F79 /* AccountVerificationCodeView.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		A9CB98324B1AAF2DCBCD81BB /* AmplifyConfig */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +371,267 @@
 				DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */,
 			);
 			name = AmplifyConfig;
+			sourceTree = "<group>";
+		};
+		C855B4E82B10883D007DA332 /* View+Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C855B4E92B10883D007DA332 /* Property */,
+				C855B4FB2B10883E007DA332 /* Heading */,
+				C855B4FD2B10883E007DA332 /* TabBar */,
+				C855B5012B10883E007DA332 /* Map */,
+				C855B5182B10883E007DA332 /* Detector */,
+				C855B51B2B10883E007DA332 /* Account */,
+			);
+			path = "View+Controllers";
+			sourceTree = "<group>";
+		};
+		C855B4E92B10883D007DA332 /* Property */ = {
+			isa = PBXGroup;
+			children = (
+				C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */,
+				C855B4EB2B10883D007DA332 /* PropertyIconView.xib */,
+				C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */,
+				C855B4ED2B10883D007DA332 /* SearchResultView.swift */,
+				C855B4EE2B10883E007DA332 /* PropertyIconView.swift */,
+				C855B4EF2B10883E007DA332 /* AlertView.swift */,
+				C855B4F02B10883E007DA332 /* PropertyView.swift */,
+				C855B4F12B10883E007DA332 /* MainPropertiesView.swift */,
+				C855B4F22B10883E007DA332 /* PropertiesView.swift */,
+				C855B4F32B10883E007DA332 /* AddProperty */,
+			);
+			path = Property;
+			sourceTree = "<group>";
+		};
+		C855B4F32B10883E007DA332 /* AddProperty */ = {
+			isa = PBXGroup;
+			children = (
+				C855B4F42B10883E007DA332 /* PropertyAddressView.swift */,
+				C855B4F52B10883E007DA332 /* PropertyNameView.swift */,
+				C855B4F62B10883E007DA332 /* BubbleView.swift */,
+				C855B4F72B10883E007DA332 /* PropertyPhotoView.swift */,
+				C855B4F82B10883E007DA332 /* SensorSetupView.swift */,
+				C855B4F92B10883E007DA332 /* AddPropertySheetView.swift */,
+				C855B4FA2B10883E007DA332 /* PromptInstallationView.swift */,
+			);
+			path = AddProperty;
+			sourceTree = "<group>";
+		};
+		C855B4FB2B10883E007DA332 /* Heading */ = {
+			isa = PBXGroup;
+			children = (
+				C855B4FC2B10883E007DA332 /* HeadingView.swift */,
+			);
+			path = Heading;
+			sourceTree = "<group>";
+		};
+		C855B4FD2B10883E007DA332 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4BFD31B32B1345A3007D0E27 /* New Tabbar */,
+				C855B4FE2B10883E007DA332 /* TabBarItemView.swift */,
+				C855B4FF2B10883E007DA332 /* TabBarView.swift */,
+				C855B5002B10883E007DA332 /* VisualEffectView.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		C855B5012B10883E007DA332 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				C855B5022B10883E007DA332 /* PropertyDetailOverlayView.swift */,
+				C855B5032B10883E007DA332 /* HalfCircleShape.swift */,
+				C855B5042B10883E007DA332 /* MainMapView.swift */,
+				C855B5052B10883E007DA332 /* MapViewController.swift */,
+				C855B5062B10883E007DA332 /* Places */,
+				C855B50D2B10883E007DA332 /* BatteryView.swift */,
+				C855B50E2B10883E007DA332 /* AddDetectorConfirmLocationOverlayView.swift */,
+				C855B50F2B10883E007DA332 /* MapViewControllerBridge.swift */,
+				C855B5102B10883E007DA332 /* DetectorDetailOverlayView.swift */,
+				C855B5112B10883E007DA332 /* MapBox */,
+				C855B5152B10883E007DA332 /* MapBoxPlaces */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		C855B5062B10883E007DA332 /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				C855B5072B10883E007DA332 /* PlaceSensorMapViewController.swift */,
+				C855B5082B10883E007DA332 /* SensorIconView.swift */,
+				C855B5092B10883E007DA332 /* PlaceSensorViewControllerBridge.swift */,
+				C855B50A2B10883E007DA332 /* SensorSetupOverlayView.swift */,
+				C855B50B2B10883E007DA332 /* SensorConfirmLocationOverlayView.swift */,
+				C855B50C2B10883E007DA332 /* PlaceSensorView.swift */,
+			);
+			path = Places;
+			sourceTree = "<group>";
+		};
+		C855B5112B10883E007DA332 /* MapBox */ = {
+			isa = PBXGroup;
+			children = (
+				C855B5122B10883E007DA332 /* MapboxMap.swift */,
+				C855B5132B10883E007DA332 /* MapboxViewController.swift */,
+				C855B5142B10883E007DA332 /* MapboxMapViewWrapper.swift */,
+			);
+			path = MapBox;
+			sourceTree = "<group>";
+		};
+		C855B5152B10883E007DA332 /* MapBoxPlaces */ = {
+			isa = PBXGroup;
+			children = (
+				C855B5162B10883E007DA332 /* MapboxPlaceSensorViewWrapper.swift */,
+				C855B5172B10883E007DA332 /* MapboxPlaceSensorViewController.swift */,
+			);
+			path = MapBoxPlaces;
+			sourceTree = "<group>";
+		};
+		C855B5182B10883E007DA332 /* Detector */ = {
+			isa = PBXGroup;
+			children = (
+				C855B5192B10883E007DA332 /* DetectorIconView.xib */,
+				C855B51A2B10883E007DA332 /* DetectorIconView.swift */,
+			);
+			path = Detector;
+			sourceTree = "<group>";
+		};
+		C855B51B2B10883E007DA332 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				C855B51C2B10883E007DA332 /* AccountEmailView.swift */,
+				C855B51D2B10883E007DA332 /* LoginView.swift */,
+				C855B51E2B10883E007DA332 /* AccountVerificationCodeView.swift */,
+				C855B51F2B10883E007DA332 /* WelcomeView.swift */,
+				C855B5202B10883E007DA332 /* AccountView.swift */,
+				C855B5212B10883E007DA332 /* AccountCompanyNameView.swift */,
+				C855B5222B10883E007DA332 /* AccountPasswordView.swift */,
+				C855B5232B10883E007DA332 /* AccountNameView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		C855B5242B10883E007DA332 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8B4A07AE2AE1FB81005731F6 /* ZXCodeTextfield */,
+				C855B5252B10883E007DA332 /* TorchUIApp.swift */,
+				C855B5262B10883E007DA332 /* Assets.xcassets */,
+				C855B5272B10883E007DA332 /* ZXCodeTextfield */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C855B5272B10883E007DA332 /* ZXCodeTextfield */ = {
+			isa = PBXGroup;
+			children = (
+				C855B5282B10883E007DA332 /* .swiftpm */,
+			);
+			path = ZXCodeTextfield;
+			sourceTree = "<group>";
+		};
+		C855B5282B10883E007DA332 /* .swiftpm */ = {
+			isa = PBXGroup;
+			children = (
+				C855B5292B10883E007DA332 /* xcode */,
+			);
+			path = .swiftpm;
+			sourceTree = "<group>";
+		};
+		C855B5292B10883E007DA332 /* xcode */ = {
+			isa = PBXGroup;
+			children = (
+				C855B52A2B10883E007DA332 /* xcuserdata */,
+			);
+			path = xcode;
+			sourceTree = "<group>";
+		};
+		C855B52A2B10883E007DA332 /* xcuserdata */ = {
+			isa = PBXGroup;
+			children = (
+				C855B52B2B10883E007DA332 /* mubashirmushir.xcuserdatad */,
+			);
+			path = xcuserdata;
+			sourceTree = "<group>";
+		};
+		C855B52B2B10883E007DA332 /* mubashirmushir.xcuserdatad */ = {
+			isa = PBXGroup;
+			children = (
+				C855B52C2B10883E007DA332 /* xcschemes */,
+			);
+			path = mubashirmushir.xcuserdatad;
+			sourceTree = "<group>";
+		};
+		C855B52C2B10883E007DA332 /* xcschemes */ = {
+			isa = PBXGroup;
+			children = (
+				C855B52D2B10883E007DA332 /* xcschememanagement.plist */,
+			);
+			path = xcschemes;
+			sourceTree = "<group>";
+		};
+		C855B52E2B10883E007DA332 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				C855B52F2B10883E007DA332 /* AppDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		C855B5302B10883E007DA332 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C855B5312B10883E007DA332 /* AuthenticationManager.swift */,
+				C855B5322B10883E007DA332 /* WebSocketManager.swift */,
+				C855B5332B10883E007DA332 /* SessionManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		C855B5342B10883E007DA332 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C855B5352B10883E007DA332 /* UIApplication+Extension.swift */,
+				C855B5362B10883E007DA332 /* UIImage+Extension.swift */,
+				C855B5372B10883E007DA332 /* String+Extension.swift */,
+				C855B5382B10883E007DA332 /* Color+Extension.swift */,
+				C855B5392B10883E007DA332 /* View+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C855B53A2B10883E007DA332 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C855B53B2B10883E007DA332 /* City.swift */,
+				C855B53C2B10883E007DA332 /* DataItem.swift */,
+				C855B53D2B10883E007DA332 /* PropertyAddressViewModel.swift */,
+				C855B53E2B10883E007DA332 /* DetectorModel.swift */,
+				C855B53F2B10883E007DA332 /* AlertModel.swift */,
+				C855B5402B10883E007DA332 /* PropertyViewModel.swift */,
+				C855B5412B10883E007DA332 /* PropertyModel.swift */,
+				C855B5422B10883E007DA332 /* ViewSize.swift */,
+				C855B5432B10883E007DA332 /* PropertyPhotoViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C855B5442B10883E007DA332 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C855B5452B10883E007DA332 /* LaunchScreenStoryboard.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C855B5462B10883F007DA332 /* CustomControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C855B5472B10883F007DA332 /* Enums.swift */,
+				C855B5482B10883F007DA332 /* CustomButton.swift */,
+				C855B5492B10883F007DA332 /* CustomColors.swift */,
+				C855B5942B11100A007DA332 /* Strings.swift */,
+			);
+			path = CustomControllers;
 			sourceTree = "<group>";
 		};
 		CF081936F4D134B31F7A7C3F /* Pods */ = {
@@ -517,18 +770,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BFF26B32A7AFC4C00FDCBD9 /* LaunchScreenStoryboard.storyboard in Resources */,
-				8BDE0B742A58BD6B007AD0FD /* PropertyIconView.xib in Resources */,
+				4BFD31B72B134605007D0E27 /* TabbarAssets.xcassets in Resources */,
+				C855B54B2B10883F007DA332 /* PropertyIconView.xib in Resources */,
 				8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */,
 				8BF7FC5A2A4D1489005D1160 /* Preview Assets.xcassets in Resources */,
 				8BF7FC862A4D14D0005D1160 /* Manrope-ExtraLight.ttf in Resources */,
 				8BF7FC852A4D14D0005D1160 /* Manrope-Bold.ttf in Resources */,
-				8BF7FC572A4D1489005D1160 /* Assets.xcassets in Resources */,
+				C855B57D2B10883F007DA332 /* xcschememanagement.plist in Resources */,
 				8BF7FC882A4D14D0005D1160 /* Manrope-SemiBold.ttf in Resources */,
+				C855B57C2B10883F007DA332 /* Assets.xcassets in Resources */,
 				8BF7FC872A4D14D0005D1160 /* Manrope-Light.ttf in Resources */,
+				C855B5712B10883F007DA332 /* DetectorIconView.xib in Resources */,
 				8BF7FC8A2A4D14D0005D1160 /* Manrope-Medium.ttf in Resources */,
 				8BF7FC892A4D14D0005D1160 /* Manrope-Regular.ttf in Resources */,
-				8B2534D92AFC587400461AAE /* DetectorIconView.xib in Resources */,
+				C855B5902B10883F007DA332 /* LaunchScreenStoryboard.storyboard in Resources */,
 				FADFD6D29C0D959575FAAFCB /* awsconfiguration.json in Resources */,
 				7264CE919C89CB52F285A91A /* amplifyconfiguration.json in Resources */,
 			);
@@ -692,49 +947,78 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B8FCCFE2A57AB3C000D23CA /* PropertyViewModel.swift in Sources */,
-				8B73EBEF2ABB5CBA00A44117 /* MapboxMap.swift in Sources */,
-				8B73EBF32ABB721800A44117 /* MapboxViewController.swift in Sources */,
-				8BF7FC982A4D2944005D1160 /* MainMapView.swift in Sources */,
-				8BDE0B822A5E3EF0007AD0FD /* PropertyPhotoViewModel.swift in Sources */,
-				8BFF26AB2A7AEFEA00FDCBD9 /* AccountEmailView.swift in Sources */,
-				8B88C8F52A60A992008B90A2 /* BubbleView.swift in Sources */,
-				8BF7FC9A2A4D2D0A005D1160 /* DetectorModel.swift in Sources */,
-				8B69B8562A7DF338001F4F79 /* WebSocketManager.swift in Sources */,
-				8BFF26A92A7AEB3E00FDCBD9 /* AccountNameView.swift in Sources */,
-				8BADE2D22A577CA900BAC03F /* City.swift in Sources */,
-				8BFF26AD2A7AF05100FDCBD9 /* AccountCompanyNameView.swift in Sources */,
-				8B88C8F72A60AA45008B90A2 /* SensorSetupView.swift in Sources */,
-				8BF7FC552A4D1488005D1160 /* PropertiesView.swift in Sources */,
-				8B73EBF52ABB72D100A44117 /* MapboxMapViewWrapper.swift in Sources */,
-				8B88C8F32A5FC9EA008B90A2 /* PromptInstallationView.swift in Sources */,
-				8BDE0B802A5E3E8C007AD0FD /* PropertyPhotoView.swift in Sources */,
-				8B88C8F92A65E172008B90A2 /* PlaceSensorView.swift in Sources */,
-				8B73EBF72ABBCC3300A44117 /* MapboxPlaceSensorViewWrapper.swift in Sources */,
-				8BDE0B852A5E4822007AD0FD /* PropertyNameView.swift in Sources */,
-				8BFF26AF2A7AF15D00FDCBD9 /* AccountPasswordView.swift in Sources */,
-				8BADE2CE2A577C2200BAC03F /* MapViewController.swift in Sources */,
-				8B8FCD002A57AD9D000D23CA /* SessionManager.swift in Sources */,
-				8BDE0B7A2A5B9708007AD0FD /* AddPropertySheetView.swift in Sources */,
-				8BF7FC9C2A577AAE005D1160 /* AppDelegate.swift in Sources */,
-				8B2534D72AFB375900461AAE /* DetectorIconView.swift in Sources */,
-				8BADE2D02A577C6C00BAC03F /* MapViewControllerBridge.swift in Sources */,
-				8B78C42D2AAAA76F00BC2F10 /* HeadingView.swift in Sources */,
-				8B88C9002A70903B008B90A2 /* PlaceSensorMapViewController.swift in Sources */,
-				8BF7FC902A4D15B0005D1160 /* TabBarItemView.swift in Sources */,
-				8BDE0B762A58C026007AD0FD /* PropertyIconView.swift in Sources */,
-				8BDE0B7E2A5CE909007AD0FD /* PropertyAddressViewModel.swift in Sources */,
-				8BF7FC8E2A4D159C005D1160 /* TabBarView.swift in Sources */,
-				8B88C8FB2A6F4BAB008B90A2 /* PlaceSensorViewControllerBridge.swift in Sources */,
-				8B69B8542A7DF1FE001F4F79 /* AuthenticationManager.swift in Sources */,
-				8BF7FC962A4D1BC2005D1160 /* PropertyView.swift in Sources */,
-				8B69B8582A7DFE6B001F4F79 /* AccountVerificationCodeView.swift in Sources */,
-				8BDE0B7C2A5CE89B007AD0FD /* PropertyAddressView.swift in Sources */,
-				8BF7FC532A4D1488005D1160 /* TorchUIApp.swift in Sources */,
-				8BFF26B12A7AF82000FDCBD9 /* LoginView.swift in Sources */,
-				8BF7FC932A4D1BAC005D1160 /* PropertyModel.swift in Sources */,
-				8BFF26A72A7AE7E500FDCBD9 /* WelcomeView.swift in Sources */,
-				8B73EBF92ABBD06D00A44117 /* MapboxPlaceSensorViewController.swift in Sources */,
+				C855B5722B10883F007DA332 /* DetectorIconView.swift in Sources */,
+				C855B58C2B10883F007DA332 /* PropertyViewModel.swift in Sources */,
+				C855B5762B10883F007DA332 /* WelcomeView.swift in Sources */,
+				4BFD31B92B134620007D0E27 /* Tabbar.swift in Sources */,
+				C855B5512B10883F007DA332 /* MainPropertiesView.swift in Sources */,
+				C855B58F2B10883F007DA332 /* PropertyPhotoViewModel.swift in Sources */,
+				C855B58D2B10883F007DA332 /* PropertyModel.swift in Sources */,
+				C855B54F2B10883F007DA332 /* AlertView.swift in Sources */,
+				C855B5772B10883F007DA332 /* AccountView.swift in Sources */,
+				C855B56A2B10883F007DA332 /* MapViewControllerBridge.swift in Sources */,
+				C855B58B2B10883F007DA332 /* AlertModel.swift in Sources */,
+				C855B5602B10883F007DA332 /* MainMapView.swift in Sources */,
+				C855B55F2B10883F007DA332 /* HalfCircleShape.swift in Sources */,
+				C855B5782B10883F007DA332 /* AccountCompanyNameView.swift in Sources */,
+				C855B5702B10883F007DA332 /* MapboxPlaceSensorViewController.swift in Sources */,
+				4BFD31B52B1345C2007D0E27 /* DropDownModifier.swift in Sources */,
+				C855B57B2B10883F007DA332 /* TorchUIApp.swift in Sources */,
+				C855B57E2B10883F007DA332 /* AppDelegate.swift in Sources */,
+				C855B5892B10883F007DA332 /* PropertyAddressViewModel.swift in Sources */,
+				C855B5632B10883F007DA332 /* SensorIconView.swift in Sources */,
+				C855B58A2B10883F007DA332 /* DetectorModel.swift in Sources */,
+				C855B5932B10883F007DA332 /* CustomColors.swift in Sources */,
+				C855B57F2B10883F007DA332 /* AuthenticationManager.swift in Sources */,
+				C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */,
+				C855B5852B10883F007DA332 /* Color+Extension.swift in Sources */,
+				C855B5682B10883F007DA332 /* BatteryView.swift in Sources */,
+				C855B56F2B10883F007DA332 /* MapboxPlaceSensorViewWrapper.swift in Sources */,
+				C855B5912B10883F007DA332 /* Enums.swift in Sources */,
+				C855B5622B10883F007DA332 /* PlaceSensorMapViewController.swift in Sources */,
+				C855B5652B10883F007DA332 /* SensorSetupOverlayView.swift in Sources */,
+				C855B54D2B10883F007DA332 /* SearchResultView.swift in Sources */,
+				C855B5752B10883F007DA332 /* AccountVerificationCodeView.swift in Sources */,
+				C855B5862B10883F007DA332 /* View+Extension.swift in Sources */,
+				C855B5832B10883F007DA332 /* UIImage+Extension.swift in Sources */,
+				C855B5872B10883F007DA332 /* City.swift in Sources */,
+				C855B5542B10883F007DA332 /* PropertyNameView.swift in Sources */,
+				C855B5842B10883F007DA332 /* String+Extension.swift in Sources */,
+				C855B5592B10883F007DA332 /* PromptInstallationView.swift in Sources */,
+				C855B57A2B10883F007DA332 /* AccountNameView.swift in Sources */,
+				C855B56C2B10883F007DA332 /* MapboxMap.swift in Sources */,
+				C855B58E2B10883F007DA332 /* ViewSize.swift in Sources */,
+				C855B56B2B10883F007DA332 /* DetectorDetailOverlayView.swift in Sources */,
+				C855B5532B10883F007DA332 /* PropertyAddressView.swift in Sources */,
+				C855B5612B10883F007DA332 /* MapViewController.swift in Sources */,
+				C855B55E2B10883F007DA332 /* PropertyDetailOverlayView.swift in Sources */,
+				C855B5822B10883F007DA332 /* UIApplication+Extension.swift in Sources */,
+				C855B55A2B10883F007DA332 /* HeadingView.swift in Sources */,
+				C855B5662B10883F007DA332 /* SensorConfirmLocationOverlayView.swift in Sources */,
+				C855B5672B10883F007DA332 /* PlaceSensorView.swift in Sources */,
+				C855B5502B10883F007DA332 /* PropertyView.swift in Sources */,
+				C855B54E2B10883F007DA332 /* PropertyIconView.swift in Sources */,
+				C855B55C2B10883F007DA332 /* TabBarView.swift in Sources */,
+				C855B5562B10883F007DA332 /* PropertyPhotoView.swift in Sources */,
+				C855B5552B10883F007DA332 /* BubbleView.swift in Sources */,
+				C855B5882B10883F007DA332 /* DataItem.swift in Sources */,
+				C855B56E2B10883F007DA332 /* MapboxMapViewWrapper.swift in Sources */,
+				C855B5812B10883F007DA332 /* SessionManager.swift in Sources */,
+				C855B5692B10883F007DA332 /* AddDetectorConfirmLocationOverlayView.swift in Sources */,
+				C855B55B2B10883F007DA332 /* TabBarItemView.swift in Sources */,
+				C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */,
+				C855B5732B10883F007DA332 /* AccountEmailView.swift in Sources */,
+				C855B5642B10883F007DA332 /* PlaceSensorViewControllerBridge.swift in Sources */,
+				C855B56D2B10883F007DA332 /* MapboxViewController.swift in Sources */,
+				C855B5572B10883F007DA332 /* SensorSetupView.swift in Sources */,
+				C855B5952B11100A007DA332 /* Strings.swift in Sources */,
+				C855B5522B10883F007DA332 /* PropertiesView.swift in Sources */,
+				C855B55D2B10883F007DA332 /* VisualEffectView.swift in Sources */,
+				C855B5802B10883F007DA332 /* WebSocketManager.swift in Sources */,
+				C855B5922B10883F007DA332 /* CustomButton.swift in Sources */,
+				C855B5742B10883F007DA332 /* LoginView.swift in Sources */,
+				C855B5582B10883F007DA332 /* AddPropertySheetView.swift in Sources */,
+				C855B5792B10883F007DA332 /* AccountPasswordView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

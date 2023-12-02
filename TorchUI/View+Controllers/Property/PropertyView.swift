@@ -12,28 +12,23 @@ import SwiftUI_Shimmer
 struct PropertyView: View, Equatable {
     
     static func == (lhs: PropertyView, rhs: PropertyView) -> Bool {
-//        // print("equality check")
         
         let lhs_property = lhs.property
         let rhs_property = rhs.property
         
         if (lhs_property.id != rhs_property.id) {
-            // print("equality check fail 1")
             return false
         }
         
         if (lhs_property.threat != rhs_property.threat) {
-            // print("equality check fail 2")
             return false
         }
         
         if (lhs_property.propertyDescription != rhs_property.propertyDescription) {
-            // print("equality check fail 3")
             return false
         }
         
         if (lhs_property.detectors.count != rhs_property.detectors.count) {
-            // print("equality check fail 4")
             return false
         }
         
@@ -41,15 +36,11 @@ struct PropertyView: View, Equatable {
             for rhs_detector in rhs_property.detectors {
                 if lhs_detector.id == rhs_detector.id {
                     if (lhs_detector.threat != rhs_detector.threat) {
-                        // print("equality check fail 5")
                         return false
                     }
                 }
             }
         }
-        
-//        // print("equality check pass")
-        
         return true
     }
     

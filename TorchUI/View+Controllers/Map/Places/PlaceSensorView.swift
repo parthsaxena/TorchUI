@@ -19,11 +19,8 @@ struct PlaceSensorView: View {
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
     
-    //    @ObservedObject var sessionManager = SessionManager()
-    //    @Binding var state: OnboardingState?
     @ObservedObject var sessionManager = SessionManager.shared
     
-    // Google maps tutorial START
     static var detectors: [Detector] = []
     @State var markers: [GMSMarker] = []
     
@@ -34,83 +31,30 @@ struct PlaceSensorView: View {
     @State var zoomInCenter: Bool = false
     @State var selectedDetector: Detector?
     @State var selectedMarker: GMSMarker?
-    
     @State var isPresentingScanner: Bool = false
     @State var showingOptions: Bool = false
-    
     @State var isConfirmingLocation: Bool = false
-    
     @State var selectedSensor: Detector?
-    
     @State var mapOffset: CGSize = CGSize()
     @State var size: CGSize = CGSize()
-    
     @State var pin: CLLocationCoordinate2D = CLLocationCoordinate2D()
-    
     @State var needsLocationPin: Bool = false
-    
     @State var moveToUserTapped: Bool = false
-    
     @State var sensorTapped: Bool = false
     
-    // Google maps tutorial END
-    
     init() {
-        // print("Count: \(sessionManager.selectedProperty!.detectors.count)")
-        // print("Markers Count: \(markers.count)")
-        
-        //        self.pin = GMSMarker()
-        ////        pin!.icon = UIImage(named: "Pin")
-        ////        pin!.icon?.scale = 5.0
-        //
-        //        var markerImage = UIImage(named: "Pin")
-        //        markerImage = UIImage(cgImage: (markerImage?.cgImage)!, scale: 4.0, orientation: (markerImage?.imageOrientation)!)
-        //        self.pin!.icon = markerImage
-        //        pin!.map = self.map
     }
     
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                // Maps
                 ZStack {
                     MapboxPlaceSensorViewWrapper(mapOffset: $mapOffset, showDetectorDetails: $showDetectorDetails, selectedDetector: $selectedDetector, needsLocationPin: $needsLocationPin, annotations: $annotations, pin: $pin, moveToUserTapped: $moveToUserTapped, sensorTapped: $sensorTapped)
-                    //                    PlaceSensorViewControllerBridge(mapBottomOffset: $size.height, isConfirmingLocation: $isConfirmingLocation, markers: $markers, selectedMarker: $selectedMarker, selectedDetector: $selectedDetector, showDetectorDetails: $showDetectorDetails, detectors: sessionManager.selectedProperty!.detectors, onAnimationEnded: {
-                    //                        self.zoomInCenter = true
-                    //                    }, mapViewWillMove: { (isGesture) in
-                    //                        guard isGesture else { return }
-                    //                        self.zoomInCenter = false
-                    //                    }, mapViewDidChange: { (position) in
-                    //                        if !isConfirmingLocation {
-                    //                            self.pin = position.target
-                    //                            // print("Map did change: \(position.target)")
-                    //                            // print("Map did change, pin: \(self.pin)")
-                    //                        }
-                    //                    })
                         .ignoresSafeArea()
                         .animation(.easeIn)
                 }
-                
-                //                ZStack {
-                //                    VStack {
-                //                        Spacer()
-                //
-                //                        Image("Pin")
-                //                            .resizable()
-                //                            .frame(width: 60, height: 69)
-                //                            .padding(.bottom, 69 + 20)
-                //
-                //                        Spacer()
-                //                    }
-                //                    .padding(.bottom, self.size.height)
-                //                }
-                
                 VStack {
-                    // Image pin
-                    
                     Spacer()
-                    
-                    // Overlay
                     VStack {
                         if isConfirmingLocation {
                             SensorConfirmLocationOverlayView(mapOffset: $mapOffset, size: $size, markers: $markers, pin: $pin, selectedSensor: $selectedSensor, isConfirmingLocation: $isConfirmingLocation)
@@ -125,7 +69,6 @@ struct PlaceSensorView: View {
                                                 .font(Font.custom("Manrope-Medium", fixedSize: 20))
                                                 .foregroundColor(CustomColors.TorchGreen)
                                                 .padding(.top, 20)
-                                            
                                             Spacer()
                                         }
                                         
@@ -133,19 +76,12 @@ struct PlaceSensorView: View {
                                             if case let .success(result) = response {
                                                 let impactMed = UIImpactFeedbackGenerator(style: .heavy)
                                                 impactMed.impactOccurred()
-                                                
-                                                print("Got device EUI: \(result.string)")
                                                 isPresentingScanner = false
-                                                
-                                                // create detector model
                                                 var detector = Detector(id: result.string, deviceName: String(sessionManager.newProperty!.detectors.count + 1), deviceBattery: 0.0, coordinate: nil, selected: true, sensorIdx: sessionManager.newProperty!.detectors.count + 1)
                                                 sessionManager.addNewDetector(detector: detector)
                                                 self.selectedSensor = detector
                                                 self.selectedDetector = detector
                                                 needsLocationPin = true
-                                                // sessionManager.newProperty!.detectors.append(detector)
-                                                
-                                                let x =  print("Added, new detector count: \(sessionManager.newProperty!.detectors.count)")
                                             }
                                         }
                                         .ignoresSafeArea(.container)
@@ -173,12 +109,8 @@ struct PlaceSensorView: View {
                     Spacer()
                     VStack(spacing: 1) {
                         ExitButton(showingOptions: $showingOptions)
-                        
                         Spacer()
                             .frame(height: 150)
-                        
-                        //                        LayersButton()
-                        //                        LocationButton()
                     }
                     .padding(.trailing, 10)
                     .padding(.top, 10)
@@ -186,14 +118,6 @@ struct PlaceSensorView: View {
                 
                 VStack {
                     Spacer()
-                    
-                    //                    HStack {
-                    //                        Spacer()
-                    //
-                    //                        LayersButton()
-                    //                    }
-                    //                    .padding(.trailing, 10)
-                    
                     HStack {
                         Spacer()
                         
@@ -201,7 +125,6 @@ struct PlaceSensorView: View {
                     }
                     .padding(.trailing, 10)
                     .padding(.bottom, 10)
-                    
                     Spacer()
                         .frame(height: self.size.height)
                 }
@@ -219,7 +142,6 @@ struct PlaceSensorView: View {
                     SessionManager.shared.newProperty!.loadingData = true
                     SessionManager.shared.uploadNewDetectors()
                     dismiss()
-                    //                    SessionManager.shared.appState = .properties
                     SessionManager.shared.newProperty = nil
                 }
                 
@@ -227,8 +149,6 @@ struct PlaceSensorView: View {
                 Button("Quit without saving", role: .destructive) {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
-                    
-                    //                    SessionManager.shared.appState = .properties
                     SessionManager.shared.newProperty!.detectors = []
                     SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors = []
                     dismiss()
@@ -238,22 +158,3 @@ struct PlaceSensorView: View {
         }
     }
 }
-
-//struct DeviceScanerView: View {
-//    @State var isPresentingScanner: Bool
-//
-//
-//    var body: some View {
-//        CodeScannerView(codeTypes: [.qr]) { response in
-//            if case let .success(result) = response {
-//                // print(result.string)
-//                isPresentingScanner = false
-//            }
-//        }
-//    }
-//}
-//struct PlaceSensorView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlaceSensorView()
-//    }
-//}

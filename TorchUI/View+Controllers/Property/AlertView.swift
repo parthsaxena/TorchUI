@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlertView: View {
+    
     @Environment(\.colorScheme) var colorScheme
     var model: AlertModel
     
@@ -56,10 +57,8 @@ struct AlertView: View {
                 Button("View sensor data") {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
-                    
                     SessionManager.shared.selectedProperty = model.property
                     SessionManager.shared.appState = .viewProperty
-                    // print("Property \(model.property.propertyName) tapped, \(SessionManager.shared.appState)")
                 }
                 .font(.custom("Manrope-SemiBold", size: 16))
                 .frame(maxWidth: 229)
@@ -70,8 +69,6 @@ struct AlertView: View {
                     RoundedRectangle(cornerRadius: 28)
                         .foregroundColor(colorScheme == .dark ? Color.white.opacity(0.3) : Color(red: 0.95, green: 0.95, blue: 0.95))
                 )
-                
-                
                 Circle()
                 .fill(colorScheme == .dark ? LinearGradient(
                     stops: [
@@ -95,7 +92,6 @@ struct AlertView: View {
                         .foregroundColor(colorScheme == .dark ? CustomColors.TorchRed : Color.white)
                         .frame(width: 20, height: 20)
                 )
-                
                 Spacer()
             }
             .padding(.bottom, 15)
@@ -108,9 +104,7 @@ struct AlertView: View {
             ZStack {
                 Image("ThreatAlertBackground")
                     .resizable()
-                
                 if colorScheme == .dark {
-                    
                     Rectangle()
                         .fill(Color.black.opacity(0.85))
                         .ignoresSafeArea()
@@ -141,6 +135,5 @@ struct AlertView: View {
         .cornerRadius(24)
         .shadow(color: Color(red: 0.18, green: 0.21, blue: 0.22).opacity(0.08), radius: 12, x: 0, y: 4)
         .padding(.horizontal, 16)
-//        .padding(.top, 100)
     }
 }

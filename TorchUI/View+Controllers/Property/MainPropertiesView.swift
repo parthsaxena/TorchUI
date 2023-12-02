@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MainPropertiesView: View {
+    
     @Environment(\.colorScheme) var colorScheme
     @Binding var showingSheet: Bool
-    
     @ObservedObject var sessionManager = SessionManager.shared
     
     var body: some View {
@@ -22,14 +22,10 @@ struct MainPropertiesView: View {
                     .contentShape(Rectangle())
                 
                 VStack {
-                    // Alerts
                     ForEach(SessionManager.shared.alerts) { alert in
                         AlertView(model: alert)
                     }
-                    
-                    // All properties
                     VStack {
-                        // Heading "All properties"
                         HStack {
                             Text("All properties")
                                 .font(Font.custom("Manrope-SemiBold", size: 18))
@@ -46,7 +42,6 @@ struct MainPropertiesView: View {
                             Button {
                                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
                                 impactMed.impactOccurred()
-                                
                                 self.showingSheet.toggle()
                             } label: {
                                 HStack {
@@ -76,10 +71,7 @@ struct MainPropertiesView: View {
                                         withAnimation {
                                             SessionManager.shared.appState = .viewProperty
                                         }
-//                                        SessionManager.shared.appState = .viewProperty
-                                        // print("Property \(property.propertyName) tapped, \(SessionManager.shared.appState)")
                                     }
-//                                    .shimmering()
                                 
                                 if idx < SessionManager.shared.properties.count - 1 {
                                     Divider()
@@ -91,16 +83,13 @@ struct MainPropertiesView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 16)
                     .frame(maxWidth: .infinity, alignment: .topLeading)
-    //                    .background(.white)
                     .background(colorScheme == .dark ? CustomColors.DarkModeOverlayBackground : Color.white)
                     .cornerRadius(24)
                     .shadow(color: Color(red: 0.18, green: 0.21, blue: 0.22).opacity(0.08), radius: 12, x: 0, y: 4)
                     .padding(.horizontal, 16)
                     .padding(.top, 10)
-                    
                     Spacer()
                 }
-                
                 Rectangle()
                     .fill(.clear)
                     .frame(height: 100)
