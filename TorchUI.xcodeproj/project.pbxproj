@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		063E3AEDB341E890B74EBA44 /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C19AF3ABE563F725FAD2649 /* Pods_TorchUI_TorchUIUITests.framework */; };
 		0E2DB57146C4AC62F707E171 /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA61948B1D99B51DFBD2E8D /* Pods_TorchUI.framework */; };
+		3094CF572B1CB00A00C7984B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3094CF562B1CB00A00C7984B /* Date+Extension.swift */; };
 		4BFD31B52B1345C2007D0E27 /* DropDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */; };
 		4BFD31B72B134605007D0E27 /* TabbarAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */; };
 		4BFD31B92B134620007D0E27 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFD31B82B134620007D0E27 /* Tabbar.swift */; };
@@ -128,6 +129,7 @@
 		06A5BCCAF1B34B0A151F0B7E /* Pods-TorchUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.release.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.release.xcconfig"; sourceTree = "<group>"; };
 		09926F4222A147A0A0724977 /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
 		0C19AF3ABE563F725FAD2649 /* Pods_TorchUI_TorchUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI_TorchUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3094CF562B1CB00A00C7984B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		3543DCA965350F51F6C6E4E1 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownModifier.swift; sourceTree = "<group>"; };
 		4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabbarAssets.xcassets; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 				C855B5372B10883E007DA332 /* String+Extension.swift */,
 				C855B5382B10883E007DA332 /* Color+Extension.swift */,
 				C855B5392B10883E007DA332 /* View+Extension.swift */,
+				3094CF562B1CB00A00C7984B /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1002,6 +1005,7 @@
 				C855B5562B10883F007DA332 /* PropertyPhotoView.swift in Sources */,
 				C855B5552B10883F007DA332 /* BubbleView.swift in Sources */,
 				C855B5882B10883F007DA332 /* DataItem.swift in Sources */,
+				3094CF572B1CB00A00C7984B /* Date+Extension.swift in Sources */,
 				C855B56E2B10883F007DA332 /* MapboxMapViewWrapper.swift in Sources */,
 				C855B5812B10883F007DA332 /* SessionManager.swift in Sources */,
 				C855B5692B10883F007DA332 /* AddDetectorConfirmLocationOverlayView.swift in Sources */,
@@ -1179,7 +1183,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
-				DEVELOPMENT_TEAM = H3MR536ERJ;
+				DEVELOPMENT_TEAM = GKWG38K5WC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TorchUI/Info.plist;
@@ -1197,6 +1201,63 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.6;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GoogleMapsBase\"",
+					"-framework",
+					"\"GoogleMapsCore\"",
+					"-framework",
+					"\"GoogleMapsUtils\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MapboxCommon\"",
+					"-framework",
+					"\"MapboxCoreMaps\"",
+					"-framework",
+					"\"MapboxMaps\"",
+					"-framework",
+					"\"MapboxMobileEvents\"",
+					"-framework",
+					"\"Metal\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"SwiftUI_Shimmer\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Turf\"",
+					"-framework",
+					"\"UIKit\"",
+					"-fprofile-instr-generate",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.torchsensors.TorchUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1218,7 +1279,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
-				DEVELOPMENT_TEAM = H3MR536ERJ;
+				DEVELOPMENT_TEAM = GKWG38K5WC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TorchUI/Info.plist;
@@ -1236,6 +1297,63 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.6;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GoogleMapsBase\"",
+					"-framework",
+					"\"GoogleMapsCore\"",
+					"-framework",
+					"\"GoogleMapsUtils\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MapboxCommon\"",
+					"-framework",
+					"\"MapboxCoreMaps\"",
+					"-framework",
+					"\"MapboxMaps\"",
+					"-framework",
+					"\"MapboxMobileEvents\"",
+					"-framework",
+					"\"Metal\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"SwiftUI_Shimmer\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Turf\"",
+					"-framework",
+					"\"UIKit\"",
+					"-fprofile-instr-generate",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.torchsensors.TorchUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

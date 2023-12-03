@@ -66,9 +66,10 @@ final class SessionManager: ObservableObject {
     
     func dummyUserSetup() {
         let property = Property(id: "0", propertyName: "House in Napa", propertyAddress: "2237 Kamp Court", propertyImage: "Property", detectors: [
-            Detector(id: "1", deviceName: "Backyard", deviceBattery: 83.0,
-                     measurements: ["fire_rating" : "23"],
-                     coordinate: CLLocationCoordinate2D(latitude: 37.656434, longitude: -121.972)),
+            Detector(id: "1", deviceName: "Backyard", deviceBattery: 13.0, measurements: ["fire_rating" : "93","temperature" : "47"], coordinate: CLLocationCoordinate2D(latitude: 37.656434, longitude: -121.972), threat: .Red, spectralStatus: .Yellow, thermalStatus: .Red, smokeStatus: .Green, connected: true, lastTimestamp: Date()),
+//            Detector(id: "1", deviceName: "Backyard", deviceBattery: 13.0,
+//                     measurements: ["fire_rating" : "93"],
+//                     coordinate: CLLocationCoordinate2D(latitude: 37.656434, longitude: -121.972), spectralStatus: .Red, thermalStatus: .Yellow, smokeStatus: .Green),
             Detector(id: "2", deviceName: "Frontyard", deviceBattery: 91.0,
                      measurements: ["fire_rating" : "81"],
                      coordinate: CLLocationCoordinate2D(latitude: 37.655521, longitude: -121.962646), threat: Threat.Red),

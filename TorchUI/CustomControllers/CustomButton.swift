@@ -13,6 +13,7 @@ struct BackButton: View {
     @Binding var showDetectorDetails: Bool
     //    @Binding var mapOffset: CGSize
     @Binding var dragOffset: CGSize
+    @Binding var showRedOverlay: Bool
     
     
     var body: some View {
@@ -32,6 +33,7 @@ struct BackButton: View {
                 }
                 withAnimation {
                     showDetectorDetails.toggle(); dragOffset = .zero
+                    showRedOverlay = false
                 }
                 selectedDetector = nil
             } label: {
@@ -215,6 +217,39 @@ struct LocationButton: View {
         .shadow(color: CustomColors.LightGray.opacity(0.5), radius: 15.0)
     }
 }
+
+struct MapLayerButton: View {
+    
+    @Environment(\.colorScheme) var colorScheme
+    @Binding var mapLayerTapped: Bool
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(colorScheme == .dark ? CustomColors.DarkModeOverlayBackground : Color.white)
+                .frame(width: 48.0, height: 48.0)
+            Image("Layers")
+                .resizable()
+                .renderingMode(.template)
+                .scaledToFit()
+                .frame(width: 20, height: 20)
+                .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
+            Button {
+                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                impactMed.impactOccurred()
+                
+                mapLayerTapped = true
+            } label: {
+                Circle()
+                    .fill(Color.clear)
+                    .frame(width: 60.0, height: 60.0)
+            }
+        }
+        .shadow(color: CustomColors.LightGray.opacity(0.5), radius: 15.0)
+    }
+}
+
+
 
 struct ExitButton: View {
     @Binding var showingOptions: Bool
