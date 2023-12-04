@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct CustomColors {
-//    @Environment(\.colorScheme) var colorScheme
     
     static let TorchRed = Color(red: 0.94, green: 0.27, blue: 0.22)
     static let TorchGreen = Color(red: 0.27, green: 0.32, blue: 0.33)
-//    static let TorchGreen = colorScheme == .dark ? Color.white : Color(red: 0.27, green: 0.32, blue: 0.33)
+
     static let LightGray = Color(red: 0.56, green: 0.63, blue: 0.64)
     static let NormalSensorGray = Color(red: 0.95, green: 0.95, blue: 0.95)
     static let DetectorDetailsShadow = Color(red: 0.18, green: 0.21, blue: 0.22).opacity(0.08)

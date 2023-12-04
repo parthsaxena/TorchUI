@@ -8,10 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		063E3AEDB341E890B74EBA44 /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C19AF3ABE563F725FAD2649 /* Pods_TorchUI_TorchUIUITests.framework */; };
+		0A6AF6DD2B18DA570001EDAE /* WifiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6AF6DC2B18DA570001EDAE /* WifiView.swift */; };
+		0A6AF6F92B18E3A10001EDAE /* DetectorDetailOverlayRedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6AF6F82B18E3A10001EDAE /* DetectorDetailOverlayRedView.swift */; };
 		0E2DB57146C4AC62F707E171 /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA61948B1D99B51DFBD2E8D /* Pods_TorchUI.framework */; };
-		4BFD31B52B1345C2007D0E27 /* DropDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */; };
-		4BFD31B72B134605007D0E27 /* TabbarAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */; };
-		4BFD31B92B134620007D0E27 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFD31B82B134620007D0E27 /* Tabbar.swift */; };
 		7264CE919C89CB52F285A91A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */; };
 		8B88C8FE2A70450F008B90A2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 8B88C8FD2A70450F008B90A2 /* CodeScanner */; };
 		8BA867BF2A80869D00BEED38 /* PinCodeTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 8BA867BE2A80869D00BEED38 /* PinCodeTextField */; };
@@ -28,6 +27,7 @@
 		8BF7FC8A2A4D14D0005D1160 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */; };
 		8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */; };
 		8BFF26B62A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */; };
+		C827EA4C2B146935009E6EC8 /* SocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4B2B146935009E6EC8 /* SocketRequest.swift */; };
 		C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */; };
 		C855B54B2B10883F007DA332 /* PropertyIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C855B4EB2B10883D007DA332 /* PropertyIconView.xib */; };
 		C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */; };
@@ -79,7 +79,6 @@
 		C855B57A2B10883F007DA332 /* AccountNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5232B10883E007DA332 /* AccountNameView.swift */; };
 		C855B57B2B10883F007DA332 /* TorchUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5252B10883E007DA332 /* TorchUIApp.swift */; };
 		C855B57C2B10883F007DA332 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C855B5262B10883E007DA332 /* Assets.xcassets */; };
-		C855B57D2B10883F007DA332 /* xcschememanagement.plist in Resources */ = {isa = PBXBuildFile; fileRef = C855B52D2B10883E007DA332 /* xcschememanagement.plist */; };
 		C855B57E2B10883F007DA332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B52F2B10883E007DA332 /* AppDelegate.swift */; };
 		C855B57F2B10883F007DA332 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5312B10883E007DA332 /* AuthenticationManager.swift */; };
 		C855B5802B10883F007DA332 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5322B10883E007DA332 /* WebSocketManager.swift */; };
@@ -127,11 +126,10 @@
 /* Begin PBXFileReference section */
 		06A5BCCAF1B34B0A151F0B7E /* Pods-TorchUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.release.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.release.xcconfig"; sourceTree = "<group>"; };
 		09926F4222A147A0A0724977 /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
+		0A6AF6DC2B18DA570001EDAE /* WifiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiView.swift; sourceTree = "<group>"; };
+		0A6AF6F82B18E3A10001EDAE /* DetectorDetailOverlayRedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectorDetailOverlayRedView.swift; sourceTree = "<group>"; };
 		0C19AF3ABE563F725FAD2649 /* Pods_TorchUI_TorchUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI_TorchUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3543DCA965350F51F6C6E4E1 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownModifier.swift; sourceTree = "<group>"; };
-		4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabbarAssets.xcassets; sourceTree = "<group>"; };
-		4BFD31B82B134620007D0E27 /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
 		5F678EE1FE285173C6694EAF /* Pods-TorchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8B4A07AE2AE1FB81005731F6 /* ZXCodeTextfield */ = {isa = PBXFileReference; lastKnownFileType = text; path = ZXCodeTextfield; sourceTree = SOURCE_ROOT; };
 		8BF7FC4F2A4D1488005D1160 /* TorchUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TorchUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +150,7 @@
 		8F706F06206D41120E6CC971 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BCA61948B1D99B51DFBD2E8D /* Pods_TorchUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBD6483B88502D280F216F2 /* Pods-TorchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C827EA4B2B146935009E6EC8 /* SocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRequest.swift; sourceTree = "<group>"; };
 		C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPropertiesView.swift; sourceTree = "<group>"; };
 		C855B4EB2B10883D007DA332 /* PropertyIconView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyIconView.xib; sourceTree = "<group>"; };
 		C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPropertiesView.swift; sourceTree = "<group>"; };
@@ -203,7 +202,6 @@
 		C855B5232B10883E007DA332 /* AccountNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountNameView.swift; sourceTree = "<group>"; };
 		C855B5252B10883E007DA332 /* TorchUIApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorchUIApp.swift; sourceTree = "<group>"; };
 		C855B5262B10883E007DA332 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C855B52D2B10883E007DA332 /* xcschememanagement.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = xcschememanagement.plist; sourceTree = "<group>"; };
 		C855B52F2B10883E007DA332 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C855B5312B10883E007DA332 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		C855B5322B10883E007DA332 /* WebSocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
@@ -264,16 +262,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4BFD31B32B1345A3007D0E27 /* New Tabbar */ = {
-			isa = PBXGroup;
-			children = (
-				4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */,
-				4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */,
-				4BFD31B82B134620007D0E27 /* Tabbar.swift */,
-			);
-			path = "New Tabbar";
-			sourceTree = "<group>";
-		};
 		6366AC1F6C9E6BCB8261CB46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,7 +416,6 @@
 		C855B4FD2B10883E007DA332 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				4BFD31B32B1345A3007D0E27 /* New Tabbar */,
 				C855B4FE2B10883E007DA332 /* TabBarItemView.swift */,
 				C855B4FF2B10883E007DA332 /* TabBarView.swift */,
 				C855B5002B10883E007DA332 /* VisualEffectView.swift */,
@@ -445,9 +432,11 @@
 				C855B5052B10883E007DA332 /* MapViewController.swift */,
 				C855B5062B10883E007DA332 /* Places */,
 				C855B50D2B10883E007DA332 /* BatteryView.swift */,
+				0A6AF6DC2B18DA570001EDAE /* WifiView.swift */,
 				C855B50E2B10883E007DA332 /* AddDetectorConfirmLocationOverlayView.swift */,
 				C855B50F2B10883E007DA332 /* MapViewControllerBridge.swift */,
 				C855B5102B10883E007DA332 /* DetectorDetailOverlayView.swift */,
+				0A6AF6F82B18E3A10001EDAE /* DetectorDetailOverlayRedView.swift */,
 				C855B5112B10883E007DA332 /* MapBox */,
 				C855B5152B10883E007DA332 /* MapBoxPlaces */,
 			);
@@ -516,57 +505,8 @@
 				8B4A07AE2AE1FB81005731F6 /* ZXCodeTextfield */,
 				C855B5252B10883E007DA332 /* TorchUIApp.swift */,
 				C855B5262B10883E007DA332 /* Assets.xcassets */,
-				C855B5272B10883E007DA332 /* ZXCodeTextfield */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		C855B5272B10883E007DA332 /* ZXCodeTextfield */ = {
-			isa = PBXGroup;
-			children = (
-				C855B5282B10883E007DA332 /* .swiftpm */,
-			);
-			path = ZXCodeTextfield;
-			sourceTree = "<group>";
-		};
-		C855B5282B10883E007DA332 /* .swiftpm */ = {
-			isa = PBXGroup;
-			children = (
-				C855B5292B10883E007DA332 /* xcode */,
-			);
-			path = .swiftpm;
-			sourceTree = "<group>";
-		};
-		C855B5292B10883E007DA332 /* xcode */ = {
-			isa = PBXGroup;
-			children = (
-				C855B52A2B10883E007DA332 /* xcuserdata */,
-			);
-			path = xcode;
-			sourceTree = "<group>";
-		};
-		C855B52A2B10883E007DA332 /* xcuserdata */ = {
-			isa = PBXGroup;
-			children = (
-				C855B52B2B10883E007DA332 /* mubashirmushir.xcuserdatad */,
-			);
-			path = xcuserdata;
-			sourceTree = "<group>";
-		};
-		C855B52B2B10883E007DA332 /* mubashirmushir.xcuserdatad */ = {
-			isa = PBXGroup;
-			children = (
-				C855B52C2B10883E007DA332 /* xcschemes */,
-			);
-			path = mubashirmushir.xcuserdatad;
-			sourceTree = "<group>";
-		};
-		C855B52C2B10883E007DA332 /* xcschemes */ = {
-			isa = PBXGroup;
-			children = (
-				C855B52D2B10883E007DA332 /* xcschememanagement.plist */,
-			);
-			path = xcschemes;
 			sourceTree = "<group>";
 		};
 		C855B52E2B10883E007DA332 /* Delegate */ = {
@@ -611,6 +551,7 @@
 				C855B5412B10883E007DA332 /* PropertyModel.swift */,
 				C855B5422B10883E007DA332 /* ViewSize.swift */,
 				C855B5432B10883E007DA332 /* PropertyPhotoViewModel.swift */,
+				C827EA4B2B146935009E6EC8 /* SocketRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -770,13 +711,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BFD31B72B134605007D0E27 /* TabbarAssets.xcassets in Resources */,
 				C855B54B2B10883F007DA332 /* PropertyIconView.xib in Resources */,
 				8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */,
 				8BF7FC5A2A4D1489005D1160 /* Preview Assets.xcassets in Resources */,
 				8BF7FC862A4D14D0005D1160 /* Manrope-ExtraLight.ttf in Resources */,
 				8BF7FC852A4D14D0005D1160 /* Manrope-Bold.ttf in Resources */,
-				C855B57D2B10883F007DA332 /* xcschememanagement.plist in Resources */,
 				8BF7FC882A4D14D0005D1160 /* Manrope-SemiBold.ttf in Resources */,
 				C855B57C2B10883F007DA332 /* Assets.xcassets in Resources */,
 				8BF7FC872A4D14D0005D1160 /* Manrope-Light.ttf in Resources */,
@@ -950,7 +889,6 @@
 				C855B5722B10883F007DA332 /* DetectorIconView.swift in Sources */,
 				C855B58C2B10883F007DA332 /* PropertyViewModel.swift in Sources */,
 				C855B5762B10883F007DA332 /* WelcomeView.swift in Sources */,
-				4BFD31B92B134620007D0E27 /* Tabbar.swift in Sources */,
 				C855B5512B10883F007DA332 /* MainPropertiesView.swift in Sources */,
 				C855B58F2B10883F007DA332 /* PropertyPhotoViewModel.swift in Sources */,
 				C855B58D2B10883F007DA332 /* PropertyModel.swift in Sources */,
@@ -962,7 +900,6 @@
 				C855B55F2B10883F007DA332 /* HalfCircleShape.swift in Sources */,
 				C855B5782B10883F007DA332 /* AccountCompanyNameView.swift in Sources */,
 				C855B5702B10883F007DA332 /* MapboxPlaceSensorViewController.swift in Sources */,
-				4BFD31B52B1345C2007D0E27 /* DropDownModifier.swift in Sources */,
 				C855B57B2B10883F007DA332 /* TorchUIApp.swift in Sources */,
 				C855B57E2B10883F007DA332 /* AppDelegate.swift in Sources */,
 				C855B5892B10883F007DA332 /* PropertyAddressViewModel.swift in Sources */,
@@ -976,8 +913,10 @@
 				C855B56F2B10883F007DA332 /* MapboxPlaceSensorViewWrapper.swift in Sources */,
 				C855B5912B10883F007DA332 /* Enums.swift in Sources */,
 				C855B5622B10883F007DA332 /* PlaceSensorMapViewController.swift in Sources */,
+				0A6AF6DD2B18DA570001EDAE /* WifiView.swift in Sources */,
 				C855B5652B10883F007DA332 /* SensorSetupOverlayView.swift in Sources */,
 				C855B54D2B10883F007DA332 /* SearchResultView.swift in Sources */,
+				0A6AF6F92B18E3A10001EDAE /* DetectorDetailOverlayRedView.swift in Sources */,
 				C855B5752B10883F007DA332 /* AccountVerificationCodeView.swift in Sources */,
 				C855B5862B10883F007DA332 /* View+Extension.swift in Sources */,
 				C855B5832B10883F007DA332 /* UIImage+Extension.swift in Sources */,
@@ -1009,6 +948,7 @@
 				C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */,
 				C855B5732B10883F007DA332 /* AccountEmailView.swift in Sources */,
 				C855B5642B10883F007DA332 /* PlaceSensorViewControllerBridge.swift in Sources */,
+				C827EA4C2B146935009E6EC8 /* SocketRequest.swift in Sources */,
 				C855B56D2B10883F007DA332 /* MapboxViewController.swift in Sources */,
 				C855B5572B10883F007DA332 /* SensorSetupView.swift in Sources */,
 				C855B5952B11100A007DA332 /* Strings.swift in Sources */,
@@ -1176,10 +1116,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
-				DEVELOPMENT_TEAM = H3MR536ERJ;
+				DEVELOPMENT_TEAM = 77FN7BC489;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TorchUI/Info.plist;
@@ -1199,6 +1140,7 @@
 				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.torchsensors.TorchUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -1215,10 +1157,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
-				DEVELOPMENT_TEAM = H3MR536ERJ;
+				DEVELOPMENT_TEAM = 77FN7BC489;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TorchUI/Info.plist;
@@ -1238,6 +1181,7 @@
 				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.torchsensors.TorchUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;

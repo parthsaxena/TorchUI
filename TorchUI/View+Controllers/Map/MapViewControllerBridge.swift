@@ -28,46 +28,29 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
     var clusterManager: GMUClusterManager!    
     
     func makeUIViewController(context: Context) -> MapViewController {
+        
         let uiViewController = MapViewController()
         uiViewController.map = GMSMapView(frame: .zero, camera: GMSCameraPosition(
-            latitude: self.property.coordinate!.latitude,
-            longitude: self.property.coordinate!.longitude,
+            latitude: self.property.coordinate?.latitude ?? 0.0,
+            longitude: self.property.coordinate?.longitude ?? 0.0,
             zoom: 20
         ))
         uiViewController.map.delegate = context.coordinator
-        
         uiViewController.markers = markers
-        //      uiViewController.map.mapStyle = GMSMapStyle(
-        
-        //      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-        //          uiViewController.map.animate(with: GMSCameraUpdate.setTarget(markers[0].position))
-        //          DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-        //              uiViewController.map.animate(toZoom: zoomLevel)
-        //          }
-        //      }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             uiViewController.map.animate(toZoom: zoomLevel)
         }
-        //      uiViewController.map.animate(with: GMSCameraUpdate.setTarget(markers[0].position))
-        
         return uiViewController
     }
     
     func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
-        //      uiViewController.clusterManager.add(markers)
+        
         markers.forEach { $0.map = uiViewController.map }
-        // print("markers in updateuiviewcontroller: \(markers)")
         selectedMarker?.map = uiViewController.map
-        //      zoomLevel = 15
         animateToSelectedMarker(viewController: uiViewController)
-        
         uiViewController.map.isUserInteractionEnabled = !isConfirmingLocation
-        
         uiViewController.map.padding = UIEdgeInsets(top: 0, left: 0, bottom: mapBottomOffset, right: 0)
-        
         uiViewController.map.animate(toZoom: zoomLevel)
-        
-        // print("update")
     }
     
     func makeCoordinator() -> MapViewCoordinator {
@@ -75,8 +58,7 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
     }
     
     private func animateToSelectedMarker(viewController: MapViewController) {
-        // print("animate to marker")
-        
+
         guard let selectedMarker = selectedMarker else {
             return
         }
@@ -87,7 +69,6 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
             DispatchQueue.main.async {
                 map.animate(with: GMSCameraUpdate.setTarget(selectedMarker.position))
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    //            map.animate(toZoom: 15)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                         onAnimationEnded()
                     })
@@ -97,25 +78,18 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
     }
     
     func selectDetector(marker: GMSMarker) {
-        // print("select detector \(detectors.count)")
-        // print("seleted marker \(marker)")
-        
+
         let impactMed = UIImpactFeedbackGenerator(style: .medium)
         impactMed.impactOccurred()
         
         guard let id = marker.userData as? String else {
             return
         }
-        
-        // print("selected id: \(id) and detectors:")
-        for detector in SessionManager.shared.selectedProperty!.detectors {
-            // print("\(detector.id)")
-        }
-        
+
         selectedMarker = marker
-        selectedDetector = SessionManager.shared.selectedProperty!.detectors.first(where: { detector in
+        selectedDetector = SessionManager.shared.selectedProperty?.detectors.first(where: { detector in
             detector.id == id
-        })!
+        })
         showDetectorDetails = true
     }
     
@@ -131,9 +105,6 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
         }
         
         func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-            //
-            // print("updating map")
-            //          self.pin?.position = position.target
             self.mapViewControllerBridge.mapViewDidChange(position)
         }
         

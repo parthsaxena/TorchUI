@@ -151,11 +151,6 @@ struct AccountPasswordView: View {
                         .multilineTextAlignment(.center)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
-//                        .focused($focusedField, equals: .field)
-////                        .onAppear {
-////                            self.focusedField = .field
-////                        }
-                    
                     Text("Confirm password")
                         .font(Font.custom("Manrope-Medium", size: 16.0))
                         .foregroundColor(Color(red: 0.45, green: 0.53, blue: 0.55))

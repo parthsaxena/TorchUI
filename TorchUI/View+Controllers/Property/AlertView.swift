@@ -29,7 +29,7 @@ struct AlertView: View {
             }
             .padding(.top, 70)
             
-            Text("There is a \(model.detector.measurements["fire_rating"]!)% chance of fire on this property. \nCall the fire department now.")
+            Text("There is a \(model.detector.measurements["fire_rating"] ?? "")% chance of fire on this property. \nCall the fire department now.")
                 .font(Font.custom("Manrope-Medium", size: 14))
                 .frame(height: 40)
                 .foregroundColor(colorScheme == .dark ? Color.white.opacity(0.6) : CustomColors.LightGray)

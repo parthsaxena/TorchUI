@@ -77,53 +77,45 @@ struct PropertyView: View, Equatable {
             
             Spacer()
                 .frame(width: 15)
-            
-            // Fire yellow image
-            let fireImageYellow = UIImage(named: "FireYellow")
-            let uiImageYellow = UIImage(cgImage: (fireImageYellow?.cgImage)!, scale: 5.0, orientation: (fireImageYellow?.imageOrientation)!)
-            let imageFireYellow = Image(uiImage: uiImageYellow)
-            
             // Red yellow image
-            let fireImageRed = UIImage(named: "FireRed")
-            let uiImageRed = UIImage(cgImage: (fireImageRed?.cgImage)!, scale: 4.2, orientation: (fireImageRed?.imageOrientation)!)
-            let imageFireRed = Image(uiImage: uiImageRed)
-            
-            
-            VStack(alignment: .leading, spacing: 2) {
-                if loading {
-                    Text("Loading")
-                    .font(Font.custom("Manrope-SemiBold", size: 16))
-                    .foregroundColor(colorScheme == .dark ? Color.white : Color(red: 0.27, green: 0.32, blue: 0.33))
-                    .redacted(reason: .placeholder)
-                    .shimmering()
-                } else if property.threat == Threat.Red {
-                    Text("\(property.propertyName)   \(imageFireRed)")
-                    .font(Font.custom("Manrope-SemiBold", size: 16))
-                    .foregroundColor(colorScheme == .dark ? Color.white : Color(red: 0.27, green: 0.32, blue: 0.33))
-                } else {
-                    Text("\(property.propertyName)")
-                        .font(Font.custom("Manrope-SemiBold", size: 16))
-                        .foregroundColor(colorScheme == .dark ? Color.white : Color(red: 0.27, green: 0.32, blue: 0.33))
-                }
-                
-                if loading {
-                    Text("All sensors are normal")
-                      .font(Font.custom("Manrope-Medium", size: 14))
-                      .foregroundColor(Color(red: 0.56, green: 0.63, blue: 0.64))
-                      .frame(maxWidth: .infinity, minHeight: 20, maxHeight: 20, alignment: .topLeading)
-                      .redacted(reason: .placeholder)
-                      .shimmering()
-                } else {
-                    if (property.detectors.count > 0) {
-                        Text(property.propertyDescription)
+            if let fireImageRed = UIImage(named: "FireRed")?.cgImage, let imageOrientation = UIImage(named: "FireRed")?.imageOrientation {
+                let uiImageRed = UIImage(cgImage: (fireImageRed), scale: 4.2, orientation: imageOrientation)
+                let imageFireRed = Image(uiImage: uiImageRed)
+                VStack(alignment: .leading, spacing: 2) {
+                    if loading {
+                        Text("Loading")
+                            .font(Font.custom("Manrope-SemiBold", size: 16))
+                            .foregroundColor(colorScheme == .dark ? Color.white : Color(red: 0.27, green: 0.32, blue: 0.33))
+                            .redacted(reason: .placeholder)
+                            .shimmering()
+                    } else if property.threat == Threat.Red {
+                        Text("\(property.propertyName)   \(imageFireRed)")
+                            .font(Font.custom("Manrope-SemiBold", size: 16))
+                            .foregroundColor(colorScheme == .dark ? Color.white : Color(red: 0.27, green: 0.32, blue: 0.33))
+                    } else {
+                        Text("\(property.propertyName)")
+                            .font(Font.custom("Manrope-SemiBold", size: 16))
+                            .foregroundColor(colorScheme == .dark ? Color.white : Color(red: 0.27, green: 0.32, blue: 0.33))
+                    }
+                    
+                    if loading {
+                        Text("All sensors are normal")
                             .font(Font.custom("Manrope-Medium", size: 14))
                             .foregroundColor(Color(red: 0.56, green: 0.63, blue: 0.64))
                             .frame(maxWidth: .infinity, minHeight: 20, maxHeight: 20, alignment: .topLeading)
+                            .redacted(reason: .placeholder)
+                            .shimmering()
+                    } else {
+                        if (property.detectors.count > 0) {
+                            Text(property.propertyDescription)
+                                .font(Font.custom("Manrope-Medium", size: 14))
+                                .foregroundColor(Color(red: 0.56, green: 0.63, blue: 0.64))
+                                .frame(maxWidth: .infinity, minHeight: 20, maxHeight: 20, alignment: .topLeading)
+                        }
                     }
                 }
+                .frame(maxWidth: .infinity, alignment: .topLeading)
             }
-            .frame(maxWidth: .infinity, alignment: .topLeading)
-            
             Spacer()
             
             let sensorSpacing = 4.0
@@ -196,11 +188,18 @@ struct PropertyView: View, Equatable {
                 }
             }
         }
+        .onAppear {
+            print(">>>>>>>latitude\(property.coordinate?.latitude ?? 0)")
+            print(">>>>>>>longitude\(property.coordinate?.longitude ?? 0)")
+        }
     }
+    
 }
 
 struct PropertyView_Previews: PreviewProvider {
     static var previews: some View {
-        PropertyView(property: SessionManager.shared.selectedProperty!)
+        if let selectedProperty = SessionManager.shared.selectedProperty {
+            PropertyView(property: selectedProperty)
+        }
     }
 }

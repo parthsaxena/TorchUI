@@ -18,9 +18,7 @@ struct PropertyAddressView: View {
     @Binding var state: OnboardingState
     var propertyName: String
     @Binding var propertyAddress: String
-    //    @State var (focusedField != .field): Bool = false
-    
-    // place holder text color
+
     @State var fieldTextColor: Color = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
     
     // disabled button color
@@ -134,9 +132,6 @@ struct PropertyAddressView: View {
                                                 .foregroundColor(Color(red: 0.78, green: 0.81, blue: 0.82))
                                         }
                                     }
-                                    
-                                    //                                    let x = // print("placeholder size: \(self.placeholderAddressSize.width)")
-                                    
                                     TextField("", text: $vm.searchableText, axis: .vertical)
                                         .onChange(of: vm.searchableText) { newValue in
                                             guard let newValueLastChar = newValue.last else { return }
@@ -258,11 +253,8 @@ struct PropertyAddressView: View {
                             placemarks, error in
                             let placemark = placemarks?.first
                             SessionManager.shared.newProperty?.coordinate = CLLocationCoordinate2D()
-                            SessionManager.shared.newProperty?.coordinate?.latitude = (placemark?.location?.coordinate.latitude)!
-                            SessionManager.shared.newProperty?.coordinate?.longitude = (placemark?.location?.coordinate.longitude)!
-                            // print("Got Lat: \((placemark?.location?.coordinate.latitude)!), Lon: \((placemark?.location?.coordinate.longitude)!)")
-                            // print("Session Lat: \(SessionManager.shared.newProperty?.coordinate?.latitude), Lon: \(SessionManager.shared.newProperty?.coordinate?.longitude)")
-                            
+                            SessionManager.shared.newProperty?.coordinate?.latitude = (placemark?.location?.coordinate.latitude ?? 0.0)
+                            SessionManager.shared.newProperty?.coordinate?.longitude = (placemark?.location?.coordinate.longitude ?? 0.0)
                         }
                         
                         self.propertyAddress = self.vm.searchableText
@@ -282,39 +274,6 @@ struct PropertyAddressView: View {
                             .padding(.bottom, 20)
                     }
                     .disabled(!nextButtonEnabled)
-                    
-                    //                    Button("Next") {
-                    //                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                    //                        impactMed.impactOccurred()
-                    //
-                    //                        var geocoder = CLGeocoder()
-                    //
-                    //                        geocoder.geocodeAddressString(self.propertyAddress) {
-                    //                            placemarks, error in
-                    //                            let placemark = placemarks?.first
-                    //                            SessionManager.shared.newProperty?.coordinate = CLLocationCoordinate2D()
-                    //                            SessionManager.shared.newProperty?.coordinate?.latitude = (placemark?.location?.coordinate.latitude)!
-                    //                            SessionManager.shared.newProperty?.coordinate?.longitude = (placemark?.location?.coordinate.longitude)!
-                    //                            // print("Got Lat: \((placemark?.location?.coordinate.latitude)!), Lon: \((placemark?.location?.coordinate.longitude)!)")
-                    //                            // print("Session Lat: \(SessionManager.shared.newProperty?.coordinate?.latitude), Lon: \(SessionManager.shared.newProperty?.coordinate?.longitude)")
-                    //
-                    //                        }
-                    //
-                    //                        self.propertyAddress = self.vm.searchableText
-                    //                        SessionManager.shared.newProperty?.propertyAddress = self.propertyAddress
-                    //                        self.state = .propertyPhoto
-                    //                    }
-                    //                    .disabled(!nextButtonEnabled)
-                    //                    .font(.custom("Manrope-SemiBold", size: 16))
-                    //                    .frame(maxWidth: .infinity)
-                    //                    .frame(height: 60)
-                    //                    .foregroundColor(.white)
-                    //                    .background(
-                    //                        RoundedRectangle(cornerRadius: 100)
-                    //                            .foregroundColor(self.nextButtonColor)
-                    //                    )
-                    //                    .padding(.horizontal, 16)
-                    //                    .padding(.bottom, 20)
                     Spacer()
                 }
                 .padding(.top, 60)

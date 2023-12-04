@@ -33,16 +33,6 @@ struct AccountCompanyNameView: View {
             } else {
                 fieldTextColor = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
             }
-            
-//            if !self.accountCompanyName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-//                // enabled button color
-//                nextButtonEnabled = true
-//                nextButtonColor = Color(red: 0.18, green: 0.21, blue: 0.22)
-//            } else {
-//                // disabled button color
-//                nextButtonEnabled = false
-//                nextButtonColor = Color(red: 0.78, green: 0.81, blue: 0.82)
-//            }
         })
         
         VStack {
@@ -146,24 +136,6 @@ struct AccountCompanyNameView: View {
                     .padding(.bottom, 20)
                 }
                 .disabled(!nextButtonEnabled)
-                
-//                Button("Next") {
-//                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-//                    impactMed.impactOccurred()
-//
-//                    AuthenticationManager.shared.authState = .accountPassword
-//                }
-//                    .disabled(!nextButtonEnabled)
-//                    .font(.custom("Manrope-SemiBold", size: 16))
-//                    .frame(maxWidth: .infinity)
-//                    .frame(height: 60)
-//                    .foregroundColor(.white)
-//                    .background(
-//                        RoundedRectangle(cornerRadius: 100)
-//                            .foregroundColor(self.nextButtonColor)
-//                    )
-//                    .padding(.horizontal, 16)
-//                    .padding(.bottom, 20)
                 Spacer()
             }
             .padding(.top, 60)
@@ -171,32 +143,6 @@ struct AccountCompanyNameView: View {
         .background(colorScheme == .dark ? CustomColors.DarkModeBackground : Color.white)
     }
 }
-
-//struct AccountBackButton: View {
-//    @Environment(\.colorScheme) var colorScheme
-//
-//    var body: some View {
-//        ZStack {
-//            Circle()
-//                .fill(colorScheme == .dark ? CustomColors.DarkModeOverlayBackground : Color.white)
-//                .frame(width: 48.0, height: 48.0)
-//            Image(systemName: "chevron.backward")
-//                .frame(width: 48.0, height: 48.0)
-//                .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-//            Button {
-//                let impactMed = UIImpactFeedbackGenerator(style: .medium)
-//                impactMed.impactOccurred()
-//
-////                showDetectorDetails = false
-//            } label: {
-//                Circle()
-//                    .fill(Color.clear)
-//                    .frame(width: 60.0, height: 60.0)
-//            }
-//        }
-//        .shadow(color: CustomColors.LightGray.opacity(0.3), radius: 5.0)
-//    }
-//}
 
 struct AccountCompanyNameView_Previews: PreviewProvider {
     @State static var accountCompanyName = ""

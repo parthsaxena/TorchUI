@@ -27,29 +27,6 @@ struct AccountVerificationCodeView: View {
     @FocusState private var focusedField: FocusField?
     
     var body: some View {
-//        let binding = Binding<String>(get: {
-//            self.verificationCode
-//        }, set: {
-//            self.verificationCode = $0
-//
-//            // update textfield color
-//            if $0 != "Enter your email" {
-//                fieldTextColor = CustomColors.TorchGreen
-//            } else {
-//                fieldTextColor = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
-//            }
-//
-//            if !self.verificationCode.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-//                // enabled button color
-//                nextButtonEnabled = true
-//                nextButtonColor = Color(red: 0.18, green: 0.21, blue: 0.22)
-//            } else {
-//                // disabled button color
-//                nextButtonEnabled = false
-//                nextButtonColor = Color(red: 0.78, green: 0.81, blue: 0.82)
-//            }
-//        })
-        
         VStack {
             // Progress bar
             HStack(spacing: 4.0) {
@@ -81,10 +58,8 @@ struct AccountVerificationCodeView: View {
             ZStack {
                 HStack {
 //                    AccountBackButton()
-                    
                     Spacer()
                 }
-                
                 HStack {
                     Spacer()
                     
@@ -103,45 +78,33 @@ struct AccountVerificationCodeView: View {
             HStack {
                 Spacer()
                 VStack {
-                    let style = ZXCodeLabelStyle(
-                        underLineNormalColor: UIColor(cgColor: CustomColors.LightGray.cgColor!),
-                            underLineCurrentColor: UIColor(cgColor: CustomColors.TorchGreen.cgColor!),
+                    if let lightColor = CustomColors.LightGray.cgColor, let torchGreen = CustomColors.TorchGreen.cgColor, let font = UIFont(name: "Manrope-Semibold", size: 24) {
+                        let style = ZXCodeLabelStyle(
+                            underLineNormalColor: UIColor(cgColor: lightColor),
+                            underLineCurrentColor: UIColor(cgColor: torchGreen),
                             errorColor: .red,
                             lineHeight: 2,
-                            font: UIFont(name: "Manrope-Semibold", size: 24)!,
-                //            font: .systemFont(ofSize: 24, weight: .bold),
+                            font: font,
                             textColor: colorScheme == .dark ? .white : .black,
                             spacing: 16,
                             padding: 32
                         )
-                    
-                    ZXCodeTextFieldWrapper(
-                        numberOfSymbols: 6,
-                        style: style,
-                        otpCode: $verificationCode,
-                        viewModel: $textFieldViewModel
-                        )                    
-                            .frame(height: 50)
-                    
-//                    TextField("Enter your email", text: binding)
-//                        .font(Font.custom("Manrope-SemiBold", size: 30))
-//                        .foregroundColor(fieldTextColor)
-//                        .multilineTextAlignment(.center)
-//                        .textInputAutocapitalization(.never)
-//                        .focused($focusedField, equals: .field)
-//                        .onAppear {
-//                            self.focusedField = .field
-//                        }
-                    
-                    Text("Enter the 6-digit code we sent to you at\n\(accountEmail)")
-                        .font(Font.custom("Manrope-Medium", size: 16.0))
-                        .foregroundColor(Color(red: 0.45, green: 0.53, blue: 0.55))
-                        .multilineTextAlignment(.center)
-                        .padding(.top, 15.0)
+                        
+                        ZXCodeTextFieldWrapper(
+                            numberOfSymbols: 6,
+                            style: style,
+                            otpCode: $verificationCode,
+                            viewModel: $textFieldViewModel)
+                        .frame(height: 50)
+                        Text("Enter the 6-digit code we sent to you at\n\(accountEmail)")
+                            .font(Font.custom("Manrope-Medium", size: 16.0))
+                            .foregroundColor(Color(red: 0.45, green: 0.53, blue: 0.55))
+                            .multilineTextAlignment(.center)
+                            .padding(.top, 15.0)
+                    }
                 }
                 Spacer()
             }
-            
             Spacer()
             
             HStack {
@@ -150,9 +113,6 @@ struct AccountVerificationCodeView: View {
                 Button(action: {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
-                    
-                    // print("Code: \(verificationCode)")
-                    
                     Task {
                         await AuthenticationManager.shared.gotNewVerificationCode(code: verificationCode)
                     }
@@ -170,28 +130,6 @@ struct AccountVerificationCodeView: View {
                     .padding(.bottom, 20)
                 }
                 .disabled(!(verificationCode.count >= 6))
-                
-//                Button("Next") {
-//                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-//                    impactMed.impactOccurred()
-//                    
-//                    // print("Code: \(verificationCode)")
-//                    
-//                    Task {
-//                        await AuthenticationManager.shared.gotNewVerificationCode(code: verificationCode)
-//                    }
-//                }
-//                .disabled(!(verificationCode.count >= 6))
-//                .font(.custom("Manrope-SemiBold", size: 16))
-//                .frame(maxWidth: .infinity)
-//                .frame(height: 60)
-//                .foregroundColor(.white)
-//                .background(
-//                    RoundedRectangle(cornerRadius: 100)
-//                        .foregroundColor(verificationCode.count >= 6 ? Color(red: 0.18, green: 0.21, blue: 0.22) : self.nextButtonColor )
-//                )
-//                .padding(.horizontal, 16)
-//                .padding(.bottom, 20)
                 Spacer()
             }
             .padding(.top, 60)
@@ -200,39 +138,13 @@ struct AccountVerificationCodeView: View {
     }
 }
 
-//struct AccountBackButton: View {
-//    @Environment(\.colorScheme) var colorScheme
-//
-//    var body: some View {
-//        ZStack {
-//            Circle()
-//                .fill(colorScheme == .dark ? CustomColors.DarkModeOverlayBackground : Color.white)
-//                .frame(width: 48.0, height: 48.0)
-//            Image(systemName: "chevron.backward")
-//                .frame(width: 48.0, height: 48.0)
-//                .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-//            Button {
-//                let impactMed = UIImpactFeedbackGenerator(style: .medium)
-//                impactMed.impactOccurred()
-//
-////                showDetectorDetails = false
-//            } label: {
-//                Circle()
-//                    .fill(Color.clear)
-//                    .frame(width: 60.0, height: 60.0)
-//            }
-//        }
-//        .shadow(color: CustomColors.LightGray.opacity(0.3), radius: 5.0)
-//    }
-//}
-
 struct AccountVerificationCodeView_Previews: PreviewProvider {
+    
     @State static var accountEmail = "saxenaparth620@gmail.com"
     @State static var accountPassword = "Password!23"
     @State static var state = AccountState.accountVerificationCode
     
     static var previews: some View {
-//        AccountEmailView(state: $state, accountEmail: $accountEmail)
         AccountVerificationCodeView(accountEmail: $accountEmail, accountPassword: $accountPassword)
     }
 }

@@ -27,20 +27,13 @@ class PlaceSensorMapViewController: UIViewController, GMSMapViewDelegate, CLLoca
         
         self.map.mapType = .terrain
         self.map.isBuildingsEnabled = true
-        //      self.map.mapStyle = GMSMapStyle
         self.map.isMyLocationEnabled = true
-        //      self.map.padding = UIEdgeInsets(top: 0, left: 0, bottom: 300, right: 0)
-        //      self.map.delegate = self
-        
         self.view = map
-        //      self.pin.map = self.map
         
         let iconGenerator = GMUDefaultClusterIconGenerator()
         let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
-        let renderer = GMUDefaultClusterRenderer(mapView: map,
-                                                 clusterIconGenerator: iconGenerator)
-        clusterManager = GMUClusterManager(map: map, algorithm: algorithm,
-                                           renderer: renderer)
+        let renderer = GMUDefaultClusterRenderer(mapView: map, clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: map, algorithm: algorithm, renderer: renderer)
         clusterManager.add(markers)
         
         locationManager = CLLocationManager()
@@ -51,24 +44,14 @@ class PlaceSensorMapViewController: UIViewController, GMSMapViewDelegate, CLLoca
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location: CLLocation = locations.last!
-        // print("Location: \(location)")
         
-        //        let zoomLevel = 15.0
-        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
-                                              longitude: location.coordinate.longitude,
-                                              zoom: 15.0)
-        
-        self.map.animate(to: camera)
-        
-        locationManager.stopUpdatingLocation()
-        
+        if let location: CLLocation = locations.last {
+            let camera = GMSCameraPosition.camera(
+                withLatitude: location.coordinate.latitude,
+                longitude: location.coordinate.longitude,
+                zoom: 15.0)
+            self.map.animate(to: camera)
+            locationManager.stopUpdatingLocation()
+        }
     }
-    
-    //    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-    //        //
-    //        // print("updating map")
-    //        self.pin?.position = position.target
-    //    }
-    
 }
