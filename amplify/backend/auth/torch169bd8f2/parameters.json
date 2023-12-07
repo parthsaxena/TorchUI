@@ -1,6 +1,6 @@
 {
   "authSelections": "identityPoolAndUserPool",
-  "resourceName": "[***]9bd8f2",
+  "resourceName": "torch169bd8f2",
   "serviceType": "imported",
   "region": "us-west-2",
   "usernameAttributes": [

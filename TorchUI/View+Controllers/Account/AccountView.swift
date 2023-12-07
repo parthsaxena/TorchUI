@@ -21,10 +21,11 @@ struct AccountView: View {
     
     var body: some View {
         Group {
-//            let x = // print("pooppp: \(authenticationManager.authStateLoaded)")
+            let x =  print("pooppp: \(authenticationManager.authStateLoaded) \(authenticationManager.authState)")
             if !authenticationManager.authStateLoaded {
 //                LoadingSplashScreen()
 //                    .ignoresSafeArea()
+                let x = print("1")
                 PropertiesView()
                 
             } else
@@ -47,6 +48,7 @@ struct AccountView: View {
                 if sessionManager.appState == .properties {
 //                    let x = // print("State \(sessionManager.appState)")
                     if !sessionManager.firstTransition {
+                        let x = print("2")
                         PropertiesView()
     //                        .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
                             .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))                        .zIndex(1)

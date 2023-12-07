@@ -1,11 +1,11 @@
 {
-    "appName": "[***]ch",
-    "roleName": "[***]ole26170a81",
-    "cloudformationPolicyName": "[***]licy26170a81",
-    "cloudWatchPolicyName": "[***]cy26170a81",
-    "pinpointPolicyName": "[***]y26170a81",
-    "authPolicyName": "[***]y_26170a81",
-    "unauthPolicyName": "[***]y_26170a81",
+    "appName": "torch",
+    "roleName": "pinpointLambdaRole84c5744f",
+    "cloudformationPolicyName": "cloudformationPolicy84c5744f",
+    "cloudWatchPolicyName": "cloudWatchPolicy84c5744f",
+    "pinpointPolicyName": "pinpointPolicy84c5744f",
+    "authPolicyName": "pinpoint_amplify_84c5744f",
+    "unauthPolicyName": "pinpoint_amplify_84c5744f",
     "authRoleName": {
         "Ref": "AuthRoleName"
     },

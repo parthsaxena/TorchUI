@@ -4,6 +4,14 @@
     "IdentityManager": {
         "Default": {}
     },
+    "CredentialsProvider": {
+        "CognitoIdentity": {
+            "Default": {
+                "PoolId": "us-west-2:390c6534-14ea-403f-b5b6-f56c120190dd",
+                "Region": "us-west-2"
+            }
+        }
+    },
     "CognitoUserPool": {
         "Default": {
             "PoolId": "us-west-2_iVtMyKgU7",
