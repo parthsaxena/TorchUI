@@ -30,7 +30,8 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> MapViewController {
         
         let uiViewController = MapViewController()
-        uiViewController.map = GMSMapView(frame: .zero, camera: GMSCameraPosition(
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        uiViewController.map = GMSMapView(frame: frame, camera: GMSCameraPosition(
             latitude: self.property.coordinate?.latitude ?? 0.0,
             longitude: self.property.coordinate?.longitude ?? 0.0,
             zoom: 20
@@ -69,9 +70,7 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
             DispatchQueue.main.async {
                 map.animate(with: GMSCameraUpdate.setTarget(selectedMarker.position))
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                        onAnimationEnded()
-                    })
+                    onAnimationEnded()
                 })
             }
         }

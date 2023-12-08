@@ -88,7 +88,8 @@ struct MapboxPlaceSensorViewWrapper: UIViewControllerRepresentable {
         let myResourceOptions = ResourceOptions(accessToken: accessToken)
         let cameraOptions = CameraOptions(center: sessionManager.selectedProperty?.coordinate, padding: .init(top: 0, left: 0, bottom: self.mapOffset.height == 0 ? 355 : self.mapOffset.height, right: 0), zoom: self.zoomLevel, bearing: 0.0, pitch: 0.0)
         let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions, styleJSON: jsonString)
-        vc.mapView = MapView(frame: UIScreen.main.bounds, mapInitOptions: myMapInitOptions)
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        vc.mapView = MapView(frame: frame, mapInitOptions: myMapInitOptions)
         vc.mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         vc.mapView.ornaments.compassView.isHidden = true
         vc.mapView.ornaments.scaleBarView.isHidden = true
@@ -105,9 +106,8 @@ struct MapboxPlaceSensorViewWrapper: UIViewControllerRepresentable {
     
     func setupCameraOptinos(uiViewController: MapboxPlaceSensorViewController) {
         if self.moveToUserTapped {
-            
             DispatchQueue.main.async {
-                var cameraOptions = CameraOptions(padding: .init(top: -28, left: 0, bottom: self.mapOffset.height, right: 0), zoom: 15.0, bearing: 0.0, pitch: 0.0)
+                var cameraOptions = CameraOptions(padding: .init(top: 0, left: 0, bottom: self.mapOffset.height, right: 0), zoom: 15.0, bearing: 0.0, pitch: 0.0)
                 self.moveToUserTapped = false
                 cameraOptions.center = uiViewController.mapView.location.latestLocation?.coordinate
                 uiViewController.mapView.camera.fly(to: cameraOptions, duration: 0.1)

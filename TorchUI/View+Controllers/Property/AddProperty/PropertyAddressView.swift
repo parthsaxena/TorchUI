@@ -247,7 +247,7 @@ struct PropertyAddressView: View {
                         let impactMed = UIImpactFeedbackGenerator(style: .medium)
                         impactMed.impactOccurred()
                         
-                        var geocoder = CLGeocoder()
+                        let geocoder = CLGeocoder()
                         
                         geocoder.geocodeAddressString(self.propertyAddress) {
                             placemarks, error in

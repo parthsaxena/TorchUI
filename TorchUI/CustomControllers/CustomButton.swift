@@ -206,7 +206,6 @@ struct LocationButton: View {
             Button {
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
-                
                 moveToUserTapped = true
             } label: {
                 Circle()

@@ -77,7 +77,7 @@ struct PlaceSensorView: View {
                                                 let impactMed = UIImpactFeedbackGenerator(style: .heavy)
                                                 impactMed.impactOccurred()
                                                 isPresentingScanner = false
-                                                var detector = Detector(id: result.string, deviceName: String((sessionManager.newProperty?.detectors.count ?? 0) + 1), deviceBattery: 0.0, coordinate: nil, selected: true, sensorIdx: (sessionManager.newProperty?.detectors.count ?? 0) + 1)
+                                                let detector = Detector(id: result.string, deviceName: String((sessionManager.newProperty?.detectors.count ?? 0) + 1), deviceBattery: 0.0, coordinate: nil, selected: true, sensorIdx: (sessionManager.newProperty?.detectors.count ?? 0) + 1)
                                                 sessionManager.addNewDetector(detector: detector)
                                                 self.selectedSensor = detector
                                                 self.selectedDetector = detector
@@ -120,7 +120,6 @@ struct PlaceSensorView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        
                         LocationButton(moveToUserTapped: $moveToUserTapped)
                     }
                     .padding(.trailing, 10)

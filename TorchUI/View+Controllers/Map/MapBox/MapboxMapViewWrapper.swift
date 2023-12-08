@@ -3436,15 +3436,17 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
         vc.zoomLevel = self.zoomLevel
 
         let myResourceOptions = ResourceOptions(accessToken: "pk.eyJ1IjoidnRyZW1zaW4iLCJhIjoiY2xsNzE0M2lmMGd0eTNnazRjM2s3MndvZCJ9.z9GP9XylmH4RKR-swu14nA")
-        let cameraOptions = CameraOptions(center: sessionManager.selectedProperty?.coordinate, padding: UIEdgeInsets(top: 0.0, left: 0.0, bottom: self.mapOffset, right: 0.0), zoom: self.zoomLevel, bearing: 0.0, pitch: 0.0)
+        let cameraOptions = CameraOptions(center: sessionManager.selectedProperty?.coordinate, padding: UIEdgeInsets(top: 0.0, left: 0.0, bottom: self.mapOffset, right: 0.0), anchor: CGPoint(x: 0, y: 17), zoom: self.zoomLevel, bearing: 0.0, pitch: 0.0)
         let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions, styleJSON: self.jsonString)
-        vc.mapView = MapView(frame: UIScreen.main.bounds, mapInitOptions: myMapInitOptions)
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        vc.mapView = MapView(frame: frame, mapInitOptions: myMapInitOptions)
         vc.mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         vc.mapView.ornaments.compassView.isHidden = true
         vc.mapView.ornaments.scaleBarView.isHidden = true
         vc.mapView.mapboxMap.onEvery(event: .cameraChanged) { event in
             pin = vc.mapView.cameraState.center
             print("Set pin: \(pin)")
+            print("camera state: \(vc.mapView.cameraState.center)")
             triggerUI.toggle()
             self.checkZoomLevelAnnotations(uiViewController: vc)
             vc.pinImageView.frame = CGRectMake(vc.mapView.anchor.x - 30, vc.mapView.anchor.y - 80, 60, 69)
@@ -3550,11 +3552,13 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
             DispatchQueue.main.async {
                 var cameraOptions = CameraOptions(zoom: 15.0, bearing: 0.0, pitch: 0.0)
                 self.moveToUserTapped = false
+                print("camera state: \(uiViewController.mapView.cameraState.center)")
+                print("latestLocation: \(uiViewController.mapView.location.latestLocation?.coordinate)")
                 cameraOptions.center = uiViewController.mapView.location.latestLocation?.coordinate
                 cameraOptions.padding = UIEdgeInsets(top: 0.0, left: 0.0, bottom: self.mapOffset, right: 0.0)
                 uiViewController.mapView.camera.fly(to: cameraOptions, duration: 0.1)
             }
-        } else if (selectedDetectorIndex != nil && self.sensorTapped) {
+        } else if (self.sensorTapped) {
             print("offset: 2")
             DispatchQueue.main.async {
                 var cameraOptions = CameraOptions(zoom: zoomLevel, bearing: 0.0, pitch: 0.0)
@@ -3633,7 +3637,7 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
     }
     
     func checkZoomLevelAnnotations(uiViewController: MapboxViewController) {
-        print("updating annots: \(uiViewController.annotationManager.annotations)")
+        print("updating annots 1: \(uiViewController.annotationManager.annotations)")
         uiViewController.annotationManager.annotations = []
         if (SessionManager.shared.selectedPropertyIndex >= 0 && SessionManager.shared.selectedPropertyIndex < SessionManager.shared.properties.count) {
             let detectors = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors

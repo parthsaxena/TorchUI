@@ -3424,7 +3424,7 @@ class MapboxPlaceSensorViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.addSubview(mapView)
-        self.pinImageView.frame = CGRectMake(self.view.center.x - 30, self.view.center.y - 210, 60, 69)
+        self.pinImageView.frame = CGRectMake(self.view.center.x - 30, self.view.center.y - 193, 60, 69)
         self.view.addSubview(pinImageView)
     }
 }

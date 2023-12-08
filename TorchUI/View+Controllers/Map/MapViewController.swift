@@ -12,7 +12,7 @@ import UIKit
 
 class MapViewController: UIViewController, GMSMapViewDelegate {
     
-    var map =  GMSMapView(frame: .zero)
+    var map =  GMSMapView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     var clusterManager: GMUClusterManager!
     var isAnimating: Bool = false
     var markers: [GMSMarker] = []
