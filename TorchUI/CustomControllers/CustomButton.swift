@@ -84,7 +84,7 @@ struct HamburgerButton: View {
             Circle()
                 .fill(colorScheme == .dark ? CustomColors.DarkModeOverlayBackground : Color.white)
                 .frame(width: 48.0, height: 48.0)
-            Image(systemName: "line.3.horizontal")
+            Image("menu-01")
                 .frame(width: 48.0, height: 48.0)
                 .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
             Button {

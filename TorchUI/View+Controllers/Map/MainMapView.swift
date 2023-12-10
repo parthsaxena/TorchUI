@@ -19,7 +19,7 @@ struct MainMapView: View {
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
     
-    @ObservedObject var sessionManager = SessionManager.shared    
+    @ObservedObject var sessionManager = SessionManager.shared
     
     // Google maps tutorial START
     static var detectors: [Detector] = []
@@ -346,14 +346,14 @@ struct MainMapView: View {
                         Spacer()
                         VStack {
                             if let detector = selectedDetector {
-                                if let detectorId = detector.sensorIdx {
-                                    Text("Sensor\(detectorId)")
-                                        .font(
-                                            Font.custom("Manrope", size: 20)
-                                                .weight(.semibold)
-                                        )
-                                        .foregroundColor(CustomColors.TorchGreen)
-                                }
+//                                if let detectorId = detector.sensorIdx {
+//                                    Text("Sensor\(detectorId)")
+//                                        .font(
+//                                            Font.custom("Manrope", size: 20)
+//                                                .weight(.semibold)
+//                                        )
+//                                        .foregroundColor(CustomColors.TorchGreen)
+//                                }
                                 if let coordinates = detector.coordinate {
                                     HStack(alignment: .top, spacing: 8) {
                                         let lat = coordinates.latitude
@@ -379,7 +379,7 @@ struct MainMapView: View {
 //                                        Button(action: {
 //                                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
 //                                            impactMed.impactOccurred()
-//                                            
+//
 //                                        }) {Image("share-07")
 //                                                .frame(width: 20, height: 20)
 //                                        }
@@ -405,7 +405,7 @@ struct MainMapView: View {
                                 }
                             }
                         }
-                        .padding(.top, 24)
+                        .padding(.top, 22)
                         
                         Spacer()
                     }
@@ -415,9 +415,9 @@ struct MainMapView: View {
 //                        Spacer()
 //                        VStack(spacing: 1) {
 //                            HamburgerButton(hideOverlay: $hideOverlay)
-//                            
+//
 //                            Spacer()
-////                                .frame(height: 150)                                                        
+////                                .frame(height: 150)
 //                        }
 //                        .padding(.trailing, 10)
 //                        .padding(.top, 10)
@@ -435,6 +435,10 @@ struct MainMapView: View {
                                 
                                 ZoomInButton(zoomLevel: $zoomLevel, zoomChanged: $zoomChanged)
                                 ZoomOutButton(zoomLevel: $zoomLevel, zoomChanged: $zoomChanged)
+                                
+                                Spacer()
+                                
+                                MapLayerButton(mapLayerTapped: $mapLayerTapped)
                             }
                             .padding(.trailing, 10)
                             .padding(.top, 10)
@@ -444,7 +448,7 @@ struct MainMapView: View {
                         HStack {
                             Spacer()
                             VStack(spacing: 0) {
-                                MapLayerButton(mapLayerTapped: $mapLayerTapped)
+                                
                                 LocationButton(moveToUserTapped: $moveToUserTapped)
                             }
                         }

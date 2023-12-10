@@ -60,20 +60,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             }
     }
     
-//    func application(
-//        _ application: UIApplication,
-//        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
-//    ) {
-//        Task {
-//            do {
-//                try await Amplify.Notifications.Push.registerDevice(apnsToken: deviceToken)
-//                print("Registered with Pinpoint.")
-//            } catch {
-//                print("Error registering with Pinpoint: \(error)")
-//            }
-//        }
-//    }
-    
     func application(
         _ application: UIApplication,
         didReceiveRemoteNotification userInfo: [AnyHashable: Any]
