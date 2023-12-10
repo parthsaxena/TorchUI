@@ -8,11 +8,12 @@
 import SwiftUI
 import Amplify
 import AWSCognitoAuthPlugin
+import AWSPinpointPushNotificationsPlugin
 
 @main
 struct TorchUIApp: App {
     
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     
     @ObservedObject var sessionManager = SessionManager.shared
     @ObservedObject var authenticationManager = AuthenticationManager.shared
@@ -32,15 +33,25 @@ struct TorchUIApp: App {
     
     init() {
         do {
+            print("GPTTT1")
+            Amplify.Logging.logLevel = .debug
+
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
+            try Amplify.add(
+                plugin: AWSPinpointPushNotificationsPlugin(options: [.badge, .alert, .sound])
+            )
+            print("GPTTT2")
             try Amplify.configure()
+            print("GPTTT3")
             WebSocketManager.shared.connect()
+            print("GPTTT4")
             
             Task {
                 await AuthenticationManager.shared.fetchCurrentAuthSession()
+                print("GPTTT5")
             }
         } catch {
-            // print("Failed to initialize Amplify with error: \(error)")
+             print("Failed to initialize Amplify with error: \(error)")
         }
     }
 }

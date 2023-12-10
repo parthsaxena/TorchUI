@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		063E3AEDB341E890B74EBA44 /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C19AF3ABE563F725FAD2649 /* Pods_TorchUI_TorchUIUITests.framework */; };
-		0E2DB57146C4AC62F707E171 /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA61948B1D99B51DFBD2E8D /* Pods_TorchUI.framework */; };
-		4BFD31B52B1345C2007D0E27 /* DropDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */; };
-		4BFD31B72B134605007D0E27 /* TabbarAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */; };
-		4BFD31B92B134620007D0E27 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFD31B82B134620007D0E27 /* Tabbar.swift */; };
+		3094CF572B1CB00A00C7984B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3094CF562B1CB00A00C7984B /* Date+Extension.swift */; };
 		7264CE919C89CB52F285A91A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */; };
+		8B00A11A2B2174240080534F /* TabDropDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00A1172B2174230080534F /* TabDropDownModifier.swift */; };
+		8B00A11B2B2174240080534F /* GlassyTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00A1192B2174240080534F /* GlassyTabbar.swift */; };
+		8B25BD032B1DA13100681342 /* AWSPinpointPushNotificationsPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 8B25BD022B1DA13100681342 /* AWSPinpointPushNotificationsPlugin */; };
+		8B25BD052B1DA13100681342 /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 8B25BD042B1DA13100681342 /* Amplify */; };
 		8B88C8FE2A70450F008B90A2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 8B88C8FD2A70450F008B90A2 /* CodeScanner */; };
 		8BA867BF2A80869D00BEED38 /* PinCodeTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 8BA867BE2A80869D00BEED38 /* PinCodeTextField */; };
 		8BC224842A859A07000958AA /* ZXCodeTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC224832A859A07000958AA /* ZXCodeTextField */; };
@@ -28,6 +28,8 @@
 		8BF7FC8A2A4D14D0005D1160 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */; };
 		8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */; };
 		8BFF26B62A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */; };
+		9BC704259E56E18211492AC9 /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C70BD56AE5C299A1E03F8D4 /* Pods_TorchUI.framework */; };
+		B45C4C86C8C5B24AEAC787C1 /* Pods_TorchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE251DB00483376265B13BB /* Pods_TorchUITests.framework */; };
 		C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */; };
 		C855B54B2B10883F007DA332 /* PropertyIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C855B4EB2B10883D007DA332 /* PropertyIconView.xib */; };
 		C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */; };
@@ -103,7 +105,7 @@
 		C855B5922B10883F007DA332 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5482B10883F007DA332 /* CustomButton.swift */; };
 		C855B5932B10883F007DA332 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5492B10883F007DA332 /* CustomColors.swift */; };
 		C855B5952B11100A007DA332 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5942B11100A007DA332 /* Strings.swift */; };
-		C90ACD43E25E1D462AC68CC1 /* Pods_TorchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A1525F6FC18D092DF0909 /* Pods_TorchUITests.framework */; };
+		CEDE821C67956A2F0FB4CDDB /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0721E7D70939E4EA7532C3F /* Pods_TorchUI_TorchUIUITests.framework */; };
 		FADFD6D29C0D959575FAAFCB /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = CE715C78ED08B54E16060133 /* awsconfiguration.json */; };
 /* End PBXBuildFile section */
 
@@ -125,14 +127,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		06A5BCCAF1B34B0A151F0B7E /* Pods-TorchUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.release.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.release.xcconfig"; sourceTree = "<group>"; };
-		09926F4222A147A0A0724977 /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
-		0C19AF3ABE563F725FAD2649 /* Pods_TorchUI_TorchUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI_TorchUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3543DCA965350F51F6C6E4E1 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownModifier.swift; sourceTree = "<group>"; };
-		4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabbarAssets.xcassets; sourceTree = "<group>"; };
-		4BFD31B82B134620007D0E27 /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
-		5F678EE1FE285173C6694EAF /* Pods-TorchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.release.xcconfig"; sourceTree = "<group>"; };
+		0DCA2AFA5E536A1543039C18 /* Pods-TorchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3094CF562B1CB00A00C7984B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		317A68F007F51FCE9371D716 /* Pods-TorchUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.release.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.release.xcconfig"; sourceTree = "<group>"; };
+		6C70BD56AE5C299A1E03F8D4 /* Pods_TorchUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		85748414CCD460F840169266 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8B00A1142B1ED1D50080534F /* TorchUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TorchUI.entitlements; sourceTree = "<group>"; };
+		8B00A1172B2174230080534F /* TabDropDownModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabDropDownModifier.swift; sourceTree = "<group>"; };
+		8B00A1182B2174230080534F /* TabbarAsset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabbarAsset.xcassets; sourceTree = "<group>"; };
+		8B00A1192B2174240080534F /* GlassyTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassyTabbar.swift; sourceTree = "<group>"; };
 		8B4A07AE2AE1FB81005731F6 /* ZXCodeTextfield */ = {isa = PBXFileReference; lastKnownFileType = text; path = ZXCodeTextfield; sourceTree = SOURCE_ROOT; };
 		8BF7FC4F2A4D1488005D1160 /* TorchUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TorchUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF7FC592A4D1489005D1160 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -149,9 +152,10 @@
 		8BF7FC822A4D14D0005D1160 /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Regular.ttf"; sourceTree = "<group>"; };
 		8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Medium.ttf"; sourceTree = "<group>"; };
 		8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
-		8F706F06206D41120E6CC971 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
-		BCA61948B1D99B51DFBD2E8D /* Pods_TorchUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFBD6483B88502D280F216F2 /* Pods-TorchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		95B2C4859C1E44F8C2BAE15B /* Pods-TorchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.release.xcconfig"; sourceTree = "<group>"; };
+		95E2D568D1DBA3BA52961391 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A746BA50497C90826613A372 /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
+		BAE251DB00483376265B13BB /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPropertiesView.swift; sourceTree = "<group>"; };
 		C855B4EB2B10883D007DA332 /* PropertyIconView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyIconView.xib; sourceTree = "<group>"; };
 		C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPropertiesView.swift; sourceTree = "<group>"; };
@@ -229,7 +233,7 @@
 		C855B5942B11100A007DA332 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		CE715C78ED08B54E16060133 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
-		DE4A1525F6FC18D092DF0909 /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0721E7D70939E4EA7532C3F /* Pods_TorchUI_TorchUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI_TorchUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,10 +242,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B88C8FE2A70450F008B90A2 /* CodeScanner in Frameworks */,
-				0E2DB57146C4AC62F707E171 /* Pods_TorchUI.framework in Frameworks */,
+				8B25BD052B1DA13100681342 /* Amplify in Frameworks */,
+				8B25BD032B1DA13100681342 /* AWSPinpointPushNotificationsPlugin in Frameworks */,
 				8BFF26B62A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin in Frameworks */,
 				8BC224842A859A07000958AA /* ZXCodeTextField in Frameworks */,
 				8BA867BF2A80869D00BEED38 /* PinCodeTextField in Frameworks */,
+				9BC704259E56E18211492AC9 /* Pods_TorchUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C90ACD43E25E1D462AC68CC1 /* Pods_TorchUITests.framework in Frameworks */,
+				B45C4C86C8C5B24AEAC787C1 /* Pods_TorchUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,31 +263,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				063E3AEDB341E890B74EBA44 /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */,
+				CEDE821C67956A2F0FB4CDDB /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4BFD31B32B1345A3007D0E27 /* New Tabbar */ = {
+		11A06A9C486A840012995D63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4BFD31B42B1345C2007D0E27 /* DropDownModifier.swift */,
-				4BFD31B62B134605007D0E27 /* TabbarAssets.xcassets */,
-				4BFD31B82B134620007D0E27 /* Tabbar.swift */,
-			);
-			path = "New Tabbar";
-			sourceTree = "<group>";
-		};
-		6366AC1F6C9E6BCB8261CB46 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BCA61948B1D99B51DFBD2E8D /* Pods_TorchUI.framework */,
-				0C19AF3ABE563F725FAD2649 /* Pods_TorchUI_TorchUIUITests.framework */,
-				DE4A1525F6FC18D092DF0909 /* Pods_TorchUITests.framework */,
+				6C70BD56AE5C299A1E03F8D4 /* Pods_TorchUI.framework */,
+				E0721E7D70939E4EA7532C3F /* Pods_TorchUI_TorchUIUITests.framework */,
+				BAE251DB00483376265B13BB /* Pods_TorchUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B00A11C2B2174310080534F /* Glassy Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				8B00A1192B2174240080534F /* GlassyTabbar.swift */,
+				8B00A1182B2174230080534F /* TabbarAsset.xcassets */,
+				8B00A1172B2174230080534F /* TabDropDownModifier.swift */,
+			);
+			path = "Glassy Tabbar";
 			sourceTree = "<group>";
 		};
 		8BF7FC462A4D1488005D1160 = {
@@ -292,8 +298,8 @@
 				8BF7FC6C2A4D1489005D1160 /* TorchUIUITests */,
 				8BF7FC502A4D1488005D1160 /* Products */,
 				CF081936F4D134B31F7A7C3F /* Pods */,
-				6366AC1F6C9E6BCB8261CB46 /* Frameworks */,
 				A9CB98324B1AAF2DCBCD81BB /* AmplifyConfig */,
+				11A06A9C486A840012995D63 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -310,6 +316,7 @@
 		8BF7FC512A4D1488005D1160 /* TorchUI */ = {
 			isa = PBXGroup;
 			children = (
+				8B00A1142B1ED1D50080534F /* TorchUI.entitlements */,
 				C855B5462B10883F007DA332 /* CustomControllers */,
 				C855B52E2B10883E007DA332 /* Delegate */,
 				C855B5342B10883E007DA332 /* Extensions */,
@@ -428,7 +435,7 @@
 		C855B4FD2B10883E007DA332 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				4BFD31B32B1345A3007D0E27 /* New Tabbar */,
+				8B00A11C2B2174310080534F /* Glassy Tabbar */,
 				C855B4FE2B10883E007DA332 /* TabBarItemView.swift */,
 				C855B4FF2B10883E007DA332 /* TabBarView.swift */,
 				C855B5002B10883E007DA332 /* VisualEffectView.swift */,
@@ -595,6 +602,7 @@
 				C855B5372B10883E007DA332 /* String+Extension.swift */,
 				C855B5382B10883E007DA332 /* Color+Extension.swift */,
 				C855B5392B10883E007DA332 /* View+Extension.swift */,
+				3094CF562B1CB00A00C7984B /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -637,12 +645,12 @@
 		CF081936F4D134B31F7A7C3F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				09926F4222A147A0A0724977 /* Pods-TorchUI.debug.xcconfig */,
-				06A5BCCAF1B34B0A151F0B7E /* Pods-TorchUI.release.xcconfig */,
-				3543DCA965350F51F6C6E4E1 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */,
-				8F706F06206D41120E6CC971 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */,
-				BFBD6483B88502D280F216F2 /* Pods-TorchUITests.debug.xcconfig */,
-				5F678EE1FE285173C6694EAF /* Pods-TorchUITests.release.xcconfig */,
+				A746BA50497C90826613A372 /* Pods-TorchUI.debug.xcconfig */,
+				317A68F007F51FCE9371D716 /* Pods-TorchUI.release.xcconfig */,
+				85748414CCD460F840169266 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */,
+				95E2D568D1DBA3BA52961391 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */,
+				0DCA2AFA5E536A1543039C18 /* Pods-TorchUITests.debug.xcconfig */,
+				95B2C4859C1E44F8C2BAE15B /* Pods-TorchUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -654,12 +662,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BF7FC732A4D1489005D1160 /* Build configuration list for PBXNativeTarget "TorchUI" */;
 			buildPhases = (
-				E6591F83BCB6FE404F23093A /* [CP] Check Pods Manifest.lock */,
+				3CD3E3B8DE9B0CE93B72A410 /* [CP] Check Pods Manifest.lock */,
 				8BF7FC4B2A4D1488005D1160 /* Sources */,
 				8BF7FC4C2A4D1488005D1160 /* Frameworks */,
 				8BF7FC4D2A4D1488005D1160 /* Resources */,
-				532BB0BD4C9A55936A3C5743 /* [CP] Copy Pods Resources */,
-				9907A32E9C5FC45F98DFF984 /* [CP] Embed Pods Frameworks */,
+				2530D1F89ADF117ECBAD5382 /* [CP] Embed Pods Frameworks */,
+				7D0C4E7612642655F6312B22 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -671,6 +679,8 @@
 				8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */,
 				8BA867BE2A80869D00BEED38 /* PinCodeTextField */,
 				8BC224832A859A07000958AA /* ZXCodeTextField */,
+				8B25BD022B1DA13100681342 /* AWSPinpointPushNotificationsPlugin */,
+				8B25BD042B1DA13100681342 /* Amplify */,
 			);
 			productName = TorchUI;
 			productReference = 8BF7FC4F2A4D1488005D1160 /* TorchUI.app */;
@@ -680,7 +690,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BF7FC762A4D1489005D1160 /* Build configuration list for PBXNativeTarget "TorchUITests" */;
 			buildPhases = (
-				ADB446D64D8EED77D00F8EBE /* [CP] Check Pods Manifest.lock */,
+				C176D02C1092D0076F2F383C /* [CP] Check Pods Manifest.lock */,
 				8BF7FC5B2A4D1489005D1160 /* Sources */,
 				8BF7FC5C2A4D1489005D1160 /* Frameworks */,
 				8BF7FC5D2A4D1489005D1160 /* Resources */,
@@ -699,12 +709,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BF7FC792A4D1489005D1160 /* Build configuration list for PBXNativeTarget "TorchUIUITests" */;
 			buildPhases = (
-				DA391CC1359AD66B8F78B3D0 /* [CP] Check Pods Manifest.lock */,
+				9771CEC0B5025E0274A7699C /* [CP] Check Pods Manifest.lock */,
 				8BF7FC652A4D1489005D1160 /* Sources */,
 				8BF7FC662A4D1489005D1160 /* Frameworks */,
 				8BF7FC672A4D1489005D1160 /* Resources */,
-				F5D2E8F8535DCCA56F9930B1 /* [CP] Copy Pods Resources */,
-				31C1622B26D004C21BF184BB /* [CP] Embed Pods Frameworks */,
+				02CDC7BBDD3A02A91411EF12 /* [CP] Embed Pods Frameworks */,
+				05FC35691DC782C03679E9CE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -770,7 +780,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BFD31B72B134605007D0E27 /* TabbarAssets.xcassets in Resources */,
 				C855B54B2B10883F007DA332 /* PropertyIconView.xib in Resources */,
 				8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */,
 				8BF7FC5A2A4D1489005D1160 /* Preview Assets.xcassets in Resources */,
@@ -806,7 +815,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		31C1622B26D004C21BF184BB /* [CP] Embed Pods Frameworks */ = {
+		02CDC7BBDD3A02A91411EF12 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -823,24 +832,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		532BB0BD4C9A55936A3C5743 /* [CP] Copy Pods Resources */ = {
+		05FC35691DC782C03679E9CE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9907A32E9C5FC45F98DFF984 /* [CP] Embed Pods Frameworks */ = {
+		2530D1F89ADF117ECBAD5382 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -857,51 +866,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ADB446D64D8EED77D00F8EBE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TorchUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DA391CC1359AD66B8F78B3D0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TorchUI-TorchUIUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E6591F83BCB6FE404F23093A /* [CP] Check Pods Manifest.lock */ = {
+		3CD3E3B8DE9B0CE93B72A410 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -923,21 +888,65 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F5D2E8F8535DCCA56F9930B1 /* [CP] Copy Pods Resources */ = {
+		7D0C4E7612642655F6312B22 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9771CEC0B5025E0274A7699C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TorchUI-TorchUIUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C176D02C1092D0076F2F383C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TorchUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -948,13 +957,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C855B5722B10883F007DA332 /* DetectorIconView.swift in Sources */,
+				8B00A11B2B2174240080534F /* GlassyTabbar.swift in Sources */,
 				C855B58C2B10883F007DA332 /* PropertyViewModel.swift in Sources */,
 				C855B5762B10883F007DA332 /* WelcomeView.swift in Sources */,
-				4BFD31B92B134620007D0E27 /* Tabbar.swift in Sources */,
 				C855B5512B10883F007DA332 /* MainPropertiesView.swift in Sources */,
 				C855B58F2B10883F007DA332 /* PropertyPhotoViewModel.swift in Sources */,
 				C855B58D2B10883F007DA332 /* PropertyModel.swift in Sources */,
 				C855B54F2B10883F007DA332 /* AlertView.swift in Sources */,
+				8B00A11A2B2174240080534F /* TabDropDownModifier.swift in Sources */,
 				C855B5772B10883F007DA332 /* AccountView.swift in Sources */,
 				C855B56A2B10883F007DA332 /* MapViewControllerBridge.swift in Sources */,
 				C855B58B2B10883F007DA332 /* AlertModel.swift in Sources */,
@@ -962,7 +972,6 @@
 				C855B55F2B10883F007DA332 /* HalfCircleShape.swift in Sources */,
 				C855B5782B10883F007DA332 /* AccountCompanyNameView.swift in Sources */,
 				C855B5702B10883F007DA332 /* MapboxPlaceSensorViewController.swift in Sources */,
-				4BFD31B52B1345C2007D0E27 /* DropDownModifier.swift in Sources */,
 				C855B57B2B10883F007DA332 /* TorchUIApp.swift in Sources */,
 				C855B57E2B10883F007DA332 /* AppDelegate.swift in Sources */,
 				C855B5892B10883F007DA332 /* PropertyAddressViewModel.swift in Sources */,
@@ -1002,6 +1011,7 @@
 				C855B5562B10883F007DA332 /* PropertyPhotoView.swift in Sources */,
 				C855B5552B10883F007DA332 /* BubbleView.swift in Sources */,
 				C855B5882B10883F007DA332 /* DataItem.swift in Sources */,
+				3094CF572B1CB00A00C7984B /* Date+Extension.swift in Sources */,
 				C855B56E2B10883F007DA332 /* MapboxMapViewWrapper.swift in Sources */,
 				C855B5812B10883F007DA332 /* SessionManager.swift in Sources */,
 				C855B5692B10883F007DA332 /* AddDetectorConfirmLocationOverlayView.swift in Sources */,
@@ -1171,11 +1181,12 @@
 		};
 		8BF7FC742A4D1489005D1160 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09926F4222A147A0A0724977 /* Pods-TorchUI.debug.xcconfig */;
+			baseConfigurationReference = A746BA50497C90826613A372 /* Pods-TorchUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = TorchUI/TorchUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
@@ -1197,6 +1208,63 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.6;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GoogleMapsBase\"",
+					"-framework",
+					"\"GoogleMapsCore\"",
+					"-framework",
+					"\"GoogleMapsUtils\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MapboxCommon\"",
+					"-framework",
+					"\"MapboxCoreMaps\"",
+					"-framework",
+					"\"MapboxMaps\"",
+					"-framework",
+					"\"MapboxMobileEvents\"",
+					"-framework",
+					"\"Metal\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"SwiftUI_Shimmer\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Turf\"",
+					"-framework",
+					"\"UIKit\"",
+					"-fprofile-instr-generate",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.torchsensors.TorchUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1210,11 +1278,12 @@
 		};
 		8BF7FC752A4D1489005D1160 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06A5BCCAF1B34B0A151F0B7E /* Pods-TorchUI.release.xcconfig */;
+			baseConfigurationReference = 317A68F007F51FCE9371D716 /* Pods-TorchUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = TorchUI/TorchUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
@@ -1236,6 +1305,63 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.6;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GoogleMapsBase\"",
+					"-framework",
+					"\"GoogleMapsCore\"",
+					"-framework",
+					"\"GoogleMapsUtils\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MapboxCommon\"",
+					"-framework",
+					"\"MapboxCoreMaps\"",
+					"-framework",
+					"\"MapboxMaps\"",
+					"-framework",
+					"\"MapboxMobileEvents\"",
+					"-framework",
+					"\"Metal\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"SwiftUI_Shimmer\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Turf\"",
+					"-framework",
+					"\"UIKit\"",
+					"-fprofile-instr-generate",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.torchsensors.TorchUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1249,7 +1375,7 @@
 		};
 		8BF7FC772A4D1489005D1160 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BFBD6483B88502D280F216F2 /* Pods-TorchUITests.debug.xcconfig */;
+			baseConfigurationReference = 0DCA2AFA5E536A1543039C18 /* Pods-TorchUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1270,7 +1396,7 @@
 		};
 		8BF7FC782A4D1489005D1160 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F678EE1FE285173C6694EAF /* Pods-TorchUITests.release.xcconfig */;
+			baseConfigurationReference = 95B2C4859C1E44F8C2BAE15B /* Pods-TorchUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1291,7 +1417,7 @@
 		};
 		8BF7FC7A2A4D1489005D1160 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3543DCA965350F51F6C6E4E1 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */;
+			baseConfigurationReference = 85748414CCD460F840169266 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1310,7 +1436,7 @@
 		};
 		8BF7FC7B2A4D1489005D1160 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8F706F06206D41120E6CC971 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */;
+			baseConfigurationReference = 95E2D568D1DBA3BA52961391 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1404,6 +1530,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8B25BD022B1DA13100681342 /* AWSPinpointPushNotificationsPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AWSPinpointPushNotificationsPlugin;
+		};
+		8B25BD042B1DA13100681342 /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Amplify;
+		};
 		8B88C8FD2A70450F008B90A2 /* CodeScanner */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B88C8FC2A70450F008B90A2 /* XCRemoteSwiftPackageReference "CodeScanner" */;
