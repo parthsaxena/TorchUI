@@ -51,14 +51,11 @@ struct DetectorDetailOverlayView: View {
                 VStack {
                     HStack {
                         Spacer()
-                        
                         RoundedRectangle(cornerRadius: 5.0)
                             .frame(width: 30, height: 4)
                             .foregroundColor(AuthenticationManager.shared.authState.rawValue >= AuthState.accountName.rawValue ? CustomColors.TorchGreen : Color(red: 227/255, green: 231/255, blue: 232/255))
-                        
                         Spacer()
                     }
-                    
                     ZStack {
                         Rectangle()
                             .cornerRadius(15.0)
@@ -71,16 +68,16 @@ struct DetectorDetailOverlayView: View {
                             VStack {
                                 HStack(spacing: 1) {
                                     
-                                    let x = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].sensorIdx ?? 0
-                                    
-                                    let deviceName = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].deviceName
-                                    
-                                    Text("Sensor \(x)")
+                                    if let x = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].sensorIdx {
+                                        Text("Sensor \(x)")
                                         .font(Font.custom("Manrope-SemiBold", size: 24.0))
                                         .kerning(-1)
                                         .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
                                         .padding(.leading, 15)
                                         .padding(.top, 20)
+                                    }
+                                    
+                                    let deviceName = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].deviceName                                                                        
                                     
                                     Text(deviceName)
                                         .font(Font.custom("Manrope-SemiBold", size: 24.0))
@@ -91,28 +88,7 @@ struct DetectorDetailOverlayView: View {
                                     
                                     Spacer()
                                     
-                                    //                                    Text("\(Int(sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].deviceBattery))%")
-                                    //                                        .font(Font.custom("Manrope-SemiBold", size: 13.0))
-                                    //                                        .foregroundColor(CustomColors.LightGray)
-                                    //                                        .padding(.top, 20)
-                                    //                            .padding(.leading, 20)
                                     
-                                    
-                                    //                                    let deviceBattery = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].deviceBattery
-                                    //                                    BatteryView(batteryLevel: deviceBattery)
-                                    //                                        .frame(width: 25, height: 10)
-                                    //                                        .padding(.top, 20)
-                                    //                                        .padding(.trailing, 15)
-                                    //                                        .padding(.leading, 5)
-                                    
-                                    //                                    Image(systemName: "ellipsis")
-                                    //                                        .foregroundColor(CustomColors.LightGray)
-                                    //                                        .padding(.trailing, 23.0)
-                                    //                                        .padding(.top, 20)
-                                    //                                        .onTapGesture {
-                                    //                                            print("Dots tapped")
-                                    //                                            showingDeleteDetectorOptions.toggle()
-                                    //                                        }
                                     Image(systemName: "ellipsis")
                                         .foregroundColor(CustomColors.LightGray)
                                         .padding(.trailing, 23.0)
@@ -186,7 +162,6 @@ struct DetectorDetailOverlayView: View {
                                 
                                 
                                 HStack {
-                                    
                                     let fireRating = Int(sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].measurements["fire_rating"] ?? "80")
                                     let highRisk = (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].threat == Threat.Red)
                                     let mediumRisk = !highRisk && (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].threat == Threat.Yellow)
@@ -268,76 +243,7 @@ struct DetectorDetailOverlayView: View {
 
                                             
                                         }.padding([.bottom, .trailing, .top], 16)
-                                        
-                                        //                                        VStack(alignment: .leading) {
-                                        //                                            HStack(spacing: 5) {
-                                        //                                                Text("Temperature")
-                                        //                                                    .font(Font.custom("Manrope-SemiBold", size: 13.0))
-                                        //                                                    .kerning(-0.5)
-                                        //                                                    .foregroundColor(CustomColors.LightGray)
-                                        //                                                //                                        .padding(.leading, 5)
-                                        //                                                Image("Thermometer")
-                                        //                                                    .resizable()
-                                        //                                                    .frame(width: 20.0, height: 20.0)
-                                        //                                            }
-                                        //
-                                        //                                            HStack(spacing: 5) {
-                                        //                                                Text("Humidity")
-                                        //                                                    .font(Font.custom("Manrope-SemiBold", size: 13.0))
-                                        //                                                    .kerning(-0.5)
-                                        //                                                    .foregroundColor(CustomColors.LightGray)
-                                        //                                                //                                        .padding(.leading, 5)
-                                        //                                                Image("Humidity")
-                                        //                                                    .resizable()
-                                        //                                                    .frame(width: 20.0, height: 20.0)
-                                        //                                            }
-                                        //                                        }
-                                        //                                        .padding(.trailing, 12)
-                                        //
-                                        //                                        //                            Spacer()
-                                        //
-                                        //                                        VStack {
-                                        //                                            Text("\(sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].measurements["temperature"] ?? "28")°C")
-                                        //                                                .font(Font.custom("Manrope-Bold", size: 14.0))
-                                        //                                                .foregroundColor(CustomColors.TorchRed)
-                                        //
-                                        //                                            Spacer()
-                                        //                                                .frame(height: 12)
-                                        //
-                                        //                                            Text("\(sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].measurements["humidity"] ?? "85")%")
-                                        //                                                .font(Font.custom("Manrope-Bold", size: 14.0))
-                                        //                                                .foregroundColor(CustomColors.GoodGreen)
-                                        //                                        }
-                                        //
-                                        //                                        VStack(alignment: .trailing) {
-                                        //                                            HStack(spacing: 1) {
-                                        //                                                Image(systemName: "arrow.up")
-                                        //                                                    .foregroundColor(CustomColors.LightGray)
-                                        //                                                    .font(.system(size: 13.0))
-                                        //                                                //                                        .padding(.leading, 10)
-                                        //
-                                        //                                                Text("2°C")
-                                        //                                                    .font(Font.custom("Manrope-Bold", size: 14.0))
-                                        //                                                    .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                                        //                                                //                                        .padding(.trailing, 10)
-                                        //                                            }
-                                        //
-                                        //                                            Spacer()
-                                        //                                                .frame(height: 12)
-                                        //
-                                        //                                            HStack(spacing: 1) {
-                                        //                                                Image(systemName: "arrow.up")
-                                        //                                                    .foregroundColor(CustomColors.LightGray)
-                                        //                                                    .font(.system(size: 13.0))
-                                        //                                                //                                        .font(.system(Font.TextStyle.body))
-                                        //
-                                        //                                                Text("5%")
-                                        //                                                    .font(Font.custom("Manrope-Bold", size: 14.0))
-                                        //                                                    .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                                        //                                                //                                        .padding(.trailing, 10)
-                                        //                                            }
-                                        //                                        }
-                                        //                                        .padding(.leading, 7)
+                                          .padding(.leading, 7)
                                     }
                                     .frame(maxWidth: .infinity)
                                     .frame(height: 116)
@@ -921,8 +827,6 @@ struct DetectorDetailOverlayView: View {
 //                        shouldShowRedOverlay = true
                     }
                 }
-                
-                
             }
         }
     }

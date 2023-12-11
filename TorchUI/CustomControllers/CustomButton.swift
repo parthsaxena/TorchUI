@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct BackButton: View {
+    
     @Environment(\.colorScheme) var colorScheme
     @Binding var selectedDetector: Detector?
     @Binding var showDetectorDetails: Bool
-    //    @Binding var mapOffset: CGSize
     @Binding var dragOffset: CGSize
     @Binding var showRedOverlay: Bool
-    
     
     var body: some View {
         ZStack {
@@ -92,7 +91,6 @@ struct HamburgerButton: View {
                 impactMed.impactOccurred()
                 
                 withAnimation {
-                    //                    hideOverlay = true
                 }
             } label: {
                 Circle()
@@ -105,6 +103,7 @@ struct HamburgerButton: View {
 }
 
 struct ZoomInButton: View {
+    
     @Environment(\.colorScheme) var colorScheme
     @Binding var zoomLevel: CGFloat
     @Binding var zoomChanged: Bool
@@ -134,6 +133,7 @@ struct ZoomInButton: View {
 }
 
 struct ZoomOutButton: View {
+    
     @Environment(\.colorScheme) var colorScheme
     @Binding var zoomLevel: CGFloat
     @Binding var zoomChanged: Bool
@@ -163,6 +163,7 @@ struct ZoomOutButton: View {
 }
 
 struct LayersButton: View {
+    
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -189,6 +190,7 @@ struct LayersButton: View {
 }
 
 struct LocationButton: View {
+    
     @Environment(\.colorScheme) var colorScheme
     @Binding var moveToUserTapped: Bool
     
@@ -206,7 +208,6 @@ struct LocationButton: View {
             Button {
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
-                
                 moveToUserTapped = true
             } label: {
                 Circle()
@@ -252,6 +253,7 @@ struct MapLayerButton: View {
 
 
 struct ExitButton: View {
+    
     @Binding var showingOptions: Bool
     
     var body: some View {
@@ -277,6 +279,7 @@ struct ExitButton: View {
 }
 
 struct AddPropertyBackButton: View {
+    
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @Binding var state: OnboardingState
@@ -298,7 +301,9 @@ struct AddPropertyBackButton: View {
                 if self.state == OnboardingState.propertyName {
                     dismiss()
                 } else {
-                    self.state = OnboardingState(rawValue: self.state.rawValue - 1)!
+                    if let state = OnboardingState(rawValue: self.state.rawValue - 1) {
+                        self.state = state
+                    }
                 }
             } label: {
                 Circle()
@@ -311,6 +316,7 @@ struct AddPropertyBackButton: View {
 }
 
 struct AccountBackButton: View {
+    
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -330,7 +336,9 @@ struct AccountBackButton: View {
                 if AuthenticationManager.shared.authState == AuthState.accountName || AuthenticationManager.shared.authState == AuthState.login {
                     AuthenticationManager.shared.authState = .welcome
                 } else {
-                    AuthenticationManager.shared.authState = AuthState(rawValue: AuthenticationManager.shared.authState.rawValue - 1)!
+                    if let authState = AuthState(rawValue: AuthenticationManager.shared.authState.rawValue - 1) {
+                        AuthenticationManager.shared.authState = authState
+                    }
                 }
             } label: {
                 Circle()

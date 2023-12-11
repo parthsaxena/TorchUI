@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct AddPropertySheetView: View {
+    
     @Environment(\.dismiss) var dismiss
     
     @State var state: OnboardingState = .propertyName
     @State var propertyName: String = ""
     @State var propertyAddress: String = ""
-    //    @State var propertyName: String = "momm"
-    //    @State var propertyAddress: String = "2237 Kamp Court, Pleasanton, CA 94588"
-    
+
     var body: some View {
         if state == .propertyName {            
             PropertyNameView(state: $state, propertyName: $propertyName)

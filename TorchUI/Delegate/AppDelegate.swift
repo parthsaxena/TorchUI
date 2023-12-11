@@ -23,7 +23,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         // Initialize Google Maps SDK
         GMSServices.provideAPIKey("AIzaSyBevmebTmlyD-kftwvRqqRItgh07CDiwx0")
-        
         RunLoop.current.run(until: NSDate(timeIntervalSinceNow:2) as Date)
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in

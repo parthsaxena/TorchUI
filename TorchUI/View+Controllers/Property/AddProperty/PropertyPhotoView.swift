@@ -11,18 +11,13 @@ struct PropertyPhotoView: View {
     
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
-    
-    //    @StateObject var vm: PropertyPhotoViewModel
-    
+
     @Binding var state: OnboardingState
     var propertyName: String
     var propertyAddress: String
-    //    @State var (focusedField != .field): Bool = false
-    
-    // place holder text color
+
     @State var fieldTextColor: Color = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
-    
-    // disabled button color
+
     @State var nextButtonColor: Color = Color(red: 0.78, green: 0.81, blue: 0.82)
     @State var nextButtonEnabled: Bool = false
     
@@ -58,23 +53,18 @@ struct PropertyPhotoView: View {
                 ZStack {
                     HStack {
                         AddPropertyBackButton(state: self.$state)
-                        
                         Spacer()
                     }
                     .padding(.leading, 15.0)
-                    
                     HStack {
                         Spacer()
-                        
                         VStack {
                             Text(self.propertyName)
                                 .kerning(-0.5)
                                 .font(Font.custom("Manrope-SemiBold", size: 18.0))
                                 .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                            
                             Spacer()
                                 .frame(height: 4)
-                            
                             Text(self.propertyAddress)
                                 .kerning(-0.5)
                                 .multilineTextAlignment(.center)
@@ -84,13 +74,10 @@ struct PropertyPhotoView: View {
                         }
                         .padding(.horizontal)
                         .padding(.top, 10)
-                        
                         Spacer()
                     }
-                    
                     HStack {
                         Spacer()
-                        
                         Button {
                             dismiss()
                         } label: {
@@ -102,20 +89,12 @@ struct PropertyPhotoView: View {
                     }
                 }
                 .padding(.top, 20)
-                
-                //                Text(self.propertyAddress)
-                //                    .font(Font.custom("Manrope-Medium", size: 14.0))
-                //                    .foregroundColor(Color(red: 0.45, green: 0.53, blue: 0.55))
-                
                 Spacer()
-                
                 HStack {
                     Spacer()
                     VStack {
                         HStack {
                             Spacer()
-                            
-                            // add photo
                             RoundedRectangle(cornerRadius: 24)
                                 .fill(Color(red: 0.945, green: 0.953, blue: 0.953))
                                 .frame(width: 120, height: 120)
@@ -134,8 +113,7 @@ struct PropertyPhotoView: View {
                                 .frame(width: 25)
                             
                             ZStack {
-                                var urlString = "\(imageApiUrl)\(self.propertyAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                                
+                                let urlString = "\(imageApiUrl)\(self.propertyAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                                 Rectangle()
                                     .foregroundColor(.clear)
                                     .frame(width: 120, height: 120)
@@ -181,19 +159,14 @@ struct PropertyPhotoView: View {
                                 }
                             }
                             .shadow(color: self.googleMapsImageSelected ? Color(red: 0.08, green: 0.44, blue: 0.94).opacity(0.6) : Color.clear, radius: 4, x: 0, y: 0)
-                            
-                            
-                            
                             Spacer()
                         }
-                        
                         Text("You can add a photo yourself or choose a\nsuggested one from Google")
                             .font(Font.custom("Manrope-Medium", size: 16.0))
                             .foregroundColor(Color(red: 0.45, green: 0.53, blue: 0.55))
                             .multilineTextAlignment(.center)
                             .padding(.top, self.googleMapsImageSelected ? 43 : 40)
                     }
-                    //                        .padding(.top, 5.0)
                     Spacer()
                 }
                 
@@ -206,7 +179,7 @@ struct PropertyPhotoView: View {
                         let impactMed = UIImpactFeedbackGenerator(style: .medium)
                         impactMed.impactOccurred()
                         
-                        var urlString = "\(imageApiUrl)\(self.propertyAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                        let urlString = "\(imageApiUrl)\(self.propertyAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
                         SessionManager.shared.newProperty?.propertyImage = urlString
                         SessionManager.shared.newProperty?.loadingData = true
                         state = .promptInstallation
@@ -226,28 +199,6 @@ struct PropertyPhotoView: View {
                             .padding(.bottom, 20)
                     }
                     .disabled(!nextButtonEnabled)
-                    
-                    //                    Button("Next") {
-                    //                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                    //                        impactMed.impactOccurred()
-                    //
-                    //                        var urlString = "\(imageApiUrl)\(self.propertyAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                    //                        SessionManager.shared.newProperty?.propertyImage = urlString
-                    //                        state = .promptInstallation
-                    //
-                    //                        SessionManager.shared.uploadNewProperty()
-                    //                    }
-                    //                    .disabled(!nextButtonEnabled)
-                    //                    .font(.custom("Manrope-SemiBold", size: 16))
-                    //                    .frame(maxWidth: .infinity)
-                    //                    .frame(height: 60)
-                    //                    .foregroundColor(.white)
-                    //                    .background(
-                    //                        RoundedRectangle(cornerRadius: 100)
-                    //                            .foregroundColor(self.nextButtonColor)
-                    //                    )
-                    //                    .padding(.horizontal, 16)
-                    //                    .padding(.bottom, 20)
                     Spacer()
                 }
                 .padding(.top, 60)
@@ -257,14 +208,11 @@ struct PropertyPhotoView: View {
 }
 
 struct ContentView3: View {
+    
     @State private var showingSheet = true
     @State var state = OnboardingState.propertyPhoto
-    //    @State var propertyName
-    
-    
+
     var body: some View {
-        //        AddPropertySheetView()
-        //        PromptInstallationView(state: $state, propertyName: "Mom's house", propertyAddress: "Pacific Coast Hwy, Malibu, CA 94588")
         PropertyPhotoView(state: $state, propertyName: "Mom's house", propertyAddress: "USA Pacific Coast Hwy, Malibu, CA 90265aa")
     }
 }

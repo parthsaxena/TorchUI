@@ -55,23 +55,7 @@ struct WelcomeView: View {
                     .padding(.horizontal, 16)
                     .padding(.bottom, 20)
                 }
-                
-//                Button("Sign up") {
-//                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-//                    impactMed.impactOccurred()
-//
-//                    AuthenticationManager.shared.authState = .accountName
-//                }
-//                .font(.custom("Manrope-SemiBold", size: 16))
-//                .frame(maxWidth: .infinity)
-//                .frame(height: 60)
-//                .foregroundColor(colorScheme == .dark ? CustomColors.TorchGreen : .white)
-//                .background(
-//                    RoundedRectangle(cornerRadius: 100)
-//                        .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.EnabledButtonColor)
-//                )
-//                .padding(.horizontal, 16)
-//                .padding(.bottom, 20)
+
                 Spacer()
             }
             
