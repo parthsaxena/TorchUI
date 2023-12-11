@@ -66,9 +66,10 @@ final class SessionManager: ObservableObject {
     
     func dummyUserSetup() {
         let property = Property(id: "0", propertyName: "House in Napa", propertyAddress: "2237 Kamp Court", propertyImage: "Property", detectors: [
-            Detector(id: "1", deviceName: "Backyard", deviceBattery: 83.0,
-                     measurements: ["fire_rating" : "23"],
-                     coordinate: CLLocationCoordinate2D(latitude: 37.656434, longitude: -121.972)),
+            Detector(id: "1", deviceName: "Backyard", deviceBattery: 13.0, measurements: ["fire_rating" : "93","temperature" : "47"], coordinate: CLLocationCoordinate2D(latitude: 37.656434, longitude: -121.972), threat: .Red, spectralStatus: .Yellow, thermalStatus: .Red, smokeStatus: .Green, connected: true, lastTimestamp: Date()),
+//            Detector(id: "1", deviceName: "Backyard", deviceBattery: 13.0,
+//                     measurements: ["fire_rating" : "93"],
+//                     coordinate: CLLocationCoordinate2D(latitude: 37.656434, longitude: -121.972), spectralStatus: .Red, thermalStatus: .Yellow, smokeStatus: .Green),
             Detector(id: "2", deviceName: "Frontyard", deviceBattery: 91.0,
                      measurements: ["fire_rating" : "81"],
                      coordinate: CLLocationCoordinate2D(latitude: 37.655521, longitude: -121.962646), threat: Threat.Red),
@@ -107,8 +108,9 @@ final class SessionManager: ObservableObject {
         self.newProperty = Property(id: "1", propertyName: "Mom's house", propertyAddress: "2237 Kamp Court, Pleasanton, CA 94588", propertyImage: "https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyBevmebTmlyD-kftwvRqqRItgh07CDiwx0&size=180x180&scale=2&maptype=satellite&zoom=19&center=2237 Kamp Court, Pleasanton, CA 94588")
     }
     
-    func createUserData(email: String) {
+    func createUserData(email: String, deviceToken: String?) {
         // print("Creating user data")
+                
         
         let req = SocketRequest(
             route: "createUserDB",
@@ -119,6 +121,11 @@ final class SessionManager: ObservableObject {
             completion: { data in
                 AuthenticationManager.shared.authState = .authenticated
         })
+        if deviceToken != nil {
+            req.data["device_token"] = deviceToken!
+        }
+        
+        print("Sending create user req: \(req.data)")
         
         // Send request through socket
         WebSocketManager.shared.sendData(socketRequest: req)
@@ -607,6 +614,20 @@ final class SessionManager: ObservableObject {
         }
     }
     
+    func registerUserEndpoint(deviceToken: String, userID: String) {        
+        let req = SocketRequest(route: "registerUserEndpoint",
+                                data: [
+                                    "device_token": deviceToken,
+                                    "user_id": userID
+                                ],
+                                completion: { data in
+            print("RegisterUserEndpoint: \(data)")
+        })
+        
+        // Send request through socket
+        WebSocketManager.shared.sendData(socketRequest: req)
+    }
+    
     func uploadNewDetectors() {
         //        SessionManager.shared.properties[selectedPropertyIndex].loadingData = true
         self.newProperty?.loadingData = true
@@ -670,25 +691,30 @@ final class SessionManager: ObservableObject {
         WebSocketManager.shared.sendData(socketRequest: req)
     }
     
-    func registerDevice(property: Property, detector: Detector) {
-
-        let property = property
+    func registerDevice(userID: String, property: Property, detector: Detector) {
+        // print("Registering new device")
+        
+        var property = property
         var detector = detector
-        let req = SocketRequest(
-            route: "registerDeviceToProperty",
-            data: [
-                "property_id": property.id,
-                "device_id": detector.id,
-                "property_name": property.propertyName,
-                "device_name": detector.deviceName,
-                "property_image": property.propertyImage,
-                "property_address": property.propertyAddress,
-                "latitude": detector.coordinate?.latitude ?? 0.0,
-                "longitude": detector.coordinate?.longitude ?? 0.0
-            ],
-            completion: { data in
-                detector.sensorIdx = property.detectors.count
-                self.loadUserProperties()
+        
+        //        // print("Got new property id: \(self.newProperty!.id) from \(self)")
+        
+        let req = SocketRequest(route: "registerDeviceToProperty",
+                                data: [
+                                    "user_id": userID,
+                                    "property_id": property.id,
+                                    "device_id": detector.id,
+                                    "property_name": property.propertyName,
+                                    "device_name": detector.deviceName,
+                                    "property_image": property.propertyImage,
+                                    "property_address": property.propertyAddress,
+                                    "latitude": detector.coordinate!.latitude,
+                                    "longitude": detector.coordinate!.longitude
+                                ],
+                                completion: { data in
+            
+            detector.sensorIdx = property.detectors.count
+            self.loadUserProperties()
         })
         // Send request through socket
         WebSocketManager.shared.sendData(socketRequest: req)

@@ -41,6 +41,7 @@ struct AccountView: View {
                 
                 if sessionManager.appState == .properties {
                     if !sessionManager.firstTransition {
+                        let x = print("2")
                         PropertiesView()
                             .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
                             .zIndex(1)

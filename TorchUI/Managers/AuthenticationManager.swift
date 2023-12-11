@@ -33,9 +33,13 @@ class AuthenticationManager: ObservableObject {
     
     var email: String?
     var password: String?
+    var deviceToken: String?
     
     init() {
         //
+//        Task {
+//            await fetchCurrentAuthSession()
+//        }
     }
     
     func fetchCurrentAuthSession() async {
@@ -43,6 +47,11 @@ class AuthenticationManager: ObservableObject {
             let session = try await Amplify.Auth.fetchAuthSession()
             if session.isSignedIn {
                 let user = try await Amplify.Auth.getCurrentUser()
+//                Amplify.Analytics.identifyUser(userId: user.userId)
+                try await Amplify.Notifications.Push.identifyUser(userId: user.userId)
+                SessionManager.shared.registerUserEndpoint(deviceToken: self.deviceToken!, userID: user.userId)
+                print("Identified user to Pinpoint0: \(user.userId)")
+                // print("Got user")
                 DispatchQueue.main.async {
                     self.authUser = user
                     self.authState = .authenticated
@@ -67,6 +76,11 @@ class AuthenticationManager: ObservableObject {
             if signInResult.isSignedIn {
                 
                 let user = try await Amplify.Auth.getCurrentUser()
+//                Amplify.Analytics.identifyUser(userId: user.userId)
+                try await Amplify.Notifications.Push.identifyUser(userId: user.userId)
+                SessionManager.shared.registerUserEndpoint(deviceToken: self.deviceToken!, userID: user.userId)
+                print("Identified user to Pinpoint1: \(user.userId)")
+                // print("Got user")
                 DispatchQueue.main.async {
                     self.authUser = user
                     self.authState = .authenticated
@@ -90,7 +104,7 @@ class AuthenticationManager: ObservableObject {
                 // print("Got user")
                 DispatchQueue.main.async {
                     self.authUser = user
-                    SessionManager.shared.createUserData(email: email)
+                    SessionManager.shared.createUserData(email: email, deviceToken: self.deviceToken)
                     DispatchQueue.main.async {
                         SessionManager.shared.propertiesLoaded = true
                     }

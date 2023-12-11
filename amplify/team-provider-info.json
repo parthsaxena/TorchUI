@@ -13,11 +13,33 @@
     },
     "categories": {
       "auth": {
-        "torchb5812d08": {
+        "torch169bd8f2": {
           "userPoolId": "us-west-2_iVtMyKgU7",
           "userPoolName": "users-generic",
           "webClientId": "20a8gdfrkhv12oobuksfrh80qg",
-          "nativeClientId": "20a8gdfrkhv12oobuksfrh80qg"
+          "nativeClientId": "20a8gdfrkhv12oobuksfrh80qg",
+          "identityPoolId": "us-west-2:390c6534-14ea-403f-b5b6-f56c120190dd",
+          "identityPoolName": "users-generic-identity",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::462215757394:role/service-role/torch-identity-authenticated",
+          "authRoleName": "torch-identity-authenticated",
+          "unauthRoleArn": "arn:aws:iam::462215757394:role/service-role/torch-identity-unauthenticated",
+          "unauthRoleName": "torch-identity-unauthenticated"
+        }
+      },
+      "analytics": {
+        "Pinpoint": {
+          "Name": "torch-dev",
+          "Id": "fe6d4da3862046598388372b9568f210",
+          "Region": "us-west-2"
+        },
+        "torch": {}
+      },
+      "notifications": {
+        "Pinpoint": {
+          "Name": "torch-dev",
+          "Id": "fe6d4da3862046598388372b9568f210",
+          "Region": "us-west-2"
         }
       }
     }

@@ -77,7 +77,12 @@ struct PlaceSensorView: View {
                                                 let impactMed = UIImpactFeedbackGenerator(style: .heavy)
                                                 impactMed.impactOccurred()
                                                 isPresentingScanner = false
+<<<<<<< HEAD
                                                 let detector = Detector(id: result.string, deviceName: String((sessionManager.newProperty?.detectors.count ?? 0) + 1), deviceBattery: 0.0, coordinate: nil, selected: true, sensorIdx: (sessionManager.newProperty?.detectors.count ?? 0) + 1)
+=======
+                                                print("QR: \(result.string)")
+                                                var detector = Detector(id: result.string, deviceName: String(sessionManager.newProperty!.detectors.count + 1), deviceBattery: 0.0, coordinate: nil, selected: true, sensorIdx: sessionManager.newProperty!.detectors.count + 1)
+>>>>>>> origin/main
                                                 sessionManager.addNewDetector(detector: detector)
                                                 self.selectedSensor = detector
                                                 self.selectedDetector = detector

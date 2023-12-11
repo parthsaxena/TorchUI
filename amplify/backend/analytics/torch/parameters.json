@@ -1,0 +1,21 @@
+{
+    "appName": "torch",
+    "roleName": "pinpointLambdaRole84c5744f",
+    "cloudformationPolicyName": "cloudformationPolicy84c5744f",
+    "cloudWatchPolicyName": "cloudWatchPolicy84c5744f",
+    "pinpointPolicyName": "pinpointPolicy84c5744f",
+    "authPolicyName": "pinpoint_amplify_84c5744f",
+    "unauthPolicyName": "pinpoint_amplify_84c5744f",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

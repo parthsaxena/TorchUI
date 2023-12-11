@@ -20,7 +20,7 @@ struct MainMapView: View {
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
     
-    @ObservedObject var sessionManager = SessionManager.shared    
+    @ObservedObject var sessionManager = SessionManager.shared
     
     // Google maps tutorial START
     static var detectors: [Detector] = []
@@ -41,6 +41,9 @@ struct MainMapView: View {
     @State var detectorOverlaySize: CGSize = CGSize()
     
     @State private var dragOffset = CGSize.zero
+    @State var shouldShowRedOverlay = false
+    @State var showRedOverlay: Bool = false
+    @State private var isCopied: Bool = false
     
     @State var zoomLevel: CGFloat = 12
     
@@ -58,6 +61,7 @@ struct MainMapView: View {
     @State var zoomChanged: Bool = false
     
     @State var moveToUserTapped: Bool = false
+    @State var mapLayerTapped: Bool = false
     
     @State var showingDeletePropertyOptions: Bool = false
     @State var showingDeleteDetectorOptions: Bool = false
@@ -96,87 +100,111 @@ struct MainMapView: View {
                 
                 
                 if !isConfirmingLocation {
-                    DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset)
-                        .offset(x: 0, y: (!showDetectorDetails) ? UIScreen.main.bounds.height : self.dragOffset.height)
-                        .gesture(
-                            DragGesture()
-                                .onChanged { gesture in
-                                    if showDetectorDetails {
-                                        print("Gesture: \(gesture.translation), size: \(self.detectorOverlaySize)")
-                                        if gesture.translation.height < 0 && self.dragOffset.height > 0 {
-                                            print("Dragging up")
-                                            self.dragOffset.height = (self.detectorOverlaySize.height - DETECTOR_MIN_OFFSET) - fabs(gesture.translation.height)
-                                            self.mapOffset.height = DETECTOR_MIN_OFFSET + fabs(gesture.translation.height)
-                                        } else if gesture.translation.height > 0 && gesture.translation.height <= self.detectorOverlaySize.height {
-                                            print("Dragging down")
-                                            self.dragOffset = gesture.translation
-                                            self.mapOffset.height = (self.detectorOverlaySize.height - gesture.translation.height)
+                    
+                    
+//                    VStack {
+                        
+                    
+                    
+//                        Rectangle()
+//                            .fill(
+//                                RadialGradient(colors: [Color.clear, CustomColors.TorchRed], center: .center, startRadius: width - 200, endRadius: width + 50)
+//                            )
+//                            .frame(width: width, height: height - detectorOverlaySize.height)
+////                            .padding(.bottom, -40)
+//                            .ignoresSafeArea()
+                        
+                    DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay)
+                        .onAppear(perform: {
+                            withAnimation(.easeIn(duration: 5.0)) {
+                                shouldShowRedOverlay = true
+                            }
+                        })
+                            .offset(x: 0, y: (!showDetectorDetails) ? UIScreen.main.bounds.height : self.dragOffset.height)
+                            .gesture(
+                                DragGesture()
+                                    .onChanged { gesture in
+                                        if showDetectorDetails {
+                                            print("Gesture: \(gesture.translation), size: \(self.detectorOverlaySize)")
+                                            if gesture.translation.height < 0 && self.dragOffset.height > 0 {
+                                                print("Dragging up")
+                                                self.dragOffset.height = (self.detectorOverlaySize.height - DETECTOR_MIN_OFFSET) - fabs(gesture.translation.height)
+                                                self.mapOffset.height = DETECTOR_MIN_OFFSET + fabs(gesture.translation.height)
+                                            } else if gesture.translation.height > 0 && gesture.translation.height <= self.detectorOverlaySize.height {
+                                                print("Dragging down")
+                                                self.dragOffset = gesture.translation
+                                                self.mapOffset.height = (self.detectorOverlaySize.height - gesture.translation.height)
+                                            }
+                                            shouldShowRedOverlay = false
                                         }
                                     }
-                                }
-                                .onEnded { _ in
-                                    if showDetectorDetails {
-                                        if self.dragOffset.height + THRESHOLD > self.detectorOverlaySize.height {
-                                            print("Threshold")//
-                                            withAnimation(.easeIn(duration: ANIMATION_DURATION)) {
-                                                self.dragOffset.height = self.detectorOverlaySize.height - DETECTOR_MIN_OFFSET
-                                                self.mapOffset.height = DETECTOR_MIN_OFFSET
-                                            }
-                                            
-                                        } else {
-                                            print("Threshold1")
-                                            withAnimation(.easeIn(duration: ANIMATION_DURATION)) {
-                                                self.dragOffset = .zero
-                                                self.mapOffset.height = (self.detectorOverlaySize.height)
-                                            }
-                                        }
-                                    }
-                                }
-                        )
-                        .transition(slideTransition)
-                        .confirmationDialog("Select a color", isPresented: combinedBinding, titleVisibility: .hidden) {
-                            Button(showingDeletePropertyOptions ? "Delete property" : "Delete detector", role: .destructive) {
-                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                impactMed.impactOccurred()
-                                if (showingDeletePropertyOptions) {
-                                    SessionManager.shared.deleteProperty()
-                                    withAnimation {
-                                        SessionManager.shared.appState = .properties
-                                    }
-                                } else if (showingDeleteDetectorOptions) {
-                                    withAnimation(.easeIn(duration: 0.1)) {
-                                        self.dragOffset = .zero
-                                    }
-                                    DispatchQueue.main.async {
-                                        print("comp0: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count)")
-                                        showDetectorDetails.toggle(); dragOffset = .zero
-                                        if (SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count <= 1) {
-                                            withAnimation {
-                                                print("Setting app state \(SessionManager.shared.appState)")
-                                                //                                                SessionManager.shared.appState = .properties
-                                                print("Finished app state \(SessionManager.shared.appState)")
-                                            }
-                                        }
-                                        print("comp1: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count), \(self.annotations)")
-                                        selectedDetector = nil
-                                        SessionManager.shared.deleteDetector()
-                                        
-                                        if SessionManager.shared.selectedDetectorIndex >= 0 {
-                                            for (i, annotation) in self.annotations.enumerated() {
-                                                print("i, ann: \(i) \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id) \(annotation)")
-                                                if annotation.id == SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id {
-                                                    self.annotations.remove(at: i)
-                                                    print("removed, \(self.annotations)")
-                                                    break
+                                    .onEnded { _ in
+                                        if showDetectorDetails {
+                                            if self.dragOffset.height + THRESHOLD > self.detectorOverlaySize.height {
+                                                print("Threshold")//
+                                                withAnimation(.easeIn(duration: ANIMATION_DURATION)) {
+                                                    self.dragOffset.height = self.detectorOverlaySize.height - DETECTOR_MIN_OFFSET
+                                                    self.mapOffset.height = DETECTOR_MIN_OFFSET
+                                                    
+                                                }
+                                                
+                                            } else {
+                                                print("Threshold1")
+                                                withAnimation(.easeIn(duration: ANIMATION_DURATION)) {
+                                                    self.dragOffset = .zero
+                                                    self.mapOffset.height = (self.detectorOverlaySize.height)
+                                                    shouldShowRedOverlay = true
                                                 }
                                             }
                                         }
                                     }
+                            )
+                            .transition(slideTransition)
+                            .confirmationDialog("Select a color", isPresented: combinedBinding, titleVisibility: .hidden) {
+                                Button(showingDeletePropertyOptions ? "Delete property" : "Delete detector", role: .destructive) {
+                                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                    impactMed.impactOccurred()
+                                    if (showingDeletePropertyOptions) {
+                                        SessionManager.shared.deleteProperty()
+                                        withAnimation {
+                                            SessionManager.shared.appState = .properties
+                                        }
+                                    } else if (showingDeleteDetectorOptions) {
+                                        withAnimation(.easeIn(duration: 0.1)) {
+                                            self.dragOffset = .zero
+                                        }
+                                        DispatchQueue.main.async {
+                                            print("comp0: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count)")
+                                            showDetectorDetails.toggle(); dragOffset = .zero
+                                            if (SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count <= 1) {
+                                                withAnimation {
+                                                    print("Setting app state \(SessionManager.shared.appState)")
+                                                    //                                                SessionManager.shared.appState = .properties
+                                                    print("Finished app state \(SessionManager.shared.appState)")
+                                                }
+                                            }
+                                            print("comp1: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count), \(self.annotations)")
+                                            selectedDetector = nil
+                                            SessionManager.shared.deleteDetector()
+                                            
+                                            DispatchQueue.main.async {
+                                                for (i, annotation) in self.annotations.enumerated() {
+                                                    print("i, ann: \(i) \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id) \(annotation)")
+                                                    if annotation.id == SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id {
+                                                        self.annotations.remove(at: i)
+                                                        print("removed, \(self.annotations)")
+                                                        break
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    combinedBinding.wrappedValue = false
+                                    dismiss()
                                 }
-                                combinedBinding.wrappedValue = false
-                                dismiss()
                             }
-                        }
+                        
+//                    }
                     
                     let _ = print("MapOffset: \(self.mapOffset), Detector: \(self.detectorOverlaySize), Property: \(self.propertyOverlaySize)")
                     if let selectedProperty = sessionManager.selectedProperty {
@@ -299,33 +327,127 @@ struct MainMapView: View {
                 // Overlay
                 if showDetectorDetails && !hideOverlay {
                     HStack {
-                        BackButton(selectedDetector: $selectedDetector, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset)
+                        BackButton(selectedDetector: $selectedDetector, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, showRedOverlay: $showRedOverlay)
                             .padding(.leading, 10)
                             .padding(.top, 10)
                         Spacer()
                     }
-                    // Right side buttons: Hamburger, ZoomIn, ZoomOut, Layers, CurrentLocation
+                    
                     HStack {
                         Spacer()
-                        VStack(spacing: 1) {
-                            HamburgerButton(hideOverlay: $hideOverlay)
-                            Spacer()
-                                .frame(height: 150)                                                        
+                        VStack {
+                            if let detector = selectedDetector {
+//                                if let detectorId = detector.sensorIdx {
+//                                    Text("Sensor\(detectorId)")
+//                                        .font(
+//                                            Font.custom("Manrope", size: 20)
+//                                                .weight(.semibold)
+//                                        )
+//                                        .foregroundColor(CustomColors.TorchGreen)
+//                                }
+                                if let coordinates = detector.coordinate {
+                                    HStack(alignment: .top, spacing: 8) {
+                                        let lat = coordinates.latitude
+                                        let long = coordinates.longitude
+                                        Text("\(lat), \(long)")
+                                            .font(
+                                                Font.custom("Manrope", size: 14)
+                                                    .weight(.semibold)
+                                            )
+                                            .foregroundColor(CustomColors.TorchGreen)
+                                            .onTapGesture(count: 1) {
+                                                UIPasteboard.general.setValue("\(lat), \(long)",
+                                                                              forPasteboardType: "public.plain-text")
+                                                isCopied = true
+                                                
+                                                DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
+                                                    if isCopied {
+                                                        isCopied = false
+                                                    }
+                                                }
+                                            }
+                                        
+//                                        Button(action: {
+//                                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+//                                            impactMed.impactOccurred()
+//
+//                                        }) {Image("share-07")
+//                                                .frame(width: 20, height: 20)
+//                                        }
+                                        
+                                        ShareLink(item: "\(lat), \(long)") {
+                                            Image("share-07")
+                                                .frame(width: 20, height: 20)
+                                        }
+                                        
+
+                                    }
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 8)
+                                    .background(.white)
+                                    .cornerRadius(12)
+                                    .shadow(color: Color(red: 0.18, green: 0.21, blue: 0.22).opacity(0.03), radius: 4, x: 0, y: 8)
+                                    .shadow(color: Color(red: 0.18, green: 0.21, blue: 0.22).opacity(0.08), radius: 12, x: 0, y: 20)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .inset(by: 0.25)
+                                            .stroke(.white, lineWidth: 0.5)
+                                    )
+                                }
+                            }
                         }
-                        .padding(.trailing, 10)
-                        .padding(.top, 10)
+                        .padding(.top, 22)
+                        
+                        Spacer()
                     }
                     
+                    // Right side buttons: Hamburger, ZoomIn, ZoomOut, Layers, CurrentLocation
+//                    HStack {
+//                        Spacer()
+//                        VStack(spacing: 1) {
+//                            HamburgerButton(hideOverlay: $hideOverlay)
+//
+//                            Spacer()
+////                                .frame(height: 150)
+//                        }
+//                        .padding(.trailing, 10)
+//                        .padding(.top, 10)
+//                    }
+                    
+                    
+                    
                     VStack {
-                        Spacer()
                         HStack {
                             Spacer()
-                            LocationButton(moveToUserTapped: $moveToUserTapped)
+                            VStack(spacing: 0) {
+                                HamburgerButton(hideOverlay: $hideOverlay)
+                                
+                                Spacer()
+                                
+                                ZoomInButton(zoomLevel: $zoomLevel, zoomChanged: $zoomChanged)
+                                ZoomOutButton(zoomLevel: $zoomLevel, zoomChanged: $zoomChanged)
+                                
+                                Spacer()
+                                
+                                MapLayerButton(mapLayerTapped: $mapLayerTapped)
+                            }
+                            .padding(.trailing, 10)
+                            .padding(.top, 10)
+                        }
+                        Spacer()
+                        
+                        HStack {
+                            Spacer()
+                            VStack(spacing: 0) {
+                                
+                                LocationButton(moveToUserTapped: $moveToUserTapped)
+                            }
                         }
                         .padding(.trailing, 10)
-                        .padding(.bottom, 10)
+//                        .padding(.bottom, 10)
+                        
                         Spacer()
-                            .frame(height: self.mapOffset.height)
+                            .frame(height: self.mapOffset.height - 10)
                     }
                     
                 }  else if isConfirmingLocation {

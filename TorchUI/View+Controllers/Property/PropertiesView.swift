@@ -22,53 +22,57 @@ struct PropertiesView: View {
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
     
-    @State var selectedIndex = 0
+    @State var selectedTab: Tab = .home
     
     var body: some View {
-        ZStack {
-
-            if SessionManager.shared.showSplashScreen {
-                LoadingSplashScreen()
-                    .onAppear(perform: hideSplashScreen)
-            } else if !SessionManager.shared.propertiesLoaded || SessionManager.shared.unparsedProperties > 0 {
-                LoadingPropertiesView(showingSheet: $showingSheet)
-                VStack {
-                    HeadingView()
-                        .frame(alignment: .top)
-                    
-                    Spacer()
-
-                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
-                        .frame(alignment: .bottom)
-                }
-            } else if SessionManager.shared.properties.count > 0 {
-                MainPropertiesView(showingSheet: $showingSheet)
-                VStack {
-                    HeadingView()
-                        .frame(alignment: .top)
-                    
-                    Spacer()
-
-                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
-                        .frame(alignment: .bottom)
-                }
-            } else if SessionManager.shared.propertiesLoaded && SessionManager.shared.unparsedProperties == 0 {
-                NoPropertiesView(showingSheet: $showingSheet)
-                VStack {
-                    HeadingView()
-                        .frame(alignment: .top)
-                    
-                    Spacer()
-
-                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
-                        .frame(alignment: .bottom)
+        GeometryReader { proxy in
+            ZStack {
+                
+                if SessionManager.shared.showSplashScreen {
+                    LoadingSplashScreen()
+                        .onAppear(perform: hideSplashScreen)
+                } else if !SessionManager.shared.propertiesLoaded || SessionManager.shared.unparsedProperties > 0 {
+                    LoadingPropertiesView(showingSheet: $showingSheet)
+                    VStack {
+                        HeadingView()
+                            .frame(alignment: .top)
+                        
+                        Spacer()                        
+                            //                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
+                        CustomTabBar(selectedTab: $selectedTab)
+                            .frame(alignment: .bottom)
+                    }
+                } else if SessionManager.shared.properties.count > 0 {
+                    MainPropertiesView(showingSheet: $showingSheet)
+                    VStack {
+                        HeadingView()
+                            .frame(alignment: .top)
+                        
+                        Spacer()
+                        
+                            //                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
+                        CustomTabBar(selectedTab: $selectedTab)
+                            .frame(alignment: .bottom)
+                    }
+                } else if SessionManager.shared.propertiesLoaded && SessionManager.shared.unparsedProperties == 0 {
+                    NoPropertiesView(showingSheet: $showingSheet)
+                    VStack {
+                        HeadingView()
+                            .frame(alignment: .top)
+                        
+                        Spacer()
+                        
+                            //                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
+                        CustomTabBar(selectedTab: $selectedTab)
+                            .frame(alignment: .bottom)
+                    }
                 }
             }
-        }
-        .background(colorScheme == .dark ? CustomColors.DarkModeBackground : Color.white)
-        .sheet(isPresented: $showingSheet) {
-            AddPropertySheetView()
-                .presentationCornerRadius(25)
+            .background(colorScheme == .dark ? CustomColors.DarkModeBackground : Color.white)
+            .sheet(isPresented: $showingSheet) {
+                AddPropertySheetView()
+                    .presentationCornerRadius(25)
+            }
         }
     }
     

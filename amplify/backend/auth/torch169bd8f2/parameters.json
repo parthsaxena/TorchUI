@@ -1,6 +1,6 @@
 {
-  "authSelections": "userPoolOnly",
-  "resourceName": "torchb5812d08",
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "torch169bd8f2",
   "serviceType": "imported",
   "region": "us-west-2",
   "usernameAttributes": [

@@ -75,8 +75,10 @@ struct AddDetectorConfirmLocationOverlayView: View {
                                 pointAnnotation.iconSize = 0.25
                                 pointAnnotation.iconOffset = [40, 0]
                                 
-                                SessionManager.shared.registerDevice(property: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex], detector: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[newDetectorIndex])
-
+                                var user_id = AuthenticationManager.shared.authUser.userId
+                                SessionManager.shared.registerDevice(userID: user_id, property: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex], detector: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[newDetectorIndex])
+                                
+                                //                                SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.append(newDetector!)
                                 self.isConfirmingLocation = false
                                 self.newDetector = nil
                                 self.needsLocationPin = false

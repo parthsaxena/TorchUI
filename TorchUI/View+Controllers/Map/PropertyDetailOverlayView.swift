@@ -40,6 +40,8 @@ struct PropertyDetailOverlayView: View {
     @Binding var showingOptions: Bool
     @Binding var dragOffset: CGSize
     
+    @Binding var showRedOverlay: Bool
+    
     var body: some View {
         VStack {
             Spacer()
@@ -148,7 +150,7 @@ struct PropertyDetailOverlayView: View {
                                                         sensorTapped = true
                                                         selectedDetector = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i]
                                                         sessionManager.selectedDetectorIndex = i
-                                                        withAnimation { showDetectorDetails.toggle(); dragOffset = .zero }
+                                                        withAnimation { showDetectorDetails.toggle(); showRedOverlay = true; dragOffset = .zero }
                                                         
                                                         zoomLevel = 15
                                                     } label: {
@@ -282,7 +284,11 @@ struct PropertyDetailOverlayView: View {
                                                                 detector.id == sessionManager.selectedProperty?.detectors[i].id
                                                             })
                                                             sessionManager.selectedDetectorIndex = i
+<<<<<<< HEAD
                                                             withAnimation { showDetectorDetails.toggle(); dragOffset = .zero }
+=======
+                                                            withAnimation { showDetectorDetails.toggle(); showRedOverlay = true; dragOffset = .zero }
+>>>>>>> origin/main
                                                             zoomLevel = 15
                                                         } label: {
                                                             Circle()
@@ -418,7 +424,7 @@ struct PropertyDetailOverlayView: View {
                                                             })
                                                             sensorTapped = true
                                                             sessionManager.selectedDetectorIndex = i
-                                                            withAnimation { showDetectorDetails.toggle(); dragOffset = .zero }
+                                                            withAnimation { showDetectorDetails.toggle(); showRedOverlay = true; dragOffset = .zero }
                                                             
                                                             zoomLevel = 15
                                                         } label: {
