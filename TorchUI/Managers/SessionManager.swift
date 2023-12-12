@@ -112,12 +112,12 @@ final class SessionManager: ObservableObject {
         // print("Creating user data")
                 
         
-        let req = SocketRequest(
+        var req = SocketRequest(
             route: "createUserDB",
             data: [
                 "user_id": AuthenticationManager.shared.authUser.userId,
                 "email": email
-            ],
+            ], 
             completion: { data in
                 AuthenticationManager.shared.authState = .authenticated
         })
@@ -614,7 +614,37 @@ final class SessionManager: ObservableObject {
         }
     }
     
-    func registerUserEndpoint(deviceToken: String, userID: String) {        
+    func muteSensor(device_id: String, property_id: String) {
+        let req = SocketRequest(route: "muteSensor",
+                                data: [
+                                    "device_id": device_id,
+                                    "property_id": property_id,
+                                    "mute": true
+                                ],
+                                completion: { data in
+            print("MuteProperty: \(data)")
+        })
+        
+        // Send request through socket
+        WebSocketManager.shared.sendData(socketRequest: req)
+    }
+    
+    func unmuteSensor(device_id: String, property_id: String) {
+        let req = SocketRequest(route: "muteSensor",
+                                data: [
+                                    "device_id": device_id,
+                                    "property_id": property_id,
+                                    "mute": false
+                                ],
+                                completion: { data in
+            print("UnmuteProperty: \(data)")
+        })
+        
+        // Send request through socket
+        WebSocketManager.shared.sendData(socketRequest: req)
+    }
+    
+    func registerUserEndpoint(deviceToken: String, userID: String) {
         let req = SocketRequest(route: "registerUserEndpoint",
                                 data: [
                                     "device_token": deviceToken,
@@ -631,10 +661,11 @@ final class SessionManager: ObservableObject {
     func uploadNewDetectors() {
         //        SessionManager.shared.properties[selectedPropertyIndex].loadingData = true
         self.newProperty?.loadingData = true
+        var user_id = AuthenticationManager.shared.authUser.userId
         if let detectors = self.newProperty?.detectors {
             for newDetector in detectors {
                 if let newProperty = self.newProperty {
-                    self.registerDevice(property: newProperty, detector: newDetector)
+                    self.registerDevice(userID: user_id, property: newProperty, detector: newDetector)
                 }
             }
         }

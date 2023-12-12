@@ -670,6 +670,10 @@ struct DetectorDetailOverlayView: View {
                                         impactMed.impactOccurred()
                                         showDetectorMenu = false
                                         
+                                        
+                                        let selectedPropertyID  = sessionManager.properties[sessionManager.selectedPropertyIndex].id
+                                        let selectedDetectorID  = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].id
+                                        SessionManager.shared.muteSensor(device_id: selectedDetectorID, property_id: selectedPropertyID)
                                     }) {
                                         HStack(alignment: .center, spacing: 8) {
                                             Image("volume-x")

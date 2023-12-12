@@ -284,11 +284,7 @@ struct PropertyDetailOverlayView: View {
                                                                 detector.id == sessionManager.selectedProperty?.detectors[i].id
                                                             })
                                                             sessionManager.selectedDetectorIndex = i
-<<<<<<< HEAD
-                                                            withAnimation { showDetectorDetails.toggle(); dragOffset = .zero }
-=======
                                                             withAnimation { showDetectorDetails.toggle(); showRedOverlay = true; dragOffset = .zero }
->>>>>>> origin/main
                                                             zoomLevel = 15
                                                         } label: {
                                                             Circle()
