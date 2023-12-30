@@ -5,5 +5,11 @@ export type AmplifyDependentResourcesAttributes = {
       "Region": "string",
       "appName": "string"
     }
+  },
+  "storage": {
+    "torchS3": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }

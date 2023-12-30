@@ -41,6 +41,13 @@
           "Id": "fe6d4da3862046598388372b9568f210",
           "Region": "us-west-2"
         }
+      },
+      "storage": {
+        "torchS3": {
+          "dependsOn": [],
+          "providerPlugin": "awscloudformation",
+          "service": "S3"
+        }
       }
     }
   }

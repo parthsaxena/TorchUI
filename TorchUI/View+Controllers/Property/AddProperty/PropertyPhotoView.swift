@@ -12,6 +12,14 @@ struct PropertyPhotoView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     
+    
+    @State private var image: UIImage? = nil
+    @State private var shouldPresentImagePicker = false
+    @State private var shouldPresentActionScheet = false
+    @State private var shouldPresentCamera = false
+    @State private var shouldShowSelectedImage = false
+    @State private var didSelectCustomImage = false
+    
     //    @StateObject var vm: PropertyPhotoViewModel
     
     @Binding var state: OnboardingState
@@ -125,10 +133,69 @@ struct PropertyPhotoView: View {
                                             .fill(Color.white)
                                             .frame(width: 32, height: 32)
                                         
-                                        Image(systemName: "plus")
-                                            .foregroundColor(Color(red: 143.0/255.0, green: 160.0/255.0, blue: 163.0/255.0))
+                                        Rectangle()
+                                            .foregroundColor(.clear)
+                                            .background(
+                                                self.image == nil ? Image(systemName: "plus")
+                                                    .frame(width: 32, height: 32)
+                                                    .foregroundColor(Color(red: 143.0/255.0, green: 160.0/255.0, blue: 163.0/255.0))
+                                                    .clipped()
+                                                : Image(uiImage: self.image!)
+                                                    .resizable()
+                                                    .frame(width: 120, height: 120)
+                                                    .foregroundColor(Color(red: 143.0/255.0, green: 160.0/255.0, blue: 163.0/255.0))
+                                                    .clipped()
+                                            )
+                                            .cornerRadius(24)
+                                        
+                                        if (self.shouldShowSelectedImage && self.didSelectCustomImage) {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .font(Font.system(size: 24))
+                                                .foregroundStyle(Color.white, Color.blue)
+                                                .clipped()
+                                        }
                                     }
                                 )
+                                .onTapGesture {
+                                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                    impactMed.impactOccurred()
+                                    
+                                    
+                                    if self.image == nil {
+                                        self.shouldPresentActionScheet = true
+                                    } else {
+                                        self.shouldPresentActionScheet = false
+                                        self.didSelectCustomImage.toggle()
+                                    }
+                                    
+                                    if self.didSelectCustomImage {
+                                        self.googleMapsImageSelected = false
+                                    }
+                                    
+                                    self.shouldShowSelectedImage = self.image != nil
+                                    
+                                    if self.didSelectCustomImage {
+                                        nextButtonEnabled = true
+                                        nextButtonColor = Color(red: 0.18, green: 0.21, blue: 0.22)
+                                    } else {
+                                        nextButtonEnabled = false
+                                        nextButtonColor = Color(red: 0.78, green: 0.81, blue: 0.82)
+                                    }
+                                    
+                                }
+                                .sheet(isPresented: $shouldPresentImagePicker) {
+                                    ImagePickerView(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$image, isPresented: self.$shouldPresentImagePicker)
+                                        .ignoresSafeArea()
+                                }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
+                                    ActionSheet(title: Text("Choose an image from :"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
+                                        self.shouldPresentImagePicker = true
+                                        self.shouldPresentCamera = true
+                                    }), ActionSheet.Button.default(Text("Photo Library"), action: {
+                                        self.shouldPresentImagePicker = true
+                                        self.shouldPresentCamera = false
+                                    }), ActionSheet.Button.cancel()])
+                                }
+                                .shadow(color: self.didSelectCustomImage ? Color(red: 0.08, green: 0.44, blue: 0.94).opacity(0.6) : Color.clear, radius: 4, x: 0, y: 0)
                             
                             Spacer()
                                 .frame(width: 25)
@@ -162,6 +229,10 @@ struct PropertyPhotoView: View {
                                         impactMed.impactOccurred()
                                         
                                         self.googleMapsImageSelected.toggle()
+                                        
+                                        if self.googleMapsImageSelected {
+                                            self.didSelectCustomImage = false
+                                        }
                                         
                                         if self.googleMapsImageSelected {
                                             nextButtonEnabled = true
@@ -206,12 +277,41 @@ struct PropertyPhotoView: View {
                         let impactMed = UIImpactFeedbackGenerator(style: .medium)
                         impactMed.impactOccurred()
                         
-                        var urlString = "\(imageApiUrl)\(self.propertyAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                        SessionManager.shared.newProperty?.propertyImage = urlString
-                        SessionManager.shared.newProperty?.loadingData = true
-                        state = .promptInstallation
-                        
-                        SessionManager.shared.uploadNewProperty()
+                        if googleMapsImageSelected {
+                            var urlString = "\(imageApiUrl)\(self.propertyAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                            SessionManager.shared.newProperty?.propertyImage = urlString
+                            SessionManager.shared.newProperty?.loadingData = true
+                            state = .promptInstallation
+                            SessionManager.shared.uploadNewProperty()
+                            
+                        } else if didSelectCustomImage {
+                            Task {
+                                
+                                //TODO: Send actual selected Image - generate image-key (propImage+currentDate in miliseconds from 1970) - callback in 'uploadProperty' function to set image-key as property.image
+                                
+                                let date = Date()
+                                let milliseconds = Int(date.timeIntervalSince1970 * 1000)
+                                
+                                let imageKey = "PropertyImage-\(milliseconds)"
+                                
+                                await SessionManager.shared.uploadPropertyImage(image: self.image!, imageKey: imageKey) { result in
+                                    
+                                    switch result {
+                                    case .success(let value):
+                                        print(value)
+                                        
+                                        SessionManager.shared.newProperty?.propertyImage = imageKey
+                                        SessionManager.shared.newProperty?.loadingData = true
+                                        state = .promptInstallation
+                                        SessionManager.shared.uploadNewProperty()
+                                        
+                                    case .failure(let error):
+                                        print(error)
+                                    }
+                                }
+                            }
+                        }
+
                     }) {
                         Text("Next")
                             .font(.custom("Manrope-SemiBold", size: 16))

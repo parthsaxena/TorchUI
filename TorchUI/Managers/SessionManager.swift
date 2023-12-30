@@ -7,6 +7,8 @@
 
 import Foundation
 import CoreLocation
+import Amplify
+import UIKit
 
 final class SessionManager: ObservableObject {
     
@@ -251,6 +253,36 @@ final class SessionManager: ObservableObject {
         
         // Send request through socket
         WebSocketManager.shared.sendData(socketRequest: req)
+    }
+    
+    
+    func uploadPropertyImage(image: UIImage, imageKey: String, completion: @escaping (Result<String, Error>) -> Void) async {
+        do {
+            guard let houseImageData = image.jpegData(compressionQuality: 1) else {
+                return
+            }
+            
+            let uploadTask = Amplify.Storage.uploadData(
+                key: imageKey,
+                data: houseImageData
+            )
+            
+//            for try await progress in uploadTask.progress {
+//                print("Progress: \(progress)")
+//            }
+            
+            let value = try await uploadTask.value
+            print("Completed: \(value)")
+            DispatchQueue.main.async {
+                completion(.success(value))
+            }
+            
+        } catch {
+            print("Error: \(error)")
+            DispatchQueue.main.async {
+                completion(.failure(error))
+            }
+        }
     }
     
     func updateDevices(properties: [String : [String: Any]]) {
