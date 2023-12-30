@@ -26,4 +26,6 @@ struct CustomColors {
     static let DarkModeBackground = Color(red: 0.17, green: 0.18, blue: 0.2)
     static let DarkModeMainTestColor = Color(red: 1, green: 0.36, blue: 0.14)
     static let DarkModeOverlayBackground = Color(red: 55/255, green: 58/255, blue: 61/255)
+    
+    static let SegmentBottomLineColor = Color.gray.opacity(0.5)
 }

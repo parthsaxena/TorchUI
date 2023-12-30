@@ -1,19 +1,19 @@
 PODS:
-  - AWSAuthCore (2.33.5):
-    - AWSCore (= 2.33.5)
-  - AWSCognitoIdentityProvider (2.33.5):
-    - AWSCognitoIdentityProviderASF (= 2.33.5)
-    - AWSCore (= 2.33.5)
-  - AWSCognitoIdentityProviderASF (2.33.5):
-    - AWSCore (= 2.33.5)
-  - AWSCore (2.33.5)
-  - AWSMobileClient (2.33.5):
-    - AWSAuthCore (= 2.33.5)
-    - AWSCognitoIdentityProvider (= 2.33.5)
-    - AWSCognitoIdentityProviderASF (= 2.33.5)
-    - AWSCore (= 2.33.5)
-  - AWSPinpoint (2.33.5):
-    - AWSCore (= 2.33.5)
+  - AWSAuthCore (2.33.7):
+    - AWSCore (= 2.33.7)
+  - AWSCognitoIdentityProvider (2.33.7):
+    - AWSCognitoIdentityProviderASF (= 2.33.7)
+    - AWSCore (= 2.33.7)
+  - AWSCognitoIdentityProviderASF (2.33.7):
+    - AWSCore (= 2.33.7)
+  - AWSCore (2.33.7)
+  - AWSMobileClient (2.33.7):
+    - AWSAuthCore (= 2.33.7)
+    - AWSCognitoIdentityProvider (= 2.33.7)
+    - AWSCognitoIdentityProviderASF (= 2.33.7)
+    - AWSCore (= 2.33.7)
+  - AWSPinpoint (2.33.7):
+    - AWSCore (= 2.33.7)
   - Google-Maps-iOS-Utils (4.2.2):
     - Google-Maps-iOS-Utils/Clustering (= 4.2.2)
     - Google-Maps-iOS-Utils/Geometry (= 4.2.2)
@@ -47,7 +47,7 @@ PODS:
     - MapboxMobileEvents (= 1.0.10)
     - Turf (~> 2.0)
   - MapboxMobileEvents (1.0.10)
-  - Starscream (4.0.4)
+  - Starscream (4.0.6)
   - SwiftUI-Shimmer (1.4.0)
   - Turf (2.7.0)
 
@@ -83,26 +83,26 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftUI-Shimmer:
-    :commit: 1f3a620e4abe890d00008cb2af7023d810b433a7
+    :commit: 2c632edd0832213aec63910bdd6903ef84389a2f
     :git: https://github.com/markiv/SwiftUI-Shimmer.git
 
 SPEC CHECKSUMS:
-  AWSAuthCore: f80d57f22ad0c781082658de8f941393ea21b955
-  AWSCognitoIdentityProvider: 5eeb67304ea7ac853836d685f2b50c08d3194155
-  AWSCognitoIdentityProviderASF: aaa2eb46b9775090081b33fb5134090ba253e889
-  AWSCore: 6d8aa46c210e37f15c10509437a9c8570f7290bd
-  AWSMobileClient: 07c4cf156a1b3715cdf15493cdf11aade97d2369
-  AWSPinpoint: 86e99df82096f9ee5eca59711f6628abc92aa415
+  AWSAuthCore: 51c4202193628553f49cfbb4ac0aeb9e2d165222
+  AWSCognitoIdentityProvider: d72e973d59c31d73c3c75a66df79a6d037514a48
+  AWSCognitoIdentityProviderASF: 9c36e09a40b21cf4e876dc9f33c3dedbfe7918de
+  AWSCore: 10aacb924ce957fa8d15e727a80f41740d90fed8
+  AWSMobileClient: a509c1dfb7a08d018ce73e5f88099054668889b3
+  AWSPinpoint: 39d5155323703a6a868202355ced1ef0dd8d59e2
   Google-Maps-iOS-Utils: f77eab4c4326d7e6a277f8e23a0232402731913a
   GoogleMaps: 032f676450ba0779bd8ce16840690915f84e57ac
   MapboxCommon: 8592a003eae487508461d452d62cfc5906a9682a
   MapboxCoreMaps: faa14a797417dc32088c98019a3ce72e46cda5cd
   MapboxMaps: f10aecadbfb7cf96368852ca313101eb4171da53
   MapboxMobileEvents: de50b3a4de180dd129c326e09cd12c8adaaa46d6
-  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  Starscream: fb2c4510bebf908c62bd383bcf05e673720e91fd
   SwiftUI-Shimmer: 26954ba07da310a50e24a3e54ce5684951ebbc17
   Turf: 13d1a92d969ca0311bbc26e8356cca178ce95da2
 
 PODFILE CHECKSUM: 955aa11fcd062259f11437ff4e6d119449eaadb4
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.14.3

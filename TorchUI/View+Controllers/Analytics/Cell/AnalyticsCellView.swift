@@ -6,17 +6,22 @@
 //
 
 import SwiftUI
-import SwiftUICharts
+//import SwiftUICharts
 import LineChartView
 
 struct AnalyticsCellView: View {
+    
+    @State private var isDropdownExpanded = false
+    @State private var selectedOptions: String = "Option 1"
+
+    let options = ["Option 1", "Option 2", "Option 3"]
     
     var item: Item
     var action: () -> Void
     
     let chartParameters = LineChartParameters(
         data: [
-            LineChartData(10),
+            LineChartData(100),
             LineChartData(12),
             LineChartData(13),
             LineChartData(12),
@@ -66,27 +71,67 @@ struct AnalyticsCellView: View {
                         .font(Font.custom("Manrope-SemiBold", size: 14.0))
                         .padding(EdgeInsets(top: -25, leading: 0, bottom: 0, trailing: 0))
                         .onTapGesture {
-                            action()
+                            dropDownAction()
                         }
                     Image("chevron-down")
                         .resizable()
                         .frame(width: 20, height: 20)
                         .padding(EdgeInsets(top: -25, leading: 0, bottom: 0, trailing: -20))
                         .onTapGesture {
-                            action()
+                            dropDownAction()
                         }
                 }
             }
             .padding()
-            LineChartView(lineChartParameters: chartParameters)
-                .frame(height: 200)
-            Text("60 min")
-                .background(.clear)
-                .foregroundColor(CustomColors.TorchGreen)
-                .font(Font.custom("Manrope-SemiBold", size: 14.0))
-                .multilineTextAlignment(.center)
-//                .padding(EdgeInsets(top: -25, leading: 0, bottom: 0, trailing: 0))
+            ZStack {
+                VStack {
+                    LineChartView(lineChartParameters: chartParameters)
+                        .frame(height: 150)
+                    Text("60 min")
+                        .background(.clear)
+                        .foregroundColor(CustomColors.TorchGreen)
+                        .font(Font.custom("Manrope-SemiBold", size: 14.0))
+                        .multilineTextAlignment(.center)
+                }
+                //                .padding(EdgeInsets(top: -25, leading: 0, bottom: 0, trailing: 0))
+                if isDropdownExpanded {
+                    HStack {
+                        Spacer()
+                        VStack(spacing: 8) {
+                            ForEach(options, id: \.self) { option in
+                                Button(action: {
+//                                    selectedOptions = option
+                                }) {
+                                    HStack {
+                                        Text(option)
+                                            .padding(.trailing, 10)
+                                            .background(.clear)
+                                            .foregroundColor(CustomColors.TorchGreen)
+                                            .font(Font.custom("Manrope-SemiBold", size: 14.0))
+                                        Spacer()
+                                        Image(selectedOptions == option ? "Checkbox-selected" : "Checkbox-unselected")
+                                            .resizable()
+                                            .frame(width: 18, height: 18)
+                                    }
+                                    .frame(width: 120, height: 35)
+                                }
+                            }
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(8)
+                        .shadow(radius: 5)
+                    }
+                }
+            }
         }
+        .onTapGesture {
+            dropDownAction()
+        }
+    }
+    
+    func dropDownAction() {
+        isDropdownExpanded.toggle()
     }
 }
 

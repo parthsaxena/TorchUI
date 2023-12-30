@@ -14,3 +14,9 @@ struct DataItem: Identifiable {
     var color: Color
     var offset = CGSize.zero
 }
+
+struct Item: Identifiable {
+    var id = UUID()
+    var itemName: String
+    var itemDescription: String
+}

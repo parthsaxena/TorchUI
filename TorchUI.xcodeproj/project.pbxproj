@@ -28,10 +28,10 @@
 		8BF7FC8A2A4D14D0005D1160 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */; };
 		8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */; };
 		8BFF26B62A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */; };
-		C827EA4C2B146935009E6EC8 /* SocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4B2B146935009E6EC8 /* SocketRequest.swift */; };
-		C827EA502B234571009E6EC8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4F2B234571009E6EC8 /* LocationManager.swift */; };
 		9BC704259E56E18211492AC9 /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C70BD56AE5C299A1E03F8D4 /* Pods_TorchUI.framework */; };
 		B45C4C86C8C5B24AEAC787C1 /* Pods_TorchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE251DB00483376265B13BB /* Pods_TorchUITests.framework */; };
+		C827EA4C2B146935009E6EC8 /* SocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4B2B146935009E6EC8 /* SocketRequest.swift */; };
+		C827EA502B234571009E6EC8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4F2B234571009E6EC8 /* LocationManager.swift */; };
 		C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */; };
 		C855B54B2B10883F007DA332 /* PropertyIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C855B4EB2B10883D007DA332 /* PropertyIconView.xib */; };
 		C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */; };
@@ -107,6 +107,12 @@
 		C855B5922B10883F007DA332 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5482B10883F007DA332 /* CustomButton.swift */; };
 		C855B5932B10883F007DA332 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5492B10883F007DA332 /* CustomColors.swift */; };
 		C855B5952B11100A007DA332 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5942B11100A007DA332 /* Strings.swift */; };
+		C864BE9C2B3C53660078C742 /* DropDownUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE952B3C53660078C742 /* DropDownUIView.swift */; };
+		C864BE9D2B3C53660078C742 /* SegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE972B3C53660078C742 /* SegmentView.swift */; };
+		C864BE9E2B3C53660078C742 /* ScrollableSegmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE982B3C53660078C742 /* ScrollableSegmentsView.swift */; };
+		C864BE9F2B3C53660078C742 /* AnalyticsSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */; };
+		C864BEA02B3C53660078C742 /* AnalyticsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */; };
+		C864BEA32B3C54EF0078C742 /* LineChartView in Frameworks */ = {isa = PBXBuildFile; productRef = C864BEA22B3C54EF0078C742 /* LineChartView */; };
 		CEDE821C67956A2F0FB4CDDB /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0721E7D70939E4EA7532C3F /* Pods_TorchUI_TorchUIUITests.framework */; };
 		FADFD6D29C0D959575FAAFCB /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = CE715C78ED08B54E16060133 /* awsconfiguration.json */; };
 /* End PBXBuildFile section */
@@ -154,15 +160,12 @@
 		8BF7FC822A4D14D0005D1160 /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Regular.ttf"; sourceTree = "<group>"; };
 		8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Medium.ttf"; sourceTree = "<group>"; };
 		8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
-		8F706F06206D41120E6CC971 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
-		BCA61948B1D99B51DFBD2E8D /* Pods_TorchUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFBD6483B88502D280F216F2 /* Pods-TorchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		C827EA4B2B146935009E6EC8 /* SocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRequest.swift; sourceTree = "<group>"; };
-		C827EA4F2B234571009E6EC8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		95B2C4859C1E44F8C2BAE15B /* Pods-TorchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.release.xcconfig"; sourceTree = "<group>"; };
 		95E2D568D1DBA3BA52961391 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A746BA50497C90826613A372 /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
 		BAE251DB00483376265B13BB /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C827EA4B2B146935009E6EC8 /* SocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRequest.swift; sourceTree = "<group>"; };
+		C827EA4F2B234571009E6EC8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPropertiesView.swift; sourceTree = "<group>"; };
 		C855B4EB2B10883D007DA332 /* PropertyIconView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyIconView.xib; sourceTree = "<group>"; };
 		C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPropertiesView.swift; sourceTree = "<group>"; };
@@ -238,6 +241,11 @@
 		C855B5482B10883F007DA332 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		C855B5492B10883F007DA332 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		C855B5942B11100A007DA332 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		C864BE952B3C53660078C742 /* DropDownUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownUIView.swift; sourceTree = "<group>"; };
+		C864BE972B3C53660078C742 /* SegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentView.swift; sourceTree = "<group>"; };
+		C864BE982B3C53660078C742 /* ScrollableSegmentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentsView.swift; sourceTree = "<group>"; };
+		C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsSwiftUIView.swift; sourceTree = "<group>"; };
+		C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsCellView.swift; sourceTree = "<group>"; };
 		CE715C78ED08B54E16060133 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		E0721E7D70939E4EA7532C3F /* Pods_TorchUI_TorchUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI_TorchUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,6 +258,7 @@
 			files = (
 				8B88C8FE2A70450F008B90A2 /* CodeScanner in Frameworks */,
 				8B25BD052B1DA13100681342 /* Amplify in Frameworks */,
+				C864BEA32B3C54EF0078C742 /* LineChartView in Frameworks */,
 				8B25BD032B1DA13100681342 /* AWSPinpointPushNotificationsPlugin in Frameworks */,
 				8BFF26B62A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin in Frameworks */,
 				8BC224842A859A07000958AA /* ZXCodeTextField in Frameworks */,
@@ -396,6 +405,7 @@
 				C855B5012B10883E007DA332 /* Map */,
 				C855B5182B10883E007DA332 /* Detector */,
 				C855B51B2B10883E007DA332 /* Account */,
+				C864BE932B3C53660078C742 /* Analytics */,
 			);
 			path = "View+Controllers";
 			sourceTree = "<group>";
@@ -651,6 +661,42 @@
 			path = CustomControllers;
 			sourceTree = "<group>";
 		};
+		C864BE932B3C53660078C742 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				C864BE942B3C53660078C742 /* DropDown */,
+				C864BE962B3C53660078C742 /* Segment */,
+				C864BE9A2B3C53660078C742 /* Cell */,
+				C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		C864BE942B3C53660078C742 /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				C864BE952B3C53660078C742 /* DropDownUIView.swift */,
+			);
+			path = DropDown;
+			sourceTree = "<group>";
+		};
+		C864BE962B3C53660078C742 /* Segment */ = {
+			isa = PBXGroup;
+			children = (
+				C864BE972B3C53660078C742 /* SegmentView.swift */,
+				C864BE982B3C53660078C742 /* ScrollableSegmentsView.swift */,
+			);
+			path = Segment;
+			sourceTree = "<group>";
+		};
+		C864BE9A2B3C53660078C742 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		CF081936F4D134B31F7A7C3F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -690,6 +736,7 @@
 				8BC224832A859A07000958AA /* ZXCodeTextField */,
 				8B25BD022B1DA13100681342 /* AWSPinpointPushNotificationsPlugin */,
 				8B25BD042B1DA13100681342 /* Amplify */,
+				C864BEA22B3C54EF0078C742 /* LineChartView */,
 			);
 			productName = TorchUI;
 			productReference = 8BF7FC4F2A4D1488005D1160 /* TorchUI.app */;
@@ -772,6 +819,7 @@
 				8BFF26B42A7B27BF00FDCBD9 /* XCRemoteSwiftPackageReference "amplify-swift" */,
 				8BA867BD2A80869D00BEED38 /* XCRemoteSwiftPackageReference "PinCodeTextField" */,
 				8BC224822A859A07000958AA /* XCRemoteSwiftPackageReference "ZXCodeTextfield" */,
+				C864BEA12B3C54EF0078C742 /* XCRemoteSwiftPackageReference "LineChartView" */,
 			);
 			productRefGroup = 8BF7FC502A4D1488005D1160 /* Products */;
 			projectDirPath = "";
@@ -975,9 +1023,11 @@
 				C855B54F2B10883F007DA332 /* AlertView.swift in Sources */,
 				8B00A11A2B2174240080534F /* TabDropDownModifier.swift in Sources */,
 				C855B5772B10883F007DA332 /* AccountView.swift in Sources */,
+				C864BE9F2B3C53660078C742 /* AnalyticsSwiftUIView.swift in Sources */,
 				C855B56A2B10883F007DA332 /* MapViewControllerBridge.swift in Sources */,
 				C855B58B2B10883F007DA332 /* AlertModel.swift in Sources */,
 				C855B5602B10883F007DA332 /* MainMapView.swift in Sources */,
+				C864BE9E2B3C53660078C742 /* ScrollableSegmentsView.swift in Sources */,
 				C855B55F2B10883F007DA332 /* HalfCircleShape.swift in Sources */,
 				C855B5782B10883F007DA332 /* AccountCompanyNameView.swift in Sources */,
 				C855B5702B10883F007DA332 /* MapboxPlaceSensorViewController.swift in Sources */,
@@ -990,6 +1040,7 @@
 				C855B57F2B10883F007DA332 /* AuthenticationManager.swift in Sources */,
 				C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */,
 				C855B5852B10883F007DA332 /* Color+Extension.swift in Sources */,
+				C864BE9D2B3C53660078C742 /* SegmentView.swift in Sources */,
 				C855B5682B10883F007DA332 /* BatteryView.swift in Sources */,
 				C855B56F2B10883F007DA332 /* MapboxPlaceSensorViewWrapper.swift in Sources */,
 				C855B5912B10883F007DA332 /* Enums.swift in Sources */,
@@ -998,6 +1049,7 @@
 				C855B54D2B10883F007DA332 /* SearchResultView.swift in Sources */,
 				C855B5752B10883F007DA332 /* AccountVerificationCodeView.swift in Sources */,
 				C855B5862B10883F007DA332 /* View+Extension.swift in Sources */,
+				C864BE9C2B3C53660078C742 /* DropDownUIView.swift in Sources */,
 				C855B5832B10883F007DA332 /* UIImage+Extension.swift in Sources */,
 				C855B5872B10883F007DA332 /* City.swift in Sources */,
 				C855B5542B10883F007DA332 /* PropertyNameView.swift in Sources */,
@@ -1014,6 +1066,7 @@
 				C827EA502B234571009E6EC8 /* LocationManager.swift in Sources */,
 				C855B55A2B10883F007DA332 /* HeadingView.swift in Sources */,
 				C855B5662B10883F007DA332 /* SensorConfirmLocationOverlayView.swift in Sources */,
+				C864BEA02B3C53660078C742 /* AnalyticsCellView.swift in Sources */,
 				C855B5672B10883F007DA332 /* PlaceSensorView.swift in Sources */,
 				C855B5502B10883F007DA332 /* PropertyView.swift in Sources */,
 				C855B54E2B10883F007DA332 /* PropertyIconView.swift in Sources */,
@@ -1538,6 +1591,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		C864BEA12B3C54EF0078C742 /* XCRemoteSwiftPackageReference "LineChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Jonathan-Gander/LineChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1568,6 +1629,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8BFF26B42A7B27BF00FDCBD9 /* XCRemoteSwiftPackageReference "amplify-swift" */;
 			productName = AWSCognitoAuthPlugin;
+		};
+		C864BEA22B3C54EF0078C742 /* LineChartView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C864BEA12B3C54EF0078C742 /* XCRemoteSwiftPackageReference "LineChartView" */;
+			productName = LineChartView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

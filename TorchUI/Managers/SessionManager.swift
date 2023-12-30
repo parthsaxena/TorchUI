@@ -951,4 +951,29 @@ final class SessionManager: ObservableObject {
             }
         }
     }
+    
+    func pullLatestDeviceData(deviceId: String) {
+        
+        let request = SocketRequest(
+            route: "pullLatestDeviceData",
+            data: ["device_id" : deviceId],
+            completion: { data in
+                print(data)
+        })
+        WebSocketManager.shared.sendData(socketRequest: request)
+    }
+    
+    func getAnalyticsData() {
+        
+        let userID = AuthenticationManager.shared.authUser.userId
+        let request = SocketRequest(
+            route: "getAnalyticsData",
+            data: [
+                "user_id": userID
+            ],
+            completion: { data in
+                print("getAnalyticsData: \(data)")
+        })
+        WebSocketManager.shared.sendData(socketRequest: request)
+    }
 }

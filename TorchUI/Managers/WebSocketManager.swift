@@ -62,6 +62,36 @@ class WebSocketManager {
 }
 
 extension WebSocketManager: WebSocketDelegate {
+    func didReceive(event: Starscream.WebSocketEvent, client: Starscream.WebSocketClient) {
+        switch event {
+            
+        case .connected(_):
+            self.loadConnectedCase()
+        case .disconnected(_, _):
+            isConnected = false
+            self.connect()
+        case .text(let string):
+            self.loadTextCase(string: string)
+        case .binary(let data):
+            print("[WebSocketManager] Received data: \(data.count)")
+        case .ping(_):
+            break
+        case .pong(_):
+            break
+        case .viabilityChanged(_):
+            break
+        case .reconnectSuggested(_):
+            break
+        case .cancelled:
+            isConnected = false
+        case .error(let error):
+            isConnected = false
+            handleError(error)
+        case .peerClosed:
+            print("peerClosed")
+        }
+    }
+    
     
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
@@ -88,6 +118,8 @@ extension WebSocketManager: WebSocketDelegate {
         case .error(let error):
             isConnected = false
             handleError(error)
+        case .peerClosed:
+            print("peerClosed")
         }
     }
     

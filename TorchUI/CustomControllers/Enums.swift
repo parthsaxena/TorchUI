@@ -27,6 +27,7 @@ enum AuthState: Int {
 enum AppState {
     case properties
     case viewProperty
+    case viewAnalytics
 }
 
 enum FocusField: Hashable {
@@ -53,4 +54,11 @@ enum AccountState: Int {
     case accountVerificationCode
     
     case authenticated
+}
+
+enum AnalyticsTypeSelection: String, CaseIterable {
+    case thermalCameras = "Thermal cameras"
+    case SpectralAnalysis = "Spectral analysis"
+    case smoke = "Smoke"
+    case temperatureHumidity = "Temperature & Humidity"
 }
