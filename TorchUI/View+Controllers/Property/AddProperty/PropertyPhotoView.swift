@@ -20,6 +20,8 @@ struct PropertyPhotoView: View {
     @State private var shouldShowSelectedImage = false
     @State private var didSelectCustomImage = false
     
+    @Binding var propImage: UIImage
+    
     //    @StateObject var vm: PropertyPhotoViewModel
     
     @Binding var state: OnboardingState
@@ -287,8 +289,6 @@ struct PropertyPhotoView: View {
                         } else if didSelectCustomImage {
                             Task {
                                 
-                                //TODO: Send actual selected Image - generate image-key (propImage+currentDate in miliseconds from 1970) - callback in 'uploadProperty' function to set image-key as property.image
-                                
                                 let date = Date()
                                 let milliseconds = Int(date.timeIntervalSince1970 * 1000)
                                 
@@ -304,7 +304,7 @@ struct PropertyPhotoView: View {
                                         SessionManager.shared.newProperty?.loadingData = true
                                         state = .promptInstallation
                                         SessionManager.shared.uploadNewProperty()
-                                        
+                                        self.propImage = image!
                                     case .failure(let error):
                                         print(error)
                                     }
@@ -360,17 +360,17 @@ struct ContentView3: View {
     @State private var showingSheet = true
     @State var state = OnboardingState.propertyPhoto
     //    @State var propertyName
-    
+    @State var propImage: UIImage
     
     var body: some View {
         //        AddPropertySheetView()
         //        PromptInstallationView(state: $state, propertyName: "Mom's house", propertyAddress: "Pacific Coast Hwy, Malibu, CA 94588")
-        PropertyPhotoView(state: $state, propertyName: "Mom's house", propertyAddress: "USA Pacific Coast Hwy, Malibu, CA 90265aa")
+        PropertyPhotoView(propImage: $propImage, state: $state, propertyName: "Mom's house", propertyAddress: "USA Pacific Coast Hwy, Malibu, CA 90265aa")
     }
 }
 
 struct PropertyPhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView3()
+        ContentView3(propImage: UIImage())
     }
 }

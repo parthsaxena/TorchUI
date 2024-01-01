@@ -13,6 +13,7 @@ struct AddPropertySheetView: View {
     @State var state: OnboardingState = .propertyName
     @State var propertyName: String = ""
     @State var propertyAddress: String = ""
+    @State var propImage: UIImage = UIImage()
     //    @State var propertyName: String = "momm"
     //    @State var propertyAddress: String = "2237 Kamp Court, Pleasanton, CA 94588"
     
@@ -22,11 +23,11 @@ struct AddPropertySheetView: View {
         } else if state == .propertyAddress {
             PropertyAddressView(vm: PropertyAddressViewModel(), state: $state, propertyName: propertyName, propertyAddress: $propertyAddress)
         } else if state == .propertyPhoto {
-            PropertyPhotoView(state: $state, propertyName: propertyName, propertyAddress: propertyAddress)
+            PropertyPhotoView(propImage: $propImage, state: $state, propertyName: propertyName, propertyAddress: propertyAddress)
         } else if state == .connectToHub {
             
         } else if state == .promptInstallation {
-            PromptInstallationView(state: $state, propertyName: propertyName, propertyAddress: propertyAddress)
+            PromptInstallationView(state: $state, propertyName: propertyName, propertyAddress: propertyAddress, propImage: propImage)
         } else if state == .placeSensors {
             PlaceSensorView()
         }
