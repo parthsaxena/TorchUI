@@ -16,6 +16,17 @@
 		30A7CE402B31194400D29B4A /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 30A7CE3F2B31194400D29B4A /* Amplify */; };
 		30A84EF32B3E9611003A3409 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A84EF22B3E9611003A3409 /* ImagePicker.swift */; };
 		30ACFC072B437309007BCC22 /* AmplifyImage in Frameworks */ = {isa = PBXBuildFile; productRef = 30ACFC062B437309007BCC22 /* AmplifyImage */; };
+		30ACFC0B2B442023007BCC22 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC0A2B442023007BCC22 /* ActivityIndicatorView.swift */; };
+		30ACFC0D2B442030007BCC22 /* GrowingArcIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC0C2B442030007BCC22 /* GrowingArcIndicatorView.swift */; };
+		30ACFC172B44220A007BCC22 /* GrowingCircleIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC0E2B442208007BCC22 /* GrowingCircleIndicatorView.swift */; };
+		30ACFC182B44220A007BCC22 /* ArcsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC0F2B442208007BCC22 /* ArcsIndicatorView.swift */; };
+		30ACFC192B44220A007BCC22 /* OpacityDotsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC102B442209007BCC22 /* OpacityDotsIndicatorView.swift */; };
+		30ACFC1A2B44220A007BCC22 /* ScalingDotsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC112B442209007BCC22 /* ScalingDotsIndicatorView.swift */; };
+		30ACFC1B2B44220A007BCC22 /* GradientIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC122B442209007BCC22 /* GradientIndicatorView.swift */; };
+		30ACFC1C2B44220A007BCC22 /* FlickeringDotsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC132B442209007BCC22 /* FlickeringDotsIndicatorView.swift */; };
+		30ACFC1D2B44220A007BCC22 /* DefaultIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC142B44220A007BCC22 /* DefaultIndicatorView.swift */; };
+		30ACFC1E2B44220A007BCC22 /* RotatingDotsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC152B44220A007BCC22 /* RotatingDotsIndicatorView.swift */; };
+		30ACFC1F2B44220A007BCC22 /* EqualizerIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC162B44220A007BCC22 /* EqualizerIndicatorView.swift */; };
 		7264CE919C89CB52F285A91A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */; };
 		8B00A11A2B2174240080534F /* TabDropDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00A1172B2174230080534F /* TabDropDownModifier.swift */; };
 		8B00A11B2B2174240080534F /* GlassyTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00A1192B2174240080534F /* GlassyTabbar.swift */; };
@@ -137,6 +148,18 @@
 		0DCA2AFA5E536A1543039C18 /* Pods-TorchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3094CF562B1CB00A00C7984B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		30A84EF22B3E9611003A3409 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		30ACFC092B442023007BCC22 /* ActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorView.h; sourceTree = "<group>"; };
+		30ACFC0A2B442023007BCC22 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC0C2B442030007BCC22 /* GrowingArcIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrowingArcIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC0E2B442208007BCC22 /* GrowingCircleIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrowingCircleIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC0F2B442208007BCC22 /* ArcsIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcsIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC102B442209007BCC22 /* OpacityDotsIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpacityDotsIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC112B442209007BCC22 /* ScalingDotsIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalingDotsIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC122B442209007BCC22 /* GradientIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC132B442209007BCC22 /* FlickeringDotsIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickeringDotsIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC142B44220A007BCC22 /* DefaultIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC152B44220A007BCC22 /* RotatingDotsIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotatingDotsIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC162B44220A007BCC22 /* EqualizerIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualizerIndicatorView.swift; sourceTree = "<group>"; };
 		317A68F007F51FCE9371D716 /* Pods-TorchUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.release.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.release.xcconfig"; sourceTree = "<group>"; };
 		6C70BD56AE5C299A1E03F8D4 /* Pods_TorchUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85748414CCD460F840169266 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -292,6 +315,25 @@
 				BAE251DB00483376265B13BB /* Pods_TorchUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		30ACFC082B441D55007BCC22 /* LoadingIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				30ACFC092B442023007BCC22 /* ActivityIndicatorView.h */,
+				30ACFC0A2B442023007BCC22 /* ActivityIndicatorView.swift */,
+				30ACFC0C2B442030007BCC22 /* GrowingArcIndicatorView.swift */,
+				30ACFC0F2B442208007BCC22 /* ArcsIndicatorView.swift */,
+				30ACFC142B44220A007BCC22 /* DefaultIndicatorView.swift */,
+				30ACFC162B44220A007BCC22 /* EqualizerIndicatorView.swift */,
+				30ACFC132B442209007BCC22 /* FlickeringDotsIndicatorView.swift */,
+				30ACFC122B442209007BCC22 /* GradientIndicatorView.swift */,
+				30ACFC0E2B442208007BCC22 /* GrowingCircleIndicatorView.swift */,
+				30ACFC102B442209007BCC22 /* OpacityDotsIndicatorView.swift */,
+				30ACFC152B44220A007BCC22 /* RotatingDotsIndicatorView.swift */,
+				30ACFC112B442209007BCC22 /* ScalingDotsIndicatorView.swift */,
+			);
+			path = LoadingIndicator;
 			sourceTree = "<group>";
 		};
 		8B00A11C2B2174310080534F /* Glassy Tabbar */ = {
@@ -649,6 +691,7 @@
 		C855B5462B10883F007DA332 /* CustomControllers */ = {
 			isa = PBXGroup;
 			children = (
+				30ACFC082B441D55007BCC22 /* LoadingIndicator */,
 				C855B5472B10883F007DA332 /* Enums.swift */,
 				C855B5482B10883F007DA332 /* CustomButton.swift */,
 				C855B5492B10883F007DA332 /* CustomColors.swift */,
@@ -1004,6 +1047,7 @@
 				C855B5852B10883F007DA332 /* Color+Extension.swift in Sources */,
 				C855B5682B10883F007DA332 /* BatteryView.swift in Sources */,
 				C855B56F2B10883F007DA332 /* MapboxPlaceSensorViewWrapper.swift in Sources */,
+				30ACFC0D2B442030007BCC22 /* GrowingArcIndicatorView.swift in Sources */,
 				C855B5912B10883F007DA332 /* Enums.swift in Sources */,
 				C855B5622B10883F007DA332 /* PlaceSensorMapViewController.swift in Sources */,
 				C855B5652B10883F007DA332 /* SensorSetupOverlayView.swift in Sources */,
@@ -1020,31 +1064,41 @@
 				C855B58E2B10883F007DA332 /* ViewSize.swift in Sources */,
 				C855B56B2B10883F007DA332 /* DetectorDetailOverlayView.swift in Sources */,
 				C855B5532B10883F007DA332 /* PropertyAddressView.swift in Sources */,
+				30ACFC1A2B44220A007BCC22 /* ScalingDotsIndicatorView.swift in Sources */,
 				C855B5612B10883F007DA332 /* MapViewController.swift in Sources */,
+				30ACFC182B44220A007BCC22 /* ArcsIndicatorView.swift in Sources */,
 				C855B55E2B10883F007DA332 /* PropertyDetailOverlayView.swift in Sources */,
 				30A84EF32B3E9611003A3409 /* ImagePicker.swift in Sources */,
 				C855B5822B10883F007DA332 /* UIApplication+Extension.swift in Sources */,
+				30ACFC1F2B44220A007BCC22 /* EqualizerIndicatorView.swift in Sources */,
 				C855B55A2B10883F007DA332 /* HeadingView.swift in Sources */,
 				C855B5662B10883F007DA332 /* SensorConfirmLocationOverlayView.swift in Sources */,
+				30ACFC1E2B44220A007BCC22 /* RotatingDotsIndicatorView.swift in Sources */,
 				C855B5672B10883F007DA332 /* PlaceSensorView.swift in Sources */,
 				C855B5502B10883F007DA332 /* PropertyView.swift in Sources */,
 				C855B54E2B10883F007DA332 /* PropertyIconView.swift in Sources */,
 				C855B55C2B10883F007DA332 /* TabBarView.swift in Sources */,
 				C855B5562B10883F007DA332 /* PropertyPhotoView.swift in Sources */,
 				C855B5552B10883F007DA332 /* BubbleView.swift in Sources */,
+				30ACFC1C2B44220A007BCC22 /* FlickeringDotsIndicatorView.swift in Sources */,
 				C855B5882B10883F007DA332 /* DataItem.swift in Sources */,
+				30ACFC1B2B44220A007BCC22 /* GradientIndicatorView.swift in Sources */,
 				3094CF572B1CB00A00C7984B /* Date+Extension.swift in Sources */,
 				C855B56E2B10883F007DA332 /* MapboxMapViewWrapper.swift in Sources */,
 				C855B5812B10883F007DA332 /* SessionManager.swift in Sources */,
 				C855B5692B10883F007DA332 /* AddDetectorConfirmLocationOverlayView.swift in Sources */,
 				C855B55B2B10883F007DA332 /* TabBarItemView.swift in Sources */,
 				C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */,
+				30ACFC192B44220A007BCC22 /* OpacityDotsIndicatorView.swift in Sources */,
+				30ACFC1D2B44220A007BCC22 /* DefaultIndicatorView.swift in Sources */,
 				C855B5732B10883F007DA332 /* AccountEmailView.swift in Sources */,
 				C855B5642B10883F007DA332 /* PlaceSensorViewControllerBridge.swift in Sources */,
 				C855B56D2B10883F007DA332 /* MapboxViewController.swift in Sources */,
 				C855B5572B10883F007DA332 /* SensorSetupView.swift in Sources */,
+				30ACFC0B2B442023007BCC22 /* ActivityIndicatorView.swift in Sources */,
 				C855B5952B11100A007DA332 /* Strings.swift in Sources */,
 				C855B5522B10883F007DA332 /* PropertiesView.swift in Sources */,
+				30ACFC172B44220A007BCC22 /* GrowingCircleIndicatorView.swift in Sources */,
 				C855B55D2B10883F007DA332 /* VisualEffectView.swift in Sources */,
 				C855B5802B10883F007DA332 /* WebSocketManager.swift in Sources */,
 				C855B5922B10883F007DA332 /* CustomButton.swift in Sources */,
