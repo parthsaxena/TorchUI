@@ -258,7 +258,7 @@ final class SessionManager: ObservableObject {
     
     func uploadPropertyImage(image: UIImage, imageKey: String, completion: @escaping (Result<String, Error>) -> Void) async {
         do {
-            guard let houseImageData = image.jpegData(compressionQuality: 1) else {
+            guard let houseImageData = image.jpegData(compressionQuality: 0.4) else {
                 return
             }
             
@@ -266,10 +266,6 @@ final class SessionManager: ObservableObject {
                 key: imageKey,
                 data: houseImageData
             )
-            
-//            for try await progress in uploadTask.progress {
-//                print("Progress: \(progress)")
-//            }
             
             let value = try await uploadTask.value
             print("Completed: \(value)")
@@ -283,6 +279,22 @@ final class SessionManager: ObservableObject {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func getPropertyImageUrl(imageKey: String, completion: @escaping (Result<URL, Error>) -> Void) async {
+        do {
+            let url = try await Amplify.Storage.getURL(key: imageKey)
+            print("Completed: \(url)")
+            DispatchQueue.main.async {
+                completion(.success(url))
+            }
+        } catch {
+            print("Error: \(error)")
+            DispatchQueue.main.async {
+                completion(.failure(error))
+            }
+        }
+        
     }
     
     func updateDevices(properties: [String : [String: Any]]) {
@@ -839,8 +851,8 @@ final class SessionManager: ObservableObject {
         geocoder.geocodeAddressString(address) {
             placemarks, error in
             let placemark = placemarks?.first
-            lat = (placemark?.location?.coordinate.latitude)!
-            lon = (placemark?.location?.coordinate.longitude)!
+            lat = (placemark?.location?.coordinate.latitude) ?? 0.0
+            lon = (placemark?.location?.coordinate.longitude) ?? 0.0
             // print("Lat: \(lat), Lon: \(lon)")
             
             var parsedProperty = Property(id: id, propertyName: name, propertyAddress: address, propertyImage: image, coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon))

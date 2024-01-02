@@ -258,8 +258,8 @@ struct PropertyAddressView: View {
                             placemarks, error in
                             let placemark = placemarks?.first
                             SessionManager.shared.newProperty?.coordinate = CLLocationCoordinate2D()
-                            SessionManager.shared.newProperty?.coordinate?.latitude = (placemark?.location?.coordinate.latitude)!
-                            SessionManager.shared.newProperty?.coordinate?.longitude = (placemark?.location?.coordinate.longitude)!
+                            SessionManager.shared.newProperty?.coordinate?.latitude = (placemark?.location?.coordinate.latitude) ?? 0.0
+                            SessionManager.shared.newProperty?.coordinate?.longitude = (placemark?.location?.coordinate.longitude) ?? 0.0
                             // print("Got Lat: \((placemark?.location?.coordinate.latitude)!), Lon: \((placemark?.location?.coordinate.longitude)!)")
                             // print("Session Lat: \(SessionManager.shared.newProperty?.coordinate?.latitude), Lon: \(SessionManager.shared.newProperty?.coordinate?.longitude)")
                             

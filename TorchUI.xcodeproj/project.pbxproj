@@ -15,6 +15,7 @@
 		30A7CE3E2B31194400D29B4A /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 30A7CE3D2B31194400D29B4A /* AWSS3StoragePlugin */; };
 		30A7CE402B31194400D29B4A /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 30A7CE3F2B31194400D29B4A /* Amplify */; };
 		30A84EF32B3E9611003A3409 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A84EF22B3E9611003A3409 /* ImagePicker.swift */; };
+		30ACFC072B437309007BCC22 /* AmplifyImage in Frameworks */ = {isa = PBXBuildFile; productRef = 30ACFC062B437309007BCC22 /* AmplifyImage */; };
 		7264CE919C89CB52F285A91A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */; };
 		8B00A11A2B2174240080534F /* TabDropDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00A1172B2174230080534F /* TabDropDownModifier.swift */; };
 		8B00A11B2B2174240080534F /* GlassyTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00A1192B2174240080534F /* GlassyTabbar.swift */; };
@@ -34,7 +35,6 @@
 		8BF7FC892A4D14D0005D1160 /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC822A4D14D0005D1160 /* Manrope-Regular.ttf */; };
 		8BF7FC8A2A4D14D0005D1160 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */; };
 		8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */; };
-		8BFF26B62A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */; };
 		9BC704259E56E18211492AC9 /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C70BD56AE5C299A1E03F8D4 /* Pods_TorchUI.framework */; };
 		B45C4C86C8C5B24AEAC787C1 /* Pods_TorchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE251DB00483376265B13BB /* Pods_TorchUITests.framework */; };
 		C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */; };
@@ -249,11 +249,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30ACFC072B437309007BCC22 /* AmplifyImage in Frameworks */,
 				8B88C8FE2A70450F008B90A2 /* CodeScanner in Frameworks */,
 				8B25BD052B1DA13100681342 /* Amplify in Frameworks */,
 				8B25BD032B1DA13100681342 /* AWSPinpointPushNotificationsPlugin in Frameworks */,
 				30A7CE402B31194400D29B4A /* Amplify in Frameworks */,
-				8BFF26B62A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin in Frameworks */,
 				30A7CE3C2B31113F00D29B4A /* Amplify in Frameworks */,
 				8BC224842A859A07000958AA /* ZXCodeTextField in Frameworks */,
 				30A7CE3A2B31113F00D29B4A /* AWSS3StoragePlugin in Frameworks */,
@@ -691,7 +691,6 @@
 			name = TorchUI;
 			packageProductDependencies = (
 				8B88C8FD2A70450F008B90A2 /* CodeScanner */,
-				8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */,
 				8BA867BE2A80869D00BEED38 /* PinCodeTextField */,
 				8BC224832A859A07000958AA /* ZXCodeTextField */,
 				8B25BD022B1DA13100681342 /* AWSPinpointPushNotificationsPlugin */,
@@ -702,6 +701,7 @@
 				30A7CE3B2B31113F00D29B4A /* Amplify */,
 				30A7CE3D2B31194400D29B4A /* AWSS3StoragePlugin */,
 				30A7CE3F2B31194400D29B4A /* Amplify */,
+				30ACFC062B437309007BCC22 /* AmplifyImage */,
 			);
 			productName = TorchUI;
 			productReference = 8BF7FC4F2A4D1488005D1160 /* TorchUI.app */;
@@ -781,9 +781,9 @@
 			mainGroup = 8BF7FC462A4D1488005D1160;
 			packageReferences = (
 				8B88C8FC2A70450F008B90A2 /* XCRemoteSwiftPackageReference "CodeScanner" */,
-				8BFF26B42A7B27BF00FDCBD9 /* XCRemoteSwiftPackageReference "amplify-swift" */,
 				8BA867BD2A80869D00BEED38 /* XCRemoteSwiftPackageReference "PinCodeTextField" */,
 				8BC224822A859A07000958AA /* XCRemoteSwiftPackageReference "ZXCodeTextfield" */,
+				30ACFC052B437309007BCC22 /* XCRemoteSwiftPackageReference "AmplifyImage" */,
 			);
 			productRefGroup = 8BF7FC502A4D1488005D1160 /* Products */;
 			projectDirPath = "";
@@ -1517,6 +1517,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		30ACFC052B437309007BCC22 /* XCRemoteSwiftPackageReference "AmplifyImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kilo-Loco/AmplifyImage";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		8B88C8FC2A70450F008B90A2 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/CodeScanner";
@@ -1539,14 +1547,6 @@
 			requirement = {
 				branch = main;
 				kind = branch;
-			};
-		};
-		8BFF26B42A7B27BF00FDCBD9 /* XCRemoteSwiftPackageReference "amplify-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/aws-amplify/amplify-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1576,6 +1576,11 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Amplify;
 		};
+		30ACFC062B437309007BCC22 /* AmplifyImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 30ACFC052B437309007BCC22 /* XCRemoteSwiftPackageReference "AmplifyImage" */;
+			productName = AmplifyImage;
+		};
 		8B25BD022B1DA13100681342 /* AWSPinpointPushNotificationsPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AWSPinpointPushNotificationsPlugin;
@@ -1598,11 +1603,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8BC224822A859A07000958AA /* XCRemoteSwiftPackageReference "ZXCodeTextfield" */;
 			productName = ZXCodeTextField;
-		};
-		8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BFF26B42A7B27BF00FDCBD9 /* XCRemoteSwiftPackageReference "amplify-swift" */;
-			productName = AWSCognitoAuthPlugin;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

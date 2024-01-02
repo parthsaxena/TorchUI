@@ -10,6 +10,7 @@ import CoreLocation
 import GoogleMaps
 import CodeScanner
 import MapboxMaps
+import AmplifyImage
 
 struct PropertyDetailOverlayView: View {
     
@@ -65,20 +66,43 @@ struct PropertyDetailOverlayView: View {
                         VStack {
                             // Property heading
                             HStack(alignment: .center) {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 60, height: 60)
-                                    .background(
-                                        AsyncImage(url: URL(string: property.propertyImage)) { image in
-                                            image.resizable()
+                                if property.propertyImage.starts(with: "http") {
+                                    Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 60, height: 60)
+                                        .background(
+                                            AsyncImage(url: URL(string: property.propertyImage)) { image in
+                                                image.resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 60, height: 60)
+                                                    .clipped()
+                                            } placeholder: {
+                                                ProgressView()
+                                            }
+                                        )
+                                        .cornerRadius(12)
+
+                                } else if property.propertyImage.starts(with: "PropertyImage") {
+                                
+                                    Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 60, height: 60)
+                                        .background(
+                                            AmplifyImage(key: property.propertyImage)
+                                                .kfImage.placeholder({
+//                                                    Image("Property")
+//                                                        .opacity(0.6)
+                                                    ProgressView()
+                                                })
+                                                .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 60, height: 60)
                                                 .clipped()
-                                        } placeholder: {
-                                            ProgressView()
-                                        }
-                                    )
-                                    .cornerRadius(12)
+                                            
+                                        )
+                                        .cornerRadius(12)
+                                }
+                                
                                 Spacer()
                                     .frame(width: 15)
                                 VStack(alignment: .leading, spacing: 2) {
