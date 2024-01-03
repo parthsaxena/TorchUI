@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ScrollableSegmentsView: View {
     
-    @State private var selectedSegment: AnalyticsTypeSelection? = .thermalCameras
+    @Binding var selectedSegment: AnalyticsTypeSelection
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -25,6 +25,6 @@ struct ScrollableSegmentsView: View {
     }
 }
 
-#Preview {
-    ScrollableSegmentsView()
-}
+//#Preview {
+//    ScrollableSegmentsView()
+//}

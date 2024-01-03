@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LineChartView
 
 struct DataItem: Identifiable {
     var id = UUID()
@@ -19,4 +20,5 @@ struct Item: Identifiable {
     var id = UUID()
     var itemName: String
     var itemDescription: String
+    var lineChartParameters: LineChartParameters
 }
