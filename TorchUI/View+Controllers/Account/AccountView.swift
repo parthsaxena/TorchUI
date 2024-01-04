@@ -52,6 +52,10 @@ struct AccountView: View {
                     MainMapView()
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
                         .zIndex(2)
+                } else if sessionManager.appState == .viewAnalytics {
+                    AnalyticsSwiftUIView()
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+                        .zIndex(2)
                 }
             }
         }

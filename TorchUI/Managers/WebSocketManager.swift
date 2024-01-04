@@ -25,8 +25,8 @@ class WebSocketManager {
     }
     
     func generateRequestID() -> String {
-        guard let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".randomElement() else { return "" }
-        return String((0 ..< ID_LENGTH).map{ _ in letters })
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0 ..< ID_LENGTH).map{ _ in letters.randomElement()! })
     }
     
     func connect() {

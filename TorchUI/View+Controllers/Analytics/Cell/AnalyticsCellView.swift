@@ -19,36 +19,39 @@ struct AnalyticsCellView: View {
     var item: Item
     var action: () -> Void
     
-    let chartParameters = LineChartParameters(
-        data: [
-            LineChartData(100),
-            LineChartData(12),
-            LineChartData(13),
-            LineChartData(12),
-            LineChartData(25.8),
-            LineChartData(15.19),
-            LineChartData(15.0),
-            LineChartData(18.0),
-            LineChartData(35.0),
-            LineChartData(32.0),
-            LineChartData(33.0),
-        ],
-        labelColor: .primary,
-        secondaryLabelColor: .secondary,
-        labelsAlignment: .left,
-        dataPrecisionLength: 0,
-        dataPrefix: nil,
-        dataSuffix: " C",
-        indicatorPointColor: .red,
-        indicatorPointSize: 15,
-        lineColor: .green,
-        lineSecondColor: .red,
-        lineWidth: 3,
-        dotsWidth: 0,
-        displayMode: .default,
-        dragGesture: true,
-        hapticFeedback: false
-    )
+//    let chartParameters = LineChartParameters(
+//        data: [
+//            LineChartData(100),
+//            LineChartData(12),
+//            LineChartData(13),
+//            LineChartData(12),
+//            LineChartData(25.8),
+//            LineChartData(15.19),
+//            LineChartData(15.0),
+//            LineChartData(18.0),
+//            LineChartData(35.0),
+//            LineChartData(32.0),
+//            LineChartData(33.0),
+//        ],
+//        labelColor: .primary,
+//        secondaryLabelColor: .secondary,
+//        labelsAlignment: .left,
+//        dataPrecisionLength: 0,
+//        dataPrefix: nil,
+//        dataSuffix: " C",
+//        indicatorPointColor: .red,
+//        indicatorPointSize: 15,
+//        lineColor: .green,
+//        lineSecondColor: .red,
+//        lineWidth: 3,
+//        dotsWidth: 0,
+//        displayMode: .default,
+//        dragGesture: true,
+//        hapticFeedback: false
+//    )
+//    let chartParameters = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]!["temperature"]
+
+    
     
     var body: some View {
         VStack {
@@ -138,7 +141,7 @@ struct AnalyticsCellView: View {
     }
 }
 
-#Preview {
-    
-    AnalyticsCellView(item: Item(itemName: "Item 1", itemDescription: "Description for Item 1"), action: {})
-}
+//#Preview {
+//    
+//    AnalyticsCellView(item: Item(itemName: "Item 1", itemDescription: "Description for Item 1"), action: {})
+//}

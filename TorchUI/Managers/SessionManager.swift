@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import LineChartView
 
 final class SessionManager: ObservableObject {
     
@@ -21,7 +22,8 @@ final class SessionManager: ObservableObject {
     @Published var selectedDetectorIndex = 0
     
     @Published var newProperty: Property?
-    //    @Published var addingNewDetector: Property?
+//    @Published var deviceAnalytics: [String : [String: [[String: String]]]] = [:]
+    @Published var deviceAnalytics: [String : [String: [String: LineChartParameters]]] = [:]
     
     @Published var appState: AppState = .properties
     
@@ -172,6 +174,9 @@ final class SessionManager: ObservableObject {
 
             if self.firstTimeLoaded && self.properties.count == properties.count {
                 self.updateDevices(properties: properties)
+                Task {
+                    await self.pullDeviceAnalytics(properties: properties)
+                }
             } else {
                 if (self.newProperty == nil) {
                     print("DIFF PROPERTIES, \(self.properties.count), \(properties.count), \(self.properties), \(properties)")
@@ -185,6 +190,9 @@ final class SessionManager: ObservableObject {
                         }
                         self.parseProperty(id: id, property: property)
                     }
+                    Task {
+                        await self.pullDeviceAnalytics(properties: properties)
+                    }
                     
                     self.unparsedProperties = properties.count - deletedProperties
                     DispatchQueue.main.async {
@@ -193,7 +201,7 @@ final class SessionManager: ObservableObject {
                     }
                 }
             }
-//            self.loadUserProperties() // mubashir
+            self.loadUserProperties() // mubashir
         })
         
         // Send request through socket
@@ -963,16 +971,102 @@ final class SessionManager: ObservableObject {
         WebSocketManager.shared.sendData(socketRequest: request)
     }
     
-    func getAnalyticsData() {
+    func pullDeviceAnalytics(properties: [String : [String: Any]]) {
+        print("pull device analytics \(self.properties.count)")
+        
+        for i in 0..<self.properties.count {
+            for j in 0..<self.properties[i].detectors.count {
+                let deviceId = self.properties[i].detectors[j].id
+                Task {
+                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .tenMinutes)
+                }
+                Task {
+                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneHour)
+                }
+                Task {
+                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneDay)
+                }
+                Task {
+                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneWeek)
+                }
+                Task {
+                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneMonth)
+                }
+            }
+        }
+    }
+
+    
+    func getDeviceAnalyticsData(deviceId: String, timespan: AnalyticsTimespanSelection) async {
+        
+        print("get device analytics \(deviceId)")
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        let endDateTestString = "2023-10-19T00:10:00Z"
+//        let endDate = Date()
+        guard let endDate = dateFormatter.date(from: endDateTestString) else {
+            fatalError("Invalid date format")
+        }
+        let startDate = Calendar.current.date(byAdding: .second, value: timespan.timeInterval, to: endDate)!
         
         let userID = AuthenticationManager.shared.authUser.userId
         let request = SocketRequest(
-            route: "getAnalyticsData",
+            route: "getHistoricalDeviceAnalytics",
             data: [
-                "user_id": userID
+                "device_id": deviceId,
+//                "start_interval": "2023-10-19T00:00:00Z", 
+//                "end_interval":"2023-10-19T00:10:00Z",
+                "start_interval": dateFormatter.string(from: startDate),
+                "end_interval": dateFormatter.string(from: endDate),
+                "skip": timespan.stringStep
             ],
             completion: { data in
-                print("getAnalyticsData: \(data)")
+                guard let measurements = data["measurements"] as? [String: [[String: String]]] else {
+                    print("couldn't cast measurements")
+                    return
+                }
+                
+                print("got \(measurements.count) categories of measurements")
+                
+                if !(self.deviceAnalytics.keys.contains(deviceId)) {
+                    self.deviceAnalytics[deviceId] = [:]
+                }
+                   
+                if !(self.deviceAnalytics[deviceId]!.keys.contains(timespan.stringSpan)) {
+                    self.deviceAnalytics[deviceId]![timespan.stringSpan] = [:]
+                }
+                
+                for k in measurements.keys {
+                    let measurement = measurements[k]!
+                    var data: [LineChartData] = []
+                    for i in 0..<measurement.count {
+                        data.append(LineChartData(Double(measurement[i]["value"]!)!))
+                    }
+                    var chartParameters = LineChartParameters(
+                        data: data,
+                        labelColor: .primary,
+                        secondaryLabelColor: .secondary,
+                        labelsAlignment: .left,
+                        dataPrecisionLength: 0,
+                        dataPrefix: nil,
+                        dataSuffix: " C",
+                        indicatorPointColor: .red,
+                        indicatorPointSize: 15,
+                        lineColor: .green,
+                        lineSecondColor: .red,
+                        lineWidth: 3,
+                        dotsWidth: 0,
+                        displayMode: .default,
+                        dragGesture: true,
+                        hapticFeedback: false
+                    )
+                                        
+                    self.deviceAnalytics[deviceId]![timespan.stringSpan]![k] = chartParameters
+                }
+                
+                print("device ann \(self.deviceAnalytics)")
         })
         WebSocketManager.shared.sendData(socketRequest: request)
     }
