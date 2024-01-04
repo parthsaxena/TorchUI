@@ -979,37 +979,32 @@ final class SessionManager: ObservableObject {
             for j in 0..<self.properties[i].detectors.count {
                 print("second loop")
                 let deviceId = self.properties[i].detectors[j].id
-                Task {
-                    print("first loop 1")
-                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .tenMinutes)
-                    print("first loop 11")
-                }
-                Task {
-                    print("first loop 2")
-                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneHour)
-                    print("first loop 22")
-                }
-                Task {
-                    print("first loop 3")
-                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneDay)
-                    print("first loop 33")
-                }
-                Task {
-                    print("first loop 4")
-                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneWeek)
-                    print("first loop 44")
-                }
-                Task {
-                    print("first loop 5")
-                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneMonth)
-                    print("first loop 55")
-                }
+//                Task {
+//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .tenMinutes)
+//                }
+//                Task {
+//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneHour)
+//                }
+//                Task {
+//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneDay)
+//                }
+//                Task {
+//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneWeek)
+//                }
+//                Task {
+//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneMonth)
+//                }
+                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.tenMinutes)
+                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneHour)
+                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneDay)
+                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneWeek)
+                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneMonth)
             }
         }
     }
 
     
-    func getDeviceAnalyticsData(deviceId: String, timespan: AnalyticsTimespanSelection) async {
+    func getDeviceAnalyticsData(deviceId: String, timespan: AnalyticsTimespanSelection) {
         
         print("get device analytics \(deviceId)")
         
