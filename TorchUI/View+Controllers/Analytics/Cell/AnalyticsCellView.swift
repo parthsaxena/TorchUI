@@ -85,13 +85,16 @@ struct AnalyticsCellView: View {
             .padding()
             ZStack {
                 VStack {
-                    LineChartView(lineChartParameters: chartParameters)
-                        .frame(height: 150)
+//                    LineChartView(lineChartParameters: chartParameters)
+//                        .frame(height: 150)
+                    CustomGraphView()
+                        .frame(height: 180)
                     Text("60 min")
                         .background(.clear)
                         .foregroundColor(CustomColors.TorchGreen)
                         .font(Font.custom("Manrope-SemiBold", size: 14.0))
                         .multilineTextAlignment(.center)
+                        .padding(.top, 10)
                 }
                 //                .padding(EdgeInsets(top: -25, leading: 0, bottom: 0, trailing: 0))
                 if isDropdownExpanded {
