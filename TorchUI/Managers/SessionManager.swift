@@ -975,22 +975,34 @@ final class SessionManager: ObservableObject {
         print("pull device analytics \(self.properties.count)")
         
         for i in 0..<self.properties.count {
+            print("first loop")
             for j in 0..<self.properties[i].detectors.count {
+                print("second loop")
                 let deviceId = self.properties[i].detectors[j].id
                 Task {
+                    print("first loop 1")
                     await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .tenMinutes)
+                    print("first loop 11")
                 }
                 Task {
+                    print("first loop 2")
                     await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneHour)
+                    print("first loop 22")
                 }
                 Task {
+                    print("first loop 3")
                     await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneDay)
+                    print("first loop 33")
                 }
                 Task {
+                    print("first loop 4")
                     await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneWeek)
+                    print("first loop 44")
                 }
                 Task {
+                    print("first loop 5")
                     await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneMonth)
+                    print("first loop 55")
                 }
             }
         }
@@ -1005,69 +1017,69 @@ final class SessionManager: ObservableObject {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         let endDateTestString = "2023-10-19T00:10:00Z"
-//        let endDate = Date()
+        
         guard let endDate = dateFormatter.date(from: endDateTestString) else {
             fatalError("Invalid date format")
         }
-        let startDate = Calendar.current.date(byAdding: .second, value: timespan.timeInterval, to: endDate)!
-        
-        let userID = AuthenticationManager.shared.authUser.userId
-        let request = SocketRequest(
-            route: "getHistoricalDeviceAnalytics",
-            data: [
-                "device_id": deviceId,
-//                "start_interval": "2023-10-19T00:00:00Z", 
-//                "end_interval":"2023-10-19T00:10:00Z",
-                "start_interval": dateFormatter.string(from: startDate),
-                "end_interval": dateFormatter.string(from: endDate),
-                "skip": timespan.stringStep
-            ],
-            completion: { data in
-                guard let measurements = data["measurements"] as? [String: [[String: String]]] else {
-                    print("couldn't cast measurements")
-                    return
-                }
-                
-                print("got \(measurements.count) categories of measurements")
-                
-                if !(self.deviceAnalytics.keys.contains(deviceId)) {
-                    self.deviceAnalytics[deviceId] = [:]
-                }
-                   
-                if !(self.deviceAnalytics[deviceId]!.keys.contains(timespan.stringSpan)) {
-                    self.deviceAnalytics[deviceId]![timespan.stringSpan] = [:]
-                }
-                
-                for k in measurements.keys {
-                    let measurement = measurements[k]!
-                    var data: [LineChartData] = []
-                    for i in 0..<measurement.count {
-                        data.append(LineChartData(Double(measurement[i]["value"]!)!))
+        if let startDate = Calendar.current.date(byAdding: .second, value: timespan.timeInterval, to: endDate) {
+            
+            let userID = AuthenticationManager.shared.authUser.userId
+            let request = SocketRequest(
+                route: "getHistoricalDeviceAnalytics",
+                data: [
+                    "device_id": deviceId,
+                    "start_interval": dateFormatter.string(from: startDate),
+                    "end_interval": dateFormatter.string(from: endDate),
+                    "skip": timespan.stringStep
+                ],
+                completion: { data in
+                    guard let measurements = data["measurements"] as? [String: [[String: String]]] else {
+                        print("couldn't cast measurements")
+                        return
                     }
-                    var chartParameters = LineChartParameters(
-                        data: data,
-                        labelColor: .primary,
-                        secondaryLabelColor: .secondary,
-                        labelsAlignment: .left,
-                        dataPrecisionLength: 0,
-                        dataPrefix: nil,
-                        dataSuffix: " C",
-                        indicatorPointColor: .red,
-                        indicatorPointSize: 15,
-                        lineColor: .green,
-                        lineSecondColor: .red,
-                        lineWidth: 3,
-                        dotsWidth: 0,
-                        displayMode: .default,
-                        dragGesture: true,
-                        hapticFeedback: false
-                    )
-                                        
-                    self.deviceAnalytics[deviceId]![timespan.stringSpan]![k] = chartParameters
-                }
-                
-                print("device ann \(self.deviceAnalytics)")
-        })
-        WebSocketManager.shared.sendData(socketRequest: request)
+                    
+                    print("got \(measurements.count) categories of measurements")
+                    
+                    if !(self.deviceAnalytics.keys.contains(deviceId)) {
+                        self.deviceAnalytics[deviceId] = [:]
+                    }
+                    
+                    if !(self.deviceAnalytics[deviceId]!.keys.contains(timespan.stringSpan)) {
+                        self.deviceAnalytics[deviceId]![timespan.stringSpan] = [:]
+                    }
+                    
+                    for k in measurements.keys {
+                        if let measurement = measurements[k] {
+                            var data: [LineChartData] = []
+                            for i in 0..<measurement.count {
+                                data.append(LineChartData(Double(measurement[i]["value"] ?? "") ?? 0.0))
+                            }
+                            var chartParameters = LineChartParameters(
+                                data: data,
+                                labelColor: .primary,
+                                secondaryLabelColor: .secondary,
+                                labelsAlignment: .left,
+                                dataPrecisionLength: 0,
+                                dataPrefix: nil,
+                                dataSuffix: " C",
+                                indicatorPointColor: .red,
+                                indicatorPointSize: 15,
+                                lineColor: .green,
+                                lineSecondColor: .red,
+                                lineWidth: 3,
+                                dotsWidth: 0,
+                                displayMode: .default,
+                                dragGesture: true,
+                                hapticFeedback: false
+                            )
+                            
+                            self.deviceAnalytics[deviceId]?[timespan.stringSpan]?[k] = chartParameters
+                        }
+                    }
+                    
+                    print("device ann \(self.deviceAnalytics)")
+                })
+            WebSocketManager.shared.sendData(socketRequest: request)
+        }
     }
 }
