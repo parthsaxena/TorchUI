@@ -977,27 +977,32 @@ final class SessionManager: ObservableObject {
         for i in 0..<self.properties.count {
             for j in 0..<self.properties[i].detectors.count {
                 let deviceId = self.properties[i].detectors[j].id
-                Task {
-                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .tenMinutes)
-                }
-                Task {
-                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneHour)
-                }
-                Task {
-                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneDay)
-                }
-                Task {
-                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneWeek)
-                }
-                Task {
-                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneMonth)
-                }
+//                Task {
+//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .tenMinutes)
+//                }
+//                Task {
+//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneHour)
+//                }
+//                Task {
+//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneDay)
+//                }
+//                Task {
+//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneWeek)
+//                }
+//                Task {
+//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneMonth)
+//                }
+                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.tenMinutes)
+                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneHour)
+                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneDay)
+                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneWeek)
+                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneMonth)
             }
         }
     }
 
     
-    func getDeviceAnalyticsData(deviceId: String, timespan: AnalyticsTimespanSelection) async {
+    func getDeviceAnalyticsData(deviceId: String, timespan: AnalyticsTimespanSelection) {
         
         print("get device analytics \(deviceId)")
         
