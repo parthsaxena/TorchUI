@@ -15,7 +15,7 @@ target 'TorchUI' do
   pod 'AWSPinpoint'
   pod 'AWSMobileClient'
   pod 'AWSS3'
-  pod 'AWSS3StoragePlugin'
+#  pod 'AWSS3StoragePlugin'
 
   target 'TorchUITests' do
     inherit! :search_paths

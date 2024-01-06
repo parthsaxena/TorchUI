@@ -87,7 +87,7 @@ struct MapboxPlaceSensorViewWrapper: UIViewControllerRepresentable {
         let vc = MapboxPlaceSensorViewController()
         let myResourceOptions = ResourceOptions(accessToken: accessToken)
         let cameraOptions = CameraOptions(center: sessionManager.selectedProperty?.coordinate, padding: .init(top: 0, left: 0, bottom: self.mapOffset.height == 0 ? 355 : self.mapOffset.height, right: 0), zoom: self.zoomLevel, bearing: 0.0, pitch: 0.0)
-        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions, styleJSON: jsonString)
+        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions, styleJSON: Strings.jsonString)
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         vc.mapView = MapView(frame: frame, mapInitOptions: myMapInitOptions)
         vc.mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

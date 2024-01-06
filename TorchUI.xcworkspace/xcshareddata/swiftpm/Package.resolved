@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "amplify-swift",
+      "identity" : "amplify-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/aws-amplify/amplify-swift",
+      "location" : "https://github.com/aws-amplify/amplify-ios",
       "state" : {
-        "revision" : "54c763c44279be924421243ac82c08af5f88e338",
-        "version" : "2.22.0"
+        "branch" : "main",
+        "revision" : "756548bc8d81e4dfdfaf4eb4a423da63f11c3de3"
       }
     },
     {
@@ -14,8 +14,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aws-amplify/amplify-swift-utils-notifications.git",
       "state" : {
-        "revision" : "f970384ad1035732f99259255cd2f97564807e41",
-        "version" : "1.1.0"
+        "revision" : "959eec669ba97c7d923b963c3e66ca8a0b2737f6",
+        "version" : "1.1.1"
+      }
+    },
+    {
+      "identity" : "amplifyimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kilo-Loco/AmplifyImage",
+      "state" : {
+        "branch" : "main",
+        "revision" : "41030d938f277fef95ef8b739c6689a6f171ea52"
       }
     },
     {
@@ -23,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aws-amplify/aws-appsync-realtime-client-ios.git",
       "state" : {
-        "revision" : "c7ec93dcbbcd8abc90c74203937f207a7fcaa611",
-        "version" : "3.1.1"
+        "revision" : "a08684c5004e2049c29f57a5938beae9695a1ef7",
+        "version" : "3.1.2"
       }
     },
     {
@@ -52,6 +61,15 @@
       "state" : {
         "revision" : "bf5d7087015620b250ee6c865b3c9039fc159d1a",
         "version" : "2.3.3"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "branch" : "master",
+        "revision" : "ad51380c76379ad57c09bf64b3e91361d6daa76d"
       }
     },
     {
@@ -104,8 +122,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections",
       "state" : {
-        "revision" : "a902f1823a7ff3c9ab2fba0f992396b948eda307",
-        "version" : "1.0.5"
+        "revision" : "d029d9d39c87bed85b1c50adee7c41795261a192",
+        "version" : "1.0.6"
       }
     },
     {

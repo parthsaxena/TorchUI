@@ -80,7 +80,7 @@ class AuthenticationManager: ObservableObject {
                 let user = try await Amplify.Auth.getCurrentUser()
 //                Amplify.Analytics.identifyUser(userId: user.userId)
                 try await Amplify.Notifications.Push.identifyUser(userId: user.userId)
-                SessionManager.shared.registerUserEndpoint(deviceToken: self.deviceToken!, userID: user.userId)
+                SessionManager.shared.registerUserEndpoint(deviceToken: self.deviceToken ?? "", userID: user.userId)
                 print("Identified user to Pinpoint1: \(user.userId)")
                 // print("Got user")
                 DispatchQueue.main.async {

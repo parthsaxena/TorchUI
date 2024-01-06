@@ -8,8 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		3094CF572B1CB00A00C7984B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3094CF562B1CB00A00C7984B /* Date+Extension.swift */; };
-		5036EE93A25184E87DD543C2 /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70075353700330D64E887947 /* Pods_TorchUI_TorchUIUITests.framework */; };
-		53FC80D9C45A9071EDE45369 /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ABF4BFF4D5A064C243C3DFE /* Pods_TorchUI.framework */; };
+		30A7CE362B31100000D29B4A /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 30A7CE352B31100000D29B4A /* AWSS3StoragePlugin */; };
+		30A7CE382B3110F600D29B4A /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 30A7CE372B3110F600D29B4A /* AWSS3StoragePlugin */; };
+		30A7CE3A2B31113F00D29B4A /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 30A7CE392B31113F00D29B4A /* AWSS3StoragePlugin */; };
+		30A7CE3C2B31113F00D29B4A /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 30A7CE3B2B31113F00D29B4A /* Amplify */; };
+		30A7CE3E2B31194400D29B4A /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 30A7CE3D2B31194400D29B4A /* AWSS3StoragePlugin */; };
+		30A7CE402B31194400D29B4A /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 30A7CE3F2B31194400D29B4A /* Amplify */; };
+		30A84EF32B3E9611003A3409 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A84EF22B3E9611003A3409 /* ImagePicker.swift */; };
+		30ACFC072B437309007BCC22 /* AmplifyImage in Frameworks */ = {isa = PBXBuildFile; productRef = 30ACFC062B437309007BCC22 /* AmplifyImage */; };
+		30ACFC0B2B442023007BCC22 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC0A2B442023007BCC22 /* ActivityIndicatorView.swift */; };
+		30ACFC0D2B442030007BCC22 /* GrowingArcIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC0C2B442030007BCC22 /* GrowingArcIndicatorView.swift */; };
+		30ACFC172B44220A007BCC22 /* GrowingCircleIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC0E2B442208007BCC22 /* GrowingCircleIndicatorView.swift */; };
+		30ACFC182B44220A007BCC22 /* ArcsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC0F2B442208007BCC22 /* ArcsIndicatorView.swift */; };
+		30ACFC192B44220A007BCC22 /* OpacityDotsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC102B442209007BCC22 /* OpacityDotsIndicatorView.swift */; };
+		30ACFC1A2B44220A007BCC22 /* ScalingDotsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC112B442209007BCC22 /* ScalingDotsIndicatorView.swift */; };
+		30ACFC1B2B44220A007BCC22 /* GradientIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC122B442209007BCC22 /* GradientIndicatorView.swift */; };
+		30ACFC1C2B44220A007BCC22 /* FlickeringDotsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC132B442209007BCC22 /* FlickeringDotsIndicatorView.swift */; };
+		30ACFC1D2B44220A007BCC22 /* DefaultIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC142B44220A007BCC22 /* DefaultIndicatorView.swift */; };
+		30ACFC1E2B44220A007BCC22 /* RotatingDotsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC152B44220A007BCC22 /* RotatingDotsIndicatorView.swift */; };
+		30ACFC1F2B44220A007BCC22 /* EqualizerIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC162B44220A007BCC22 /* EqualizerIndicatorView.swift */; };
+		30B94FF2724370F56F4BB721 /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16189346DCED02F64467BCD7 /* Pods_TorchUI.framework */; };
+		3E6CEA7EA3C03D78D47B5AEE /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D7A4165CA343CA43FBBC7D /* Pods_TorchUI_TorchUIUITests.framework */; };
 		7264CE919C89CB52F285A91A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */; };
 		8B00A11A2B2174240080534F /* TabDropDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00A1172B2174230080534F /* TabDropDownModifier.swift */; };
 		8B00A11B2B2174240080534F /* GlassyTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00A1192B2174240080534F /* GlassyTabbar.swift */; };
@@ -31,8 +50,7 @@
 		8BF7FC892A4D14D0005D1160 /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC822A4D14D0005D1160 /* Manrope-Regular.ttf */; };
 		8BF7FC8A2A4D14D0005D1160 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */; };
 		8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */; };
-		8BFF26B62A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */; };
-		B73C8CC80AC7BA962597723E /* Pods_TorchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7967A30DA58429B7B4F5014 /* Pods_TorchUITests.framework */; };
+		940A2A52A487B65F69C69FA4 /* Pods_TorchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996C753D2E18A6727ECC67C2 /* Pods_TorchUITests.framework */; };
 		C827EA4C2B146935009E6EC8 /* SocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4B2B146935009E6EC8 /* SocketRequest.swift */; };
 		C827EA502B234571009E6EC8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4F2B234571009E6EC8 /* LocationManager.swift */; };
 		C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */; };
@@ -137,12 +155,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07626D3ADA17A9C19AA3EB38 /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
-		0E277D665F4C6BE1FF267A00 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		16189346DCED02F64467BCD7 /* Pods_TorchUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3094CF562B1CB00A00C7984B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		70075353700330D64E887947 /* Pods_TorchUI_TorchUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI_TorchUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		745FEA692A5123561788B646 /* Pods-TorchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.release.xcconfig"; sourceTree = "<group>"; };
-		8ABF4BFF4D5A064C243C3DFE /* Pods_TorchUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30A84EF22B3E9611003A3409 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		30ACFC092B442023007BCC22 /* ActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorView.h; sourceTree = "<group>"; };
+		30ACFC0A2B442023007BCC22 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC0C2B442030007BCC22 /* GrowingArcIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrowingArcIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC0E2B442208007BCC22 /* GrowingCircleIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrowingCircleIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC0F2B442208007BCC22 /* ArcsIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcsIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC102B442209007BCC22 /* OpacityDotsIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpacityDotsIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC112B442209007BCC22 /* ScalingDotsIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalingDotsIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC122B442209007BCC22 /* GradientIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC132B442209007BCC22 /* FlickeringDotsIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickeringDotsIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC142B44220A007BCC22 /* DefaultIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC152B44220A007BCC22 /* RotatingDotsIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotatingDotsIndicatorView.swift; sourceTree = "<group>"; };
+		30ACFC162B44220A007BCC22 /* EqualizerIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualizerIndicatorView.swift; sourceTree = "<group>"; };
+		583E7E610254E88735F6BDA3 /* Pods-TorchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8B00A1142B1ED1D50080534F /* TorchUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TorchUI.entitlements; sourceTree = "<group>"; };
 		8B00A1172B2174230080534F /* TabDropDownModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabDropDownModifier.swift; sourceTree = "<group>"; };
 		8B00A1182B2174230080534F /* TabbarAsset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabbarAsset.xcassets; sourceTree = "<group>"; };
@@ -165,9 +193,10 @@
 		8BF7FC822A4D14D0005D1160 /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Regular.ttf"; sourceTree = "<group>"; };
 		8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Medium.ttf"; sourceTree = "<group>"; };
 		8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
-		A768900170C6E965CA53E399 /* Pods-TorchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A7967A30DA58429B7B4F5014 /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A83CE5376BEF787B10BAB320 /* Pods-TorchUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.release.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.release.xcconfig"; sourceTree = "<group>"; };
+		9931C602A1561404DC8BE31D /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
+		996C753D2E18A6727ECC67C2 /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2313F797FDB4B02727D827B /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
+		C7D7A4165CA343CA43FBBC7D /* Pods_TorchUI_TorchUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI_TorchUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C827EA4B2B146935009E6EC8 /* SocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRequest.swift; sourceTree = "<group>"; };
 		C827EA4F2B234571009E6EC8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPropertiesView.swift; sourceTree = "<group>"; };
@@ -251,8 +280,10 @@
 		C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsSwiftUIView.swift; sourceTree = "<group>"; };
 		C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsCellView.swift; sourceTree = "<group>"; };
 		CE715C78ED08B54E16060133 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
-		DA0BDC9E79662A4C9294C3BE /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DBEFD300D1D6E9AB28547A83 /* Pods-TorchUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.release.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.release.xcconfig"; sourceTree = "<group>"; };
 		DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		F6A65F8D2BB4052571D7DA28 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F87502E2881B118811C1786C /* Pods-TorchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,14 +291,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30ACFC072B437309007BCC22 /* AmplifyImage in Frameworks */,
 				8B88C8FE2A70450F008B90A2 /* CodeScanner in Frameworks */,
 				8B25BD052B1DA13100681342 /* Amplify in Frameworks */,
 				C864BEA32B3C54EF0078C742 /* LineChartView in Frameworks */,
 				8B25BD032B1DA13100681342 /* AWSPinpointPushNotificationsPlugin in Frameworks */,
-				8BFF26B62A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin in Frameworks */,
+				30A7CE402B31194400D29B4A /* Amplify in Frameworks */,
+				30A7CE3C2B31113F00D29B4A /* Amplify in Frameworks */,
 				8BC224842A859A07000958AA /* ZXCodeTextField in Frameworks */,
+				30A7CE3A2B31113F00D29B4A /* AWSS3StoragePlugin in Frameworks */,
 				8BA867BF2A80869D00BEED38 /* PinCodeTextField in Frameworks */,
-				53FC80D9C45A9071EDE45369 /* Pods_TorchUI.framework in Frameworks */,
+				30A7CE362B31100000D29B4A /* AWSS3StoragePlugin in Frameworks */,
+				30A7CE382B3110F600D29B4A /* AWSS3StoragePlugin in Frameworks */,
+				30A7CE3E2B31194400D29B4A /* AWSS3StoragePlugin in Frameworks */,
+				30B94FF2724370F56F4BB721 /* Pods_TorchUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +312,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B73C8CC80AC7BA962597723E /* Pods_TorchUITests.framework in Frameworks */,
+				940A2A52A487B65F69C69FA4 /* Pods_TorchUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,19 +320,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5036EE93A25184E87DD543C2 /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */,
+				3E6CEA7EA3C03D78D47B5AEE /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		507E86C17F964EE32818309A /* Frameworks */ = {
+		30ACFC082B441D55007BCC22 /* LoadingIndicator */ = {
 			isa = PBXGroup;
 			children = (
-				8ABF4BFF4D5A064C243C3DFE /* Pods_TorchUI.framework */,
-				70075353700330D64E887947 /* Pods_TorchUI_TorchUIUITests.framework */,
-				A7967A30DA58429B7B4F5014 /* Pods_TorchUITests.framework */,
+				30ACFC092B442023007BCC22 /* ActivityIndicatorView.h */,
+				30ACFC0A2B442023007BCC22 /* ActivityIndicatorView.swift */,
+				30ACFC0C2B442030007BCC22 /* GrowingArcIndicatorView.swift */,
+				30ACFC0F2B442208007BCC22 /* ArcsIndicatorView.swift */,
+				30ACFC142B44220A007BCC22 /* DefaultIndicatorView.swift */,
+				30ACFC162B44220A007BCC22 /* EqualizerIndicatorView.swift */,
+				30ACFC132B442209007BCC22 /* FlickeringDotsIndicatorView.swift */,
+				30ACFC122B442209007BCC22 /* GradientIndicatorView.swift */,
+				30ACFC0E2B442208007BCC22 /* GrowingCircleIndicatorView.swift */,
+				30ACFC102B442209007BCC22 /* OpacityDotsIndicatorView.swift */,
+				30ACFC152B44220A007BCC22 /* RotatingDotsIndicatorView.swift */,
+				30ACFC112B442209007BCC22 /* ScalingDotsIndicatorView.swift */,
+			);
+			path = LoadingIndicator;
+			sourceTree = "<group>";
+		};
+		3302559E515AC5F209CEF32D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				16189346DCED02F64467BCD7 /* Pods_TorchUI.framework */,
+				C7D7A4165CA343CA43FBBC7D /* Pods_TorchUI_TorchUIUITests.framework */,
+				996C753D2E18A6727ECC67C2 /* Pods_TorchUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -308,6 +364,13 @@
 				8B00A1172B2174230080534F /* TabDropDownModifier.swift */,
 			);
 			path = "Glassy Tabbar";
+			sourceTree = "<group>";
+		};
+		8B4DEC6D2B493065000EAEA6 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		8B9429E42B47C8CD00BF84A9 /* UpdateProperty */ = {
@@ -328,7 +391,8 @@
 				8BF7FC502A4D1488005D1160 /* Products */,
 				CF081936F4D134B31F7A7C3F /* Pods */,
 				A9CB98324B1AAF2DCBCD81BB /* AmplifyConfig */,
-				507E86C17F964EE32818309A /* Frameworks */,
+				8B4DEC6D2B493065000EAEA6 /* Recovered References */,
+				3302559E515AC5F209CEF32D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -426,6 +490,7 @@
 		C855B4E92B10883D007DA332 /* Property */ = {
 			isa = PBXGroup;
 			children = (
+				30A84EF22B3E9611003A3409 /* ImagePicker.swift */,
 				8B9429E42B47C8CD00BF84A9 /* UpdateProperty */,
 				C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */,
 				C855B4EB2B10883D007DA332 /* PropertyIconView.xib */,
@@ -667,6 +732,7 @@
 		C855B5462B10883F007DA332 /* CustomControllers */ = {
 			isa = PBXGroup;
 			children = (
+				30ACFC082B441D55007BCC22 /* LoadingIndicator */,
 				C855B5472B10883F007DA332 /* Enums.swift */,
 				C855B5482B10883F007DA332 /* CustomButton.swift */,
 				C855B5492B10883F007DA332 /* CustomColors.swift */,
@@ -714,12 +780,12 @@
 		CF081936F4D134B31F7A7C3F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				07626D3ADA17A9C19AA3EB38 /* Pods-TorchUI.debug.xcconfig */,
-				A83CE5376BEF787B10BAB320 /* Pods-TorchUI.release.xcconfig */,
-				0E277D665F4C6BE1FF267A00 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */,
-				DA0BDC9E79662A4C9294C3BE /* Pods-TorchUI-TorchUIUITests.release.xcconfig */,
-				A768900170C6E965CA53E399 /* Pods-TorchUITests.debug.xcconfig */,
-				745FEA692A5123561788B646 /* Pods-TorchUITests.release.xcconfig */,
+				B2313F797FDB4B02727D827B /* Pods-TorchUI.debug.xcconfig */,
+				DBEFD300D1D6E9AB28547A83 /* Pods-TorchUI.release.xcconfig */,
+				F6A65F8D2BB4052571D7DA28 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */,
+				9931C602A1561404DC8BE31D /* Pods-TorchUI-TorchUIUITests.release.xcconfig */,
+				F87502E2881B118811C1786C /* Pods-TorchUITests.debug.xcconfig */,
+				583E7E610254E88735F6BDA3 /* Pods-TorchUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -731,12 +797,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BF7FC732A4D1489005D1160 /* Build configuration list for PBXNativeTarget "TorchUI" */;
 			buildPhases = (
-				032E8A50462EE2F8637A4246 /* [CP] Check Pods Manifest.lock */,
+				654F2A032D5A7AEF0868F68A /* [CP] Check Pods Manifest.lock */,
 				8BF7FC4B2A4D1488005D1160 /* Sources */,
 				8BF7FC4C2A4D1488005D1160 /* Frameworks */,
 				8BF7FC4D2A4D1488005D1160 /* Resources */,
-				06BD4CD858FABA58289B6A07 /* [CP] Embed Pods Frameworks */,
-				2704213384F215A6C8FDCC46 /* [CP] Copy Pods Resources */,
+				5120F916B5A8F27BB44961E1 /* [CP] Embed Pods Frameworks */,
+				FB76209564CD1E8D009F3093 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -745,12 +811,18 @@
 			name = TorchUI;
 			packageProductDependencies = (
 				8B88C8FD2A70450F008B90A2 /* CodeScanner */,
-				8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */,
 				8BA867BE2A80869D00BEED38 /* PinCodeTextField */,
 				8BC224832A859A07000958AA /* ZXCodeTextField */,
 				8B25BD022B1DA13100681342 /* AWSPinpointPushNotificationsPlugin */,
 				8B25BD042B1DA13100681342 /* Amplify */,
 				C864BEA22B3C54EF0078C742 /* LineChartView */,
+				30A7CE352B31100000D29B4A /* AWSS3StoragePlugin */,
+				30A7CE372B3110F600D29B4A /* AWSS3StoragePlugin */,
+				30A7CE392B31113F00D29B4A /* AWSS3StoragePlugin */,
+				30A7CE3B2B31113F00D29B4A /* Amplify */,
+				30A7CE3D2B31194400D29B4A /* AWSS3StoragePlugin */,
+				30A7CE3F2B31194400D29B4A /* Amplify */,
+				30ACFC062B437309007BCC22 /* AmplifyImage */,
 			);
 			productName = TorchUI;
 			productReference = 8BF7FC4F2A4D1488005D1160 /* TorchUI.app */;
@@ -760,7 +832,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BF7FC762A4D1489005D1160 /* Build configuration list for PBXNativeTarget "TorchUITests" */;
 			buildPhases = (
-				8865EC53C821A29BAB002142 /* [CP] Check Pods Manifest.lock */,
+				8D2101776B40C7F94B72894E /* [CP] Check Pods Manifest.lock */,
 				8BF7FC5B2A4D1489005D1160 /* Sources */,
 				8BF7FC5C2A4D1489005D1160 /* Frameworks */,
 				8BF7FC5D2A4D1489005D1160 /* Resources */,
@@ -779,12 +851,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BF7FC792A4D1489005D1160 /* Build configuration list for PBXNativeTarget "TorchUIUITests" */;
 			buildPhases = (
-				252532EA4B884C906BD0999D /* [CP] Check Pods Manifest.lock */,
+				C1D1DCB400CB41F21D142CE7 /* [CP] Check Pods Manifest.lock */,
 				8BF7FC652A4D1489005D1160 /* Sources */,
 				8BF7FC662A4D1489005D1160 /* Frameworks */,
 				8BF7FC672A4D1489005D1160 /* Resources */,
-				A24D165A8E1E1DBF38F15D58 /* [CP] Embed Pods Frameworks */,
-				CBA898C3E4CC2E937795EF63 /* [CP] Copy Pods Resources */,
+				9A7EE137BFF72202E986F4DC /* [CP] Embed Pods Frameworks */,
+				990FA0921260D7E0EED838B4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -830,10 +902,10 @@
 			mainGroup = 8BF7FC462A4D1488005D1160;
 			packageReferences = (
 				8B88C8FC2A70450F008B90A2 /* XCRemoteSwiftPackageReference "CodeScanner" */,
-				8BFF26B42A7B27BF00FDCBD9 /* XCRemoteSwiftPackageReference "amplify-swift" */,
 				8BA867BD2A80869D00BEED38 /* XCRemoteSwiftPackageReference "PinCodeTextField" */,
 				8BC224822A859A07000958AA /* XCRemoteSwiftPackageReference "ZXCodeTextfield" */,
 				C864BEA12B3C54EF0078C742 /* XCRemoteSwiftPackageReference "LineChartView" */,
+				30ACFC052B437309007BCC22 /* XCRemoteSwiftPackageReference "AmplifyImage" */,
 			);
 			productRefGroup = 8BF7FC502A4D1488005D1160 /* Products */;
 			projectDirPath = "";
@@ -886,7 +958,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		032E8A50462EE2F8637A4246 /* [CP] Check Pods Manifest.lock */ = {
+		5120F916B5A8F27BB44961E1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		654F2A032D5A7AEF0868F68A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -908,63 +997,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		06BD4CD858FABA58289B6A07 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		252532EA4B884C906BD0999D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TorchUI-TorchUIUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2704213384F215A6C8FDCC46 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8865EC53C821A29BAB002142 /* [CP] Check Pods Manifest.lock */ = {
+		8D2101776B40C7F94B72894E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -986,7 +1019,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A24D165A8E1E1DBF38F15D58 /* [CP] Embed Pods Frameworks */ = {
+		990FA0921260D7E0EED838B4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A7EE137BFF72202E986F4DC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1003,21 +1053,43 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CBA898C3E4CC2E937795EF63 /* [CP] Copy Pods Resources */ = {
+		C1D1DCB400CB41F21D142CE7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TorchUI-TorchUIUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB76209564CD1E8D009F3093 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1058,6 +1130,7 @@
 				C864BE9D2B3C53660078C742 /* SegmentView.swift in Sources */,
 				C855B5682B10883F007DA332 /* BatteryView.swift in Sources */,
 				C855B56F2B10883F007DA332 /* MapboxPlaceSensorViewWrapper.swift in Sources */,
+				30ACFC0D2B442030007BCC22 /* GrowingArcIndicatorView.swift in Sources */,
 				C855B5912B10883F007DA332 /* Enums.swift in Sources */,
 				C855B5622B10883F007DA332 /* PlaceSensorMapViewController.swift in Sources */,
 				C855B5652B10883F007DA332 /* SensorSetupOverlayView.swift in Sources */,
@@ -1075,34 +1148,47 @@
 				C855B58E2B10883F007DA332 /* ViewSize.swift in Sources */,
 				C855B56B2B10883F007DA332 /* DetectorDetailOverlayView.swift in Sources */,
 				C855B5532B10883F007DA332 /* PropertyAddressView.swift in Sources */,
+				30ACFC1A2B44220A007BCC22 /* ScalingDotsIndicatorView.swift in Sources */,
 				C855B5612B10883F007DA332 /* MapViewController.swift in Sources */,
+				30ACFC182B44220A007BCC22 /* ArcsIndicatorView.swift in Sources */,
 				C855B55E2B10883F007DA332 /* PropertyDetailOverlayView.swift in Sources */,
+				30A84EF32B3E9611003A3409 /* ImagePicker.swift in Sources */,
 				C855B5822B10883F007DA332 /* UIApplication+Extension.swift in Sources */,
 				C827EA502B234571009E6EC8 /* LocationManager.swift in Sources */,
 				C855B55A2B10883F007DA332 /* HeadingView.swift in Sources */,
 				C855B5662B10883F007DA332 /* SensorConfirmLocationOverlayView.swift in Sources */,
 				C864BEA02B3C53660078C742 /* AnalyticsCellView.swift in Sources */,
+				30ACFC1F2B44220A007BCC22 /* EqualizerIndicatorView.swift in Sources */,
+				C855B55A2B10883F007DA332 /* HeadingView.swift in Sources */,
+				C855B5662B10883F007DA332 /* SensorConfirmLocationOverlayView.swift in Sources */,
+				30ACFC1E2B44220A007BCC22 /* RotatingDotsIndicatorView.swift in Sources */,
 				C855B5672B10883F007DA332 /* PlaceSensorView.swift in Sources */,
 				C855B5502B10883F007DA332 /* PropertyView.swift in Sources */,
 				C855B54E2B10883F007DA332 /* PropertyIconView.swift in Sources */,
 				C855B55C2B10883F007DA332 /* TabBarView.swift in Sources */,
 				C855B5562B10883F007DA332 /* PropertyPhotoView.swift in Sources */,
 				C855B5552B10883F007DA332 /* BubbleView.swift in Sources */,
+				30ACFC1C2B44220A007BCC22 /* FlickeringDotsIndicatorView.swift in Sources */,
 				C855B5882B10883F007DA332 /* DataItem.swift in Sources */,
 				8BB4FD4D2B47C91E00CBA5B8 /* UpdatePropertyView.swift in Sources */,
+				30ACFC1B2B44220A007BCC22 /* GradientIndicatorView.swift in Sources */,
 				3094CF572B1CB00A00C7984B /* Date+Extension.swift in Sources */,
 				C855B56E2B10883F007DA332 /* MapboxMapViewWrapper.swift in Sources */,
 				C855B5812B10883F007DA332 /* SessionManager.swift in Sources */,
 				C855B5692B10883F007DA332 /* AddDetectorConfirmLocationOverlayView.swift in Sources */,
 				C855B55B2B10883F007DA332 /* TabBarItemView.swift in Sources */,
 				C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */,
+				30ACFC192B44220A007BCC22 /* OpacityDotsIndicatorView.swift in Sources */,
+				30ACFC1D2B44220A007BCC22 /* DefaultIndicatorView.swift in Sources */,
 				C855B5732B10883F007DA332 /* AccountEmailView.swift in Sources */,
 				C855B5642B10883F007DA332 /* PlaceSensorViewControllerBridge.swift in Sources */,
 				C827EA4C2B146935009E6EC8 /* SocketRequest.swift in Sources */,
 				C855B56D2B10883F007DA332 /* MapboxViewController.swift in Sources */,
 				C855B5572B10883F007DA332 /* SensorSetupView.swift in Sources */,
+				30ACFC0B2B442023007BCC22 /* ActivityIndicatorView.swift in Sources */,
 				C855B5952B11100A007DA332 /* Strings.swift in Sources */,
 				C855B5522B10883F007DA332 /* PropertiesView.swift in Sources */,
+				30ACFC172B44220A007BCC22 /* GrowingCircleIndicatorView.swift in Sources */,
 				C855B55D2B10883F007DA332 /* VisualEffectView.swift in Sources */,
 				C855B5802B10883F007DA332 /* WebSocketManager.swift in Sources */,
 				C855B5922B10883F007DA332 /* CustomButton.swift in Sources */,
@@ -1261,7 +1347,7 @@
 		};
 		8BF7FC742A4D1489005D1160 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07626D3ADA17A9C19AA3EB38 /* Pods-TorchUI.debug.xcconfig */;
+			baseConfigurationReference = B2313F797FDB4B02727D827B /* Pods-TorchUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1358,7 +1444,7 @@
 		};
 		8BF7FC752A4D1489005D1160 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A83CE5376BEF787B10BAB320 /* Pods-TorchUI.release.xcconfig */;
+			baseConfigurationReference = DBEFD300D1D6E9AB28547A83 /* Pods-TorchUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1455,7 +1541,7 @@
 		};
 		8BF7FC772A4D1489005D1160 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A768900170C6E965CA53E399 /* Pods-TorchUITests.debug.xcconfig */;
+			baseConfigurationReference = F87502E2881B118811C1786C /* Pods-TorchUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1476,7 +1562,7 @@
 		};
 		8BF7FC782A4D1489005D1160 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 745FEA692A5123561788B646 /* Pods-TorchUITests.release.xcconfig */;
+			baseConfigurationReference = 583E7E610254E88735F6BDA3 /* Pods-TorchUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1497,7 +1583,7 @@
 		};
 		8BF7FC7A2A4D1489005D1160 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E277D665F4C6BE1FF267A00 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */;
+			baseConfigurationReference = F6A65F8D2BB4052571D7DA28 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1516,7 +1602,7 @@
 		};
 		8BF7FC7B2A4D1489005D1160 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA0BDC9E79662A4C9294C3BE /* Pods-TorchUI-TorchUIUITests.release.xcconfig */;
+			baseConfigurationReference = 9931C602A1561404DC8BE31D /* Pods-TorchUI-TorchUIUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1575,6 +1661,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		30ACFC052B437309007BCC22 /* XCRemoteSwiftPackageReference "AmplifyImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kilo-Loco/AmplifyImage";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		8B88C8FC2A70450F008B90A2 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/CodeScanner";
@@ -1599,14 +1693,6 @@
 				kind = branch;
 			};
 		};
-		8BFF26B42A7B27BF00FDCBD9 /* XCRemoteSwiftPackageReference "amplify-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/aws-amplify/amplify-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		C864BEA12B3C54EF0078C742 /* XCRemoteSwiftPackageReference "LineChartView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Jonathan-Gander/LineChartView";
@@ -1618,6 +1704,35 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		30A7CE352B31100000D29B4A /* AWSS3StoragePlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AWSS3StoragePlugin;
+		};
+		30A7CE372B3110F600D29B4A /* AWSS3StoragePlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AWSS3StoragePlugin;
+		};
+		30A7CE392B31113F00D29B4A /* AWSS3StoragePlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AWSS3StoragePlugin;
+		};
+		30A7CE3B2B31113F00D29B4A /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Amplify;
+		};
+		30A7CE3D2B31194400D29B4A /* AWSS3StoragePlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AWSS3StoragePlugin;
+		};
+		30A7CE3F2B31194400D29B4A /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Amplify;
+		};
+		30ACFC062B437309007BCC22 /* AmplifyImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 30ACFC052B437309007BCC22 /* XCRemoteSwiftPackageReference "AmplifyImage" */;
+			productName = AmplifyImage;
+		};
 		8B25BD022B1DA13100681342 /* AWSPinpointPushNotificationsPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AWSPinpointPushNotificationsPlugin;
@@ -1640,11 +1755,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8BC224822A859A07000958AA /* XCRemoteSwiftPackageReference "ZXCodeTextfield" */;
 			productName = ZXCodeTextField;
-		};
-		8BFF26B52A7B27BF00FDCBD9 /* AWSCognitoAuthPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BFF26B42A7B27BF00FDCBD9 /* XCRemoteSwiftPackageReference "amplify-swift" */;
-			productName = AWSCognitoAuthPlugin;
 		};
 		C864BEA22B3C54EF0078C742 /* LineChartView */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -22,6 +22,14 @@
             }
         }
     },
+    "storage": {
+        "plugins": {
+            "awsS3StoragePlugin": {
+                "bucket": "torchs3bucket184659-dev",
+                "region": "us-west-2"
+            }
+        }
+    },
     "auth": {
         "plugins": {
             "awsCognitoAuthPlugin": {

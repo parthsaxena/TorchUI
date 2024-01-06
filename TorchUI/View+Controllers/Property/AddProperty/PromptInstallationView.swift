@@ -13,6 +13,11 @@ struct PromptInstallationView: View {
     @Binding var state: OnboardingState
     var propertyName: String
     var propertyAddress: String
+    
+    @State var propImage: UIImage
+    
+    //    @State var (focusedField != .field): Bool = false
+    // place holder text color
     @State var fieldTextColor: Color = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
 
     @State var nextButtonColor: Color = Color(red: 0.18, green: 0.21, blue: 0.22)
@@ -77,27 +82,53 @@ struct PromptInstallationView: View {
                         HStack {
                             Spacer()
                             
-                            let urlString = "\(imageApiUrl)\(self.propertyAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: 120, height: 120)
-                                .background(
-                                    
-                                    AsyncImage(url: URL(string: urlString ?? "")) { image in
-                                        image.resizable()
+                            
+                            if SessionManager.shared.newProperty!.propertyImage.starts(with: "http") {
+                                var urlString = "\(imageApiUrl)\(self.propertyAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .frame(width: 120, height: 120)
+                                    .background(
+                                        
+                                        AsyncImage(url: URL(string: urlString)) { image in
+                                            image.resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 120, height: 120)
+                                                .clipped()
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
+                                    )
+                                    .cornerRadius(24)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 24)
+                                            .inset(by: 1)
+                                            .stroke(.white, lineWidth: 2)
+                                    )
+                                
+                            } else if SessionManager.shared.newProperty!.propertyImage.starts(with: "PropertyImage") {
+                                
+                                Rectangle()
+                                    .foregroundColor(.clear)
+                                    .frame(width: 120, height: 120)
+                                    .background(
+                                        
+                                        Image(uiImage: propImage)
+                                            .resizable()
                                             .aspectRatio(contentMode: .fill)
                                             .frame(width: 120, height: 120)
                                             .clipped()
-                                    } placeholder: {
-                                        ProgressView()
-                                    }
-                                )
-                                .cornerRadius(24)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 24)
-                                        .inset(by: 1)
-                                        .stroke(.white, lineWidth: 2)
-                                )
+                                    )
+                                    .cornerRadius(24)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 24)
+                                            .inset(by: 1)
+                                            .stroke(.white, lineWidth: 2)
+                                    )
+
+                            }
+                            
+
                             Spacer()
                         }
                         Spacer()

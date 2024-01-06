@@ -9,8 +9,7 @@ import SwiftUI
 import Amplify
 import AWSCognitoAuthPlugin
 import AWSPinpointPushNotificationsPlugin
-//import AWSS3StoragePlugin
-//import AWS
+import AWSS3StoragePlugin
 
 @main
 struct TorchUIApp: App {
@@ -39,6 +38,7 @@ struct TorchUIApp: App {
             Amplify.Logging.logLevel = .debug
 
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
+            try Amplify.add(plugin: AWSS3StoragePlugin())
             try Amplify.add(
                 plugin: AWSPinpointPushNotificationsPlugin(options: [.badge, .alert, .sound])
             )

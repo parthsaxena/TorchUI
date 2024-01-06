@@ -8,6 +8,8 @@
 import Foundation
 import CoreLocation
 import LineChartView
+import Amplify
+import UIKit
 
 final class SessionManager: ObservableObject {
     
@@ -245,6 +247,48 @@ final class SessionManager: ObservableObject {
             // Send request through socket
             WebSocketManager.shared.sendData(socketRequest: req)
         }
+    }
+    
+    
+    func uploadPropertyImage(image: UIImage, imageKey: String, completion: @escaping (Result<String, Error>) -> Void) async {
+        do {
+            guard let houseImageData = image.jpegData(compressionQuality: 0.4) else {
+                return
+            }
+            
+            let uploadTask = Amplify.Storage.uploadData(
+                key: imageKey,
+                data: houseImageData
+            )
+            
+            let value = try await uploadTask.value
+            print("Completed: \(value)")
+            DispatchQueue.main.async {
+                completion(.success(value))
+            }
+            
+        } catch {
+            print("Error: \(error)")
+            DispatchQueue.main.async {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getPropertyImageUrl(imageKey: String, completion: @escaping (Result<URL, Error>) -> Void) async {
+        do {
+            let url = try await Amplify.Storage.getURL(key: imageKey)
+            print("Completed: \(url)")
+            DispatchQueue.main.async {
+                completion(.success(url))
+            }
+        } catch {
+            print("Error: \(error)")
+            DispatchQueue.main.async {
+                completion(.failure(error))
+            }
+        }
+        
     }
     
     func updateDevices(properties: [String : [String: Any]]) {
@@ -1003,20 +1047,25 @@ final class SessionManager: ObservableObject {
         }
     }
     
-    func updateProperty(propertyIndex: Int, propertyName: String, propertyAddress: String, placemark: CLLocationCoordinate2D) {
+    func updateProperty(propertyIndex: Int, propertyName: String, propertyAddress: String, propertyImage: String, placemark: CLLocationCoordinate2D) {
+        
+        print("update property, got: \(propertyName) \(propertyAddress) \(propertyImage)")
+        
         let request = SocketRequest(
             route: "updateProperty",
             data: [
                 "property_id" : self.properties[self.selectedPropertyIndex].id,
                 "property_name": propertyName,
-                "property_address": propertyAddress
+                "property_address": propertyAddress,
+                "property_image": propertyImage
             ],
             completion: { data in
                 print("Update Property: \(data)")
                 self.properties[self.selectedPropertyIndex].coordinate = placemark
                 self.properties[self.selectedPropertyIndex].propertyName = propertyName
                 self.properties[self.selectedPropertyIndex].propertyAddress = propertyAddress
-                self.propertyUpdated = true                
+                self.properties[self.selectedPropertyIndex].propertyImage = propertyImage
+                self.propertyUpdated = true
         })
         WebSocketManager.shared.sendData(socketRequest: request)
     }
