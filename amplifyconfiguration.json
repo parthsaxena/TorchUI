@@ -1,6 +1,19 @@
 {
     "UserAgent": "aws-amplify-cli/2.0",
     "Version": "1.0",
+    "analytics": {
+        "plugins": {
+            "awsPinpointAnalyticsPlugin": {
+                "pinpointAnalytics": {
+                    "appId": "fe6d4da3862046598388372b9568f210",
+                    "region": "us-west-2"
+                },
+                "pinpointTargeting": {
+                    "region": "us-west-2"
+                }
+            }
+        }
+    },
     "notifications": {
         "plugins": {
             "awsPinpointPushNotificationsPlugin": {
@@ -16,6 +29,17 @@
                 "Version": "0.1.0",
                 "IdentityManager": {
                     "Default": {}
+                },
+                "PinpointAnalytics": {
+                    "Default": {
+                        "AppId": "fe6d4da3862046598388372b9568f210",
+                        "Region": "us-west-2"
+                    }
+                },
+                "PinpointTargeting": {
+                    "Default": {
+                        "Region": "us-west-2"
+                    }
                 },
                 "CredentialsProvider": {
                     "CognitoIdentity": {
@@ -57,7 +81,22 @@
                             "EMAIL"
                         ]
                     }
+                },
+                "S3TransferUtility": {
+                    "Default": {
+                        "Bucket": "torchs3bucket184659-dev",
+                        "Region": "us-west-2"
+                    }
                 }
+            }
+        }
+    },
+    "storage": {
+        "plugins": {
+            "awsS3StoragePlugin": {
+                "bucket": "torchs3bucket184659-dev",
+                "region": "us-west-2",
+                "defaultAccessLevel": "guest"
             }
         }
     }

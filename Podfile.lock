@@ -14,6 +14,8 @@ PODS:
     - AWSCore (= 2.33.7)
   - AWSPinpoint (2.33.7):
     - AWSCore (= 2.33.7)
+  - AWSS3 (2.33.7):
+    - AWSCore (= 2.33.7)
   - Google-Maps-iOS-Utils (4.2.2):
     - Google-Maps-iOS-Utils/Clustering (= 4.2.2)
     - Google-Maps-iOS-Utils/Geometry (= 4.2.2)
@@ -54,6 +56,7 @@ PODS:
 DEPENDENCIES:
   - AWSMobileClient
   - AWSPinpoint
+  - AWSS3
   - Google-Maps-iOS-Utils (~> 4.2.2)
   - GoogleMaps (~> 7.3)
   - MapboxMaps (= 10.16.0)
@@ -68,6 +71,7 @@ SPEC REPOS:
     - AWSCore
     - AWSMobileClient
     - AWSPinpoint
+    - AWSS3
     - Google-Maps-iOS-Utils
     - GoogleMaps
     - MapboxCommon
@@ -93,6 +97,7 @@ SPEC CHECKSUMS:
   AWSCore: 10aacb924ce957fa8d15e727a80f41740d90fed8
   AWSMobileClient: a509c1dfb7a08d018ce73e5f88099054668889b3
   AWSPinpoint: 39d5155323703a6a868202355ced1ef0dd8d59e2
+  AWSS3: b609ef5469feac85ade073404d113951bebfc9fc
   Google-Maps-iOS-Utils: f77eab4c4326d7e6a277f8e23a0232402731913a
   GoogleMaps: 032f676450ba0779bd8ce16840690915f84e57ac
   MapboxCommon: 8592a003eae487508461d452d62cfc5906a9682a
@@ -103,6 +108,6 @@ SPEC CHECKSUMS:
   SwiftUI-Shimmer: 26954ba07da310a50e24a3e54ce5684951ebbc17
   Turf: 13d1a92d969ca0311bbc26e8356cca178ce95da2
 
-PODFILE CHECKSUM: 955aa11fcd062259f11437ff4e6d119449eaadb4
+PODFILE CHECKSUM: 82352a42dc70e25579686ce4c487a6d16420ac68
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.12.1

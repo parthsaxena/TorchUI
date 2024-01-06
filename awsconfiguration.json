@@ -4,6 +4,17 @@
     "IdentityManager": {
         "Default": {}
     },
+    "PinpointAnalytics": {
+        "Default": {
+            "AppId": "fe6d4da3862046598388372b9568f210",
+            "Region": "us-west-2"
+        }
+    },
+    "PinpointTargeting": {
+        "Default": {
+            "Region": "us-west-2"
+        }
+    },
     "CredentialsProvider": {
         "CognitoIdentity": {
             "Default": {
@@ -43,6 +54,12 @@
             "verificationMechanisms": [
                 "EMAIL"
             ]
+        }
+    },
+    "S3TransferUtility": {
+        "Default": {
+            "Bucket": "torchs3bucket184659-dev",
+            "Region": "us-west-2"
         }
     }
 }

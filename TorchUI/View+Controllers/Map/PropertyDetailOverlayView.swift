@@ -82,7 +82,7 @@ struct PropertyDetailOverlayView: View {
                                 Spacer()
                                     .frame(width: 15)
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(property.propertyName)
+                                    Text(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName)
                                         .font(Font.custom("Manrope-SemiBold", size: 16))
                                         .kerning(-1)
                                         .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)

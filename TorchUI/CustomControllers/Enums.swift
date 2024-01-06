@@ -28,6 +28,7 @@ enum AppState {
     case properties
     case viewProperty
     case viewAnalytics
+    case updateProperty
 }
 
 enum FocusField: Hashable {

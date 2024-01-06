@@ -14,6 +14,7 @@ final class SessionManager: ObservableObject {
     static var shared = SessionManager()
     private let RED_THRESHOLD = 80
     private let YELLOW_THRESHOLD = 60
+    @Published var propertyUpdated = false
     
     @Published var latestTimestampDict: [String : Date] = [:]
     @Published var properties: [Property] = []
@@ -25,6 +26,7 @@ final class SessionManager: ObservableObject {
 //    @Published var deviceAnalytics: [String : [String: [[String: String]]]] = [:]
     @Published var deviceAnalytics: [String : [String: [String: LineChartParameters]]] = [:]
     
+    @Published var lastAppState: AppState? = nil
     @Published var appState: AppState = .properties
     
     @Published var alerts: [AlertModel] = []
@@ -999,6 +1001,24 @@ final class SessionManager: ObservableObject {
                 self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneMonth)
             }
         }
+    }
+    
+    func updateProperty(propertyIndex: Int, propertyName: String, propertyAddress: String, placemark: CLLocationCoordinate2D) {
+        let request = SocketRequest(
+            route: "updateProperty",
+            data: [
+                "property_id" : self.properties[self.selectedPropertyIndex].id,
+                "property_name": propertyName,
+                "property_address": propertyAddress
+            ],
+            completion: { data in
+                print("Update Property: \(data)")
+                self.properties[self.selectedPropertyIndex].coordinate = placemark
+                self.properties[self.selectedPropertyIndex].propertyName = propertyName
+                self.properties[self.selectedPropertyIndex].propertyAddress = propertyAddress
+                self.propertyUpdated = true                
+        })
+        WebSocketManager.shared.sendData(socketRequest: request)
     }
 
     

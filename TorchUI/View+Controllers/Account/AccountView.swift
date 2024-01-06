@@ -49,11 +49,24 @@ struct AccountView: View {
                         PropertiesView()
                     }
                 } else if sessionManager.appState == .viewProperty {
+//                    if sessionManager.lastAppState != nil && sessionManager.lastAppState == .updateProperty {
+//                        MainMapView()
+//                            .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
+//                            .zIndex(2)
+//                    } else {
+//                        MainMapView()
+//                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+//                            .zIndex(2)
+//                    }
                     MainMapView()
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
                         .zIndex(2)
                 } else if sessionManager.appState == .viewAnalytics {
                     AnalyticsSwiftUIView()
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+                        .zIndex(2)
+                } else if sessionManager.appState == .updateProperty {
+                    UpdatePropertyView()
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
                         .zIndex(2)
                 }

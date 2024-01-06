@@ -3478,12 +3478,9 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
         dragOffset = .zero
     }
     
-    func addMarkersToViewController(vc: MapboxViewController, context: Context) {
-        vc.annotationManager = vc.mapView.annotations.makePointAnnotationManager()
-        
-        // Build property icon view
+    func addPropertyIconMarker(vc: MapboxViewController) {
         let customView = PropertyIconView.instanceFromNib()
-        customView.configure(with: SessionManager.shared.selectedProperty?.propertyName ?? "")
+        customView.configure(with: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName)
         
         let rectShape = CAShapeLayer()
         rectShape.bounds = customView.frame
@@ -3499,14 +3496,55 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
         customView.layer.shadowRadius = 4
         
         customView.propertyMainView.layoutIfNeeded()
-        customView.propertyLabel.text = SessionManager.shared.selectedProperty?.propertyName ?? ""
+        customView.propertyLabel.text = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName
         if let torchGreen = CustomColors.TorchGreen.cgColor {
             customView.propertyLabel.textColor = UIColor(cgColor: torchGreen)
         }
         customView.propertyMainView.backgroundColor = UIColor.white
-        customView.configure(with: SessionManager.shared.selectedProperty?.propertyName ?? "")
+        customView.configure(with: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName)
         print("Got width conf: \(customView.frame.width)")
-        if let coordinate = sessionManager.selectedProperty?.coordinate {
+        if let coordinate = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].coordinate {
+            let propertyAnnotationOptions = ViewAnnotationOptions(
+                geometry: Point(coordinate),
+                width: customView.frame.width,
+                height: 50,
+                allowOverlap: false,
+                anchor: .left
+            )
+            try? vc.mapView.viewAnnotations.add(customView, options: propertyAnnotationOptions)
+        }
+    }
+    
+    func addMarkersToViewController(vc: MapboxViewController, context: Context) {
+        vc.annotationManager = vc.mapView.annotations.makePointAnnotationManager()
+        
+        // Build property icon view
+        let customView = PropertyIconView.instanceFromNib()
+        customView.configure(with: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName)
+        
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = customView.frame
+        rectShape.position = customView.center
+        rectShape.path = UIBezierPath(roundedRect: CGRectMake(0, 0, customView.propertyMainView.bounds.width, customView.propertyMainView.bounds.height), byRoundingCorners: [.topRight, .bottomRight], cornerRadii: CGSize(width: 50, height: 50)).cgPath
+        
+        print("Creating rectshape: \(CGRectMake(0, 0, customView.propertyMainView.bounds.width, customView.propertyMainView.bounds.height))")
+        customView.propertyMainView.layer.mask = rectShape
+        
+        customView.layer.shadowColor = UIColor.black.cgColor
+        customView.layer.shadowOpacity = 0.2
+        customView.layer.shadowOffset = .zero
+        customView.layer.shadowRadius = 4
+        
+        customView.propertyMainView.layoutIfNeeded()
+        customView.propertyLabel.text = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName
+        if let torchGreen = CustomColors.TorchGreen.cgColor {
+            customView.propertyLabel.textColor = UIColor(cgColor: torchGreen)
+        }
+        customView.propertyMainView.backgroundColor = UIColor.white
+        customView.configure(with: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName)
+        print("Got width conf: \(customView.frame.width)")
+        vc.mapView.viewAnnotations.removeAll()
+        if let coordinate = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].coordinate {
             let propertyAnnotationOptions = ViewAnnotationOptions(
                 geometry: Point(coordinate),
                 width: customView.frame.width,
@@ -3546,6 +3584,13 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: MapboxViewController, context: Context) {
         // print("Panning0: \(self.sensorTapped)")
+        if (SessionManager.shared.propertyUpdated) {
+            print("Update UI add annots trigger")
+            SessionManager.shared.propertyUpdated = false
+            self.addMarkersToViewController(vc: uiViewController, context: context)
+            return
+        }
+        
         print("GOOOO2 mapOff: \(self.mapOffset)")
         if (self.moveToUserTapped) {
             print("offset: 1")

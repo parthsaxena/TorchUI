@@ -9,6 +9,8 @@ import SwiftUI
 import Amplify
 import AWSCognitoAuthPlugin
 import AWSPinpointPushNotificationsPlugin
+//import AWSS3StoragePlugin
+//import AWS
 
 @main
 struct TorchUIApp: App {
