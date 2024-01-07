@@ -22,7 +22,7 @@ struct GraphView: View {
     @State private var showToast = false
     @State private var toastMessage = ""
     
-    let dataPoints: [CGFloat] = [0, 20, 60, 20, 50, 20, 40]
+    let dataPoints: [CGFloat] = [0, 300, 120, 20, 150, 200, 400, 100]
     let yAxisRange: ClosedRange<CGFloat> = 0...1000
     let yAxisStep: CGFloat = 200 // Adjust as needed
     
@@ -35,21 +35,21 @@ struct GraphView: View {
                         let yAxisValue = CGFloat(index) * yAxisStep
                         let yCoordinate = getYCoordinate(for: yAxisValue, in: yAxisRange, with: 30)
 
-                        Text("\(Int(yAxisValue))")
-                            .frame(width: 35, alignment: .trailing)
+                        Text("\(Int(Int(yAxisStep) * (5 - index)))")
+                            .frame(width: 27, alignment: .leading)
                             .padding(.trailing, 0)
-                            .position(x: 0, y: yCoordinate)
-                            .font(Font.custom("Manrope-SemiBold", size: 12.0))
+                            .position(x: 10, y: yCoordinate)
+                            .font(Font.custom("Manrope-SemiBold", size: 10.0))
 
                         // Horizontal lines
                         Path { path in
-                            path.move(to: CGPoint(x: 35, y: yCoordinate - 17))
-                            path.addLine(to: CGPoint(x: geometry.size.width, y: yCoordinate - 17))
+                            path.move(to: CGPoint(x: 27, y: yCoordinate - 20))
+                            path.addLine(to: CGPoint(x: geometry.size.width, y: yCoordinate - 20))
                         }
                         .stroke(Color.gray.opacity(0.5), lineWidth: 0.5)
                     }
                 }
-                .frame(height: 30)
+                .frame(height: 240)
                 GraphLine(dataPoints: dataPoints)
                     .stroke(
                         LinearGradient(
@@ -60,17 +60,18 @@ struct GraphView: View {
                         lineWidth: 3
                     )
                     .frame(height: 180)
-                    .padding()
-                
+                    .padding(.trailing, 5)
+                    .padding(.leading, 27)
+//
                 if let lastPoint = dataPoints.last {
-                    let yCoordinate = 180 - lastPoint * (180 / dataPoints.max()!)
+                    let yCoordinate = 180 - lastPoint * (180 / 1000)
                     let _ = print("circle y point: \(yCoordinate)")
                     Circle()
                         .fill(Color.red)
                         .frame(width: 15, height: 15)
                         .overlay(Circle().stroke(Color.white, lineWidth: 2))
                         .shadow(color: Color.black.opacity(0.5), radius: 3, x: 0, y: 2)
-                        .position(x: CGFloat(geometry.size.width - 17.5), y: yCoordinate + 15)
+                        .position(x: CGFloat(geometry.size.width - 7.5), y: yCoordinate + 30)
                         .onTapGesture {
                             showToast = true
                             toastMessage = "14:15 - 599 C"
@@ -78,6 +79,7 @@ struct GraphView: View {
                         .toast(isPresented: $showToast, duration: 2, message: toastMessage, yCoordinate: yCoordinate)
                 }
             }
+            .padding(.top, -30)
         }
     }
     
@@ -105,7 +107,7 @@ extension View {
                         }
                     }
                     .edgesIgnoringSafeArea(.all)
-                    .position(x: CGFloat(geometry.size.width - 50), y: yCoordinate - 20)
+                    .position(x: CGFloat(geometry.size.width - 40), y: yCoordinate)
                 }
             }
         }
@@ -121,7 +123,7 @@ struct GraphLine: Shape {
         guard dataPoints.count > 1 else { return path }
         
         let xScale = rect.width / CGFloat(dataPoints.count - 1)
-        let yScale = rect.height / dataPoints.max()!
+        let yScale = rect.height / 1000//dataPoints.max()!
         path.move(to: CGPoint(x: 0, y: rect.height - dataPoints[0] * yScale))
         
         for i in 1..<dataPoints.count {

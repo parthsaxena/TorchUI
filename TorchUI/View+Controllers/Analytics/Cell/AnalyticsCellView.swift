@@ -12,9 +12,9 @@ import LineChartView
 struct AnalyticsCellView: View {
     
     @State private var isDropdownExpanded = false
-    @State private var selectedOptions: String = "Option 1"
+    @State private var selectedOptions: String = "60 min"
 
-    let options = ["Option 1", "Option 2", "Option 3"]
+    let options = ["5 min", "10 min", "30 min", "60 min", "1 day"]
     
     var item: Item
     var action: () -> Void
@@ -103,7 +103,7 @@ struct AnalyticsCellView: View {
                 if isDropdownExpanded {
                     HStack {
                         Spacer()
-                        VStack(spacing: 8) {
+                        VStack(spacing: 5) {
                             ForEach(options, id: \.self) { option in
                                 Button(action: {
 //                                    selectedOptions = option
@@ -119,15 +119,18 @@ struct AnalyticsCellView: View {
                                             .resizable()
                                             .frame(width: 18, height: 18)
                                     }
-                                    .frame(width: 120, height: 35)
+                                    .frame(width: 100, height: 30)
                                 }
                             }
+//                            Spacer()
                         }
                         .padding()
                         .background(Color.white)
-                        .cornerRadius(8)
+                        .cornerRadius(12)
                         .shadow(radius: 5)
                     }
+                    .padding(.top, -160)
+                    .padding(.trailing, -10)
                 }
             }
         }
