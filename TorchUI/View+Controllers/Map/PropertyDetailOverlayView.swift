@@ -10,6 +10,7 @@ import CoreLocation
 import GoogleMaps
 import CodeScanner
 import MapboxMaps
+import AmplifyImage
 
 struct PropertyDetailOverlayView: View {
     
@@ -65,24 +66,47 @@ struct PropertyDetailOverlayView: View {
                         VStack {
                             // Property heading
                             HStack(alignment: .center) {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 60, height: 60)
-                                    .background(
-                                        AsyncImage(url: URL(string: property.propertyImage)) { image in
-                                            image.resizable()
+                                if SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyImage.starts(with: "http") {
+                                    Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 60, height: 60)
+                                        .background(
+                                            AsyncImage(url: URL(string: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyImage)) { image in
+                                                image.resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 60, height: 60)
+                                                    .clipped()
+                                            } placeholder: {
+                                                ProgressView()
+                                            }
+                                        )
+                                        .cornerRadius(12)
+
+                                } else if SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyImage.starts(with: "PropertyImage") {
+                                
+                                    Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 60, height: 60)
+                                        .background(
+                                            AmplifyImage(key: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyImage)
+                                                .kfImage.placeholder({
+//                                                    Image("Property")
+//                                                        .opacity(0.6)
+                                                    ProgressView()
+                                                })
+                                                .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 60, height: 60)
                                                 .clipped()
-                                        } placeholder: {
-                                            ProgressView()
-                                        }
-                                    )
-                                    .cornerRadius(12)
+                                            
+                                        )
+                                        .cornerRadius(12)
+                                }
+                                
                                 Spacer()
                                     .frame(width: 15)
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(property.propertyName)
+                                    Text(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName)
                                         .font(Font.custom("Manrope-SemiBold", size: 16))
                                         .kerning(-1)
                                         .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)

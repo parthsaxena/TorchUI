@@ -202,6 +202,9 @@ struct MainMapView: View {
                                     combinedBinding.wrappedValue = false
                                     dismiss()
                                 }
+                                Button("Edit location") {
+                                    SessionManager.shared.appState = .updateProperty
+                                }
                             }
                         
 //                    }
@@ -320,6 +323,9 @@ struct MainMapView: View {
                                 }
                                 combinedBinding.wrappedValue = false
                                 dismiss()
+                            }
+                            Button("Edit location") {
+                                SessionManager.shared.appState = .updateProperty
                             }
                         }
                     }

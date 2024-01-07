@@ -8,12 +8,15 @@
 import Foundation
 import CoreLocation
 import LineChartView
+import Amplify
+import UIKit
 
 final class SessionManager: ObservableObject {
     
     static var shared = SessionManager()
     private let RED_THRESHOLD = 80
     private let YELLOW_THRESHOLD = 60
+    @Published var propertyUpdated = false
     
     @Published var latestTimestampDict: [String : Date] = [:]
     @Published var properties: [Property] = []
@@ -25,6 +28,7 @@ final class SessionManager: ObservableObject {
 //    @Published var deviceAnalytics: [String : [String: [[String: String]]]] = [:]
     @Published var deviceAnalytics: [String : [String: [String: LineChartParameters]]] = [:]
     
+    @Published var lastAppState: AppState? = nil
     @Published var appState: AppState = .properties
     
     @Published var alerts: [AlertModel] = []
@@ -243,6 +247,48 @@ final class SessionManager: ObservableObject {
             // Send request through socket
             WebSocketManager.shared.sendData(socketRequest: req)
         }
+    }
+    
+    
+    func uploadPropertyImage(image: UIImage, imageKey: String, completion: @escaping (Result<String, Error>) -> Void) async {
+        do {
+            guard let houseImageData = image.jpegData(compressionQuality: 0.4) else {
+                return
+            }
+            
+            let uploadTask = Amplify.Storage.uploadData(
+                key: imageKey,
+                data: houseImageData
+            )
+            
+            let value = try await uploadTask.value
+            print("Completed: \(value)")
+            DispatchQueue.main.async {
+                completion(.success(value))
+            }
+            
+        } catch {
+            print("Error: \(error)")
+            DispatchQueue.main.async {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getPropertyImageUrl(imageKey: String, completion: @escaping (Result<URL, Error>) -> Void) async {
+        do {
+            let url = try await Amplify.Storage.getURL(key: imageKey)
+            print("Completed: \(url)")
+            DispatchQueue.main.async {
+                completion(.success(url))
+            }
+        } catch {
+            print("Error: \(error)")
+            DispatchQueue.main.async {
+                completion(.failure(error))
+            }
+        }
+        
     }
     
     func updateDevices(properties: [String : [String: Any]]) {
@@ -1001,6 +1047,29 @@ final class SessionManager: ObservableObject {
                 self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneMonth)
             }
         }
+    }
+    
+    func updateProperty(propertyIndex: Int, propertyName: String, propertyAddress: String, propertyImage: String, placemark: CLLocationCoordinate2D) {
+        
+        print("update property, got: \(propertyName) \(propertyAddress) \(propertyImage)")
+        
+        let request = SocketRequest(
+            route: "updateProperty",
+            data: [
+                "property_id" : self.properties[self.selectedPropertyIndex].id,
+                "property_name": propertyName,
+                "property_address": propertyAddress,
+                "property_image": propertyImage
+            ],
+            completion: { data in
+                print("Update Property: \(data)")
+                self.properties[self.selectedPropertyIndex].coordinate = placemark
+                self.properties[self.selectedPropertyIndex].propertyName = propertyName
+                self.properties[self.selectedPropertyIndex].propertyAddress = propertyAddress
+                self.properties[self.selectedPropertyIndex].propertyImage = propertyImage
+                self.propertyUpdated = true
+        })
+        WebSocketManager.shared.sendData(socketRequest: request)
     }
 
     
