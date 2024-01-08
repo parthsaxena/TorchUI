@@ -28,6 +28,7 @@ struct Detector: Hashable, Identifiable  {
     
     var lastTimestamp: Date = Date()
     var isNewlyInstalled: Bool = false
+    var mute: Bool = false
 }
 
 extension CLLocationCoordinate2D: Hashable {

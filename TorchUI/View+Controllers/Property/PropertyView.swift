@@ -48,8 +48,18 @@ struct PropertyView: View, Equatable {
     var property: Property
     var loading = false
     
+    func checkAllPropertyMutes() -> Bool {
+        for dector in property.detectors {
+            print("muted => \(dector.mute)")
+            if(!dector.mute) {
+                return false
+            }
+        }
+        return true
+    }
+    
     var body: some View {
-        let x = print("Property loading: \(self.property.loadingData)")
+        let results = checkAllPropertyMutes()
         
         HStack {
             if loading {
@@ -77,6 +87,8 @@ struct PropertyView: View, Equatable {
             
             Spacer()
                 .frame(width: 15)
+            
+            
             // Red yellow image
             if let fireImageRed = UIImage(named: "FireRed")?.cgImage, let imageOrientation = UIImage(named: "FireRed")?.imageOrientation {
                 let uiImageRed = UIImage(cgImage: (fireImageRed), scale: 4.2, orientation: imageOrientation)
@@ -93,9 +105,23 @@ struct PropertyView: View, Equatable {
                             .font(Font.custom("Manrope-SemiBold", size: 16))
                             .foregroundColor(colorScheme == .dark ? Color.white : Color(red: 0.27, green: 0.32, blue: 0.33))
                     } else {
-                        Text("\(property.propertyName)")
-                            .font(Font.custom("Manrope-SemiBold", size: 16))
-                            .foregroundColor(colorScheme == .dark ? Color.white : Color(red: 0.27, green: 0.32, blue: 0.33))
+                        HStack {
+                            Text("\(property.propertyName)")
+                                .font(Font.custom("Manrope-SemiBold", size: 16))
+                                .foregroundColor(colorScheme == .dark ? Color.white : Color(red: 0.27, green: 0.32, blue: 0.33))
+                            
+                            if(checkAllPropertyMutes()) {
+                                Image("mute")
+                                    .resizable()
+                                    .foregroundStyle(.black)
+                                    .frame(width: 17, height: 12)
+                                    .aspectRatio(contentMode: .fit)
+                                let x = print("muted images is shown")
+                            } else {
+                                Image("")
+                                let x = print("muted images is false")
+                            }
+                        }
                     }
                     
                     if loading {

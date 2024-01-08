@@ -15,7 +15,7 @@ struct MainPropertiesView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
+//            ScrollView {
                 Rectangle()
                     .fill(.clear)
                     .frame(height: 90)
@@ -57,11 +57,12 @@ struct MainPropertiesView: View {
                             }
                         }
                         
-                        VStack {
+                        List {
                             
                             ForEach(Array(sessionManager.properties.enumerated()), id: \.element) { idx, property in
                                 PropertyView(property: property)
-                                    .equatable()
+//                                    .equatable()
+                                    .listRowSeparator(.hidden)
                                     .onTapGesture {
                                         let impactMed = UIImpactFeedbackGenerator(style: .medium)
                                         impactMed.impactOccurred()
@@ -72,6 +73,36 @@ struct MainPropertiesView: View {
                                             SessionManager.shared.appState = .viewProperty
                                         }
                                     }
+                                    .swipeActions {
+                                        Button(action: {
+                                            SessionManager.shared.muteAllSensorOfProperty(property: property)
+                                        }) {
+                                            VStack(spacing: 4) {
+                                                Image("mute")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 11, height: 11)
+                                                
+                                                Text("Mute")
+                                                    .font(Font.custom("Manrope-Bold", size: 14))
+                                            }
+                                        }
+                                        .tint(Color(uiColor: UIColor(red: 247/255, green: 144/255, blue: 9/255, alpha: 1)))
+                                    }
+                                    .swipeActions {
+                                        Button(action: {}) {
+                                            VStack(spacing: 4) {
+                                                Image("delete")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 28, height: 28)
+                                                
+                                                Text("Delete")
+                                                    .font(Font.custom("Manrope-Bold", size: 14))
+                                            }
+                                        }
+                                        .tint(Color(uiColor: UIColor(red: 240/255, green: 68/255, blue: 56/255, alpha: 1)))
+                                    }
                                 
                                 if idx < SessionManager.shared.properties.count - 1 {
                                     Divider()
@@ -79,6 +110,7 @@ struct MainPropertiesView: View {
                                 }
                             }
                         }
+                        .listStyle(PlainListStyle())
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 16)
@@ -94,7 +126,7 @@ struct MainPropertiesView: View {
                     .fill(.clear)
                     .frame(height: 100)
                     .contentShape(Rectangle())
-            }
+//            }
         }
     }
 }

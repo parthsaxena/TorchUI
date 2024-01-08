@@ -140,7 +140,7 @@ final class SessionManager: ObservableObject {
                 "user_id": userID
             ],
             completion: { data in
-
+//                print("All properties data => \(data)")
             guard let result = data["result"] as? [String: Any] else {
 
                 DispatchQueue.main.async {
@@ -614,6 +614,19 @@ final class SessionManager: ObservableObject {
         }
     }
     
+    func muteAllSensorOfProperty(property: Property) {
+        property.detectors.forEach { detector in
+            muteSensor(device_id: detector.id, property_id: property.id)
+            print("mutes => \(detector.mute)")
+        }
+    }
+    
+    func unmuteAllSensorOfProperty(property: Property) {
+        property.detectors.forEach { detector in
+            unmuteSensor(device_id: detector.id, property_id: property.id)
+        }
+    }
+    
     func muteSensor(device_id: String, property_id: String) {
         let req = SocketRequest(route: "muteSensor",
                                 data: [
@@ -795,7 +808,7 @@ final class SessionManager: ObservableObject {
                 let deviceMeasurements = device["measurements"] as? [String: Any]
                 let latitude = device["latitude"] as? Double
                 let longitude = device["longitude"] as? Double
-                
+                let mute = (device["mute"] as? Bool) ?? false
                 var deviceBattery = 0.0
                 var fireRatingNumber = 0
                 var fireRating = "0"
@@ -889,6 +902,7 @@ final class SessionManager: ObservableObject {
                 detector.coordinate = CLLocationCoordinate2D(latitude: latitude ?? 0.0, longitude: longitude ?? 0.0)
                 detector.sensorIdx = sensorIdx
                 detector.deviceBattery = deviceBattery
+                detector.mute = mute
                 self.latestTimestampDict[deviceID ?? ""] = lastTimestamp
                 detector.threat = overallStatus
                 

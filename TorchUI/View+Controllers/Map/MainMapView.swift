@@ -66,6 +66,8 @@ struct MainMapView: View {
     @State var showingDeletePropertyOptions: Bool = false
     @State var showingDeleteDetectorOptions: Bool = false
     
+    @State private var showDetectorMenu = false
+    
     var combinedBinding: Binding<Bool> {
         Binding(
             get: {
@@ -97,6 +99,7 @@ struct MainMapView: View {
                 let THRESHOLD = 150.0
                 let ANIMATION_DURATION = 2.0
                 let slideTransition: AnyTransition = AnyTransition.move(edge: .bottom)
+                
                 
                 
                 if !isConfirmingLocation {
@@ -160,49 +163,51 @@ struct MainMapView: View {
                                     }
                             )
                             .transition(slideTransition)
-                            .confirmationDialog("Select a color", isPresented: combinedBinding, titleVisibility: .hidden) {
-                                Button(showingDeletePropertyOptions ? "Delete property" : "Delete detector", role: .destructive) {
-                                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                    impactMed.impactOccurred()
-                                    if (showingDeletePropertyOptions) {
-                                        SessionManager.shared.deleteProperty()
-                                        withAnimation {
-                                            SessionManager.shared.appState = .properties
-                                        }
-                                    } else if (showingDeleteDetectorOptions) {
-                                        withAnimation(.easeIn(duration: 0.1)) {
-                                            self.dragOffset = .zero
-                                        }
-                                        DispatchQueue.main.async {
-                                            print("comp0: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count)")
-                                            showDetectorDetails.toggle(); dragOffset = .zero
-                                            if (SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count <= 1) {
-                                                withAnimation {
-                                                    print("Setting app state \(SessionManager.shared.appState)")
-                                                    //                                                SessionManager.shared.appState = .properties
-                                                    print("Finished app state \(SessionManager.shared.appState)")
-                                                }
-                                            }
-                                            print("comp1: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count), \(self.annotations)")
-                                            selectedDetector = nil
-                                            SessionManager.shared.deleteDetector()
-                                            
-                                            DispatchQueue.main.async {
-                                                for (i, annotation) in self.annotations.enumerated() {
-                                                    print("i, ann: \(i) \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id) \(annotation)")
-                                                    if annotation.id == SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id {
-                                                        self.annotations.remove(at: i)
-                                                        print("removed, \(self.annotations)")
-                                                        break
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    combinedBinding.wrappedValue = false
-                                    dismiss()
-                                }
-                            }
+                    
+//                            .confirmationDialog("Select a color", isPresented: combinedBinding, titleVisibility: .hidden) {
+                                
+//                                Button(showingDeletePropertyOptions ? "Delete property" : "Delete detector", role: .destructive) {
+//                                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+//                                    impactMed.impactOccurred()
+//                                    if (showingDeletePropertyOptions) {
+//                                        SessionManager.shared.deleteProperty()
+//                                        withAnimation {
+//                                            SessionManager.shared.appState = .properties
+//                                        }
+//                                    } else if (showingDeleteDetectorOptions) {
+//                                        withAnimation(.easeIn(duration: 0.1)) {
+//                                            self.dragOffset = .zero
+//                                        }
+//                                        DispatchQueue.main.async {
+//                                            print("comp0: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count)")
+//                                            showDetectorDetails.toggle(); dragOffset = .zero
+//                                            if (SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count <= 1) {
+//                                                withAnimation {
+//                                                    print("Setting app state \(SessionManager.shared.appState)")
+//                                                    //                                                SessionManager.shared.appState = .properties
+//                                                    print("Finished app state \(SessionManager.shared.appState)")
+//                                                }
+//                                            }
+//                                            print("comp1: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count), \(self.annotations)")
+//                                            selectedDetector = nil
+//                                            SessionManager.shared.deleteDetector()
+//                                            
+//                                            DispatchQueue.main.async {
+//                                                for (i, annotation) in self.annotations.enumerated() {
+//                                                    print("i, ann: \(i) \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id) \(annotation)")
+//                                                    if annotation.id == SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id {
+//                                                        self.annotations.remove(at: i)
+//                                                        print("removed, \(self.annotations)")
+//                                                        break
+//                                                    }
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                    combinedBinding.wrappedValue = false
+//                                    dismiss()
+//                                }
+//                            }
                         
 //                    }
                     
@@ -287,41 +292,41 @@ struct MainMapView: View {
                                 .ignoresSafeArea(.container)
                             }
                         }
-                        .confirmationDialog("Select a color", isPresented: combinedBinding, titleVisibility: .hidden) {
-                            Button(showingDeletePropertyOptions ? "Delete property" : "Delete sensor", role: .destructive) {
-                                
-                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                impactMed.impactOccurred()
-                                if (showingDeletePropertyOptions) {
-                                    withAnimation {
-                                        SessionManager.shared.appState = .properties
-                                    }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                        SessionManager.shared.deleteProperty()
-                                    }
-                                } else if (showingDeleteDetectorOptions) {
-                                    DispatchQueue.main.async {
-                                        for (i, annotation) in self.annotations.enumerated() {
-                                            if annotation.id == SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id {
-                                                self.annotations.remove(at: i)
-                                                print("removed, \(self.annotations)")
-                                                break
-                                            }
-                                        }
-                                    }
-                                    
-                                    SessionManager.shared.deleteDetector()
-                                    
-                                    withAnimation(.easeIn(duration: 0.1)) {
-                                        self.dragOffset = .zero
-                                    }
-                                    showDetectorDetails.toggle(); dragOffset = .zero
-                                    selectedDetector = nil
-                                }
-                                combinedBinding.wrappedValue = false
-                                dismiss()
-                            }
-                        }
+//                        .confirmationDialog("Select a color", isPresented: combinedBinding, titleVisibility: .hidden) {
+//                            Button(showingDeletePropertyOptions ? "Delete property" : "Delete sensor", role: .destructive) {
+//                                
+//                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+//                                impactMed.impactOccurred()
+//                                if (showingDeletePropertyOptions) {
+//                                    withAnimation {
+//                                        SessionManager.shared.appState = .properties
+//                                    }
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                                        SessionManager.shared.deleteProperty()
+//                                    }
+//                                } else if (showingDeleteDetectorOptions) {
+//                                    DispatchQueue.main.async {
+//                                        for (i, annotation) in self.annotations.enumerated() {
+//                                            if annotation.id == SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id {
+//                                                self.annotations.remove(at: i)
+//                                                print("removed, \(self.annotations)")
+//                                                break
+//                                            }
+//                                        }
+//                                    }
+//                                    
+//                                    SessionManager.shared.deleteDetector()
+//                                    
+//                                    withAnimation(.easeIn(duration: 0.1)) {
+//                                        self.dragOffset = .zero
+//                                    }
+//                                    showDetectorDetails.toggle(); dragOffset = .zero
+//                                    selectedDetector = nil
+//                                }
+//                                combinedBinding.wrappedValue = false
+//                                dismiss()
+//                            }
+//                        }
                     }
                 }
                 // Overlay
@@ -499,6 +504,126 @@ struct MainMapView: View {
                         Spacer()
                             .frame(height: self.mapOffset.height)
                     }
+                }
+                
+                if combinedBinding.wrappedValue {
+                    HStack {
+                        Spacer()
+                        VStack(alignment: .leading, spacing: 0) {
+                            
+                            Button(action: {
+                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                impactMed.impactOccurred()
+                                let selectedPropertyID  = sessionManager.properties[sessionManager.selectedPropertyIndex].id
+                                let selectedDetectorID  = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].id
+                                sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].mute ? SessionManager.shared.unmuteSensor(device_id: selectedDetectorID, property_id: selectedPropertyID) : SessionManager.shared.muteSensor(device_id: selectedDetectorID, property_id: selectedPropertyID)
+                                combinedBinding.wrappedValue = false
+                            }) {
+                                HStack(alignment: .center, spacing: 8) {
+                                    Image("volume-x")
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .foregroundColor(CustomColors.TorchGreen)
+                                        .frame(width: 20, height: 20)
+                                    Text(sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].mute ? "Unmute sensor" : "Mute sensor")
+                                        .font(.custom("Manrope-SemiBold", size: 16))
+                                        .foregroundColor(CustomColors.TorchGreen)
+                                    Spacer()
+                                }
+                                .padding(.leading, 16)
+                                .padding(.vertical, 12)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            }
+                            
+                            Button(action: {
+                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                impactMed.impactOccurred()
+                                combinedBinding.wrappedValue = false
+                                
+                            }) {
+                                HStack(alignment: .center, spacing: 8) {
+                                    Image("info-circle")
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .foregroundColor(CustomColors.TorchGreen)
+                                        .frame(width: 20, height: 20)
+                                    Text("Information")
+                                        .font(.custom("Manrope-SemiBold", size: 16))
+                                        .foregroundColor(CustomColors.TorchGreen)
+                                    Spacer()
+                                }
+                                .padding(.leading, 16)
+                                .padding(.vertical, 12)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            }
+                            
+                            Button(action: {
+                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                impactMed.impactOccurred()
+                                combinedBinding.wrappedValue = false
+                                
+                            }) {
+                                HStack(alignment: .center, spacing: 8) {
+                                    Image("line-chart-up-01")
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .foregroundColor(CustomColors.TorchGreen)
+                                        .frame(width: 20, height: 20)
+                                    Text("View detailed analytics")
+                                        .font(.custom("Manrope-SemiBold", size: 16))
+                                        .foregroundColor(CustomColors.TorchGreen)
+                                    Spacer()
+                                }
+                                .padding(.leading, 16)
+                                .padding(.vertical, 12)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            }
+                            
+                            Button(action: {
+                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                impactMed.impactOccurred()
+                                combinedBinding.wrappedValue = false
+                                    //                                        DispatchQueue.main.async {
+                                    //                                            SessionManager.shared.deleteDetector()
+                                    //                                        }
+                                
+                                showingDeleteDetectorOptions = true
+                                
+                            }) {
+                                HStack(alignment: .center, spacing: 8) {
+                                    Image("trash-03")
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .foregroundColor(CustomColors.TorchRed)
+                                        .frame(width: 20, height: 20)
+                                    Text("Delete sensor")
+                                        .font(.custom("Manrope-SemiBold", size: 16))
+                                        .foregroundColor(CustomColors.TorchRed)
+                                    Spacer()
+                                }
+                                .padding(.leading, 16)
+                                .padding(.vertical, 12)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            }
+                        }
+                            //                                .padding(.horizontal, 16)
+                        .padding(.vertical, 4)
+                        .frame(width: 250, alignment: .topLeading)
+                        .background(.white)
+                        .cornerRadius(16)
+                        .shadow(color: Color(red: 0.18, green: 0.21, blue: 0.22).opacity(0.4), radius: 90, x: 0, y: 32)
+                        .position(x: width - 141, y: 130)
+                        Spacer()
+                    }
+                    .frame(width: width)
+                    .background(Color.gray.opacity(0.05))
+                    .offset(y: height * 0.65)
+                    .gesture(
+                        TapGesture()
+                            .onEnded { _ in
+                                combinedBinding.wrappedValue = false
+                            }
+                    )
                 }
             }
         }
