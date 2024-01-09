@@ -533,11 +533,11 @@ struct MainMapView: View {
                     }
                     .frame(width: width)
                     .background(.black.opacity(0.4))
-                    .onTapGesture {
-                        if isCopied {
-                            isCopied = false
-                        }
-                    }
+//                    .onTapGesture {
+//                        if isCopied {
+//                            isCopied = false
+//                        }
+//                    }
                 }
                 
             }

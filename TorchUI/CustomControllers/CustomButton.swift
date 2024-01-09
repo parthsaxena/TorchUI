@@ -126,9 +126,10 @@ struct ZoomInButton: View {
             } label: {
                 Circle()
                     .fill(Color.clear)
-                    .frame(width: 60.0, height: 60.0)
+                    .frame(width: 48.0, height: 48.0)
             }
         }
+        .padding(4)
         .shadow(color: CustomColors.LightGray, radius: 15.0)
     }
 }
@@ -155,9 +156,10 @@ struct ZoomOutButton: View {
             } label: {
                 Circle()
                     .fill(Color.clear)
-                    .frame(width: 60.0, height: 60.0)
+                    .frame(width: 48.0, height: 48.0)
             }
         }
+        .padding(4)
         .shadow(color: CustomColors.LightGray, radius: 15.0)
     }
 }
@@ -181,9 +183,10 @@ struct LayersButton: View {
             } label: {
                 Circle()
                     .fill(Color.clear)
-                    .frame(width: 60.0, height: 60.0)
+                    .frame(width: 48.0, height: 48.0)
             }
         }
+        .padding(4)
         .shadow(color: CustomColors.LightGray.opacity(0.5), radius: 15.0)
     }
 }
@@ -242,9 +245,10 @@ struct MapLayerButton: View {
             } label: {
                 Circle()
                     .fill(Color.clear)
-                    .frame(width: 60.0, height: 60.0)
+                    .frame(width: 48.0, height: 48.0)
             }
         }
+        .padding(4)
         .shadow(color: CustomColors.LightGray.opacity(0.5), radius: 15.0)
     }
 }
