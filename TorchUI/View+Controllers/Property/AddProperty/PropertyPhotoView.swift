@@ -148,8 +148,13 @@ struct PropertyPhotoView: View {
                                                         .clipped()
                                                 )
                                                 .cornerRadius(24)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 24)
+                                                        .inset(by: 1)
+                                                        .stroke(.white, lineWidth: 2)
+                                                )
                                             
-                                            if (self.shouldShowSelectedImage && self.didSelectCustomImage) {
+                                            if (self.didSelectCustomImage) {
                                                 Image(systemName: "checkmark.circle.fill")
                                                     .font(Font.system(size: 24))
                                                     .foregroundStyle(Color.white, Color.blue)
@@ -157,6 +162,15 @@ struct PropertyPhotoView: View {
                                             }
                                         }
                                     )
+                                    .onReceive([didSelectCustomImage, googleMapsImageSelected].publisher) { _ in
+                                        self.nextButtonEnabled = self.didSelectCustomImage || self.googleMapsImageSelected
+                                        if self.nextButtonEnabled {
+                                            nextButtonColor = Color(red: 0.18, green: 0.21, blue: 0.22)
+                                        }else {
+                                            nextButtonColor = Color(red: 0.78, green: 0.81, blue: 0.82)
+                                        }
+                                    }
+                                    
                                     .onTapGesture {
                                         let impactMed = UIImpactFeedbackGenerator(style: .medium)
                                         impactMed.impactOccurred()
@@ -169,9 +183,9 @@ struct PropertyPhotoView: View {
                                             self.didSelectCustomImage.toggle()
                                         }
                                         
-                                        if self.didSelectCustomImage {
+//                                        if self.didSelectCustomImage {
                                             self.googleMapsImageSelected = false
-                                        }
+//                                        }
                                         
                                         self.shouldShowSelectedImage = self.image != nil
                                         
@@ -183,9 +197,11 @@ struct PropertyPhotoView: View {
                                             nextButtonColor = Color(red: 0.78, green: 0.81, blue: 0.82)
                                         }
                                         
+//                                        nextButt
+                                        
                                     }
                                     .sheet(isPresented: $shouldPresentImagePicker) {
-                                        ImagePickerView(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$image, isPresented: self.$shouldPresentImagePicker)
+                                        ImagePickerView(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$image, didSelectCustomImage: $didSelectCustomImage, isPresented: self.$shouldPresentImagePicker)
                                             .ignoresSafeArea()
                                     }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
                                         ActionSheet(title: Text("Choose an image from :"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
