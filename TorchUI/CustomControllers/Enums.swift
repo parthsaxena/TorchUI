@@ -70,6 +70,7 @@ enum AnalyticsTimespanSelection: CaseIterable {
     case oneDay
     case oneWeek
     case oneMonth
+    case oneYear
     
     var stringSpan: String {
         switch self {
@@ -78,6 +79,18 @@ enum AnalyticsTimespanSelection: CaseIterable {
             case .oneDay:     return "1d"
             case .oneWeek:    return "1w"
             case .oneMonth:   return "1mo"
+            case .oneYear:    return "1y"
+        }
+    }
+    
+    var stringTimeSpan: String {
+        switch self {
+            case .tenMinutes: return "10 Min"
+            case .oneHour:    return "1 Hour"
+            case .oneDay:     return "1 Day"
+            case .oneWeek:    return "1 Week"
+            case .oneMonth:   return "1 Month"
+            case .oneYear:    return "1 Year"
         }
     }
     
@@ -88,6 +101,7 @@ enum AnalyticsTimespanSelection: CaseIterable {
             case .oneDay:     return "24m"
             case .oneWeek:    return "168m"
             case .oneMonth:   return "12h"
+            case .oneYear:    return "146h"
         }
     }
 
@@ -98,6 +112,7 @@ enum AnalyticsTimespanSelection: CaseIterable {
             case .oneDay:     return -24 * 60 * 60
             case .oneWeek:    return -7 * 24 * 60 * 60
             case .oneMonth:   return -30 * 24 * 60 * 60
+            case .oneYear:    return -30 * 24 * 60 * 60 * 12
         }
     }
 }

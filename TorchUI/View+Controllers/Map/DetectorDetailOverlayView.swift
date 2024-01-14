@@ -739,34 +739,30 @@ struct DetectorDetailOverlayView: View {
                                             .frame(maxWidth: .infinity, alignment: .center)
                                         }
                                         
-                                        
-//                                        NavigationLink(destination: AnalyticsSwiftUIView().navigationBarBackButtonHidden(true), tag: 1, selection: $selection) {
-                                            Button(action: {
-                                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                                impactMed.impactOccurred()
-                                                showDetectorMenu = false
-                                                print("View detailed analytics")
-                                                isSecondViewActive = true
-                                                self.selection = 1
-                                                SessionManager.shared.appState = .viewAnalytics
-                                            }) {
-                                                HStack(alignment: .center, spacing: 8) {
-                                                    Image("line-chart-up-01")
-                                                        .resizable()
-                                                        .renderingMode(.template)
-                                                        .foregroundColor(CustomColors.TorchGreen)
-                                                        .frame(width: 20, height: 20)
-                                                    Text("View detailed analytics")
-                                                        .font(.custom("Manrope-SemiBold", size: 16))
-                                                        .foregroundColor(CustomColors.TorchGreen)
-                                                    Spacer()
-                                                }
-                                                .padding(.leading, 16)
-                                                .padding(.vertical, 12)
-                                                .frame(maxWidth: .infinity, alignment: .center)
+                                        Button(action: {
+                                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                            impactMed.impactOccurred()
+                                            showDetectorMenu = false
+                                            print("View detailed analytics")
+                                            isSecondViewActive = true
+                                            self.selection = 1
+                                            SessionManager.shared.appState = .viewAnalytics
+                                        }) {
+                                            HStack(alignment: .center, spacing: 8) {
+                                                Image("line-chart-up-01")
+                                                    .resizable()
+                                                    .renderingMode(.template)
+                                                    .foregroundColor(CustomColors.TorchGreen)
+                                                    .frame(width: 20, height: 20)
+                                                Text("View detailed analytics")
+                                                    .font(.custom("Manrope-SemiBold", size: 16))
+                                                    .foregroundColor(CustomColors.TorchGreen)
+                                                Spacer()
                                             }
-//                                        }
-//                                        .navigationBarBackButtonHidden(true)
+                                            .padding(.leading, 16)
+                                            .padding(.vertical, 12)
+                                            .frame(maxWidth: .infinity, alignment: .center)
+                                        }
                                         
                                         Button(action: {
                                             let impactMed = UIImpactFeedbackGenerator(style: .medium)
