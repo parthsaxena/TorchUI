@@ -117,7 +117,7 @@ struct GraphView: View {
                     )
                     .onTapGesture {
                         showToast = true
-                        toastMessage = "14:15 - \(currentDataPoint) C"
+                        toastMessage = "\(Double(currentDataPoint).rounded(toPlaces: 2)) C"
                     }
                     .toast(isPresented: $showToast, duration: 2, message: toastMessage, coordinates: circlePosition)
                     .onAppear {
@@ -159,7 +159,7 @@ struct GraphView: View {
     func getGradientColor(dataPoints: [CGFloat], touchX: CGFloat, totalWidth: CGFloat) -> Color {
         let xScale = totalWidth / CGFloat(dataPoints.count - 1)
         let index = Int((touchX) / xScale)
-        return index >= 0 && index < dataPoints.count ? interpolateColor(dataPoints[index], gradientColors: [.blue, .purple]) : lineColor
+        return index >= 0 && index < dataPoints.count ? interpolateColor(dataPoints[index], gradientColors: [.green, .red]) : lineColor
     }
     
     func interpolateColor(_ value: CGFloat, gradientColors: [Color]) -> Color {
@@ -173,31 +173,25 @@ struct GraphView: View {
         
         let fractionComplete = fraction - Double(lowerIndex)
         
-        return blendColors(lowerColor, upperColor, fraction: fractionComplete) as? Color ?? .red
+        return blendColors(lowerColor, upperColor, fraction: fractionComplete)
     }
     
-    // Separate blendColors function for clarity
-    func blendColors(_ color1: Color, _ color2: Color, fraction: Double) -> some View {
-        let invertedFraction = 1.0 - fraction
-        
-        return Rectangle()
-            .fill(
-                LinearGradient(
-                    gradient: Gradient(colors: [color1, color2]),
-                    startPoint: .leading,
-                    endPoint: .trailing
-                )
-            )
-            .opacity(invertedFraction)
-            .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [color2, color1]),
-                    startPoint: .leading,
-                    endPoint: .trailing
-                )
-                .opacity(fraction)
-                .frame(width: 1, height: 1)
-            )
+    func blendColors(_ color1: Color, _ color2: Color, fraction: Double) -> Color {
+        let cgColor1 = UIColor(color1).cgColor
+        let cgColor2 = UIColor(color2).cgColor
+
+        guard let components1 = cgColor1.components, let components2 = cgColor2.components else {
+            return .clear // Default color if components are not available
+        }
+
+        let blendedColor = Color(
+            red: CGFloat(components1[0] * (1.0 - fraction) + components2[0] * fraction),
+            green: CGFloat(components1[1] * (1.0 - fraction) + components2[1] * fraction),
+            blue: CGFloat(components1[2] * (1.0 - fraction) + components2[2] * fraction),
+            opacity: CGFloat(components1[3] * (1.0 - fraction) + components2[3] * fraction)
+        )
+
+        return blendedColor
     }
 }
 
