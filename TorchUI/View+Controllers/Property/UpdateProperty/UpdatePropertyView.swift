@@ -253,7 +253,7 @@ struct UpdatePropertyView: View {
                                         .padding(.top, 4)
                                 }
                                 .sheet(isPresented: $shouldPresentImagePicker) {
-                                    ImagePickerView(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$image, isPresented: self.$shouldPresentImagePicker)
+                                    ImagePickerView(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$image, didSelectCustomImage: self.$googleMapsImageSelected, isPresented: self.$shouldPresentImagePicker)
                                         .ignoresSafeArea()
                                 }.actionSheet(isPresented: $shouldPresentActionSheet) { () -> ActionSheet in
                                     ActionSheet(title: Text("Choose an image from :"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {

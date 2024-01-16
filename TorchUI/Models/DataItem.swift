@@ -21,5 +21,5 @@ struct Item: Identifiable, Hashable {
     var itemName: String
     var itemDescription: String
     var selectedTimeSpan: String
-    var graphLineParam: [CGFloat]
+    var graphLineParam: [AnalyticDatapoint]
 }

@@ -50,7 +50,10 @@ struct AnalyticsCellView: View {
             .padding()
             ZStack {
                 VStack {
-                    CustomGraphView(dataPoints: item.graphLineParam)
+                    let data = item.graphLineParam.map { analyticDatapoint in
+                        analyticDatapoint.datapoint
+                    }
+                    CustomGraphView(dataPoints: data)
                         .frame(height: 180)
                     Text("\(selectedOptions)")
                         .background(.clear)

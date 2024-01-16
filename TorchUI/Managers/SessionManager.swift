@@ -26,7 +26,7 @@ final class SessionManager: ObservableObject {
     
     @Published var newProperty: Property?
 //    @Published var deviceAnalytics: [String : [String: [[String: String]]]] = [:]
-    @Published var deviceAnalytics: [String : [String: [String: [CGFloat]]]] = [:]
+    @Published var deviceAnalytics: [String : [String: [String: [AnalyticDatapoint]]]] = [:]
     
     @Published var lastAppState: AppState? = nil
     @Published var appState: AppState = .properties
@@ -1109,13 +1109,20 @@ final class SessionManager: ObservableObject {
                     if !(self.deviceAnalytics[deviceId]!.keys.contains(timespan.stringSpan)) {
                         self.deviceAnalytics[deviceId]![timespan.stringSpan] = [:]
                     }
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX") // Use POSIX locale for fixed-format date strings
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSSSSS"
                     
                     for k in measurements.keys {
                         if let measurement = measurements[k] {
-                            var data: [CGFloat] = []
+                            var data: [AnalyticDatapoint] = []
                             for i in 0..<measurement.count {
+                                guard let date = dateFormatter.date(from: measurement[i]["timestamp"] ?? "") else {
+                                    continue
+                                }
+                                
                                 if let point = Double(measurement[i]["value"] ?? "") {
-                                    data.append(CGFloat(point))
+                                    data.append(AnalyticDatapoint(datapoint: point, timestamp: date))
                                 }
                             }
                             print("array data for graph before loop: \(measurement)")

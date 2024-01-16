@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct AnalyticDatapoint: Hashable {
+    var datapoint: CGFloat
+    var timestamp: Date
+}
+
 enum Threat {
     case Red
     case Yellow
