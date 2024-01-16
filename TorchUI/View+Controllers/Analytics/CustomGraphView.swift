@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CustomGraphView: View {
     
-    var dataPoints: [CGFloat]
-    init(dataPoints: [CGFloat]) {
+    var dataPoints: [AnalyticDatapoint]
+    init(dataPoints: [AnalyticDatapoint]) {
         self.dataPoints = dataPoints
     }
     var body: some View {
@@ -29,23 +29,22 @@ struct GraphView: View {
     @State private var circlePosition: CGPoint = CGPoint(x: 27, y: 0)
     @State private var circleColor: Color = .green
     @State private var isImageVisible: Bool = false
-    @State private var currentDataPoint: CGFloat = 0.0
+    @State private var currentDataPoint: AnalyticDatapoint = AnalyticDatapoint(datapoint: 0.0, timestamp: Date())
     
-    let dataPoints: [CGFloat]
+    let dataPoints: [AnalyticDatapoint]
     let yAxisRange: ClosedRange<CGFloat> = 0...1000
     let yAxisStep: CGFloat = 200 // Adjust as needed
     let lineColor: Color = .green // Adjust the line color
     let gradientColors: [Color] = [.green, .red]
     
-    init(dataPoints: [CGFloat]) {
-
-        let lastPoint = dataPoints.last ?? 0
+    init(dataPoints: [AnalyticDatapoint]) {
+        self.dataPoints = dataPoints
+        let lastPoint = dataPoints.last ?? AnalyticDatapoint(datapoint: 0.0, timestamp: Date())
         currentDataPoint = lastPoint
-        let yCoordinate = (180 - lastPoint * 0.18) + 30
+        let yCoordinate = (180 - lastPoint.datapoint * 0.18) + 30
         let point = CGPoint(x: CGFloat(27), y: yCoordinate)
         circlePosition = point
         circleColor = lineColor
-        self.dataPoints = dataPoints
     }
     
     var body: some View {
@@ -71,7 +70,10 @@ struct GraphView: View {
                     }
                 }
                 .frame(height: 240)
-                GraphLine(dataPoints: dataPoints, yAxisRange: yAxisRange, lineColor: lineColor) { point in
+                let dataPointNumericals = dataPoints.map { analyticDatapoint in
+                    analyticDatapoint.datapoint
+                }
+                GraphLine(dataPoints: dataPointNumericals, yAxisRange: yAxisRange, lineColor: lineColor) { point in
                     circlePosition = point
                 }
                 .stroke(
@@ -103,9 +105,12 @@ struct GraphView: View {
                     .gesture(DragGesture()
                         .onChanged { value in
                             let touchLocation = CGPoint(x: value.location.x, y: 0)
+                            let dataPointNumericals = dataPoints.map { analyticDatapoint in
+                                analyticDatapoint.datapoint
+                            }
                             let nearestPoint = findNearestPoint(on: dataPoints, at: touchLocation, in: geometry.size)
                             circlePosition = nearestPoint
-                            let nearestColor = getGradientColor(dataPoints: dataPoints, touchX: value.location.x, totalWidth: geometry.size.width)
+                            let nearestColor = getGradientColor(dataPoints: dataPointNumericals, touchX: value.location.x, totalWidth: geometry.size.width)
                             circleColor = nearestColor
                             isImageVisible = true
                         }
@@ -117,7 +122,10 @@ struct GraphView: View {
                     )
                     .onTapGesture {
                         showToast = true
-                        toastMessage = "\(Double(currentDataPoint).rounded(toPlaces: 2)) C"
+                        let timeFormatter = DateFormatter()
+                        timeFormatter.dateFormat = "HH:mm"
+                        let timeString = timeFormatter.string(from: currentDataPoint.timestamp)
+                        toastMessage = "\(timeString) -  \(Double(currentDataPoint.datapoint).rounded(toPlaces: 2)) C"
                     }
                     .toast(isPresented: $showToast, duration: 2, message: toastMessage, coordinates: circlePosition)
                     .onAppear {
@@ -128,13 +136,13 @@ struct GraphView: View {
         }
     }
     
-    func findNearestPoint(on dataPoints: [CGFloat], at touchLocation: CGPoint, in size: CGSize) -> CGPoint {
+    func findNearestPoint(on dataPoints: [AnalyticDatapoint], at touchLocation: CGPoint, in size: CGSize) -> CGPoint {
         let xScale = size.width / CGFloat(dataPoints.count - 1)
         var index = Int((touchLocation.x) / xScale)
         index = index >= dataPoints.count ? (dataPoints.count - 1) : index
         index = index < 0 ? 0 : index
         currentDataPoint = dataPoints[index]
-        let y = getYCoordinate(for: dataPoints[index], in: yAxisRange, with: size.height)
+        let y = getYCoordinate(for: dataPoints[index].datapoint, in: yAxisRange, with: size.height)
         return CGPoint(x: CGFloat(index) * xScale, y: y)
     }
     
@@ -149,8 +157,10 @@ struct GraphView: View {
     }
     
     func updatePostion(x: CGFloat) {
-        
-        let lastPoint = dataPoints.last ?? 0
+        let dataPointNumericals = dataPoints.map { analyticDatapoint in
+            analyticDatapoint.datapoint
+        }
+        let lastPoint = dataPointNumericals.last ?? 0
         let yCoordinate = (180 - lastPoint * 0.18)
         let point = CGPoint(x: x, y: yCoordinate)
         circlePosition = point
