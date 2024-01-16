@@ -24,23 +24,22 @@ struct CustomGraphView: View {
 
 struct GraphView: View {
     
-    @State private var showToast = false
+    @State private var showToast = true
     @State private var toastMessage = ""
     @State private var circlePosition: CGPoint = CGPoint(x: 27, y: 0)
     @State private var circleColor: Color = .green
     @State private var isImageVisible: Bool = false
-    @State private var currentDataPoint: AnalyticDatapoint = AnalyticDatapoint(datapoint: 0.0, timestamp: Date())
     
     let dataPoints: [AnalyticDatapoint]
     let yAxisRange: ClosedRange<CGFloat> = 0...1000
-    let yAxisStep: CGFloat = 200 // Adjust as needed
-    let lineColor: Color = .green // Adjust the line color
+    let yAxisStep: CGFloat = 200
+    let lineColor: Color = .green
     let gradientColors: [Color] = [.green, .red]
     
     init(dataPoints: [AnalyticDatapoint]) {
+        
         self.dataPoints = dataPoints
         let lastPoint = dataPoints.last ?? AnalyticDatapoint(datapoint: 0.0, timestamp: Date())
-        currentDataPoint = lastPoint
         let yCoordinate = (180 - lastPoint.datapoint * 0.18) + 30
         let point = CGPoint(x: CGFloat(27), y: yCoordinate)
         circlePosition = point
@@ -50,7 +49,6 @@ struct GraphView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // Left side with background lines and numbers
                 VStack {
                     ForEach(0..<6) { index in
                         let yAxisValue = CGFloat(index) * yAxisStep
@@ -61,7 +59,6 @@ struct GraphView: View {
                             .padding(.trailing, 0)
                             .position(x: 10, y: yCoordinate)
                             .font(Font.custom("Manrope-SemiBold", size: 10.0))
-                        // Horizontal lines
                         Path { path in
                             path.move(to: CGPoint(x: 27, y: yCoordinate - 20))
                             path.addLine(to: CGPoint(x: geometry.size.width, y: yCoordinate - 20))
@@ -115,18 +112,9 @@ struct GraphView: View {
                             isImageVisible = true
                         }
                         .onEnded { _ in
-                            // Perform any additional actions after dragging ends
-                            showToast = false
                             isImageVisible = false
                         }
                     )
-                    .onTapGesture {
-                        showToast = true
-                        let timeFormatter = DateFormatter()
-                        timeFormatter.dateFormat = "HH:mm"
-                        let timeString = timeFormatter.string(from: currentDataPoint.timestamp)
-                        toastMessage = "\(timeString) -  \(Double(currentDataPoint.datapoint).rounded(toPlaces: 2)) C"
-                    }
                     .toast(isPresented: $showToast, duration: 2, message: toastMessage, coordinates: circlePosition)
                     .onAppear {
                         updatePostion(x: CGFloat(geometry.size.width - 2.5))
@@ -141,7 +129,7 @@ struct GraphView: View {
         var index = Int((touchLocation.x) / xScale)
         index = index >= dataPoints.count ? (dataPoints.count - 1) : index
         index = index < 0 ? 0 : index
-        currentDataPoint = dataPoints[index]
+        updateMessage(point: dataPoints[index])
         let y = getYCoordinate(for: dataPoints[index].datapoint, in: yAxisRange, with: size.height)
         return CGPoint(x: CGFloat(index) * xScale, y: y)
     }
@@ -157,6 +145,7 @@ struct GraphView: View {
     }
     
     func updatePostion(x: CGFloat) {
+        
         let dataPointNumericals = dataPoints.map { analyticDatapoint in
             analyticDatapoint.datapoint
         }
@@ -164,6 +153,17 @@ struct GraphView: View {
         let yCoordinate = (180 - lastPoint * 0.18)
         let point = CGPoint(x: x, y: yCoordinate)
         circlePosition = point
+        if let last = dataPoints.last {
+            updateMessage(point: last)
+        }
+    }
+    
+    func updateMessage(point: AnalyticDatapoint) {
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        let timeString = timeFormatter.string(from: point.timestamp)
+        toastMessage = "\(timeString) - \(Double(point.datapoint).rounded(toPlaces: 2)) C"
     }
     
     func getGradientColor(dataPoints: [CGFloat], touchX: CGFloat, totalWidth: CGFloat) -> Color {
@@ -214,12 +214,12 @@ extension View {
                     VStack {
                         HStack {
                             ToastView(message: message)
-                                .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5)))
-                                .onAppear {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                                        isPresented.wrappedValue = false
-                                    }
-                                }
+//                                .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5)))
+//                                .onAppear {
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+//                                        isPresented.wrappedValue = false
+//                                    }
+//                                }
                         }
                     }
                     .edgesIgnoringSafeArea(.all)
