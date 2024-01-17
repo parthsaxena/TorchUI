@@ -1080,9 +1080,10 @@ final class SessionManager: ObservableObject {
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         let endDateTestString = "2023-10-19T00:10:00Z"
         
-        guard let endDate = dateFormatter.date(from: endDateTestString) else {
-            fatalError("Invalid date format")
-        }
+//        guard let endDate = dateFormatter.date(from: endDateTestString) else {
+//            fatalError("Invalid date format")
+//        }
+        let endDate = Date()
         if let startDate = Calendar.current.date(byAdding: .second, value: timespan.timeInterval, to: endDate) {
             
             let userID = AuthenticationManager.shared.authUser.userId
@@ -1116,15 +1117,22 @@ final class SessionManager: ObservableObject {
                     for k in measurements.keys {
                         if let measurement = measurements[k] {
                             var data: [AnalyticDatapoint] = []
+                            var parsedMeasurements = 0
                             for i in 0..<measurement.count {
                                 guard let date = dateFormatter.date(from: measurement[i]["timestamp"] ?? "") else {
                                     continue
                                 }
                                 
                                 if let point = Double(measurement[i]["value"] ?? "") {
+                                    parsedMeasurements += 1
                                     data.append(AnalyticDatapoint(datapoint: point, timestamp: date))
                                 }
                             }
+                            
+                            for _ in parsedMeasurements..<60 {
+                                data.insert(AnalyticDatapoint(datapoint: 0.0, timestamp: Date()), at: 0)
+                            }
+                            
                             print("array data for graph before loop: \(measurement)")
                             print("array data for graph: \(data)")
 //                            var chartParameters = LineChartParameters(
@@ -1152,6 +1160,7 @@ final class SessionManager: ObservableObject {
                     
                     print("device ann \(self.deviceAnalytics)")
                 })
+            print("Sending analytics request: \(request.data)")
             WebSocketManager.shared.sendData(socketRequest: request)
         }
     }

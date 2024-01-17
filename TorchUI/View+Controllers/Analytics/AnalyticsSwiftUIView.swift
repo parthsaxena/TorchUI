@@ -22,22 +22,20 @@ struct AnalyticsSwiftUIView: View {
         
         var list: [Item] = []
         
-        if let lineChartParameter = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["ir1_tmax"] {
-            let item = Item(itemName: "Camera 1", itemDescription: "Temperature and time", selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter)
-            list.append(item)
-        }
+        let lineChartParameter = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["ir1_tmax"]
+        let item = Item(itemName: "Camera 1", itemDescription: "Temperature and time", selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter ?? [])
+        list.append(item)
         
-        if let lineChartParameter1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["ir2_tmax"] {
-            let item = Item(itemName: "Camera 2", itemDescription: "Temperature and time",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter1)
-            list.append(item)
-        }
+        let lineChartParameter1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["ir2_tmax"]
+        let item1 = Item(itemName: "Camera 2", itemDescription: "Temperature and time",
+                        selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter1 ?? [])
+        list.append(item1)
         
-        if let lineChartParameter2 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["ir3_tmax"] {
-            let item = Item(itemName: "Camera 3", itemDescription: "Temperature and time",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter2)
-            list.append(item)
-        }
+        let lineChartParameter2 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["ir3_tmax"]
+        let item2 = Item(itemName: "Camera 3", itemDescription: "Temperature and time",
+                        selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter2 ?? [])
+        list.append(item2)
+        
         return list
     }
     
@@ -59,23 +57,21 @@ struct AnalyticsSwiftUIView: View {
     func getSpectralAnalysisItems(timespan: AnalyticsTimespanSelection) -> [Item] {
         
         var list: [Item] = []
-        if let lineChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb1_pix_abvthl"] {
-            let item = Item(itemName: "Camera 1", itemDescription: "Pixels above threshold",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart1)
-            list.append(item)
-        }
+        let lineChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb1_pix_abvthl"]
+        let item = Item(itemName: "Camera 1", itemDescription: "Pixels above threshold",
+                        selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart1 ?? [])
+        list.append(item)
         
-        if let lineChart2 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb2_pix_abvthl"] {
-            let item = Item(itemName: "Camera 2", itemDescription: "Pixels above threshold",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart2)
-            list.append(item)
-        }
+        let lineChart2 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb2_pix_abvthl"]
+        let item2 = Item(itemName: "Camera 2", itemDescription: "Pixels above threshold",
+                        selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart2 ?? [])
+        list.append(item2)
         
-        if let lineChart3 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb3_pix_abvthl"] {
-            let item = Item(itemName: "Camera 3", itemDescription: "Pixels above threshold",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart3)
-            list.append(item)
-        }
+        let lineChart3 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb3_pix_abvthl"]
+        let item3 = Item(itemName: "Camera 3", itemDescription: "Pixels above threshold",
+                        selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart3 ?? [])
+        list.append(item3)
+        
         return list
     }
     
@@ -97,23 +93,21 @@ struct AnalyticsSwiftUIView: View {
     func getSmokeItems(timespan: AnalyticsTimespanSelection) -> [Item] {
         
         var list: [Item] = []
-        if let lineChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["tgs5141_co"] {
-            let item = Item(itemName: "CO", itemDescription: "Value per time",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart1)
-            list.append(item)
-        }
+        let lineChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["tgs5141_co"]
+        let item = Item(itemName: "CO", itemDescription: "Value per time",
+                        selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart1 ?? [])
+        list.append(item)
         
-        if let lineChart2 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["scd41_co2"] {
-            let item = Item(itemName: "CO2", itemDescription: "Value per time",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart2)
-            list.append(item)
-        }
+        let lineChart2 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["scd41_co2"]
+        let item2 = Item(itemName: "CO2", itemDescription: "Value per time",
+                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart2 ?? [])
+            list.append(item2)
         
-        if let lineChart3 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["sgp40_raw"] {
-            let item = Item(itemName: "VOC", itemDescription: "Value per time",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart3)
-            list.append(item)
-        }
+        let lineChart3 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["sgp40_raw"]
+        let item3 = Item(itemName: "VOC", itemDescription: "Value per time",
+                        selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart3 ?? [])
+        list.append(item3)
+        
         return list
     }
     
@@ -136,17 +130,16 @@ struct AnalyticsSwiftUIView: View {
         
         var list: [Item] = []
         
-        if let lintChart = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["aht20_t"] {
-            let item = Item(itemName: "Temperature", itemDescription: "Temperature and time",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lintChart)
-            list.append(item)
-        }
+        let lintChart = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["aht20_t"]
+        let item = Item(itemName: "Temperature", itemDescription: "Temperature and time",
+                        selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lintChart ?? [])
+        list.append(item)
         
-        if let lintChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["aht20_h"] {
-            let item = Item(itemName: "Humidity", itemDescription: "Humidity and time",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lintChart1)
-            list.append(item)
-        }
+        let lintChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["aht20_h"]
+        let item1 = Item(itemName: "Humidity", itemDescription: "Humidity and time",
+                        selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lintChart1 ?? [])
+        list.append(item1)
+        
         return list
     }
     

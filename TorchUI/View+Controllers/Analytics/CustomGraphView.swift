@@ -175,8 +175,8 @@ struct GraphView: View {
     func interpolateColor(_ value: CGFloat, gradientColors: [Color]) -> Color {
         let normalizedValue = value / yAxisRange.upperBound
         let fraction = Double(normalizedValue) * Double(gradientColors.count - 1)
-        let lowerIndex = Int(floor(fraction))
-        let upperIndex = Int(ceil(fraction))
+        let lowerIndex = max(0, Int(floor(fraction)))
+        let upperIndex = max(0, Int(ceil(fraction)))
         
         let lowerColor = gradientColors[lowerIndex]
         let upperColor = gradientColors[upperIndex]
