@@ -349,3 +349,31 @@ struct AccountBackButton: View {
         .shadow(color: CustomColors.LightGray.opacity(0.3), radius: 5.0)
     }
 }
+
+struct AnalyticsBackButton: View {
+    
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(colorScheme == .dark ? CustomColors.DarkModeOverlayBackground : Color.white)
+                .frame(width: 48.0, height: 48.0)
+            Image(systemName: "chevron.backward")
+                .frame(width: 48.0, height: 48.0)
+                .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
+            Button {
+                
+                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                impactMed.impactOccurred()
+                UIApplication.shared.endEditing()
+                SessionManager.shared.appState = .viewProperty
+            } label: {
+                Circle()
+                    .fill(Color.clear)
+                    .frame(width: 60.0, height: 60.0)
+            }
+        }
+        .shadow(color: CustomColors.LightGray.opacity(0.3), radius: 5.0)
+    }
+}

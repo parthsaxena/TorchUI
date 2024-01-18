@@ -16,9 +16,10 @@ struct DataItem: Identifiable {
     var offset = CGSize.zero
 }
 
-struct Item: Identifiable {
+struct Item: Identifiable, Hashable {
     var id = UUID()
     var itemName: String
     var itemDescription: String
-    var lineChartParameters: LineChartParameters
+    var selectedTimeSpan: String
+    var graphLineParam: [AnalyticDatapoint]
 }

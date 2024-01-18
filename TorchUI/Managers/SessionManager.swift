@@ -26,7 +26,7 @@ final class SessionManager: ObservableObject {
     
     @Published var newProperty: Property?
 //    @Published var deviceAnalytics: [String : [String: [[String: String]]]] = [:]
-    @Published var deviceAnalytics: [String : [String: [String: LineChartParameters]]] = [:]
+    @Published var deviceAnalytics: [String : [String: [String: [AnalyticDatapoint]]]] = [:]
     
     @Published var lastAppState: AppState? = nil
     @Published var appState: AppState = .properties
@@ -1021,9 +1021,7 @@ final class SessionManager: ObservableObject {
         print("pull device analytics \(self.properties.count)")
         
         for i in 0..<self.properties.count {
-            print("first loop")
             for j in 0..<self.properties[i].detectors.count {
-                print("second loop")
                 let deviceId = self.properties[i].detectors[j].id
 //                Task {
 //                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .tenMinutes)
@@ -1040,11 +1038,11 @@ final class SessionManager: ObservableObject {
 //                Task {
 //                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneMonth)
 //                }
-                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.tenMinutes)
-                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneHour)
-                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneDay)
-                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneWeek)
-                self.getDeviceAnalyticsData(deviceId: self.properties[i].detectors[j].id, timespan: AnalyticsTimespanSelection.oneMonth)
+                self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.tenMinutes)
+                self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneHour)
+                self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneDay)
+                self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneWeek)
+                self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneMonth)
             }
         }
     }
@@ -1082,9 +1080,10 @@ final class SessionManager: ObservableObject {
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         let endDateTestString = "2023-10-19T00:10:00Z"
         
-        guard let endDate = dateFormatter.date(from: endDateTestString) else {
-            fatalError("Invalid date format")
-        }
+//        guard let endDate = dateFormatter.date(from: endDateTestString) else {
+//            fatalError("Invalid date format")
+//        }
+        let endDate = Date()
         if let startDate = Calendar.current.date(byAdding: .second, value: timespan.timeInterval, to: endDate) {
             
             let userID = AuthenticationManager.shared.authUser.userId
@@ -1111,38 +1110,57 @@ final class SessionManager: ObservableObject {
                     if !(self.deviceAnalytics[deviceId]!.keys.contains(timespan.stringSpan)) {
                         self.deviceAnalytics[deviceId]![timespan.stringSpan] = [:]
                     }
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX") // Use POSIX locale for fixed-format date strings
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSSSSS"
                     
                     for k in measurements.keys {
                         if let measurement = measurements[k] {
-                            var data: [LineChartData] = []
+                            var data: [AnalyticDatapoint] = []
+                            var parsedMeasurements = 0
                             for i in 0..<measurement.count {
-                                data.append(LineChartData(Double(measurement[i]["value"] ?? "") ?? 0.0))
+                                guard let date = dateFormatter.date(from: measurement[i]["timestamp"] ?? "") else {
+                                    continue
+                                }
+                                
+                                if let point = Double(measurement[i]["value"] ?? "") {
+                                    parsedMeasurements += 1
+                                    data.append(AnalyticDatapoint(datapoint: point, timestamp: date))
+                                }
                             }
-                            var chartParameters = LineChartParameters(
-                                data: data,
-                                labelColor: .primary,
-                                secondaryLabelColor: .secondary,
-                                labelsAlignment: .left,
-                                dataPrecisionLength: 0,
-                                dataPrefix: nil,
-                                dataSuffix: " C",
-                                indicatorPointColor: .red,
-                                indicatorPointSize: 15,
-                                lineColor: .green,
-                                lineSecondColor: .red,
-                                lineWidth: 3,
-                                dotsWidth: 0,
-                                displayMode: .default,
-                                dragGesture: true,
-                                hapticFeedback: false
-                            )
                             
-                            self.deviceAnalytics[deviceId]?[timespan.stringSpan]?[k] = chartParameters
+                            for _ in parsedMeasurements..<60 {
+                                data.insert(AnalyticDatapoint(datapoint: 0.0, timestamp: Date()), at: 0)
+                            }
+                            
+                            print("array data for graph before loop: \(measurement)")
+                            print("array data for graph: \(data)")
+//                            var chartParameters = LineChartParameters(
+//                                data: data,
+//                                labelColor: .primary,
+//                                secondaryLabelColor: .secondary,
+//                                labelsAlignment: .left,
+//                                dataPrecisionLength: 0,
+//                                dataPrefix: nil,
+//                                dataSuffix: " C",
+//                                indicatorPointColor: .red,
+//                                indicatorPointSize: 15,
+//                                lineColor: .green,
+//                                lineSecondColor: .red,
+//                                lineWidth: 3,
+//                                dotsWidth: 0,
+//                                displayMode: .default,
+//                                dragGesture: true,
+//                                hapticFeedback: false
+//                            )
+                            
+                            self.deviceAnalytics[deviceId]?[timespan.stringSpan]?[k] = data
                         }
                     }
                     
                     print("device ann \(self.deviceAnalytics)")
                 })
+            print("Sending analytics request: \(request.data)")
             WebSocketManager.shared.sendData(socketRequest: request)
         }
     }

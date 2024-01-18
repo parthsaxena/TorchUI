@@ -98,114 +98,107 @@ struct MainMapView: View {
                 let ANIMATION_DURATION = 2.0
                 let slideTransition: AnyTransition = AnyTransition.move(edge: .bottom)
                 
-                
                 if !isConfirmingLocation {
-                    
-                    
 //                    VStack {
-                        
-                    
-                    
 //                        Rectangle()
 //                            .fill(
 //                                RadialGradient(colors: [Color.clear, CustomColors.TorchRed], center: .center, startRadius: width - 200, endRadius: width + 50)
 //                            )
 //                            .frame(width: width, height: height - detectorOverlaySize.height)
-////                            .padding(.bottom, -40)
+//                            .padding(.bottom, -40)
 //                            .ignoresSafeArea()
-                        
                     DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay)
                         .onAppear(perform: {
                             withAnimation(.easeIn(duration: 5.0)) {
                                 shouldShowRedOverlay = true
                             }
                         })
-                            .offset(x: 0, y: (!showDetectorDetails) ? UIScreen.main.bounds.height : self.dragOffset.height)
-                            .gesture(
-                                DragGesture()
-                                    .onChanged { gesture in
-                                        if showDetectorDetails {
-                                            print("Gesture: \(gesture.translation), size: \(self.detectorOverlaySize)")
-                                            if gesture.translation.height < 0 && self.dragOffset.height > 0 {
-                                                print("Dragging up")
-                                                self.dragOffset.height = (self.detectorOverlaySize.height - DETECTOR_MIN_OFFSET) - fabs(gesture.translation.height)
-                                                self.mapOffset.height = DETECTOR_MIN_OFFSET + fabs(gesture.translation.height)
-                                            } else if gesture.translation.height > 0 && gesture.translation.height <= self.detectorOverlaySize.height {
-                                                print("Dragging down")
-                                                self.dragOffset = gesture.translation
-                                                self.mapOffset.height = (self.detectorOverlaySize.height - gesture.translation.height)
-                                            }
-                                            shouldShowRedOverlay = false
+                        .offset(x: 0, y: (!showDetectorDetails) ? UIScreen.main.bounds.height : self.dragOffset.height)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { gesture in
+                                    if showDetectorDetails {
+                                        print("Gesture: \(gesture.translation), size: \(self.detectorOverlaySize)")
+                                        if gesture.translation.height < 0 && self.dragOffset.height > 0 {
+                                            print("Dragging up")
+                                            self.dragOffset.height = (self.detectorOverlaySize.height - DETECTOR_MIN_OFFSET) - fabs(gesture.translation.height)
+                                            self.mapOffset.height = DETECTOR_MIN_OFFSET + fabs(gesture.translation.height)
+                                        } else if gesture.translation.height > 0 && gesture.translation.height <= self.detectorOverlaySize.height {
+                                            print("Dragging down")
+                                            self.dragOffset = gesture.translation
+                                            self.mapOffset.height = (self.detectorOverlaySize.height - gesture.translation.height)
                                         }
+                                        shouldShowRedOverlay = false
                                     }
-                                    .onEnded { _ in
-                                        if showDetectorDetails {
-                                            if self.dragOffset.height + THRESHOLD > self.detectorOverlaySize.height {
-                                                print("Threshold")//
-                                                withAnimation(.easeIn(duration: ANIMATION_DURATION)) {
-                                                    self.dragOffset.height = self.detectorOverlaySize.height - DETECTOR_MIN_OFFSET
-                                                    self.mapOffset.height = DETECTOR_MIN_OFFSET
-                                                    
-                                                }
+                                }
+                                .onEnded { _ in
+                                    if showDetectorDetails {
+                                        if self.dragOffset.height + THRESHOLD > self.detectorOverlaySize.height {
+                                            print("Threshold")//
+                                            withAnimation(.easeIn(duration: ANIMATION_DURATION)) {
+                                                self.dragOffset.height = self.detectorOverlaySize.height - DETECTOR_MIN_OFFSET
+                                                self.mapOffset.height = DETECTOR_MIN_OFFSET
                                                 
-                                            } else {
-                                                print("Threshold1")
-                                                withAnimation(.easeIn(duration: ANIMATION_DURATION)) {
-                                                    self.dragOffset = .zero
-                                                    self.mapOffset.height = (self.detectorOverlaySize.height)
-                                                    shouldShowRedOverlay = true
-                                                }
                                             }
-                                        }
-                                    }
-                            )
-                            .transition(slideTransition)
-                            .confirmationDialog("Select a color", isPresented: combinedBinding, titleVisibility: .hidden) {
-                                Button(showingDeletePropertyOptions ? "Delete property" : "Delete detector", role: .destructive) {
-                                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                    impactMed.impactOccurred()
-                                    if (showingDeletePropertyOptions) {
-                                        SessionManager.shared.deleteProperty()
-                                        withAnimation {
-                                            SessionManager.shared.appState = .properties
-                                        }
-                                    } else if (showingDeleteDetectorOptions) {
-                                        withAnimation(.easeIn(duration: 0.1)) {
-                                            self.dragOffset = .zero
-                                        }
-                                        DispatchQueue.main.async {
-                                            print("comp0: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count)")
-                                            showDetectorDetails.toggle(); dragOffset = .zero
-                                            if (SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count <= 1) {
-                                                withAnimation {
-                                                    print("Setting app state \(SessionManager.shared.appState)")
-                                                    //                                                SessionManager.shared.appState = .properties
-                                                    print("Finished app state \(SessionManager.shared.appState)")
-                                                }
-                                            }
-                                            print("comp1: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count), \(self.annotations)")
-                                            selectedDetector = nil
-                                            SessionManager.shared.deleteDetector()
                                             
-                                            DispatchQueue.main.async {
-                                                for (i, annotation) in self.annotations.enumerated() {
-                                                    print("i, ann: \(i) \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id) \(annotation)")
-                                                    if annotation.id == SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id {
-                                                        self.annotations.remove(at: i)
-                                                        print("removed, \(self.annotations)")
-                                                        break
-                                                    }
+                                        } else {
+                                            print("Threshold1")
+                                            withAnimation(.easeIn(duration: ANIMATION_DURATION)) {
+                                                self.dragOffset = .zero
+                                                self.mapOffset.height = (self.detectorOverlaySize.height)
+                                                shouldShowRedOverlay = true
+                                            }
+                                        }
+                                    }
+                                }
+                        )
+                        .transition(slideTransition)
+                        .confirmationDialog("Select a color", isPresented: combinedBinding, titleVisibility: .hidden) {
+                            Button(showingDeletePropertyOptions ? "Delete property" : "Delete detector", role: .destructive) {
+                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                impactMed.impactOccurred()
+                                if (showingDeletePropertyOptions) {
+                                    SessionManager.shared.deleteProperty()
+                                    withAnimation {
+                                        SessionManager.shared.appState = .properties
+                                    }
+                                } else if (showingDeleteDetectorOptions) {
+                                    withAnimation(.easeIn(duration: 0.1)) {
+                                        self.dragOffset = .zero
+                                    }
+                                    DispatchQueue.main.async {
+                                        print("comp0: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count)")
+                                        showDetectorDetails.toggle(); dragOffset = .zero
+                                        if (SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count <= 1) {
+                                            withAnimation {
+                                                print("Setting app state \(SessionManager.shared.appState)")
+                                                //                                                SessionManager.shared.appState = .properties
+                                                print("Finished app state \(SessionManager.shared.appState)")
+                                            }
+                                        }
+                                        print("comp1: \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count), \(self.annotations)")
+                                        selectedDetector = nil
+                                        SessionManager.shared.deleteDetector()
+                                        
+                                        DispatchQueue.main.async {
+                                            for (i, annotation) in self.annotations.enumerated() {
+                                                print("i, ann: \(i) \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id) \(annotation)")
+                                                if annotation.id == SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id {
+                                                    self.annotations.remove(at: i)
+                                                    print("removed, \(self.annotations)")
+                                                    break
                                                 }
                                             }
                                         }
                                     }
-                                    combinedBinding.wrappedValue = false
-                                    dismiss()
                                 }
-                                Button("Edit location") {
-                                    SessionManager.shared.appState = .updateProperty
-                                }
+                                combinedBinding.wrappedValue = false
+                                dismiss()
                             }
+                            Button("Edit location") {
+                                SessionManager.shared.appState = .updateProperty
+                            }
+                        }
                         
 //                    }
                     
