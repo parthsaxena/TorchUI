@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LineChartView
 
 struct DataItem: Identifiable {
     var id = UUID()
@@ -13,4 +14,12 @@ struct DataItem: Identifiable {
     var size: CGFloat
     var color: Color
     var offset = CGSize.zero
+}
+
+struct Item: Identifiable, Hashable {
+    var id = UUID()
+    var itemName: String
+    var itemDescription: String
+    var selectedTimeSpan: String
+    var graphLineParam: [AnalyticDatapoint]
 }

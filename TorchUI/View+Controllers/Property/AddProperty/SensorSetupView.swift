@@ -8,19 +8,14 @@
 import SwiftUI
 
 struct SensorSetupView: View {
+    
     @Environment(\.dismiss) var dismiss
-    
-//    @StateObject var vm: SensorSetupViewModel
-    
+
     @Binding var state: OnboardingState
     var propertyName: String
     var propertyAddress: String
-//    @State var (focusedField != .field): Bool = false
-    
-    // place holder text color
+
     @State var fieldTextColor: Color = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
-    
-    // disabled button color
     @State var nextButtonColor: Color = Color(red: 0.18, green: 0.21, blue: 0.22)
     @State var nextButtonEnabled: Bool = true
     

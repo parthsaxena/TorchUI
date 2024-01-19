@@ -66,12 +66,12 @@ struct PropertyDetailOverlayView: View {
                         VStack {
                             // Property heading
                             HStack(alignment: .center) {
-                                if property.propertyImage.starts(with: "http") {
+                                if SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyImage.starts(with: "http") {
                                     Rectangle()
                                         .foregroundColor(.clear)
                                         .frame(width: 60, height: 60)
                                         .background(
-                                            AsyncImage(url: URL(string: property.propertyImage)) { image in
+                                            AsyncImage(url: URL(string: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyImage)) { image in
                                                 image.resizable()
                                                     .aspectRatio(contentMode: .fill)
                                                     .frame(width: 60, height: 60)
@@ -82,13 +82,13 @@ struct PropertyDetailOverlayView: View {
                                         )
                                         .cornerRadius(12)
 
-                                } else if property.propertyImage.starts(with: "PropertyImage") {
+                                } else if SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyImage.starts(with: "PropertyImage") {
                                 
                                     Rectangle()
                                         .foregroundColor(.clear)
                                         .frame(width: 60, height: 60)
                                         .background(
-                                            AmplifyImage(key: property.propertyImage)
+                                            AmplifyImage(key: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyImage)
                                                 .kfImage.placeholder({
 //                                                    Image("Property")
 //                                                        .opacity(0.6)
@@ -106,7 +106,7 @@ struct PropertyDetailOverlayView: View {
                                 Spacer()
                                     .frame(width: 15)
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(property.propertyName)
+                                    Text(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName)
                                         .font(Font.custom("Manrope-SemiBold", size: 16))
                                         .kerning(-1)
                                         .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)

@@ -49,14 +49,15 @@ class AuthenticationManager: ObservableObject {
                 let user = try await Amplify.Auth.getCurrentUser()
 //                Amplify.Analytics.identifyUser(userId: user.userId)
                 try await Amplify.Notifications.Push.identifyUser(userId: user.userId)
-                SessionManager.shared.registerUserEndpoint(deviceToken: self.deviceToken ?? "", userID: user.userId)
-                print("Identified user to Pinpoint0: \(user.userId)")
+                if self.deviceToken != nil {
+                    SessionManager.shared.registerUserEndpoint(deviceToken: self.deviceToken!, userID: user.userId)
+                    print("Identified user to Pinpoint0: \(user.userId)")
+                }
                 // print("Got user")
                 DispatchQueue.main.async {
                     self.authUser = user
                     self.authState = .authenticated
                     self.authStateLoaded = true
-                    // Load property & device data
                     SessionManager.shared.loadUserProperties()
                 }
             } else {
@@ -64,8 +65,6 @@ class AuthenticationManager: ObservableObject {
                     self.authStateLoaded = true
                 }
             }
-            
-            // print("Is user signed in - \(session.isSignedIn)")
         } catch let error as AuthError {
              print("Fetch session failed with error \(error)")
         } catch {
@@ -76,9 +75,6 @@ class AuthenticationManager: ObservableObject {
     func signIn(email: String, password: String) async {
         do {
             let signInResult = try await Amplify.Auth.signIn(username: email, password: password)
-            
-            // print("Sign in result: \(signInResult)")
-            
             if signInResult.isSignedIn {
                 
                 let user = try await Amplify.Auth.getCurrentUser()
@@ -90,11 +86,9 @@ class AuthenticationManager: ObservableObject {
                 DispatchQueue.main.async {
                     self.authUser = user
                     self.authState = .authenticated
-                    
                     // Load property & device data
                     SessionManager.shared.loadUserProperties()
                 }
-                // print("Sign in succeeded: \(self.authUser)")
             }
         } catch let error as AuthError {
              print("Sign in failed \(error)")
@@ -106,9 +100,6 @@ class AuthenticationManager: ObservableObject {
     func signupPostSignIn(email: String, password: String) async {
         do {
             let signInResult = try await Amplify.Auth.signIn(username: email, password: password)
-            
-            // print("Sign in result: \(signInResult)")
-            
             if signInResult.isSignedIn {
                 
                 let user = try await Amplify.Auth.getCurrentUser()
@@ -119,9 +110,7 @@ class AuthenticationManager: ObservableObject {
                     DispatchQueue.main.async {
                         SessionManager.shared.propertiesLoaded = true
                     }
-                    //                    self.authState = .authenticated
                 }
-                // print("Sign in succeeded: \(self.authUser)")
             }
         } catch let error as AuthError {
              print("Sign in failed \(error)")
@@ -144,11 +133,10 @@ class AuthenticationManager: ObservableObject {
             self.email = email
             self.password = password
             
-            if case let .confirmUser(_, _, _) = signUpResult.nextStep {
+            if case .confirmUser(_, _, _) = signUpResult.nextStep {
                 DispatchQueue.main.async {
                     self.authState = .accountVerificationCode
                 }
-                // print("AuthState: \(authState) Delivery details \(String(describing: deliveryDetails)) for userId: \(String(describing: userId))")
             } else {
                 // print("SignUp Complete")
             }
@@ -160,10 +148,9 @@ class AuthenticationManager: ObservableObject {
     }
     
     func gotNewVerificationCode(code: String) async {
-        // print("Got code=\(code)")
         
         await self.confirm(
-            email: email!,
+            email: email ?? "",
             code: code
         )
     }
@@ -176,10 +163,10 @@ class AuthenticationManager: ObservableObject {
             )
             // print("Confirm sign up result completed: \(confirmSignUpResult.isSignUpComplete)")
             if confirmSignUpResult.isSignUpComplete {
-                await signupPostSignIn(email: email, password: password!)
+                await signupPostSignIn(email: email, password: password ?? "")
             }
         } catch let error as AuthError {
-            // print("An error occurred while confirming sign up \(error)")
+             print("An error occurred while confirming sign up \(error)")
         } catch {
             // print("Unexpected error: \(error)")
         }

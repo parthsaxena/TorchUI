@@ -14,6 +14,8 @@ target 'TorchUI' do
 'https://github.com/markiv/SwiftUI-Shimmer.git'
   pod 'AWSPinpoint'
   pod 'AWSMobileClient'
+  pod 'AWSS3'
+#  pod 'AWSS3StoragePlugin'
 
   target 'TorchUITests' do
     inherit! :search_paths

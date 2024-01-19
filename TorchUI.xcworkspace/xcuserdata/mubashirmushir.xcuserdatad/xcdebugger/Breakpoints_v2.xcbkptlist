@@ -1,6 +1,263 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "A7DD2014-3D99-42DC-A99A-170E3062C526"
+   uuid = "0CB51543-132B-4C71-9A13-5FD402F0326D"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0EAACD2-F917-4A02-97DD-DDC70E758AFF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TorchUI/View+Controllers/Map/DetectorDetailOverlayView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "D0EAACD2-F917-4A02-97DD-DDC70E758AFF - 6dc33dc22a8eaf91"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; Swift.Optional&lt;SwiftUI.TupleView&lt;(Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0&gt;, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, perform: (&#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0)&gt;&gt; in TorchUI.DetectorDetailOverlayView.body.getter : some"
+                  moduleName = "TorchUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mubashirmushir/iCloud%20Drive%20(Archive)/Desktop/Mubashir/Fiverr/TorchUI/TorchUI/View+Controllers/Map/DetectorDetailOverlayView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "1819">
+               </Location>
+               <Location
+                  uuid = "D0EAACD2-F917-4A02-97DD-DDC70E758AFF - dfc44e7ed9b2e620"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; Swift.Optional&lt;SwiftUI.TupleView&lt;(Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0&gt;, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, perform: (&#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0)&gt;&gt; in closure #1 () -&gt; SwiftUI.VStack&lt;Swift.Optional&lt;SwiftUI.TupleView&lt;(Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0&gt;, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, perform: (&#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0)&gt;&gt;&gt; in TorchUI.DetectorDetailOverlayView.body.getter : some"
+                  moduleName = "TorchUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mubashirmushir/iCloud%20Drive%20(Archive)/Desktop/Mubashir/Fiverr/TorchUI/TorchUI/View+Controllers/Map/DetectorDetailOverlayView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "764">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "43EFFE1A-E1C4-4040-9175-5C61A9FF828A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TorchUI/Managers/SessionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "loadUserProperties()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "85447967-E5E3-4E33-81C2-F76999E49D9D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TorchUI/Managers/SessionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "loadUserProperties()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68B56EEC-CF18-4CF4-B3CF-4F3D070B6AC0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TorchUI/Managers/AuthenticationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "signIn(email:password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "68B56EEC-CF18-4CF4-B3CF-4F3D070B6AC0 - 832336ad5a72e7f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in TorchUI.AuthenticationManager.signIn(email: Swift.String, password: Swift.String) async -&gt; ()"
+                  moduleName = "TorchUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mubashirmushir/iCloud%20Drive%20(Archive)/Desktop/Mubashir/Fiverr/TorchUI/TorchUI/Managers/AuthenticationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "198">
+               </Location>
+               <Location
+                  uuid = "68B56EEC-CF18-4CF4-B3CF-4F3D070B6AC0 - 832336ad5a72e7f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in TorchUI.AuthenticationManager.signIn(email: Swift.String, password: Swift.String) async -&gt; ()"
+                  moduleName = "TorchUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mubashirmushir/iCloud%20Drive%20(Archive)/Desktop/Mubashir/Fiverr/TorchUI/TorchUI/Managers/AuthenticationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "127">
+               </Location>
+               <Location
+                  uuid = "68B56EEC-CF18-4CF4-B3CF-4F3D070B6AC0 - 832336ad5a72e71a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in TorchUI.AuthenticationManager.signIn(email: Swift.String, password: Swift.String) async -&gt; ()"
+                  moduleName = "TorchUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mubashirmushir/iCloud%20Drive%20(Archive)/Desktop/Mubashir/Fiverr/TorchUI/TorchUI/Managers/AuthenticationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "127">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C2967DD2-6439-435F-93F1-D5ECC12201D8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TorchUI/Managers/AuthenticationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "fetchCurrentAuthSession()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C2967DD2-6439-435F-93F1-D5ECC12201D8 - af1369fe4f19828c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in TorchUI.AuthenticationManager.fetchCurrentAuthSession() async -&gt; ()"
+                  moduleName = "TorchUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mubashirmushir/iCloud%20Drive%20(Archive)/Desktop/Mubashir/Fiverr/TorchUI/TorchUI/Managers/AuthenticationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "149">
+               </Location>
+               <Location
+                  uuid = "C2967DD2-6439-435F-93F1-D5ECC12201D8 - af1369fe4f1982ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in TorchUI.AuthenticationManager.fetchCurrentAuthSession() async -&gt; ()"
+                  moduleName = "TorchUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mubashirmushir/iCloud%20Drive%20(Archive)/Desktop/Mubashir/Fiverr/TorchUI/TorchUI/Managers/AuthenticationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "149">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "71DFC7B4-127C-4A12-84FF-7633B0D97BC3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TorchUI/Managers/SessionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "748"
+            endingLineNumber = "748"
+            landmarkName = "registerDevice(userID:property:detector:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2AC9B852-AAB7-4961-8983-84C234E114AC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TorchUI/Managers/SessionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "975"
+            endingLineNumber = "975"
+            landmarkName = "getAnalyticsData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2AC9B852-AAB7-4961-8983-84C234E114AC - c70e2533069cdcd6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; () in TorchUI.SessionManager.getAnalyticsData() -&gt; ()"
+                  moduleName = "TorchUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mubashirmushir/iCloud%20Drive%20(Archive)/Desktop/Mubashir/Fiverr/TorchUI/TorchUI/Managers/SessionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "975"
+                  endingLineNumber = "975"
+                  offsetFromSymbolStart = "78">
+               </Location>
+               <Location
+                  uuid = "2AC9B852-AAB7-4961-8983-84C234E114AC - c70e2533069cdcd6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; () in TorchUI.SessionManager.getAnalyticsData() -&gt; ()"
+                  moduleName = "TorchUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mubashirmushir/iCloud%20Drive%20(Archive)/Desktop/Mubashir/Fiverr/TorchUI/TorchUI/Managers/SessionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "975"
+                  endingLineNumber = "975"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

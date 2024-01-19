@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddPropertySheetView: View {
+    
     @Environment(\.dismiss) var dismiss
     
     @State var state: OnboardingState = .propertyName

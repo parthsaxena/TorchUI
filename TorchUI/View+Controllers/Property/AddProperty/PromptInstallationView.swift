@@ -10,7 +10,6 @@ import SwiftUI
 struct PromptInstallationView: View {
     
     @Environment(\.dismiss) var dismiss
-    //    @StateObject var vm: PromptInstallationViewModel
     @Binding var state: OnboardingState
     var propertyName: String
     var propertyAddress: String
@@ -20,8 +19,7 @@ struct PromptInstallationView: View {
     //    @State var (focusedField != .field): Bool = false
     // place holder text color
     @State var fieldTextColor: Color = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
-    
-    // disabled button color
+
     @State var nextButtonColor: Color = Color(red: 0.18, green: 0.21, blue: 0.22)
     @State var nextButtonEnabled: Bool = true
     
@@ -62,10 +60,8 @@ struct PromptInstallationView: View {
                         
                         Spacer()
                     }
-                    
                     HStack {
                         Spacer()
-                        
                         Button {
                             dismiss()
                         } label: {
@@ -77,9 +73,7 @@ struct PromptInstallationView: View {
                     }
                 }
                 .padding(.top, 20)
-                
                 Spacer()
-                
                 // Property photo, name, address
                 HStack {
                     Spacer()
@@ -137,38 +131,26 @@ struct PromptInstallationView: View {
 
                             Spacer()
                         }
-                        
                         Spacer()
                             .frame(height: 1)
-                        
-                        // Property name
                         Text(propertyName)
                             .font(Font.custom("Manrope-SemiBold", fixedSize: 30.0))
                             .foregroundColor(CustomColors.TorchGreen)
-                        
-                        // Property address
                         Text(propertyAddress)
                             .font(Font.custom("Manrope-Medium", size: 16.0))
                             .foregroundColor(Color(red: 0.45, green: 0.53, blue: 0.55))
                             .multilineTextAlignment(.center)
                     }
-                    //                        .padding(.top, 5.0)
                     Spacer()
                 }
-                
                 Spacer()
-                
                 // Next button
                 HStack {
                     Spacer()
                     Button(action: {
                         let impactMed = UIImpactFeedbackGenerator(style: .medium)
                         impactMed.impactOccurred()
-                        
-                        var urlString = "\(imageApiUrl)\(self.propertyAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                        //                        SessionManager.shared.newProperty = Property(id: "0", propertyName: propertyName, propertyAddress: propertyAddress, propertyImage: urlString)
                         SessionManager.shared.selectedProperty = SessionManager.shared.newProperty
-                        
                         self.state = .placeSensors
                     }) {
                         Text("Set up sensors for \(propertyName)")
@@ -184,34 +166,10 @@ struct PromptInstallationView: View {
                             .padding(.bottom, 20)
                     }
                     .disabled(!nextButtonEnabled)
-                    
-                    //                    Button("Set up sensors for \(propertyName)") {
-                    //                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                    //                        impactMed.impactOccurred()
-                    //
-                    //                        var urlString = "\(imageApiUrl)\(self.propertyAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                    ////                        SessionManager.shared.newProperty = Property(id: "0", propertyName: propertyName, propertyAddress: propertyAddress, propertyImage: urlString)
-                    //                        SessionManager.shared.selectedProperty = SessionManager.shared.newProperty
-                    //
-                    //                        self.state = .placeSensors
-                    //                    }
-                    //                    .disabled(!nextButtonEnabled)
-                    //                    .font(.custom("Manrope-SemiBold", size: 16))
-                    //                    .frame(maxWidth: .infinity)
-                    //                    .frame(height: 60)
-                    //                    .foregroundColor(.white)
-                    //                    .background(
-                    //                        RoundedRectangle(cornerRadius: 100)
-                    //                            .foregroundColor(self.nextButtonColor)
-                    //                    )
-                    //                    .padding(.horizontal, 16)
-                    //                    .padding(.bottom, 20)
                     Spacer()
                 }
-                
                 HStack {
                     Spacer()
-                    
                     Text("Go to home screen")
                         .font(Font.custom("Manrope-SemiBold", size: 16.0))
                         .foregroundColor(CustomColors.LightGray)
@@ -224,27 +182,7 @@ struct PromptInstallationView: View {
                     
                     Spacer()
                 }
-                //                .padding(.top, 60)
             }
         }
     }
 }
-
-//struct ContentView4: View {
-//    @State private var showingSheet = true
-//    @State var state = OnboardingState.promptInstallation
-////    @State var propertyName
-//
-//
-//    var body: some View {
-////        AddPropertySheetView()
-//        PromptInstallationView(state: $state, propertyName: "Mom's house", propertyAddress: "Pacific Coast Hwy, Malibu, CA 94588")
-//    }
-//}
-//
-//struct PromptInstallationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView4()
-//    }
-//}
-

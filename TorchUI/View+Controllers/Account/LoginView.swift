@@ -71,30 +71,23 @@ struct LoginView: View {
         })
         
         VStack {
-            
             // Heading
             ZStack {
                 HStack {
                     AccountBackButton()
-                    
                     Spacer()
                 }
-                
                 HStack {
                     Spacer()
-                    
                     Text("Log in")
                         .font(Font.custom("Manrope-SemiBold", size: 18.0))
                         .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                    
                     Spacer()
                 }
             }
             .padding(.top, 10)
             .padding(.horizontal, 15)
-            
             Spacer()
-            
             HStack {
                 Spacer()
                 VStack {
@@ -162,29 +155,6 @@ struct LoginView: View {
                     .padding(.bottom, 20)
                 }
                 .disabled(!nextButtonEnabled)
-                
-//                Button("Next") {
-//                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-//                    impactMed.impactOccurred()
-//
-//                    Task {
-//                        await AuthenticationManager.shared.signIn(email: emailBinding.wrappedValue, password: passwordBinding.wrappedValue)
-//                    }
-//
-//                    UIApplication.shared.endEditing()
-////                    self.state = .authenticated
-//                }
-//                    .disabled(!nextButtonEnabled)
-//                    .font(.custom("Manrope-SemiBold", size: 16))
-//                    .frame(maxWidth: .infinity)
-//                    .frame(height: 60)
-//                    .foregroundColor(.white)
-//                    .background(
-//                        RoundedRectangle(cornerRadius: 100)
-//                            .foregroundColor(self.nextButtonColor)
-//                    )
-//                    .padding(.horizontal, 16)
-//                    .padding(.bottom, 20)
                 Spacer()
             }
             .padding(.top, 60)

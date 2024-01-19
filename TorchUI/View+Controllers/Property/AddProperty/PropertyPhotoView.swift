@@ -28,12 +28,9 @@ struct PropertyPhotoView: View {
     @Binding var state: OnboardingState
     var propertyName: String
     var propertyAddress: String
-    //    @State var (focusedField != .field): Bool = false
-    
-    // place holder text color
+
     @State var fieldTextColor: Color = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
-    
-    // disabled button color
+
     @State var nextButtonColor: Color = Color(red: 0.78, green: 0.81, blue: 0.82)
     @State var nextButtonEnabled: Bool = false
     
@@ -405,6 +402,7 @@ struct PropertyPhotoView: View {
 }
 
 struct ContentView3: View {
+    
     @State private var showingSheet = true
     @State var state = OnboardingState.propertyPhoto
     //    @State var propertyName

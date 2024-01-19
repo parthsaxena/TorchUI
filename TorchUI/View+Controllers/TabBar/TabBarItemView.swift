@@ -14,6 +14,7 @@ struct TabBarItemData {
 }
 
 struct TabBarItemView: View {
+    
     @Environment(\.colorScheme) var colorScheme
     
     let data: TabBarItemData
@@ -24,11 +25,8 @@ struct TabBarItemView: View {
             if data.image == "main-nav" {
                 Image(isSelected ? data.image : data.image)
                     .resizable()
-//                    .renderingMode(.template)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: data.size, height: data.size)
-//                    .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-//                    .foregroundColor(isSelected ? Color(red: 1, green: 0.36, blue: 0.14) : CustomColors.TorchGreen)
                     .animation(.default)
                     .padding(.top, 20)
             } else {
@@ -36,7 +34,6 @@ struct TabBarItemView: View {
                     .resizable()
                     .renderingMode(.template)
                     .aspectRatio(contentMode: .fit)
-//                    .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
                     .foregroundColor(isSelected ? Color(red: 1, green: 0.36, blue: 0.14) : (colorScheme == .dark ? Color.white : CustomColors.TorchGreen))
                     .frame(width: data.size, height: data.size)
                     .animation(.default)

@@ -6,7 +6,7 @@
       "location" : "https://github.com/aws-amplify/amplify-ios",
       "state" : {
         "branch" : "main",
-        "revision" : "756548bc8d81e4dfdfaf4eb4a423da63f11c3de3"
+        "revision" : "2abaf4c49e43c9feccdda37fa03a8069e65bbee3"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aws-amplify/amplify-swift-utils-notifications.git",
       "state" : {
-        "revision" : "f970384ad1035732f99259255cd2f97564807e41",
-        "version" : "1.1.0"
+        "revision" : "959eec669ba97c7d923b963c3e66ca8a0b2737f6",
+        "version" : "1.1.1"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aws-amplify/aws-appsync-realtime-client-ios.git",
       "state" : {
-        "revision" : "c7ec93dcbbcd8abc90c74203937f207a7fcaa611",
-        "version" : "3.1.1"
+        "revision" : "a08684c5004e2049c29f57a5938beae9695a1ef7",
+        "version" : "3.1.2"
       }
     },
     {
@@ -113,8 +113,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections",
       "state" : {
-        "revision" : "a902f1823a7ff3c9ab2fba0f992396b948eda307",
-        "version" : "1.0.5"
+        "revision" : "d029d9d39c87bed85b1c50adee7c41795261a192",
+        "version" : "1.0.6"
       }
     },
     {
