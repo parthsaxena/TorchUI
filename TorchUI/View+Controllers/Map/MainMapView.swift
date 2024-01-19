@@ -499,6 +499,33 @@ struct MainMapView: View {
                             .frame(height: self.mapOffset.height)
                     }
                 }
+                if isCopied {
+                    VStack {
+                        Spacer()
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text("Copied to clipboard")
+                                .font(
+                                    Font.custom("Manrope", size: 14)
+                                        .weight(.semibold)
+                                )
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.white)
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        //                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                        .background(Color(red: 0.09, green: 0.11, blue: 0.11))
+                        .cornerRadius(12)
+                        Spacer()
+                    }
+                    .frame(width: width)
+                    .background(.black.opacity(0.4))
+//                    .onTapGesture {
+//                        if isCopied {
+//                            isCopied = false
+//                        }
+//                    }
+                }
             }
         }
         .alert(isPresented: $showingAlert) {

@@ -32,7 +32,6 @@ struct DetectorDetailOverlayView: View {
     @State var selection: Int? = nil
     
     var body: some View {
-//        NavigationView {
             VStack {
                 
                 if (sessionManager.selectedPropertyIndex >= 0 && sessionManager.selectedPropertyIndex < sessionManager.properties.count && sessionManager.selectedDetectorIndex < sessionManager.properties[sessionManager.selectedPropertyIndex].detectors.count) {
@@ -44,6 +43,7 @@ struct DetectorDetailOverlayView: View {
                                 .fill(
                                     RadialGradient(colors: [Color.clear, CustomColors.TorchRed], center: .center, startRadius: width - 200, endRadius: width + 10)
                                 )
+                                .allowsHitTesting(false)
                                 .frame(width: width)
                                 .padding(.bottom, -40)
                                 .ignoresSafeArea()
@@ -220,7 +220,7 @@ struct DetectorDetailOverlayView: View {
                                                     let thermalRiskText = thermalHighRisk ? "Red alert" : (thermalMediumRisk ? "Warning" : "Normal")
                                                     let thermalRiskImage = thermalHighRisk ? "FireRed" : (thermalMediumRisk ? "FireYellow" : "Checkmark")
                                                     let thermalRiskColor = thermalHighRisk ? CustomColors.TorchRed : (thermalMediumRisk ? CustomColors.WarningYellow : CustomColors.GoodGreen)
-                                                    Text("\(thermalRiskText)  \(Image.init(uiImage: UIImage(cgImage: UIImage(named: thermalRiskImage)!.cgImage!, scale: 4.0, orientation: UIImage(named: thermalRiskImage)!.imageOrientation)))")
+                                                    Text("\(thermalRiskText)")
                                                         .font(Font.custom("Manrope-Bold", size: 14))
                                                         .foregroundColor(thermalRiskColor)
                                                     
@@ -230,7 +230,7 @@ struct DetectorDetailOverlayView: View {
                                                     let spectralRiskText = spectralHighRisk ? "Red alert" : (spectralMediumRisk ? "Warning" : "Normal")
                                                     let spectralRiskImage = spectralHighRisk ? "FireRed" : (spectralMediumRisk ? "FireYellow" : "Checkmark")
                                                     let spectralRiskColor = spectralHighRisk ? CustomColors.TorchRed : (spectralMediumRisk ? CustomColors.WarningYellow : CustomColors.GoodGreen)
-                                                    Text("\(spectralRiskText)  \(Image.init(uiImage: UIImage(cgImage: UIImage(named: spectralRiskImage)!.cgImage!, scale: 4.0, orientation: UIImage(named: spectralRiskImage)!.imageOrientation)))")
+                                                    Text("\(spectralRiskText)")
                                                         .font(Font.custom("Manrope-Bold", size: 14))
                                                         .foregroundColor(spectralRiskColor)
                                                     
@@ -241,13 +241,50 @@ struct DetectorDetailOverlayView: View {
                                                     let riskImage = highRisk ? "FireRed" : (mediumRisk ? "FireYellow" : "Checkmark")
                                                     let riskColor = highRisk ? CustomColors.TorchRed : (mediumRisk ? CustomColors.WarningYellow : CustomColors.GoodGreen)
                                                     
-                                                    Text("\(riskText)  \(Image.init(uiImage: UIImage(cgImage: UIImage(named: riskImage)!.cgImage!, scale: 4.0, orientation: UIImage(named: riskImage)!.imageOrientation)))")
+                                                    Text("\(riskText)")
                                                         .font(Font.custom("Manrope-Bold", size: 14))
                                                         .foregroundColor(riskColor)
                                                     
                                                     
-                                                }.padding([.bottom, .trailing, .top], 16)
-                                                    .padding(.leading, 7)
+                                                }.padding([.bottom, .top], 16)
+                                                    .padding(.trailing, 6)
+
+                                                VStack(alignment: .center, spacing: 12) {
+
+                                                    let thermalHighRisk = (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].thermalStatus == Threat.Red)
+                                                    let thermalMediumRisk = !thermalHighRisk && (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].thermalStatus == Threat.Yellow)
+                                                    let thermalRiskText = thermalHighRisk ? "Red alert" : (thermalMediumRisk ? "Warning" : "Normal")
+                                                    let thermalRiskImage = thermalHighRisk ? "FireRed" : (thermalMediumRisk ? "FireYellow" : "Checkmark")
+
+                                                    Text("\(Image.init(uiImage: UIImage(cgImage: UIImage(named: thermalRiskImage)!.cgImage!, scale: 4.0, orientation: UIImage(named: thermalRiskImage)!.imageOrientation)))")
+                                                        .font(Font.custom("Manrope-Bold", size: 14))
+                                                        .foregroundColor(riskColor)
+
+
+
+                                                    let spectralHighRisk = (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].spectralStatus == Threat.Red)
+                                                    let spectralMediumRisk = !spectralHighRisk && (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].spectralStatus == Threat.Yellow)
+                                                    let spectralRiskImage = spectralHighRisk ? "FireRed" : (spectralMediumRisk ? "FireYellow" : "Checkmark")
+
+
+
+                                                    Text("\(Image.init(uiImage: UIImage(cgImage: UIImage(named: spectralRiskImage)!.cgImage!, scale: 4.0, orientation: UIImage(named: spectralRiskImage)!.imageOrientation)))")
+                                                        .font(Font.custom("Manrope-Bold", size: 14))
+                                                        .foregroundColor(riskColor)
+
+
+                                                    let highRisk = (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].smokeStatus == Threat.Red)
+                                                    let mediumRisk = !highRisk && (sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].smokeStatus == Threat.Yellow)
+                                                    let riskImage = highRisk ? "FireRed" : (mediumRisk ? "FireYellow" : "Checkmark")
+
+
+
+                                                    Text("\(Image.init(uiImage: UIImage(cgImage: UIImage(named: riskImage)!.cgImage!, scale: 4.0, orientation: UIImage(named: riskImage)!.imageOrientation)))")
+                                                        .font(Font.custom("Manrope-Bold", size: 14))
+                                                        .foregroundColor(riskColor)
+
+
+                                                }.padding(.trailing, 16)
                                             }
                                             .frame(maxWidth: .infinity)
                                             .frame(height: 116)
