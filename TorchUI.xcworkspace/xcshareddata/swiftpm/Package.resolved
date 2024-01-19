@@ -73,6 +73,15 @@
       }
     },
     {
+      "identity" : "linechartview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Jonathan-Gander/LineChartView",
+      "state" : {
+        "revision" : "91416f04a04ad3117e4fe58c35a24bb66e57ebb4",
+        "version" : "1.4.0"
+      }
+    },
+    {
       "identity" : "pincodetextfield",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/quavodanceq/PinCodeTextField",
