@@ -22,3 +22,4 @@ amplifytools.xcconfig
 Pods/
 Podfile.lock
 TorchUI.xcodeproj/project.pbxproj
+xcuserdata/
