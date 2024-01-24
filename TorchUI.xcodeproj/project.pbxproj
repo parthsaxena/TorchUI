@@ -561,11 +561,8 @@
 		C855B5012B10883E007DA332 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				8B6AFDB62B4A8EFF00433051 /* CustomView */,
-=======
 				C8B50EEA2B618DCF001059F9 /* NickName */,
->>>>>>> e4d7f6f12b8822570ccabcee84ca8fec7d11db1d
 				C855B5022B10883E007DA332 /* PropertyDetailOverlayView.swift */,
 				C855B5032B10883E007DA332 /* HalfCircleShape.swift */,
 				C855B5042B10883E007DA332 /* MainMapView.swift */,
