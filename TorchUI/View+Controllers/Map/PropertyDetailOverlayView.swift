@@ -289,7 +289,7 @@ struct PropertyDetailOverlayView: View {
                                 if SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count >= 5 {
                                     HStack(spacing: sensorSpacing) {
                                         ForEach(5..<10, id: \.self) { i in
-                                            if i < (SessionManager.shared.selectedProperty?.detectors.count ?? 0) {
+                                            if i < (SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count ?? 0) {
                                                 let d = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i]
                                                 ZStack {
                                                     if SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i].threat == Threat.Red {
@@ -425,7 +425,7 @@ struct PropertyDetailOverlayView: View {
                                 if SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count >= 10 {
                                     HStack(spacing: sensorSpacing) {
                                         ForEach(10..<15, id: \.self) { i in
-                                            if i < (SessionManager.shared.selectedProperty?.detectors.count ?? 0) {
+                                            if i < (SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count ?? 0) {
                                                 let d = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i]
                                                 ZStack {
                                                     if SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i].threat == Threat.Red {
