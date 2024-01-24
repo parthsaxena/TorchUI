@@ -61,58 +61,69 @@ struct LeftCombinedShape: Shape {
 
 struct LeftCustomAnnotationView: View {
     var text: String
-    var beams: [[Double]] = []
+    @Binding var beams: [[Double]]
+    var redImageIcon: String = "DetectorIcons/ThreatRed"
+    var yellowImageIcon: String = "DetectorIcons/ThreatYellow"
     var imageIcon: String
     var beamColor: Color = Color.red
+    var showText: Bool = false
+    @StateObject var sessionManager = SessionManager.shared
+    var detectorIdx: Int
 //    @Binding var beamWidth: CGFloat
     
     var body: some View {
-        HStack(spacing: 0) {
-            // The label background (pill shape)
-            LeftCombinedShape()
-                .fill(Color.white)
-                .frame(width: 38, height: 25)
-                .offset(x: 30)// Adjust the width as needed
-            
-            // The text label
-            Text(text)
-                .font(.custom("Manrope-SemiBold", size: 16))
-                .foregroundColor(CustomColors.TorchGreen) // Replace with your actual color
-                .offset(x: -3)
-                .padding(.leading, 8) // Adjust the padding as needed
-            
-            // The icon and beam
-            ZStack {
-                ForEach(beams, id: \.self) { beam in
-                    BeamShape(startAngle: Angle(degrees: beam[0]), endAngle: Angle(degrees: beam[1]))
-                        .fill(LinearGradient(
-                            gradient: .init(colors: [beamColor.opacity(0.5), beamColor.opacity(0.0)]),
-                            startPoint: .init(x: 0, y: 0),
-                            endPoint: .init(x: 100, y: -100)
-                          ))
-    //                    .offset(x: 5, y: 5)
-                        .frame(width: 100, height: 100)
+        if (SessionManager.shared.selectedPropertyIndex >= 0 && SessionManager.shared.selectedPropertyIndex < $sessionManager.properties.count && detectorIdx >= 0 && detectorIdx < $sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors.count) {
+            HStack(spacing: 0) {
+                // The label background (pill shape)
+                if showText {
+                    LeftCombinedShape()
+                        .fill(Color.white)
+                        .frame(width: 38, height: 25)
+                        .offset(x: 30)// Adjust the width as needed
+                    
+                    // The text label
+                    Text(text)
+                        .font(.custom("Manrope-SemiBold", size: 16))
+                        .foregroundColor(CustomColors.TorchGreen) // Replace with your actual color
+                        .offset(x: -3)
+                        .padding(.leading, 8) // Adjust the padding as needed
                 }
-//                BeamShape(startAngle: startAngle, endAngle: endAngle)
-//                    .fill(LinearGradient(
-//                        gradient: .init(colors: [Color.red.opacity(0.5), Color.red.opacity(0.0)]),
-//                        startPoint: .init(x: 0, y: 0),
-//                        endPoint: .init(x: 100, y: -100)
-//                      ))
-////                    .offset(x: 5, y: 5)
-//                    .frame(width: 100, height: 100)
                 
-                Image(imageIcon)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 30, height: 30) // Adjust the size as needed
+                // The icon and beam
+                ZStack {
+                    //                let x = print("LCAV Got beams: \(beams)")
+                    ForEach($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].irHot, id: \.self) { beam in
+                        BeamShape(startAngle: Angle(degrees: beam.wrappedValue[0]), endAngle: Angle(degrees: beam.wrappedValue[1]))
+                            .fill($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].thermalStatus.wrappedValue == Threat.Red ? CustomColors.TorchRed.opacity(0.5) : CustomColors.WarningYellow.opacity(0.5))
+                        //                            .fill(LinearGradient(
+                        //                                gradient: .init(colors: [beamColor.opacity(0.5), beamColor.opacity(0.0)]),
+                        //                                startPoint: .init(x: 0.5, y: 0),
+                        //                                endPoint: .init(x: 0.5, y: 0.6)
+                        //                            ))
+                        //                        .offset(x: 15, y: 15)
+                            .frame(width: 100, height: 100)
+                    }
+                    //                BeamShape(startAngle: startAngle, endAngle: endAngle)
+                    //                    .fill(LinearGradient(
+                    //                        gradient: .init(colors: [Color.red.opacity(0.5), Color.red.opacity(0.0)]),
+                    //                        startPoint: .init(x: 0, y: 0),
+                    //                        endPoint: .init(x: 100, y: -100)
+                    //                      ))
+                    ////                    .offset(x: 5, y: 5)
+                    //                    .frame(width: 100, height: 100)
+                    
+                    Image($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].threat.wrappedValue == Threat.Red ? redImageIcon : ($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].threat.wrappedValue == Threat.Yellow ? yellowImageIcon : "DetectorIcons/\(max($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].sensorIdx.wrappedValue ?? 0, 1))"))
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30) // Adjust the size as needed
+                }
+                .frame(width: 30, height: 30) // Adjust the frame size as needed
             }
-            .frame(width: 30, height: 30) // Adjust the frame size as needed
+            .frame(width: 90, height: 17)
+            .compositingGroup()
+            .shadow(radius: 10)
+            .background(Color.clear) // Use a clear background for the actual view
         }
-        .frame(width: 90, height: 17)
-        .compositingGroup()
-        .shadow(radius: 10)
-        .background(Color.clear) // Use a clear background for the actual view
     }
 }
 

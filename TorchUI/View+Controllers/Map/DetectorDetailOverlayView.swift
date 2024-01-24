@@ -34,7 +34,6 @@ struct DetectorDetailOverlayView: View {
     @Binding var didChangeSensorPosition: Bool
     
     var body: some View {
-//        NavigationView {
             VStack {
                 
                 if (sessionManager.selectedPropertyIndex >= 0 && sessionManager.selectedPropertyIndex < sessionManager.properties.count && sessionManager.selectedDetectorIndex < sessionManager.properties[sessionManager.selectedPropertyIndex].detectors.count) {
@@ -46,6 +45,7 @@ struct DetectorDetailOverlayView: View {
                                 .fill(
                                     RadialGradient(colors: [Color.clear, CustomColors.TorchRed], center: .center, startRadius: width - 200, endRadius: width + 10)
                                 )
+                                .allowsHitTesting(false)
                                 .frame(width: width)
                                 .padding(.bottom, -40)
                                 .ignoresSafeArea()

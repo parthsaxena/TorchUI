@@ -25,6 +25,7 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
     @Binding var zoomChanged: Bool
     @Binding var mapOffset: CGFloat
     @Binding var dragOffset: CGSize
+    @Binding var didChangeSensorPosition: Bool
     @State var triggerUI: Bool = false
     @State var initialMapOffset: Bool = false
     @State var isHighZoom: Bool = true
@@ -44,7 +45,7 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
         vc.mapView = MapView(frame: frame, mapInitOptions: myMapInitOptions)
         vc.mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         vc.mapView.ornaments.compassView.isHidden = true
-        vc.mapView.ornaments.scaleBarView.isHidden = false
+        vc.mapView.ornaments.scaleBarView.isHidden = true
         vc.mapView.gestures.options.rotateEnabled = false
         vc.annotationManager = vc.mapView.annotations.makePointAnnotationManager()
         vc.annotationManager.delegate = context.coordinator
@@ -251,7 +252,8 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
         if (SessionManager.shared.propertyUpdated) {
             print("Update UI add annots trigger")
             SessionManager.shared.propertyUpdated = false
-            self.addMarkersToViewController(vc: uiViewController, context: context)
+//            self.addMarkersToViewController(vc: uiViewController, context: context)
+            self.makeAnnotations(uiViewController: uiViewController)
             return
         }
         
@@ -292,13 +294,30 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                     uiViewController.mapView.mapboxMap.loadStyleJSON(Strings.jsonString) { _ in
                         self.isOnSatellite = false
                     }
-//                    loadStyleJSON(Strings.jsonString)
+                    //                    loadStyleJSON(Strings.jsonString)
                 } else {
                     uiViewController.mapView.mapboxMap.loadStyleJSON(Strings.satelliteJSONString) { _ in
                         self.isOnSatellite = true
                     }
-//                    uiViewController.mapView.mapboxMap.loadStyleJSON(Strings.satelliteJSONString)
+                    //                    uiViewController.mapView.mapboxMap.loadStyleJSON(Strings.satelliteJSONString)
                 }
+            }
+        } else if (self.didChangeSensorPosition) {
+            DispatchQueue.main.async {
+                self.didChangeSensorPosition = false
+                
+                let propertyIdx = SessionManager.shared.selectedPropertyIndex
+                let sensorIdx = SessionManager.shared.selectedDetectorIndex
+                
+                SessionManager.shared.updateSensor(property_id: SessionManager.shared.properties[propertyIdx].id, device_id: SessionManager.shared.properties[propertyIdx].detectors[sensorIdx].id, coordinate: uiViewController.mapView.location.latestLocation?.coordinate)
+                SessionManager.shared.properties[propertyIdx].detectors[sensorIdx].coordinate = uiViewController.mapView.location.latestLocation?.coordinate
+                print("SENS UPDATE1 \(SessionManager.shared.properties[propertyIdx].detectors[sensorIdx].id) \(uiViewController.mapView.location.latestLocation?.coordinate)")
+//                cameraOptions.padding = UIEdgeInsets(top: 0.0, left: 0.0, bottom: self.mapOffset, right: 0.0)
+//                var cameraOptions = CameraOptions(zoom: zoomLevel, bearing: 0.0, pitch: 0.0)
+//                cameraOptions.center = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].coordinate
+//                uiViewController.mapView.camera.fly(to: cameraOptions, duration: 0.1)
+                self.makeAnnotations(uiViewController: uiViewController)
+                self.sensorTapped = true
             }
         } else if (!self.initialMapOffset && self.mapOffset != 0) {
             print("offset: 4")
@@ -318,6 +337,7 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
         }
 
         print("updating annots: \(uiViewController.annotationManager.annotations)")
+        self.updateAnnotations(uiViewController: uiViewController)
 //        self.makeAnnotations(uiViewController: uiViewController)
 //        uiViewController.annotationManager.annotations = []
 //        if (SessionManager.shared.selectedPropertyIndex >= 0 && SessionManager.shared.selectedPropertyIndex < SessionManager.shared.properties.count) {
@@ -357,9 +377,9 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
 //            }
 //        }
 //        
-//        for annotation in self.annotations {
-//            uiViewController.annotationManager.annotations.append(annotation)
-//        }
+        for annotation in self.annotations {
+            uiViewController.annotationManager.annotations.append(annotation)
+        }
     }
     
 //    func checkZoomLevelAnnotations(uiViewController: MapboxViewController) {
@@ -409,6 +429,9 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
     
     func makeAnnotations(uiViewController: MapboxViewController) {
         
+        uiViewController.mapView.viewAnnotations.removeAll()
+        uiViewController.annotationManager.annotations = []
+        
         uiViewController.mapView.location.options.puckType = .puck2D(Puck2DConfiguration.makeDefault(showBearing: true))
         isHighZoom = true
         print("MAKING ANNOTATIONS ADDING HIGH ZOOM")        
@@ -449,33 +472,39 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
             try? uiViewController.mapView.viewAnnotations.add(customView, options: propertyAnnotationOptions)
         }
         
+        var i = 0
         for detector in SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors {
-            if let coordinate = detector.coordinate {
-                let irHot = detector.irHot
+            if let coordinate = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i].coordinate {
+//                let irHot = detector .irHot
+                print("SENS UPDATE MAKE \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i].id) \(coordinate)")
+                @State var irHot = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i].irHot
                 var leftFlag = false
-                for i in 0..<irHot.count {
-                    let startAngle = Angle(degrees: irHot[i][0])
-                    let endAngle = Angle(degrees: irHot[i][1])
+                for j in 0..<irHot.count {
+                    let startAngle = Angle(degrees: irHot[j][0])
+                    let endAngle = Angle(degrees: irHot[j][1])
                     if (startAngle.degrees > 0 && startAngle.degrees < 180) {
                         leftFlag = true
                         break
                     }
                 }
-                
+                                
                 var imageIcon = "DetectorIcons/\(max(detector.sensorIdx ?? 0, 1))"
                 var beamColor = CustomColors.TorchRed
+                var showText = false
                 if detector.threat == Threat.Red {
                     imageIcon = "DetectorIcons/ThreatRed"
                     beamColor = CustomColors.TorchRed
+                    showText = true
                 } else if detector.threat == Threat.Yellow {
                     imageIcon = "DetectorIcons/ThreatYellow"
                     beamColor = CustomColors.WarningYellow
+                    showText = true
                 }
                 
                 // Use right
                 if (leftFlag) {
                     print("custom annot: leftcustom")
-                    let customAnnotationView = UIHostingController(rootView: LeftCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: irHot, imageIcon: imageIcon, beamColor: beamColor))
+                    let customAnnotationView = UIHostingController(rootView: LeftCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, imageIcon: imageIcon, beamColor: beamColor, showText: showText, detectorIdx: i))
                     customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 90, height: 17)
                     customAnnotationView.view.backgroundColor = .clear
                     customAnnotationView.view.sizeToFit()
@@ -500,7 +529,7 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                 } else {
                     
                     print("custom annot: rightcustom")
-                    let customAnnotationView = UIHostingController(rootView: RightCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: irHot, imageIcon: imageIcon, beamColor: beamColor))
+                    let customAnnotationView = UIHostingController(rootView: RightCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, showText: showText, detectorIdx: i))
                     customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 50, height: 17)
                     customAnnotationView.view.backgroundColor = .clear
                     customAnnotationView.view.sizeToFit()
@@ -510,7 +539,7 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                         width: customAnnotationView.view.bounds.width,
                         height: customAnnotationView.view.bounds.height,
                         associatedFeatureId: nil,
-                        allowOverlap: false,
+                        allowOverlap: true,
                         visible: true,
                         anchor: .left,
                         offsetX: -20
@@ -524,6 +553,8 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                     }
                 }
             }
+            
+            i += 1
         }
     }
     
@@ -537,11 +568,12 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                 uiViewController.annotationManager.annotations = []
                 print("CHECKING ZOOM ADDING LOW ZOOM")
                 uiViewController.mapView.location.options.puckType = nil
-                let detectors = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors
-                for detector in detectors {
-                    guard let coord = detector.coordinate else {
+                var i = 0
+                for detector in SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors {
+                    guard let coord = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i].coordinate else {
                         continue
                     }
+                    print("SENS UPDATE UPPDATE \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i].id) \(coord)")
                     
                     var pointAnnotation = PointAnnotation(id: detector.id, coordinate: coord)
                     var annotationIcon = "DetectorIcons/ThreatGreenSmall"
@@ -558,6 +590,8 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                     pointAnnotation.iconSize = 0.25
                                         
                     uiViewController.annotationManager.annotations.append(pointAnnotation)
+                    
+                    i += 1
                 }
                 print("CHECKING ZOOM ADDING LOW ZOOM END: \(uiViewController.annotationManager.annotations)")
             } else if (uiViewController.mapView.cameraState.zoom >= ICON_SMALL_ZOOM_THRESHOLD && !isHighZoom) {
@@ -603,13 +637,16 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                     try? uiViewController.mapView.viewAnnotations.add(customView, options: propertyAnnotationOptions)
                 }
                 
+                var i = 0
                 for detector in SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors {
-                    if let coordinate = detector.coordinate {
-                        let irHot = detector.irHot
+                    if let coordinate = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i].coordinate {
+//                        let irHot = detector.irHot
+                        print("SENS UPDATE UPPDATE \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i].id) \(coordinate)")
+                        @State var irHot = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[i].irHot
                         var leftFlag = false
-                        for i in 0..<irHot.count {
-                            let startAngle = Angle(degrees: irHot[i][0])
-                            let endAngle = Angle(degrees: irHot[i][1])
+                        for j in 0..<irHot.count {
+                            let startAngle = Angle(degrees: irHot[j][0])
+                            let endAngle = Angle(degrees: irHot[j][1])
                             if (startAngle.degrees > 0 && startAngle.degrees < 180) {
                                 leftFlag = true
                                 break
@@ -618,18 +655,21 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                                         
                         var imageIcon = "DetectorIcons/\(max(detector.sensorIdx ?? 0, 1))"
                         var beamColor = CustomColors.TorchRed
+                        var showText = false
                         if detector.threat == Threat.Red {
                             imageIcon = "DetectorIcons/ThreatRed"
                             beamColor = CustomColors.TorchRed
+                            showText = true
                         } else if detector.threat == Threat.Yellow {
                             imageIcon = "DetectorIcons/ThreatYellow"
                             beamColor = CustomColors.WarningYellow
+                            showText = true
                         }
                         
                         // Use right
                         if (leftFlag) {
                             print("custom annot: leftcustom")
-                            let customAnnotationView = UIHostingController(rootView: LeftCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: irHot, imageIcon: imageIcon, beamColor: beamColor))
+                            let customAnnotationView = UIHostingController(rootView: LeftCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, imageIcon: imageIcon, beamColor: beamColor, showText: showText, detectorIdx: i))
                             customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 90, height: 17)
                             customAnnotationView.view.backgroundColor = .clear
                             customAnnotationView.view.sizeToFit()
@@ -654,7 +694,7 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                         } else {
                             
                             print("custom annot: rightcustom")
-                            let customAnnotationView = UIHostingController(rootView: RightCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: irHot, imageIcon: imageIcon, beamColor: beamColor))
+                            let customAnnotationView = UIHostingController(rootView: RightCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, showText: showText, detectorIdx: i))
                             customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 50, height: 17)
                             customAnnotationView.view.backgroundColor = .clear
                             customAnnotationView.view.sizeToFit()
@@ -664,7 +704,7 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                                 width: customAnnotationView.view.bounds.width,
                                 height: customAnnotationView.view.bounds.height,
                                 associatedFeatureId: nil,
-                                allowOverlap: false,
+                                allowOverlap: true,
                                 visible: true,
                                 anchor: .left,
                                 offsetX: -20
@@ -678,7 +718,10 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                             }
                         }
                     }
+                    i += 1
                 }
+            } else {
+                print("XXAA no change")
             }
         }
     }
