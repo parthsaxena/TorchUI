@@ -35,8 +35,10 @@
 		8B00A11B2B2174240080534F /* GlassyTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00A1192B2174240080534F /* GlassyTabbar.swift */; };
 		8B25BD032B1DA13100681342 /* AWSPinpointPushNotificationsPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 8B25BD022B1DA13100681342 /* AWSPinpointPushNotificationsPlugin */; };
 		8B25BD052B1DA13100681342 /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 8B25BD042B1DA13100681342 /* Amplify */; };
+		8B6AFDB82B4A8F1900433051 /* ActiveSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AFDB72B4A8F1900433051 /* ActiveSensorView.swift */; };
 		8B88C8FE2A70450F008B90A2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 8B88C8FD2A70450F008B90A2 /* CodeScanner */; };
 		8BA867BF2A80869D00BEED38 /* PinCodeTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 8BA867BE2A80869D00BEED38 /* PinCodeTextField */; };
+		8BAE82C72B4B6699000F3D1C /* LeftActiveSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAE82C62B4B6699000F3D1C /* LeftActiveSensorView.swift */; };
 		8BB4FD4D2B47C91E00CBA5B8 /* UpdatePropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB4FD4C2B47C91E00CBA5B8 /* UpdatePropertyView.swift */; };
 		8BC224842A859A07000958AA /* ZXCodeTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC224832A859A07000958AA /* ZXCodeTextField */; };
 		8BC37B5D2B490F0800C7635B /* UpdatePropertyAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC37B5C2B490F0800C7635B /* UpdatePropertyAddressView.swift */; };
@@ -184,6 +186,8 @@
 		8B00A1182B2174230080534F /* TabbarAsset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabbarAsset.xcassets; sourceTree = "<group>"; };
 		8B00A1192B2174240080534F /* GlassyTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassyTabbar.swift; sourceTree = "<group>"; };
 		8B4A07AE2AE1FB81005731F6 /* ZXCodeTextfield */ = {isa = PBXFileReference; lastKnownFileType = text; path = ZXCodeTextfield; sourceTree = SOURCE_ROOT; };
+		8B6AFDB72B4A8F1900433051 /* ActiveSensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSensorView.swift; sourceTree = "<group>"; };
+		8BAE82C62B4B6699000F3D1C /* LeftActiveSensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftActiveSensorView.swift; sourceTree = "<group>"; };
 		8BB4FD4C2B47C91E00CBA5B8 /* UpdatePropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePropertyView.swift; sourceTree = "<group>"; };
 		8BC37B5C2B490F0800C7635B /* UpdatePropertyAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePropertyAddressView.swift; sourceTree = "<group>"; };
 		8BF7FC4F2A4D1488005D1160 /* TorchUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TorchUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -377,6 +381,15 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		8B6AFDB62B4A8EFF00433051 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				8B6AFDB72B4A8F1900433051 /* ActiveSensorView.swift */,
+				8BAE82C62B4B6699000F3D1C /* LeftActiveSensorView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		8B9429E42B47C8CD00BF84A9 /* UpdateProperty */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +559,7 @@
 		C855B5012B10883E007DA332 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				8B6AFDB62B4A8EFF00433051 /* CustomView */,
 				C855B5022B10883E007DA332 /* PropertyDetailOverlayView.swift */,
 				C855B5032B10883E007DA332 /* HalfCircleShape.swift */,
 				C855B5042B10883E007DA332 /* MainMapView.swift */,
@@ -1154,8 +1168,10 @@
 				C855B56C2B10883F007DA332 /* MapboxMap.swift in Sources */,
 				C855B58E2B10883F007DA332 /* ViewSize.swift in Sources */,
 				C855B56B2B10883F007DA332 /* DetectorDetailOverlayView.swift in Sources */,
+				8B6AFDB82B4A8F1900433051 /* ActiveSensorView.swift in Sources */,
 				C855B5532B10883F007DA332 /* PropertyAddressView.swift in Sources */,
 				30ACFC1A2B44220A007BCC22 /* ScalingDotsIndicatorView.swift in Sources */,
+				8BAE82C72B4B6699000F3D1C /* LeftActiveSensorView.swift in Sources */,
 				C855B5612B10883F007DA332 /* MapViewController.swift in Sources */,
 				30ACFC182B44220A007BCC22 /* ArcsIndicatorView.swift in Sources */,
 				C855B55E2B10883F007DA332 /* PropertyDetailOverlayView.swift in Sources */,
@@ -1362,7 +1378,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = TorchUI/TorchUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
 				DEVELOPMENT_TEAM = H3MR536ERJ;
 				ENABLE_PREVIEWS = YES;
@@ -1381,7 +1397,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1459,7 +1475,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = TorchUI/TorchUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
 				DEVELOPMENT_TEAM = H3MR536ERJ;
 				ENABLE_PREVIEWS = YES;
@@ -1478,7 +1494,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

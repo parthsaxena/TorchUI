@@ -61,8 +61,10 @@ struct LeftCombinedShape: Shape {
 
 struct LeftCustomAnnotationView: View {
     var text: String
-    var startAngle: Angle
-    var endAngle: Angle
+    var beams: [[Double]] = []
+    var imageIcon: String
+    var beamColor: Color = Color.red
+//    @Binding var beamWidth: CGFloat
     
     var body: some View {
         HStack(spacing: 0) {
@@ -81,15 +83,26 @@ struct LeftCustomAnnotationView: View {
             
             // The icon and beam
             ZStack {
-                BeamShape(startAngle: startAngle, endAngle: endAngle, beamWidth: 50)
-                    .fill(LinearGradient(
-                        gradient: .init(colors: [Color.red.opacity(0.5), Color.red.opacity(0.0)]),
-                        startPoint: .init(x: 0, y: 0),
-                        endPoint: .init(x: 100, y: -100)
-                      ))
-                    .frame(width: 100, height: 100)
+                ForEach(beams, id: \.self) { beam in
+                    BeamShape(startAngle: Angle(degrees: beam[0]), endAngle: Angle(degrees: beam[1]))
+                        .fill(LinearGradient(
+                            gradient: .init(colors: [beamColor.opacity(0.5), beamColor.opacity(0.0)]),
+                            startPoint: .init(x: 0, y: 0),
+                            endPoint: .init(x: 100, y: -100)
+                          ))
+    //                    .offset(x: 5, y: 5)
+                        .frame(width: 100, height: 100)
+                }
+//                BeamShape(startAngle: startAngle, endAngle: endAngle)
+//                    .fill(LinearGradient(
+//                        gradient: .init(colors: [Color.red.opacity(0.5), Color.red.opacity(0.0)]),
+//                        startPoint: .init(x: 0, y: 0),
+//                        endPoint: .init(x: 100, y: -100)
+//                      ))
+////                    .offset(x: 5, y: 5)
+//                    .frame(width: 100, height: 100)
                 
-                Image("DetectorIcons/ThreatRed") // Use your actual icon image here
+                Image(imageIcon)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 30) // Adjust the size as needed
@@ -104,14 +117,15 @@ struct LeftCustomAnnotationView: View {
 }
 
 // SwiftUI Preview
-struct LeftCustomAnnotationView_Previews: PreviewProvider {
-    static var previews: some View {
-        LeftCustomAnnotationView(text: "1", startAngle: .degrees(168.75), endAngle: .degrees(180))
-//        LeftCustomAnnotationView(text: "1", startAngle: .degrees(0), endAngle: .degrees(11.25))
-//            .previewLayout(.sizeThatFits)
-//            .padding()
-//            .background(Color.black) // Background for preview purposes
-    }
-}
+//struct LeftCustomAnnotationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        @State var beamWidth: CGFloat = 50.0
+//        LeftCustomAnnotationView(text: "1", startAngle: .degrees(168.75), endAngle: .degrees(180))
+////        LeftCustomAnnotationView(text: "1", startAngle: .degrees(0), endAngle: .degrees(11.25))
+////            .previewLayout(.sizeThatFits)
+////            .padding()
+////            .background(Color.black) // Background for preview purposes
+//    }
+//}
 
 

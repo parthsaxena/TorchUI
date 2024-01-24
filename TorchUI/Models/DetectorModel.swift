@@ -25,6 +25,7 @@ struct Detector: Hashable, Identifiable  {
     var selected: Bool = false
     var sensorIdx: Int?
     var connected: Bool = true
+    var irHot: [[Double]] = []
     
     var lastTimestamp: Date = Date()
     var isNewlyInstalled: Bool = false

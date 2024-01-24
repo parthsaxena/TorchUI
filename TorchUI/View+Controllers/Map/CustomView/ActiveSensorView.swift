@@ -11,7 +11,7 @@ import SwiftUI
 struct BeamShape: Shape {
     var startAngle: Angle
     var endAngle: Angle
-    var beamWidth: CGFloat
+//    var beamWidth: CGFloat
 
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -22,12 +22,14 @@ struct BeamShape: Shape {
         // Define the center and radius based on the rect
         let center = CGPoint(x: rect.midX, y: rect.midY)
         let radius = min(rect.width, rect.height) / 2
+        
+//        let x = print("BEAM: \(radius) \(beamWidth)")
 
         // Draw the outer arc
-        path.addArc(center: center, radius: radius, startAngle: modifiedStart, endAngle: modifiedEnd, clockwise: false)
+        path.addArc(center: center, radius: 75, startAngle: modifiedStart, endAngle: modifiedEnd, clockwise: false)
 
         // Draw the inner arc in reverse
-        path.addArc(center: center, radius: radius - beamWidth, startAngle: modifiedEnd, endAngle: modifiedStart, clockwise: true)
+        path.addArc(center: center, radius: 1, startAngle: modifiedEnd, endAngle: modifiedStart, clockwise: true)
 
         return path
     }
@@ -63,8 +65,10 @@ struct RightCombinedShape: Shape {
 struct RightCustomAnnotationView: View {
 //    var threat: Threat
     var text: String
-    var startAngle: Angle
-    var endAngle: Angle
+    var beams: [[Double]] = []
+    var imageIcon: String
+    var beamColor: Color = Color.red
+//    @Binding var beamWidth: CGFloat
     
     var body: some View {
         ZStack(alignment: .leading) { // Align items to the leading edge
@@ -77,16 +81,19 @@ struct RightCustomAnnotationView: View {
             HStack(spacing: 0) {
                 // The icon and beam
                 ZStack {
-                    BeamShape(startAngle: startAngle, endAngle: endAngle, beamWidth: 50)
-//                        .fill(Color.red.opacity(0.5))
-                        .fill(LinearGradient(
-                            gradient: .init(colors: [Color.red.opacity(0.5), Color.red.opacity(0.0)]),
-                            startPoint: .init(x: 0.5, y: 0),
-                            endPoint: .init(x: 0.5, y: 0.6)
-                          ))
-                        .frame(width: 100, height: 100)
+                    ForEach(beams, id: \.self) { beam in
+                        BeamShape(startAngle: Angle(degrees: beam[0]), endAngle: Angle(degrees: beam[1]))
+                        //                        .fill(Color.red.opacity(0.5))
+                            .fill(LinearGradient(
+                                gradient: .init(colors: [beamColor.opacity(0.5), beamColor.opacity(0.0)]),
+                                startPoint: .init(x: 0.5, y: 0),
+                                endPoint: .init(x: 0.5, y: 0.6)
+                            ))
+                        //                        .offset(x: 15, y: 15)
+                            .frame(width: 100, height: 100)
+                    }
                     
-                    Image("DetectorIcons/ThreatRed")
+                    Image(imageIcon)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 30, height: 30) // Adjust the size as needed
@@ -109,11 +116,12 @@ struct RightCustomAnnotationView: View {
 }
 
 // SwiftUI Preview
-struct CustomAnnotationView_Previews: PreviewProvider {
-    static var previews: some View {
-        RightCustomAnnotationView(text: "3", startAngle: Angle(degrees: 168.75), endAngle: Angle(degrees: 180))
-            .previewLayout(.sizeThatFits)
-            .padding()
-    }
-}
+//struct CustomAnnotationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        @State var beamWidth: CGFloat = 50.0
+//        RightCustomAnnotationView(text: "3", startAngle: Angle(degrees: 168.75), endAngle: Angle(degrees: 180))
+//            .previewLayout(.sizeThatFits)
+//            .padding()
+//    }
+//}
 

@@ -45,7 +45,7 @@ struct MainMapView: View {
     @State var showRedOverlay: Bool = false
     @State private var isCopied: Bool = false
     
-    @State var zoomLevel: CGFloat = 12
+    @State var zoomLevel: CGFloat = 17
     
     @State var isAddingSensor: Bool = false
     @State var isPresentingScanner: Bool = false
@@ -65,6 +65,9 @@ struct MainMapView: View {
     
     @State var showingDeletePropertyOptions: Bool = false
     @State var showingDeleteDetectorOptions: Bool = false
+    
+    @State var isOnSatellite = false
+//    @State var mapLayerTapped = false
     
     var combinedBinding: Binding<Bool> {
         Binding(
@@ -88,7 +91,7 @@ struct MainMapView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                MapboxMapViewWrapper(showDetectorDetails: $showDetectorDetails, zoomLevel: $zoomLevel, selectedDetectorIndex: $selectedDetectorIndex, annotations: $annotations, pin: self.$pin, needsLocationPin: $needsLocationPin, sensorTapped: $sensorTapped, moveToUserTapped: $moveToUserTapped, zoomChanged: $zoomChanged, mapOffset: $mapOffset.height, dragOffset: $dragOffset)
+                MapboxMapViewWrapper(showDetectorDetails: $showDetectorDetails, zoomLevel: $zoomLevel, selectedDetectorIndex: $selectedDetectorIndex, annotations: $annotations, pin: self.$pin, needsLocationPin: $needsLocationPin, sensorTapped: $sensorTapped, moveToUserTapped: $moveToUserTapped, mapLayerTapped: $mapLayerTapped, zoomChanged: $zoomChanged, mapOffset: $mapOffset.height, dragOffset: $dragOffset, isOnSatellite: $isOnSatellite)
                     .ignoresSafeArea()
                     .animation(.easeIn)
 
@@ -487,6 +490,7 @@ struct MainMapView: View {
                         .padding(.trailing, 10)
                         HStack {
                             Spacer()
+                            MapLayerButton(mapLayerTapped: $mapLayerTapped)
                         }
                         .padding(.trailing, 10)
                         HStack {

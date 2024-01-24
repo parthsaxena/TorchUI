@@ -842,7 +842,7 @@ struct DetectorDetailOverlayView: View {
             }
 //        }
     }
-}
+}              
 
 
 #Preview {
