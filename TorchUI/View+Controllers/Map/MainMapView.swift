@@ -49,7 +49,7 @@ struct MainMapView: View {
     
     @State var isAddingSensor: Bool = false
     @State var isPresentingScanner: Bool = false
-    
+    @State var shouldHideOnPositionSelection: Bool = false
     @State var isConfirmingLocation: Bool = false
     
     @State var pin: CLLocationCoordinate2D = CLLocationCoordinate2D()
@@ -204,7 +204,7 @@ struct MainMapView: View {
                     
                     let _ = print("MapOffset: \(self.mapOffset), Detector: \(self.detectorOverlaySize), Property: \(self.propertyOverlaySize)")
                     if let selectedProperty = sessionManager.selectedProperty {
-                    PropertyDetailOverlayView(isPresentingScanner: $isPresentingScanner, zoomLevel: $zoomLevel, property: selectedProperty, mapOffset: $mapOffset, size: $propertyOverlaySize, sessionManager: sessionManager, selectedDetectorIndex: $selectedDetectorIndex, showDetectorDetails: $showDetectorDetails,selectedDetector: $selectedDetector, selectedMarker: $selectedMarker, detectors: MainMapView.detectors, annotations: $annotations, newDetector: $newDetector, isConfirmingLocation: $isConfirmingLocation, pin: self.$pin, sensorTapped: $sensorTapped, showingOptions: $showingDeletePropertyOptions, dragOffset: $dragOffset, showRedOverlay: $showRedOverlay)
+                        PropertyDetailOverlayView(isPresentingScanner: $isPresentingScanner, zoomLevel: $zoomLevel, property: selectedProperty, mapOffset: $mapOffset, size: $propertyOverlaySize, sessionManager: sessionManager, selectedDetectorIndex: $selectedDetectorIndex, showDetectorDetails: $showDetectorDetails,selectedDetector: $selectedDetector, selectedMarker: $selectedMarker, detectors: MainMapView.detectors, annotations: $annotations, newDetector: $newDetector, isConfirmingLocation: $isConfirmingLocation, pin: self.$pin, sensorTapped: $sensorTapped, showingOptions: $showingDeletePropertyOptions, dragOffset: $dragOffset, showRedOverlay: $showRedOverlay, shouldHideOnPositionSelection: $shouldHideOnPositionSelection)
                         .offset(x: 0, y: showDetectorDetails ? UIScreen.main.bounds.height : self.dragOffset.height)
                         .gesture(
                             DragGesture()
@@ -259,7 +259,7 @@ struct MainMapView: View {
                                         let impactMed = UIImpactFeedbackGenerator(style: .heavy)
                                         impactMed.impactOccurred()
                                         isPresentingScanner = false
-                                        
+                                        shouldHideOnPositionSelection = true
                                         let index = SessionManager.shared.selectedPropertyIndex
                                         let properties = SessionManager.shared.properties
                                         let isAlreadyAdded = properties[index].detectors.contains(where: { $0.id == result.string })

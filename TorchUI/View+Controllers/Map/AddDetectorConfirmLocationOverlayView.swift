@@ -14,8 +14,8 @@ import MapboxMaps
 struct AddDetectorConfirmLocationOverlayView: View {
     @Environment(\.colorScheme) var colorScheme
     
-    private let width = UIScreen.main.bounds.width
-    private let height = UIScreen.main.bounds.height
+//    private let width = UIScreen.main.bounds.width
+//    private let height = UIScreen.main.bounds.height
 
     @Binding var size: CGSize
     @Binding var annotations: [PointAnnotation]
@@ -75,7 +75,7 @@ struct AddDetectorConfirmLocationOverlayView: View {
                                 pointAnnotation.iconSize = 0.25
                                 pointAnnotation.iconOffset = [40, 0]
                                 
-                                var user_id = AuthenticationManager.shared.authUser.userId
+                                let user_id = AuthenticationManager.shared.authUser.userId
                                 SessionManager.shared.registerDevice(userID: user_id, property: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex], detector: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[newDetectorIndex])
                                 
                                 //                                SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.append(newDetector!)
@@ -136,6 +136,33 @@ struct AddDetectorConfirmLocationOverlayView: View {
                     //                    self.size = geo.size
                 }
             })
+        }
+        .onAppear {
+            
+            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+            impactMed.impactOccurred()
+            newDetector?.coordinate = self.pin
+
+            let propertyIndex = SessionManager.shared.selectedPropertyIndex
+            SessionManager.shared.properties[propertyIndex].detectors[newDetectorIndex].coordinate = self.pin
+
+            var pointAnnotation = PointAnnotation(id: newDetector?.id ?? "", coordinate: self.pin)
+            let annotationIcon = "NewSensorIcon\(newDetector?.sensorIdx ?? 0)"
+            if let annotationImage = UIImage(named: annotationIcon) {
+                pointAnnotation.image = .init(image: annotationImage, name: annotationIcon)
+            }
+            pointAnnotation.iconAnchor = .bottom
+            pointAnnotation.iconSize = 0.25
+            pointAnnotation.iconOffset = [40, 0]
+            
+            let user_id = AuthenticationManager.shared.authUser.userId
+            let detector = SessionManager.shared.properties[propertyIndex].detectors[newDetectorIndex]
+            let property = SessionManager.shared.properties[propertyIndex]
+            SessionManager.shared.registerDevice(userID: user_id, property: property, detector: detector)
+
+            self.newDetector = nil
+            self.needsLocationPin = false
+            self.isConfirmingLocation = false
         }
     }
 }

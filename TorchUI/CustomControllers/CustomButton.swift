@@ -381,3 +381,81 @@ struct AnalyticsBackButton: View {
         .shadow(color: CustomColors.LightGray.opacity(0.3), radius: 5.0)
     }
 }
+
+struct CircleButtonWithAnimation: View {
+    
+    @State private var scale1: CGFloat = 0
+    @State private var scale2: CGFloat = 0
+    @State private var scale3: CGFloat = 0
+    
+    @Binding var isPresentingScanner: Bool
+    
+    var body: some View {
+        GeometryReader { geometry in
+            HStack {
+                Button(action: {
+                   
+                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                    impactMed.impactOccurred()
+                    isPresentingScanner = true
+                }) {
+                    ZStack {
+                        Circle()
+                            .stroke(Color.orange.opacity(Double(1 - scale1)), lineWidth: 1)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .scaleEffect(scale1)
+                            .animation(
+                                Animation.easeOut(duration: 2.0)
+                                    .repeatForever(autoreverses: false)
+                                    .delay(0.0)
+                            )
+                            .onAppear {
+                                scale1 = 1.0
+                            }
+                        
+                        Circle()
+                            .stroke(Color.orange.opacity(Double(1 - scale2)), lineWidth: 1)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .scaleEffect(scale2)
+                            .animation(
+                                Animation.easeOut(duration: 2.0)
+                                    .repeatForever(autoreverses: false )
+                                    .delay(0.5)
+                            )
+                            .onAppear {
+                                scale2 = 1.0
+                            }
+                        
+                        Circle()
+                            .stroke(Color.orange.opacity(Double(1 - scale3)), lineWidth: 1)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .scaleEffect(scale3)
+                            .animation(
+                                Animation.easeOut(duration: 2.0)
+                                    .repeatForever(autoreverses: false)
+                                    .delay(1.0)
+                            )
+                            .onAppear {
+                                scale3 = 1.0
+                            }
+                        Image(systemName: "plus")
+                            .foregroundColor(.orange)
+                            .font(.system(size: 24))
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.orange, lineWidth: 1)
+                            )
+                    }
+                    
+                }
+                Image("Tooltip")
+                    .foregroundColor(.orange)
+                    .font(.system(size: 24))
+                    .padding(.top, 5)
+                    .padding(.leading, -25)
+            }
+        }
+//        .frame(width: 60, height: 60)
+    }
+}
