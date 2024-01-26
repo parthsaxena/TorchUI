@@ -29,6 +29,7 @@ struct AddDetectorConfirmLocationOverlayView: View {
     @StateObject var sessionManager = SessionManager.shared
     
     @Binding var newDetectorIndex: Int
+    @Binding var isNickName: Bool
     
     var body: some View {
         VStack {
@@ -163,6 +164,7 @@ struct AddDetectorConfirmLocationOverlayView: View {
             self.newDetector = nil
             self.needsLocationPin = false
             self.isConfirmingLocation = false
+            self.isNickName = true
         }
     }
 }

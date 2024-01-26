@@ -12,13 +12,13 @@ struct NickNameUIView: View {
     @Environment(\.colorScheme) var colorScheme
         
     @Binding var name: String
-    
+    @Binding var isNickName: Bool
     // place holder text color
-    @State var fieldTextColor: Color = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
+    @State private var fieldTextColor: Color = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
     
     // disabled button color
-    @State var nextButtonColor: Color = Color(red: 0.78, green: 0.81, blue: 0.82)
-    @State var nextButtonEnabled: Bool = false
+    @State private var nextButtonColor: Color = Color(red: 0.78, green: 0.81, blue: 0.82)
+    @State private var nextButtonEnabled: Bool = false
 
     @FocusState private var focusedField: FocusField?
     
@@ -69,9 +69,10 @@ struct NickNameUIView: View {
                     Spacer()
                     Button(action: {
                         // Handle button action here
+                        isNickName = false
                     }) {
                         Image(systemName: "xmark")
-                            .foregroundColor(.red)
+                            .foregroundColor(.gray)
                             .font(.system(size: 24))
                             .padding(10)
                             .background(.clear)
@@ -116,6 +117,7 @@ struct NickNameUIView: View {
                     impactMed.impactOccurred()
                     withAnimation {
 //                        AuthenticationManager.shared.authState = .accountEmail
+                        isNickName = false
                     }
                 }) {
                     Text("Done")
@@ -134,26 +136,27 @@ struct NickNameUIView: View {
             }
             .padding(.top, 60)
             HStack {
-                Spacer()
+//                Spacer()
                 
                 Button(action: {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
                     withAnimation {
 //                        AuthenticationManager.shared.authState = .accountEmail
+                        isNickName = false
                     }
                 }) {
                     Text("Skip")
                     .font(.custom("Manrope-SemiBold", size: 16))
                     .frame(maxWidth: .infinity)
                     .frame(height: 60)
-                    .foregroundColor(colorScheme == .dark ? .gray : .white)
+                    .foregroundColor(colorScheme == .dark ? .white : .gray)
                     .background(
                         RoundedRectangle(cornerRadius: 100)
                             .foregroundColor(.clear)
                     )
                     .padding(.horizontal, 16)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 0)
                 }
             }
         }
@@ -161,11 +164,11 @@ struct NickNameUIView: View {
     }
 }
 
-struct NickNameUIView_Previews: PreviewProvider {
-    
-    @State static var name = ""
-    
-    static var previews: some View {
-        NickNameUIView(name: $name)
-    }
-}
+//struct NickNameUIView_Previews: PreviewProvider {
+//    
+//    @State static var name = ""
+//    @S
+//    static var previews: some View {
+//        NickNameUIView(name: $name, isNickName: <#Binding<Bool>#>)
+//    }
+//}

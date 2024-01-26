@@ -14,8 +14,8 @@ import MapboxMaps
 struct SensorConfirmLocationOverlayView: View {
     @Environment(\.colorScheme) var colorScheme
     
-    private let width = UIScreen.main.bounds.width
-    private let height = UIScreen.main.bounds.height
+//    private let width = UIScreen.main.bounds.width
+//    private let height = UIScreen.main.bounds.height
 
     @Binding var mapOffset: CGSize
     @Binding var size: CGSize
@@ -27,6 +27,7 @@ struct SensorConfirmLocationOverlayView: View {
     @State var nextButtonEnabled: Bool = true
 
     @StateObject var sessionManager = SessionManager.shared
+    @Binding var isNickName: Bool
     
     var body: some View {
         VStack {
@@ -131,6 +132,35 @@ struct SensorConfirmLocationOverlayView: View {
                         self.mapOffset = geo.size
                     }
             })
+        }
+        .onAppear {
+            
+            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+            impactMed.impactOccurred()
+            if let selectedSensor = selectedSensor {
+                sessionManager.setDetectorCoordinate(detector: selectedSensor, coordinate: self.pin)
+            }
+            selectedSensor?.coordinate = self.pin
+            let sensorMarker = GMSMarker(position: self.pin)
+            sensorMarker.userData = selectedSensor?.id
+            let assetName = "NewSensorIcon\(selectedSensor?.sensorIdx ?? 0)"
+            var markerImage = UIImage(named: assetName)
+            if let image = markerImage?.cgImage, let imageOrientation = markerImage?.imageOrientation {
+                markerImage = UIImage(cgImage: image, scale: 4.0, orientation: imageOrientation)
+            }
+            sensorMarker.icon = markerImage
+            
+            for i in 0..<self.markers.count {
+                if self.markers[i].userData as? String == selectedSensor?.id {
+                    self.markers[i].map = nil
+                    self.markers.remove(at: i)
+                    break
+                }
+            }
+            
+            self.markers.append(sensorMarker)
+            self.isConfirmingLocation = false
+            self.isNickName = true
         }
     }
 }

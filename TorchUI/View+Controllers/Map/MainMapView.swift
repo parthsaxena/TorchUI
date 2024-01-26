@@ -66,6 +66,9 @@ struct MainMapView: View {
     @State var showingDeletePropertyOptions: Bool = false
     @State var showingDeleteDetectorOptions: Bool = false
     
+    @State var isNickName: Bool = false
+    @State var name: String = ""
+    
     var combinedBinding: Binding<Bool> {
         Binding(
             get: {
@@ -107,7 +110,7 @@ struct MainMapView: View {
 //                            .frame(width: width, height: height - detectorOverlaySize.height)
 //                            .padding(.bottom, -40)
 //                            .ignoresSafeArea()
-                    DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay)
+                    DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay, needsLocationPin: $needsLocationPin, shouldHideOnPositionSelection: $shouldHideOnPositionSelection, newDetector: $newDetector)
                         .onAppear(perform: {
                             withAnimation(.easeIn(duration: 5.0)) {
                                 shouldShowRedOverlay = true
@@ -199,10 +202,7 @@ struct MainMapView: View {
                                 SessionManager.shared.appState = .updateProperty
                             }
                         }
-                        
 //                    }
-                    
-                    let _ = print("MapOffset: \(self.mapOffset), Detector: \(self.detectorOverlaySize), Property: \(self.propertyOverlaySize)")
                     if let selectedProperty = sessionManager.selectedProperty {
                         PropertyDetailOverlayView(isPresentingScanner: $isPresentingScanner, zoomLevel: $zoomLevel, property: selectedProperty, mapOffset: $mapOffset, size: $propertyOverlaySize, sessionManager: sessionManager, selectedDetectorIndex: $selectedDetectorIndex, showDetectorDetails: $showDetectorDetails,selectedDetector: $selectedDetector, selectedMarker: $selectedMarker, detectors: MainMapView.detectors, annotations: $annotations, newDetector: $newDetector, isConfirmingLocation: $isConfirmingLocation, pin: self.$pin, sensorTapped: $sensorTapped, showingOptions: $showingDeletePropertyOptions, dragOffset: $dragOffset, showRedOverlay: $showRedOverlay, shouldHideOnPositionSelection: $shouldHideOnPositionSelection)
                         .offset(x: 0, y: showDetectorDetails ? UIScreen.main.bounds.height : self.dragOffset.height)
@@ -265,6 +265,7 @@ struct MainMapView: View {
                                         let isAlreadyAdded = properties[index].detectors.contains(where: { $0.id == result.string })
                                         if isAlreadyAdded {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                                shouldHideOnPositionSelection = false
                                                 showingAlert = true
                                             }
                                             return
@@ -323,6 +324,7 @@ struct MainMapView: View {
                         }
                     }
                 }
+                
                 // Overlay
                 if showDetectorDetails && !hideOverlay {
                     HStack {
@@ -450,7 +452,7 @@ struct MainMapView: View {
                     }
                     
                 }  else if isConfirmingLocation {
-                    AddDetectorConfirmLocationOverlayView(size: $detectorOverlaySize, annotations: $annotations, pin: $pin, newDetector: $newDetector, isConfirmingLocation: $isConfirmingLocation, needsLocationPin: $needsLocationPin, newDetectorIndex: self.$newDetectorIndex)
+                    AddDetectorConfirmLocationOverlayView(size: $detectorOverlaySize, annotations: $annotations, pin: $pin, newDetector: $newDetector, isConfirmingLocation: $isConfirmingLocation, needsLocationPin: $needsLocationPin, newDetectorIndex: self.$newDetectorIndex, isNickName: $isNickName)
                 } else if !hideOverlay {
                     
                     //
@@ -525,6 +527,9 @@ struct MainMapView: View {
 //                            isCopied = false
 //                        }
 //                    }
+                }
+                if isNickName {
+                    NickNameUIView(name: $name, isNickName: $isNickName)
                 }
             }
         }

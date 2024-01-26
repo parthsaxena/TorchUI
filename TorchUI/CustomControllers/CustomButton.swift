@@ -453,9 +453,9 @@ struct CircleButtonWithAnimation: View {
                     .foregroundColor(.orange)
                     .font(.system(size: 24))
                     .padding(.top, 5)
-                    .padding(.leading, -25)
+                    .padding(.leading, -20)
             }
         }
-//        .frame(width: 60, height: 60)
+        .frame(width: 60, height: 60)
     }
 }

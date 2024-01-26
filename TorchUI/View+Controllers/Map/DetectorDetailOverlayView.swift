@@ -31,6 +31,10 @@ struct DetectorDetailOverlayView: View {
     @State private var isSecondViewActive = false
     @State var selection: Int? = nil
     
+    @Binding var needsLocationPin: Bool
+    @Binding var shouldHideOnPositionSelection: Bool
+    @Binding var newDetector: Detector?
+    
     var body: some View {
             VStack {
                 
@@ -757,8 +761,13 @@ struct DetectorDetailOverlayView: View {
                                         Button(action: {
                                             let impactMed = UIImpactFeedbackGenerator(style: .medium)
                                             impactMed.impactOccurred()
-                                            showDetectorMenu = false
                                             
+                                            let index = SessionManager.shared.selectedPropertyIndex
+                                            newDetector = SessionManager.shared.properties[index].detectors[SessionManager.shared.selectedDetectorIndex]
+                                            showDetectorMenu = false
+                                            showDetectorDetails = false
+                                            needsLocationPin = true
+                                            shouldHideOnPositionSelection = true
                                         }) {
                                             HStack(alignment: .center, spacing: 8) {
                                                 Image("marker-pin-06")
@@ -908,6 +917,16 @@ struct DetectorDetailOverlayView: View {
         set: { _ in }
     )
     
+    let needsLocationPin = Binding<Bool>(
+        get: { false },
+        set: { _ in }
+    )
+    
+    let shouldHideOnPositionSelection = Binding<Bool>(
+        get: { false },
+        set: { _ in }
+    )
+    
     let showRedOverlay = Binding<Bool>(
         get: { false },
         set: { _ in }
@@ -915,6 +934,11 @@ struct DetectorDetailOverlayView: View {
     
     let dragOffsetBinding = Binding<CGSize>(
         get: { CGSize(width: 50, height: 50) },
+        set: { _ in }
+    )
+    
+    let newDetector = Binding<Detector?>(
+        get: { nil },
         set: { _ in }
     )
     return DetectorDetailOverlayView(
@@ -925,6 +949,8 @@ struct DetectorDetailOverlayView: View {
         showDetectorDetails: showDetectorDetailsBinding,
         dragOffset: dragOffsetBinding,
         shouldShowRedOverlay: shouldShowRedOverlay,
-        showRedOverlay: showRedOverlay
+        showRedOverlay: showRedOverlay,
+        needsLocationPin: needsLocationPin,
+        shouldHideOnPositionSelection: shouldHideOnPositionSelection, newDetector: newDetector
     )
 }

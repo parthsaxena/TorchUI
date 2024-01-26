@@ -397,26 +397,30 @@ struct PropertyDetailOverlayView: View {
                                                     }
                                                 } else if (i == SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count) {
                                                     // Add sensor button
-                                                    VStack(spacing: 7.0) {
-                                                        ZStack {
-                                                            Circle()
-                                                                .stroke(Color(red: 0.78, green: 0.81, blue: 0.82), lineWidth: 1)
-                                                                .background(Circle().fill(Color.clear))
-                                                                .frame(width: 60.0, height: 60.0)
-                                                            Image(systemName: "plus")
-                                                                .foregroundColor(Color(red: 0.78, green: 0.81, blue: 0.82))
-                                                                .font(Font.system(size: 24.0))
-                                                            Button {
-                                                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                                                impactMed.impactOccurred()
-                                                                
-                                                                isPresentingScanner = true
-                                                            } label: {
+                                                    if SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count > 0 {
+                                                            VStack(spacing: 7.0) {
+                                                            ZStack {
                                                                 Circle()
-                                                                    .fill(Color.clear)
+                                                                    .stroke(Color(red: 0.78, green: 0.81, blue: 0.82), lineWidth: 1)
+                                                                    .background(Circle().fill(Color.clear))
                                                                     .frame(width: 60.0, height: 60.0)
+                                                                Image(systemName: "plus")
+                                                                    .foregroundColor(Color(red: 0.78, green: 0.81, blue: 0.82))
+                                                                    .font(Font.system(size: 24.0))
+                                                                Button {
+                                                                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                                                    impactMed.impactOccurred()
+                                                                    
+                                                                    isPresentingScanner = true
+                                                                } label: {
+                                                                    Circle()
+                                                                        .fill(Color.clear)
+                                                                        .frame(width: 60.0, height: 60.0)
+                                                                }
                                                             }
                                                         }
+                                                    } else {
+                                                        CircleButtonWithAnimation(isPresentingScanner: $isPresentingScanner)
                                                     }
                                                 } else {
                                                     ZStack {
@@ -533,26 +537,30 @@ struct PropertyDetailOverlayView: View {
                                                     }
                                                 } else if (i == SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count) {
                                                     // Add sensor button
-                                                    VStack(spacing: 7.0) {
-                                                        ZStack {
-                                                            Circle()
-                                                                .stroke(Color(red: 0.78, green: 0.81, blue: 0.82), lineWidth: 1)
-                                                                .background(Circle().fill(Color.clear))
-                                                                .frame(width: 60.0, height: 60.0)
-                                                            Image(systemName: "plus")
-                                                                .foregroundColor(Color(red: 0.78, green: 0.81, blue: 0.82))
-                                                                .font(Font.system(size: 24.0))
-                                                            Button {
-                                                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                                                impactMed.impactOccurred()
-                                                                
-                                                                isPresentingScanner = true
-                                                            } label: {
+                                                    if SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.count > 0 {
+                                                        VStack(spacing: 7.0) {
+                                                            ZStack {
                                                                 Circle()
-                                                                    .fill(Color.clear)
+                                                                    .stroke(Color(red: 0.78, green: 0.81, blue: 0.82), lineWidth: 1)
+                                                                    .background(Circle().fill(Color.clear))
                                                                     .frame(width: 60.0, height: 60.0)
+                                                                Image(systemName: "plus")
+                                                                    .foregroundColor(Color(red: 0.78, green: 0.81, blue: 0.82))
+                                                                    .font(Font.system(size: 24.0))
+                                                                Button {
+                                                                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                                                    impactMed.impactOccurred()
+                                                                    
+                                                                    isPresentingScanner = true
+                                                                } label: {
+                                                                    Circle()
+                                                                        .fill(Color.clear)
+                                                                        .frame(width: 60.0, height: 60.0)
+                                                                }
                                                             }
                                                         }
+                                                    } else {
+                                                        CircleButtonWithAnimation(isPresentingScanner: $isPresentingScanner)
                                                     }
                                                 } else {
                                                     ZStack {
