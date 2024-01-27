@@ -113,8 +113,8 @@ struct MainMapView: View {
 //                            .frame(width: width, height: height - detectorOverlaySize.height)
 //                            .padding(.bottom, -40)
 //                            .ignoresSafeArea()
-                    DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay, needsLocationPin: $needsLocationPin, shouldHideOnPositionSelection: $shouldHideOnPositionSelection, newDetector: $newDetector)
-                    DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay, didChangeSensorPosition: $didChangeSensorPosition)
+                    DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay, needsLocationPin: $needsLocationPin, shouldHideOnPositionSelection: $shouldHideOnPositionSelection, newDetector: $newDetector, didChangeSensorPosition: $didChangeSensorPosition)
+//                    DetectorDetailOverlayVie/*w(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay, didChangeSensorPosition: $didChangeSensorPosition)*/
                         .onAppear(perform: {
                             withAnimation(.easeIn(duration: 5.0)) {
                                 shouldShowRedOverlay = true
