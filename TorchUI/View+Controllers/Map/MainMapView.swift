@@ -45,7 +45,7 @@ struct MainMapView: View {
     @State var showRedOverlay: Bool = false
     @State private var isCopied: Bool = false
     
-    @State var zoomLevel: CGFloat = 12
+    @State var zoomLevel: CGFloat = 17
     
     @State var isAddingSensor: Bool = false
     @State var isPresentingScanner: Bool = false
@@ -68,6 +68,9 @@ struct MainMapView: View {
     
     @State var isNickName: Bool = false
     @State var name: String = ""
+    @State var isOnSatellite = false
+    @State var didChangeSensorPosition = false
+//    @State var mapLayerTapped = false
     
     var combinedBinding: Binding<Bool> {
         Binding(
@@ -91,7 +94,7 @@ struct MainMapView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                MapboxMapViewWrapper(showDetectorDetails: $showDetectorDetails, zoomLevel: $zoomLevel, selectedDetectorIndex: $selectedDetectorIndex, annotations: $annotations, pin: self.$pin, needsLocationPin: $needsLocationPin, sensorTapped: $sensorTapped, moveToUserTapped: $moveToUserTapped, zoomChanged: $zoomChanged, mapOffset: $mapOffset.height, dragOffset: $dragOffset)
+                MapboxMapViewWrapper(showDetectorDetails: $showDetectorDetails, zoomLevel: $zoomLevel, selectedDetectorIndex: $selectedDetectorIndex, annotations: $annotations, pin: self.$pin, needsLocationPin: $needsLocationPin, sensorTapped: $sensorTapped, moveToUserTapped: $moveToUserTapped, mapLayerTapped: $mapLayerTapped, zoomChanged: $zoomChanged, mapOffset: $mapOffset.height, dragOffset: $dragOffset, didChangeSensorPosition: $didChangeSensorPosition, isOnSatellite: $isOnSatellite)
                     .ignoresSafeArea()
                     .animation(.easeIn)
 
@@ -111,6 +114,7 @@ struct MainMapView: View {
 //                            .padding(.bottom, -40)
 //                            .ignoresSafeArea()
                     DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay, needsLocationPin: $needsLocationPin, shouldHideOnPositionSelection: $shouldHideOnPositionSelection, newDetector: $newDetector)
+                    DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay, didChangeSensorPosition: $didChangeSensorPosition)
                         .onAppear(perform: {
                             withAnimation(.easeIn(duration: 5.0)) {
                                 shouldShowRedOverlay = true
@@ -431,21 +435,22 @@ struct MainMapView: View {
                                 Spacer()
                                 
                                 MapLayerButton(mapLayerTapped: $mapLayerTapped)
+                                LocationButton(moveToUserTapped: $moveToUserTapped)
                             }
                             .padding(.trailing, 10)
                             .padding(.top, 10)
                         }
                         Spacer()
-                        
-                        HStack {
-                            Spacer()
-                            VStack(spacing: 0) {
-                                
-                                LocationButton(moveToUserTapped: $moveToUserTapped)
-                            }
-                        }
-                        .padding(.trailing, 10)
-//                        .padding(.bottom, 10)
+//                        
+//                        HStack {
+//                            Spacer()
+//                            VStack(spacing: 0) {
+//                                
+//                                LocationButton(moveToUserTapped: $moveToUserTapped)
+//                            }
+//                        }
+//                        .padding(.trailing, 10)
+////                        .padding(.bottom, 10)
                         
                         Spacer()
                             .frame(height: self.mapOffset.height - 10)
@@ -489,6 +494,7 @@ struct MainMapView: View {
                         .padding(.trailing, 10)
                         HStack {
                             Spacer()
+                            MapLayerButton(mapLayerTapped: $mapLayerTapped)
                         }
                         .padding(.trailing, 10)
                         HStack {
