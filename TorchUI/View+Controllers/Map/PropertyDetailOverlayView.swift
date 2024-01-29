@@ -602,7 +602,7 @@ struct PropertyDetailOverlayView: View {
                                         self.annotations.append(pointAnnotation)
                                         print("Created new sensor annotation with id: \(pointAnnotation.id)")
                                     }) {
-                                        Text("\(verb) the position for new sensor")
+                                        Text("Set position")
                                             .font(.custom("Manrope-SemiBold", size: 16))
                                             .frame(maxWidth: .infinity)
                                             .frame(height: 60)

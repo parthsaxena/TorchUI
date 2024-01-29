@@ -12,7 +12,7 @@ import CoreLocation
 struct Detector: Hashable, Identifiable  {
     
     let id: String
-    let deviceName: String
+    var deviceName: String
     var deviceBattery: Double
     
     var measurements: [String: String] = ["fire_rating":"0"]

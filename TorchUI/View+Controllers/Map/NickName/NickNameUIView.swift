@@ -116,7 +116,6 @@ struct NickNameUIView: View {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
                     withAnimation {
-//                        AuthenticationManager.shared.authState = .accountEmail
                         isNickName = false
                     }
                 }) {
@@ -136,13 +135,11 @@ struct NickNameUIView: View {
             }
             .padding(.top, 60)
             HStack {
-//                Spacer()
-                
+                Spacer()
                 Button(action: {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
                     withAnimation {
-//                        AuthenticationManager.shared.authState = .accountEmail
                         isNickName = false
                     }
                 }) {

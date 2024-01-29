@@ -101,12 +101,11 @@ struct PlaceSensorView: View {
                 // Heading saying Set up torch sensors
                 HStack {
                     Spacer()
-                    
-                    Text("Set up Torch sensors")
+                    let newName = selectedSensor == nil ? sessionManager.newProperty?.propertyName ?? "" : "sensor \(selectedSensor?.sensorIdx ?? 0)"
+                    Text(String(newName))
                         .font(Font.custom("Manrope-SemiBold", fixedSize: 20))
                         .foregroundColor(CustomColors.TorchGreen)
                         .padding(.top, 25)
-                    
                     Spacer()
                 }
                 
@@ -130,8 +129,9 @@ struct PlaceSensorView: View {
                     }
                     .padding(.trailing, 10)
                     .padding(.bottom, 10)
+                    let height = (sessionManager.newProperty?.detectors.count ?? 0) > 0 && selectedSensor != nil && !isSetLocation ? 165.0 : 0.0
                     Spacer()
-                        .frame(height: self.size.height)
+                        .frame(height: self.size.height + height)
                 }
                 .opacity(isConfirmingLocation ? 0.0 : 1.0)
                 

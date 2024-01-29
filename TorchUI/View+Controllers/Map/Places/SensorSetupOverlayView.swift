@@ -170,7 +170,7 @@ struct SensorSetupOverlayView: View {
                                         self.isConfirmingLocation = true
                                         self.isSetLocation = false
                                     }) {
-                                        Text("\(verb) the position for sensor \(idx)")
+                                        Text("\(verb) position")
                                             .font(.custom("Manrope-SemiBold", size: 16))
                                             .frame(maxWidth: .infinity)
                                             .frame(height: 60)

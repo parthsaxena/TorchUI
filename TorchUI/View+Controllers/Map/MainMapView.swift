@@ -103,7 +103,24 @@ struct MainMapView: View {
                 let THRESHOLD = 150.0
                 let ANIMATION_DURATION = 2.0
                 let slideTransition: AnyTransition = AnyTransition.move(edge: .bottom)
-                
+                // Heading saying Set up torch sensors
+                HStack {
+                    Spacer()
+                    if newDetector?.coordinate == nil  {
+                        let headerName = newDetector != nil ? "Sensor \(newDetector?.deviceName ?? "")" : SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName
+                        Text(String(headerName))
+                            .font(Font.custom("Manrope-SemiBold", fixedSize: 20))
+                            .foregroundColor(CustomColors.TorchGreen)
+                            .padding(.top, 25)
+                    } else {
+                        let headerName = "Change position"
+                        Text(String(headerName))
+                            .font(Font.custom("Manrope-SemiBold", fixedSize: 20))
+                            .foregroundColor(CustomColors.TorchGreen)
+                            .padding(.top, 25)
+                    }
+                    Spacer()
+                }
                 if !isConfirmingLocation {
 //                    VStack {
 //                        Rectangle()
@@ -502,7 +519,7 @@ struct MainMapView: View {
                             LocationButton(moveToUserTapped: $moveToUserTapped)
                         }
                         .padding(.trailing, 10)
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 50)
                         Spacer()
                             .frame(height: self.mapOffset.height)
                     }
