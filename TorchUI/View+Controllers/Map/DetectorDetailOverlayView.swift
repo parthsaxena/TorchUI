@@ -564,7 +564,7 @@ struct DetectorDetailOverlayView: View {
                                                     .renderingMode(.template)
                                                     .foregroundColor(CustomColors.TorchGreen)
                                                     .frame(width: 20, height: 20)
-                                                Text("Change sensor position")
+                                                Text("Change position/nickname")
                                                     .font(.custom("Manrope-SemiBold", size: 16))
                                                     .foregroundColor(CustomColors.TorchGreen)
                                                 Spacer()
@@ -628,11 +628,11 @@ struct DetectorDetailOverlayView: View {
                                     }
                                     //                                .padding(.horizontal, 16)
                                     .padding(.vertical, 4)
-                                    .frame(width: 250, alignment: .topLeading)
+                                    .frame(width: 270, alignment: .topLeading)
                                     .background(.white)
                                     .cornerRadius(16)
                                     .shadow(color: Color(red: 0.18, green: 0.21, blue: 0.22).opacity(0.4), radius: 90, x: 0, y: 32)
-                                    .position(x: width - 141, y: 130)
+                                    .position(x: width - 156, y: 130)
                                     Spacer()
                                 }
                                 .frame(width: width)
