@@ -17,6 +17,7 @@ struct AnalyticsSwiftUIView: View {
     @State private var spectralAnalysisItems: [Item] = []
     @State private var smokeItems: [Item] = []
     @State private var temperatureHumidityItems: [Item] = []
+    @Binding var viewAnalytics: Bool
     
     func getThermalCameraItems(timespan: AnalyticsTimespanSelection) -> [Item] {
         
@@ -167,7 +168,7 @@ struct AnalyticsSwiftUIView: View {
             VStack {
                 ZStack {
                     HStack {
-                        AnalyticsBackButton()
+                        AnalyticsBackButton(viewAnalytics: $viewAnalytics)
                         Spacer()
                     }
                     HStack {
@@ -265,6 +266,6 @@ struct AnalyticsSwiftUIView: View {
     }
 }
 
-#Preview {
-    AnalyticsSwiftUIView()
-}
+//#Preview {
+//    AnalyticsSwiftUIView(, viewAnalytics: <#Binding<Bool>#>)
+//}

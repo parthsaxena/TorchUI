@@ -71,6 +71,7 @@ struct MainMapView: View {
     @State var isOnSatellite = false
     @State var didChangeSensorPosition = false
 //    @State var mapLayerTapped = false
+    @State var viewAnalytics: Bool = false
     
     var combinedBinding: Binding<Bool> {
         Binding(
@@ -130,7 +131,7 @@ struct MainMapView: View {
 //                            .frame(width: width, height: height - detectorOverlaySize.height)
 //                            .padding(.bottom, -40)
 //                            .ignoresSafeArea()
-                    DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay, needsLocationPin: $needsLocationPin, shouldHideOnPositionSelection: $shouldHideOnPositionSelection, newDetector: $newDetector, didChangeSensorPosition: $didChangeSensorPosition)
+                    DetectorDetailOverlayView(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay, needsLocationPin: $needsLocationPin, shouldHideOnPositionSelection: $shouldHideOnPositionSelection, newDetector: $newDetector, didChangeSensorPosition: $didChangeSensorPosition, viewAnalytics: $viewAnalytics)
 //                    DetectorDetailOverlayVie/*w(size: $detectorOverlaySize, mapOffset: $mapOffset, sessionManager: sessionManager, showingDeleteDetectorOptions: $showingDeleteDetectorOptions, showDetectorDetails: $showDetectorDetails, dragOffset: $dragOffset, shouldShowRedOverlay: $shouldShowRedOverlay, showRedOverlay: $showRedOverlay, didChangeSensorPosition: $didChangeSensorPosition)*/
                         .onAppear(perform: {
                             withAnimation(.easeIn(duration: 5.0)) {
@@ -551,8 +552,15 @@ struct MainMapView: View {
 //                        }
 //                    }
                 }
+                
                 if isNickName {
                     NickNameUIView(name: $name, isNickName: $isNickName)
+                }
+                
+                if viewAnalytics {
+                    AnalyticsSwiftUIView(viewAnalytics: $viewAnalytics)
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+                        .zIndex(2)
                 }
             }
         }

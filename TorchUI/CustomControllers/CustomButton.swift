@@ -357,6 +357,7 @@ struct AccountBackButton: View {
 struct AnalyticsBackButton: View {
     
     @Environment(\.colorScheme) var colorScheme
+    @Binding var viewAnalytics: Bool
     
     var body: some View {
         ZStack {
@@ -371,7 +372,8 @@ struct AnalyticsBackButton: View {
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
                 UIApplication.shared.endEditing()
-                SessionManager.shared.appState = .viewProperty
+//                SessionManager.shared.appState = .viewProperty
+                viewAnalytics = false
             } label: {
                 Circle()
                     .fill(Color.clear)

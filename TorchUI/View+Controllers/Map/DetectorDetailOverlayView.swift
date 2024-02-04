@@ -35,6 +35,7 @@ struct DetectorDetailOverlayView: View {
     @Binding var shouldHideOnPositionSelection: Bool
     @Binding var newDetector: Detector?
     @Binding var didChangeSensorPosition: Bool
+    @Binding var viewAnalytics: Bool
     
     var body: some View {
             VStack {
@@ -581,7 +582,8 @@ struct DetectorDetailOverlayView: View {
                                             print("View detailed analytics")
                                             isSecondViewActive = true
                                             self.selection = 1
-                                            SessionManager.shared.appState = .viewAnalytics
+//                                            SessionManager.shared.appState = .viewAnalytics
+                                            viewAnalytics = true
                                         }) {
                                             HStack(alignment: .center, spacing: 8) {
                                                 Image("line-chart-up-01")

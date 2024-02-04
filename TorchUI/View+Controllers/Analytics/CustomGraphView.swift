@@ -10,17 +10,19 @@ import SwiftUI
 struct CustomGraphView: View {
     
     var dataPoints: [AnalyticDatapoint]
+    
     init(dataPoints: [AnalyticDatapoint]) {
         self.dataPoints = dataPoints
     }
+    
     var body: some View {
         GraphView(dataPoints: dataPoints)
     }
 }
 
-#Preview {
-    CustomGraphView(dataPoints: [])
-}
+//#Preview {
+//    CustomGraphView(dataPoints: [])
+//}
 
 struct GraphView: View {
     
@@ -35,6 +37,7 @@ struct GraphView: View {
     let yAxisStep: CGFloat = 200
     let lineColor: Color = .green
     let gradientColors: [Color] = [.green, .red]
+    let xAxisTimestamps: [String]
     
     init(dataPoints: [AnalyticDatapoint]) {
         
@@ -44,6 +47,15 @@ struct GraphView: View {
         let point = CGPoint(x: CGFloat(27), y: yCoordinate)
         circlePosition = point
         circleColor = lineColor
+        
+        // Generate x-axis timestamps for the last 60 minutes
+        let currentTime = Date()
+        xAxisTimestamps = (0..<6).map { index in
+            let time = Calendar.current.date(byAdding: .minute, value: -index * 10, to: currentTime) ?? currentTime
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "HH:mm"
+            return timeFormatter.string(from: time)
+        }.reversed()
     }
     
     var body: some View {
@@ -115,7 +127,7 @@ struct GraphView: View {
                             isImageVisible = false
                         }
                     )
-                    .toast(isPresented: $showToast, duration: 2, message: toastMessage, coordinates: circlePosition)
+                    .toast(isPresented: $showToast, message: toastMessage, coordinates: circlePosition)
                     .onAppear {
                         updatePostion(x: CGFloat(geometry.size.width - 2.5))
                     }
@@ -206,27 +218,26 @@ struct GraphView: View {
 }
 
 extension View {
-    func toast(isPresented: Binding<Bool>, duration: Double = 2, message: String, coordinates: CGPoint) -> some View {
-        GeometryReader { geometry in
-            ZStack {
-                self
-                if isPresented.wrappedValue {
-                    VStack {
-                        HStack {
-                            ToastView(message: message)
-//                                .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5)))
-//                                .onAppear {
-//                                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-//                                        isPresented.wrappedValue = false
-//                                    }
-//                                }
-                        }
+    
+    func toast(isPresented: Binding<Bool>, message: String, coordinates: CGPoint) -> some View {
+        ZStack {
+            self
+            if isPresented.wrappedValue {
+                VStack {
+                    HStack {
+                        ToastView(message: message)
                     }
-                    .edgesIgnoringSafeArea(.all)
-                    .position(x: CGFloat(coordinates.x - 30), y: coordinates.y)
                 }
+                .edgesIgnoringSafeArea(.all)
+                .position(x: CGFloat(coordinates.x + adjustLeadingTrailing(coordinates.x)), y: coordinates.y)
             }
         }
+    }
+    
+    func adjustLeadingTrailing(_ x: CGFloat) -> CGFloat {
+        
+        if x < 40 { return 30 }
+        return (x * -0.11)
     }
 }
 
@@ -293,7 +304,7 @@ struct ToastView: View {
         Text(message)
             .padding(.all, 7)
             .font(Font.custom("Manrope-SemiBold", size: 14.0))
-            .background(Color.black)
+            .background(message == "" ? .clear : .black)
             .foregroundColor(Color.white)
             .cornerRadius(10)
             .frame(height: 50)

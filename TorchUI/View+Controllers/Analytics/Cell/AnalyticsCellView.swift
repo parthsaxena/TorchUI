@@ -53,6 +53,13 @@ struct AnalyticsCellView: View {
                     let data = item.graphLineParam.map { analyticDatapoint in
                         analyticDatapoint.datapoint
                     }
+                    let analytics = [AnalyticDatapoint(datapoint: 500.0, timestamp: Date()),
+                                     AnalyticDatapoint(datapoint: 200.0, timestamp: Date()),
+                                     AnalyticDatapoint(datapoint: 400.0, timestamp: Date()),
+                                     AnalyticDatapoint(datapoint: 700.0, timestamp: Date()),
+                                     AnalyticDatapoint(datapoint: 800.0, timestamp: Date()),
+                                     AnalyticDatapoint(datapoint: 500.0, timestamp: Date()),
+                                     AnalyticDatapoint(datapoint: 500.0, timestamp: Date())]
                     CustomGraphView(dataPoints: item.graphLineParam)
                         .frame(height: 180)
                     Text("\(selectedOptions)")
