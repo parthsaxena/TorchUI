@@ -108,11 +108,13 @@ struct MainMapView: View {
                 HStack {
                     Spacer()
                     if newDetector?.coordinate == nil  {
-                        let headerName = newDetector != nil ? "Sensor \(newDetector?.deviceName ?? "")" : SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName
-                        Text(String(headerName))
-                            .font(Font.custom("Manrope-SemiBold", fixedSize: 20))
-                            .foregroundColor(CustomColors.TorchGreen)
-                            .padding(.top, 25)
+                        if SessionManager.shared.properties.count > 0 {
+                            let headerName = newDetector != nil ? "Sensor \(newDetector?.deviceName ?? "")" : SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName
+                            Text(String(headerName))
+                                .font(Font.custom("Manrope-SemiBold", fixedSize: 20))
+                                .foregroundColor(CustomColors.TorchGreen)
+                                .padding(.top, 25)
+                        }
                     } else {
                         let headerName = "Change position"
                         Text(String(headerName))

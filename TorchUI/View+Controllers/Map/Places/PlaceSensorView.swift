@@ -101,7 +101,7 @@ struct PlaceSensorView: View {
                 // Heading saying Set up torch sensors
                 HStack {
                     Spacer()
-                    let newName = selectedSensor == nil ? sessionManager.newProperty?.propertyName ?? "" : "Sensor \(selectedSensor?.sensorIdx ?? 0)"
+                    let newName = sessionManager.newProperty?.propertyName ?? "" // selectedSensor == nil ? : "Sensor \(selectedSensor?.sensorIdx ?? 0)"
                     Text(String(newName))
                         .font(Font.custom("Manrope-SemiBold", fixedSize: 20))
                         .foregroundColor(CustomColors.TorchGreen)
