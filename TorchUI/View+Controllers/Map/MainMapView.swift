@@ -66,6 +66,9 @@ struct MainMapView: View {
     @State var showingDeletePropertyOptions: Bool = false
     @State var showingDeleteDetectorOptions: Bool = false
     
+    @State private var shouldShowMenu: Bool = false
+    @State var annotationsStatus: DetectorInfoStatus = .fire
+    
     var combinedBinding: Binding<Bool> {
         Binding(
             get: {
@@ -88,7 +91,7 @@ struct MainMapView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                MapboxMapViewWrapper(showDetectorDetails: $showDetectorDetails, zoomLevel: $zoomLevel, selectedDetectorIndex: $selectedDetectorIndex, annotations: $annotations, pin: self.$pin, needsLocationPin: $needsLocationPin, sensorTapped: $sensorTapped, moveToUserTapped: $moveToUserTapped, zoomChanged: $zoomChanged, mapOffset: $mapOffset.height, dragOffset: $dragOffset)
+                MapboxMapViewWrapper(showDetectorDetails: $showDetectorDetails, zoomLevel: $zoomLevel, selectedDetectorIndex: $selectedDetectorIndex, annotations: $annotations, pin: self.$pin, needsLocationPin: $needsLocationPin, sensorTapped: $sensorTapped, moveToUserTapped: $moveToUserTapped, zoomChanged: $zoomChanged, mapOffset: $mapOffset.height, dragOffset: $dragOffset, annotationsStatus: $annotationsStatus)
                     .ignoresSafeArea()
                     .animation(.easeIn)
 
@@ -358,7 +361,6 @@ struct MainMapView: View {
                                                 UIPasteboard.general.setValue("\(lat), \(long)",
                                                                               forPasteboardType: "public.plain-text")
                                                 isCopied = true
-                                                
                                                 DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
                                                     if isCopied {
                                                         isCopied = false
@@ -419,7 +421,9 @@ struct MainMapView: View {
                         HStack {
                             Spacer()
                             VStack(spacing: 0) {
-                                HamburgerButton(hideOverlay: $hideOverlay)
+                                HamburgerButton(hideOverlay: $hideOverlay) {
+                                    self.shouldShowMenu = true
+                                }
                                 
                                 Spacer()
                                 
@@ -466,7 +470,9 @@ struct MainMapView: View {
                     HStack {
                         Spacer()
                         VStack(spacing: 1) {
-                            HamburgerButton(hideOverlay: $hideOverlay)
+                            HamburgerButton(hideOverlay: $hideOverlay) {
+                                self.shouldShowMenu = true
+                            }
                             
                             Spacer()
                                 .frame(height: 150)
@@ -526,6 +532,12 @@ struct MainMapView: View {
 //                        }
 //                    }
                 }
+                
+                if shouldShowMenu {
+                    DetectorStatusMenu(sessionManager: SessionManager(), showDetectorMenu: $shouldShowMenu, annotationsStatus: $annotationsStatus)
+                }
+                
+                
             }
         }
         .alert(isPresented: $showingAlert) {

@@ -25,6 +25,7 @@ class MapboxViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.addSubview(mapView)
+//        mapView.viewAnnotations.add(UIView(), options: .)
         self.pinImageView.frame = CGRectMake(self.view.center.x - 30, self.view.center.y - 210, 60, 69)
         self.view.addSubview(pinImageView)
     }

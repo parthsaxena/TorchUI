@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00BEAA65305D4CD1D1CC1D06 /* Pods_TorchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD25A1332D3DB003BB41769 /* Pods_TorchUITests.framework */; };
 		00C9E5C9A3B0B095BE8C9F4A /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F321CB5B74305D4605F94C2 /* Pods_TorchUI.framework */; };
+		308BDC0E2B70D3D700ED99F6 /* DetectorStatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308BDC0D2B70D3D700ED99F6 /* DetectorStatusMenu.swift */; };
 		3094CF572B1CB00A00C7984B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3094CF562B1CB00A00C7984B /* Date+Extension.swift */; };
 		30A7CE362B31100000D29B4A /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 30A7CE352B31100000D29B4A /* AWSS3StoragePlugin */; };
 		30A7CE382B3110F600D29B4A /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 30A7CE372B3110F600D29B4A /* AWSS3StoragePlugin */; };
@@ -160,6 +161,7 @@
 		036F141EE4BF5563800CD726 /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
 		0CD25A1332D3DB003BB41769 /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E834EEC9B798065390155F3 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
+		308BDC0D2B70D3D700ED99F6 /* DetectorStatusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectorStatusMenu.swift; sourceTree = "<group>"; };
 		3094CF562B1CB00A00C7984B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		30A84EF22B3E9611003A3409 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		30ACFC092B442023007BCC22 /* ActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorView.h; sourceTree = "<group>"; };
@@ -557,6 +559,7 @@
 				C855B5102B10883E007DA332 /* DetectorDetailOverlayView.swift */,
 				C855B5112B10883E007DA332 /* MapBox */,
 				C855B5152B10883E007DA332 /* MapBoxPlaces */,
+				308BDC0D2B70D3D700ED99F6 /* DetectorStatusMenu.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1110,6 +1113,7 @@
 				C855B58C2B10883F007DA332 /* PropertyViewModel.swift in Sources */,
 				C855B5762B10883F007DA332 /* WelcomeView.swift in Sources */,
 				C855B5512B10883F007DA332 /* MainPropertiesView.swift in Sources */,
+				308BDC0E2B70D3D700ED99F6 /* DetectorStatusMenu.swift in Sources */,
 				C855B58F2B10883F007DA332 /* PropertyPhotoViewModel.swift in Sources */,
 				C855B58D2B10883F007DA332 /* PropertyModel.swift in Sources */,
 				8BC37B5D2B490F0800C7635B /* UpdatePropertyAddressView.swift in Sources */,
@@ -1364,7 +1368,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
-				DEVELOPMENT_TEAM = H3MR536ERJ;
+				DEVELOPMENT_TEAM = GKWG38K5WC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TorchUI/Info.plist;
@@ -1461,7 +1465,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
-				DEVELOPMENT_TEAM = H3MR536ERJ;
+				DEVELOPMENT_TEAM = GKWG38K5WC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TorchUI/Info.plist;

@@ -121,3 +121,11 @@ enum AnalyticsTimespanSelection: CaseIterable {
         }
     }
 }
+
+enum DetectorInfoStatus {
+    case fire
+    case battery
+    case connection
+    case temperature
+    case humidity
+}

@@ -27,6 +27,8 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
     @State var triggerUI: Bool = false
     @State var initialMapOffset: Bool = false
     
+    @Binding var annotationsStatus: DetectorInfoStatus
+    
     let ICON_SMALL_ZOOM_THRESHOLD = 12.0
     
     func makeUIViewController(context: Context) -> MapboxViewController {
@@ -47,7 +49,7 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
             print("Set pin: \(pin)")
             print("camera state: \(vc.mapView.cameraState.center)")
             triggerUI.toggle()
-            self.checkZoomLevelAnnotations(uiViewController: vc)
+//            self.checkZoomLevelAnnotations(uiViewController: vc)
             vc.pinImageView.frame = CGRectMake(vc.mapView.anchor.x - 30, vc.mapView.anchor.y - 80, 60, 69)
         }
         print("GOOOO mapOff: \(self.mapOffset)")
@@ -156,21 +158,100 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
         // iterate over selected property's detectors
         if SessionManager.shared.selectedPropertyIndex < SessionManager.shared.properties.count {
             for detector in SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors {
-                if let coordinate = detector.coordinate {
-                    var pointAnnotation = PointAnnotation(id: detector.id, coordinate: coordinate)
-                    var annotationIcon = "DetectorIcons/\(max(detector.sensorIdx ?? 0, 1))"
-                    if detector.threat == Threat.Red {
-                        annotationIcon = "DetectorIcons/ThreatRed"
-                    } else if detector.threat == Threat.Yellow {
-                        annotationIcon = "DetectorIcons/ThreatYellow"
+                if let coord = detector.coordinate {
+                    //TODO: - Check for selected detector status from UserDefaults
+                    
+//                    print("annotations status is set to : \(annotationsStatus)")
+//                    var pointAnnotation = PointAnnotation(id: detector.id, coordinate: coordinate)
+//                    var annotationIcon = "DetectorIcons/\(max(detector.sensorIdx ?? 0, 1))"
+//                    if detector.threat == Threat.Red {
+//                        annotationIcon = "DetectorIcons/ThreatRed"
+//                    } else if detector.threat == Threat.Yellow {
+//                        annotationIcon = "DetectorIcons/ThreatYellow"
+//                    }
+//
+//                    if let annotationImage = UIImage(named: annotationIcon) {
+//                        pointAnnotation.image = .init(image: annotationImage, name: annotationIcon)
+//                        pointAnnotation.iconAnchor = .left
+//                        pointAnnotation.iconSize = 0.25
+//                    }
+//                    vc.annotationManager.annotations.append(pointAnnotation)
+                    
+                    
+                    var pointAnnotation = PointAnnotation(id: detector.id, coordinate: coord)
+                    var annotationIcon = ""
+                                    
+                    if vc.mapView.cameraState.zoom < ICON_SMALL_ZOOM_THRESHOLD {
+                        switch detector.threat {
+                        case .Red:
+                            annotationIcon = "DetectorIcons/ThreatRedSmall"
+                        case .Yellow:
+                            annotationIcon = "DetectorIcons/ThreatYellowSmall"
+                        case .Green:
+                            annotationIcon = "DetectorIcons/ThreatGreenSmall"
+                        }
+                        pointAnnotation.iconSize = 0.25
+                        
+                    } else {
+                        switch annotationsStatus {
+                        case .fire:
+                            switch detector.threat {
+                            case .Red:
+                                annotationIcon = "DetectorIcons/ThreatMapRed\(max(detector.sensorIdx ?? 0, 1))"
+                            case .Yellow:
+                                annotationIcon = "DetectorIcons/ThreatMapYellow\(max(detector.sensorIdx ?? 0, 1))"
+                            case .Green:
+                                annotationIcon = "DetectorIcons/\(max(detector.sensorIdx ?? 0, 1))"
+                            }
+                            pointAnnotation.iconSize = 0.25
+                            
+                        case .battery:
+                            if detector.deviceBattery < 20 {
+                                annotationIcon = "battery-bad\(max(detector.sensorIdx ?? 0, 1))"
+                            } else if detector.deviceBattery < 70 {
+                                annotationIcon = "battery-mid\(max(detector.sensorIdx ?? 0, 1))"
+                            } else {
+                                annotationIcon = "battery-good\(max(detector.sensorIdx ?? 0, 1))"
+                            }
+
+                        case .connection:
+                            if detector.connected {
+                                annotationIcon = "connection-good\(max(detector.sensorIdx ?? 0, 1))"
+                            } else {
+                                annotationIcon = "connection-bad\(max(detector.sensorIdx ?? 0, 1))"
+                            }
+
+                        case .temperature:
+                            switch detector.threat {
+                            case .Red:
+                                annotationIcon = "temperature-bad\(max(detector.sensorIdx ?? 0, 1))"
+                            case .Yellow:
+                                annotationIcon = "temperature-mid\(max(detector.sensorIdx ?? 0, 1))"
+                            case .Green:
+                                annotationIcon = "temperature-good\(max(detector.sensorIdx ?? 0, 1))"
+                            }
+                            
+                        case .humidity:
+                            switch detector.threat {
+                            case .Red:
+                                annotationIcon = "humidity-bad\(max(detector.sensorIdx ?? 0, 1))"
+                            case .Yellow:
+                                annotationIcon = "humidity-mid\(max(detector.sensorIdx ?? 0, 1))"
+                            case .Green:
+                                annotationIcon = "humidity-good\(max(detector.sensorIdx ?? 0, 1))"
+                            }
+                        }
                     }
 
                     if let annotationImage = UIImage(named: annotationIcon) {
                         pointAnnotation.image = .init(image: annotationImage, name: annotationIcon)
-                        pointAnnotation.iconAnchor = .left
-                        pointAnnotation.iconSize = 0.25
                     }
+                    pointAnnotation.iconAnchor = .center
+                    print("Adding annot updateUI")
                     vc.annotationManager.annotations.append(pointAnnotation)
+                
+                    
+                    
                 }
             }
         }
@@ -246,21 +327,67 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                 }
                 
                 var pointAnnotation = PointAnnotation(id: detector.id, coordinate: coord)
-                var annotationIcon = "DetectorIcons/ThreatGreenSmall"
-                if detector.threat == Threat.Red {
-                    annotationIcon = "DetectorIcons/ThreatMapRed\(max(detector.sensorIdx ?? 0, 1))"
-                    if uiViewController.mapView.cameraState.zoom < ICON_SMALL_ZOOM_THRESHOLD {
+                var annotationIcon = ""
+                                
+                if uiViewController.mapView.cameraState.zoom < ICON_SMALL_ZOOM_THRESHOLD {
+                    switch detector.threat {
+                    case .Red:
                         annotationIcon = "DetectorIcons/ThreatRedSmall"
-                    }
-                } else if detector.threat == Threat.Yellow {
-                    annotationIcon = "DetectorIcons/ThreatMapYellow\(max(detector.sensorIdx ?? 0, 1))"
-                    if uiViewController.mapView.cameraState.zoom < ICON_SMALL_ZOOM_THRESHOLD {
+                    case .Yellow:
                         annotationIcon = "DetectorIcons/ThreatYellowSmall"
-                    }
-                } else {
-                    annotationIcon = "DetectorIcons/\(max(detector.sensorIdx ?? 0, 1))"
-                    if uiViewController.mapView.cameraState.zoom < ICON_SMALL_ZOOM_THRESHOLD {
+                    case .Green:
                         annotationIcon = "DetectorIcons/ThreatGreenSmall"
+                    }
+                    pointAnnotation.iconSize = 0.25
+                    
+                } else {
+                    switch annotationsStatus {
+                    case .fire:
+                        switch detector.threat {
+                        case .Red:
+                            annotationIcon = "DetectorIcons/ThreatMapRed\(max(detector.sensorIdx ?? 0, 1))"
+                        case .Yellow:
+                            annotationIcon = "DetectorIcons/ThreatMapYellow\(max(detector.sensorIdx ?? 0, 1))"
+                        case .Green:
+                            annotationIcon = "DetectorIcons/\(max(detector.sensorIdx ?? 0, 1))"
+                        }
+                        pointAnnotation.iconSize = 0.25
+                        
+                    case .battery:
+                        if detector.deviceBattery < 20 {
+                            annotationIcon = "battery-bad\(max(detector.sensorIdx ?? 0, 1))"
+                        } else if detector.deviceBattery < 70 {
+                            annotationIcon = "battery-mid\(max(detector.sensorIdx ?? 0, 1))"
+                        } else {
+                            annotationIcon = "battery-good\(max(detector.sensorIdx ?? 0, 1))"
+                        }
+
+                    case .connection:
+                        if detector.connected {
+                            annotationIcon = "connection-good\(max(detector.sensorIdx ?? 0, 1))"
+                        } else {
+                            annotationIcon = "connection-bad\(max(detector.sensorIdx ?? 0, 1))"
+                        }
+
+                    case .temperature:
+                        switch detector.threat {
+                        case .Red:
+                            annotationIcon = "temperature-bad\(max(detector.sensorIdx ?? 0, 1))"
+                        case .Yellow:
+                            annotationIcon = "temperature-mid\(max(detector.sensorIdx ?? 0, 1))"
+                        case .Green:
+                            annotationIcon = "temperature-good\(max(detector.sensorIdx ?? 0, 1))"
+                        }
+                        
+                    case .humidity:
+                        switch detector.threat {
+                        case .Red:
+                            annotationIcon = "humidity-bad\(max(detector.sensorIdx ?? 0, 1))"
+                        case .Yellow:
+                            annotationIcon = "humidity-mid\(max(detector.sensorIdx ?? 0, 1))"
+                        case .Green:
+                            annotationIcon = "humidity-good\(max(detector.sensorIdx ?? 0, 1))"
+                        }
                     }
                 }
 
@@ -268,16 +395,14 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                     pointAnnotation.image = .init(image: annotationImage, name: annotationIcon)
                 }
                 pointAnnotation.iconAnchor = .center
-                pointAnnotation.iconSize = 0.25
-                
                 print("Adding annot updateUI")
                 uiViewController.annotationManager.annotations.append(pointAnnotation)
             }
         }
         
-        for annotation in self.annotations {
-            uiViewController.annotationManager.annotations.append(annotation)
-        }
+//        for annotation in self.annotations {
+//            uiViewController.annotationManager.annotations.append(annotation)
+//        }
     }
     
     func checkZoomLevelAnnotations(uiViewController: MapboxViewController) {
