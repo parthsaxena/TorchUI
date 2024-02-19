@@ -53,14 +53,15 @@ struct AnalyticsCellView: View {
                     let data = item.graphLineParam.map { analyticDatapoint in
                         analyticDatapoint.datapoint
                     }
-                    let analytics = [AnalyticDatapoint(datapoint: 500.0, timestamp: Date()),
-                                     AnalyticDatapoint(datapoint: 200.0, timestamp: Date()),
-                                     AnalyticDatapoint(datapoint: 400.0, timestamp: Date()),
-                                     AnalyticDatapoint(datapoint: 700.0, timestamp: Date()),
-                                     AnalyticDatapoint(datapoint: 800.0, timestamp: Date()),
-                                     AnalyticDatapoint(datapoint: 500.0, timestamp: Date()),
-                                     AnalyticDatapoint(datapoint: 500.0, timestamp: Date())]
-                    CustomGraphView(dataPoints: item.graphLineParam)
+//                    let analytics = [AnalyticDatapoint(datapoint: 500.0, timestamp: Date()),
+//                                     AnalyticDatapoint(datapoint: 200.0, timestamp: Date()),
+//                                     AnalyticDatapoint(datapoint: 400.0, timestamp: Date()),
+//                                     AnalyticDatapoint(datapoint: 700.0, timestamp: Date()),
+//                                     AnalyticDatapoint(datapoint: 800.0, timestamp: Date()),
+//                                     AnalyticDatapoint(datapoint: 500.0, timestamp: Date()),
+//                                     AnalyticDatapoint(datapoint: 500.0, timestamp: Date())]
+                    var graphLineParam = self.sortListAccordingToDate()
+                    CustomGraphView(dataPoints: graphLineParam)
                         .frame(height: 180)
                     Text("\(selectedOptions)")
                         .background(.clear)
@@ -111,6 +112,12 @@ struct AnalyticsCellView: View {
     
     func dropDownAction() {
         isDropdownExpanded.toggle()
+    }
+    
+    func sortListAccordingToDate() -> [AnalyticDatapoint] {
+        var list = item.graphLineParam
+        list.sort { $0.timestamp > $1.timestamp }
+        return list
     }
 }
 

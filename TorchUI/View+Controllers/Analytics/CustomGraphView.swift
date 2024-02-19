@@ -79,10 +79,10 @@ struct GraphView: View {
                     }
                 }
                 .frame(height: 240)
-                let dataPointNumericals = dataPoints.map { analyticDatapoint in
-                    analyticDatapoint.datapoint
-                }
-                GraphLine(dataPoints: dataPointNumericals, yAxisRange: yAxisRange, lineColor: lineColor) { point in
+//                let dataPointNumericals = dataPoints.map { analyticDatapoint in
+//                    analyticDatapoint.datapoint
+//                }
+                GraphLine(dataPoints: dataPoints, yAxisRange: yAxisRange, lineColor: lineColor) { point in
                     circlePosition = point
                 }
                 .stroke(
@@ -143,7 +143,31 @@ struct GraphView: View {
         index = index < 0 ? 0 : index
         updateMessage(point: dataPoints[index])
         let y = getYCoordinate(for: dataPoints[index].datapoint, in: yAxisRange, with: size.height)
-        return CGPoint(x: CGFloat(index) * xScale, y: y)
+        
+        let x = self.getSecondsIntoDate(dataPoints[index].timestamp)  // CGFloat(index) * xScale
+        
+        let currentTime = Date().timeIntervalSince1970
+        let pastTime = currentTime - 3600 * 24 * 30 // 30 days ago
+        let totalTimeRange = CGFloat(currentTime - pastTime)
+        let xAxisLength = size.width
+        let xPosition = (CGFloat(x) / totalTimeRange) * xAxisLength
+        
+        return CGPoint(x: xPosition, y: y)
+    }
+    
+    func getSecondsIntoDate(_ xAxisAsTime: Date) -> CGFloat {
+
+        let currentDate = Date()
+
+        var dateComponents = DateComponents()
+        dateComponents.day = 0
+
+        let calendar = Calendar.current
+        if let thirtyDaysAgo = calendar.date(byAdding: dateComponents, to: xAxisAsTime) {
+            let secondsBetweenDates = currentDate.timeIntervalSince(thirtyDaysAgo)
+            return secondsBetweenDates
+        }
+        return 0.0
     }
     
     func getYCoordinate(for value: CGFloat, in range: ClosedRange<CGFloat>, with height: CGFloat) -> CGFloat {
@@ -191,7 +215,7 @@ struct GraphView: View {
         let upperIndex = max(0, Int(ceil(fraction)))
         
         let lowerColor = gradientColors[lowerIndex]
-        let upperColor = gradientColors[upperIndex]
+        let upperColor = gradientColors[upperIndex < gradientColors.count ? upperIndex : gradientColors.count - 1]
         
         let fractionComplete = fraction - Double(lowerIndex)
         
@@ -242,16 +266,23 @@ extension View {
 }
 
 struct GraphLine: Shape {
-    var dataPoints: [CGFloat]
+    var dataPoints: [AnalyticDatapoint]
     var yAxisRange: ClosedRange<CGFloat>
     var lineColor: Color
     var onTap: (CGPoint) -> Void
     
     func point(for value: CGFloat, at index: Int, in rect: CGRect) -> CGPoint {
-        let xScale = rect.width / CGFloat(dataPoints.count - 1)
-        let x = CGFloat(index) * xScale
+//        let xScale = rect.width / CGFloat(dataPoints.count - 1)
+        let x = self.getSecondsIntoDate(dataPoints[index].timestamp)  // CGFloat(index) * xScale
+        
+        let currentTime = Date().timeIntervalSince1970
+        let pastTime = currentTime - 3600 * 24 * 30 // 30 days ago
+        let totalTimeRange = CGFloat(currentTime - pastTime)
+        let xAxisLength = rect.width
+        let xPosition = (CGFloat(x) / totalTimeRange) * xAxisLength
+        
         let y = getYCoordinate(for: value, in: yAxisRange, with: rect.height)
-        return CGPoint(x: x, y: y)
+        return CGPoint(x: xPosition, y: y)
     }
     
     func path(in rect: CGRect) -> Path {
@@ -259,15 +290,40 @@ struct GraphLine: Shape {
         
         guard dataPoints.count > 1 else { return path }
         
-        let xScale = rect.width / CGFloat(dataPoints.count - 1)
-        let yScale = rect.height / 1000//dataPoints.max()!
-        path.move(to: CGPoint(x: 0, y: rect.height - dataPoints[0] * yScale))
+//        let xScale = rect.width / CGFloat(dataPoints.count - 1)
+        let yScale = rect.height / 1000
+        
+        let currentTime = Date().timeIntervalSince1970
+        let pastTime = currentTime - 3600 * 24 * 30 // 30 days ago
+        let totalTimeRange = CGFloat(currentTime - pastTime)
+        let xAxisLength = rect.width
+        let x = self.getSecondsIntoDate(dataPoints[0].timestamp)
+        
+        path.move(to: CGPoint(x: x, y: rect.height - dataPoints[0].datapoint * yScale))
         
         for i in 1..<dataPoints.count {
-            path.addLine(to: CGPoint(x: CGFloat(i) * xScale, y: rect.height - dataPoints[i] * yScale))
+            
+            let x = self.getSecondsIntoDate(dataPoints[i].timestamp)
+            let xPosition = (CGFloat(x) / totalTimeRange) * xAxisLength // CGFloat(i) * xScale
+            path.addLine(to: CGPoint(x: xPosition, y: rect.height - dataPoints[i].datapoint * yScale))
         }
         
         return path
+    }
+    
+    func getSecondsIntoDate(_ xAxisAsTime: Date) -> CGFloat {
+
+        let currentDate = Date()
+
+        var dateComponents = DateComponents()
+        dateComponents.day = 0
+
+        let calendar = Calendar.current
+        if let thirtyDaysAgo = calendar.date(byAdding: dateComponents, to: xAxisAsTime) {
+            let secondsBetweenDates = currentDate.timeIntervalSince(thirtyDaysAgo)
+            return secondsBetweenDates
+        }
+        return 0.0
     }
     
     func body(in rect: CGRect) -> some View {
@@ -278,7 +334,7 @@ struct GraphLine: Shape {
                 let index = Int((touchLocation.x) / xScale)
                 
                 if index >= 0 && index < dataPoints.count {
-                    onTap(point(for: dataPoints[index], at: index, in: rect))
+                    onTap(point(for: dataPoints[index].datapoint, at: index, in: rect))
                 }
             }
         
