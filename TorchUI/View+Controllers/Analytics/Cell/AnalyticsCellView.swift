@@ -50,18 +50,12 @@ struct AnalyticsCellView: View {
             .padding()
             ZStack {
                 VStack {
-                    let data = item.graphLineParam.map { analyticDatapoint in
+                    let _ = item.graphLineParam.map { analyticDatapoint in
                         analyticDatapoint.datapoint
                     }
-//                    let analytics = [AnalyticDatapoint(datapoint: 500.0, timestamp: Date()),
-//                                     AnalyticDatapoint(datapoint: 200.0, timestamp: Date()),
-//                                     AnalyticDatapoint(datapoint: 400.0, timestamp: Date()),
-//                                     AnalyticDatapoint(datapoint: 700.0, timestamp: Date()),
-//                                     AnalyticDatapoint(datapoint: 800.0, timestamp: Date()),
-//                                     AnalyticDatapoint(datapoint: 500.0, timestamp: Date()),
-//                                     AnalyticDatapoint(datapoint: 500.0, timestamp: Date())]
+
                     var graphLineParam = self.sortListAccordingToDate()
-                    CustomGraphView(dataPoints: graphLineParam)
+                    CustomGraphView(dataPoints: graphLineParam, selectedOption: selectedOptions)
                         .frame(height: 180)
                     Text("\(selectedOptions)")
                         .background(.clear)

@@ -10,13 +10,14 @@ import SwiftUI
 struct CustomGraphView: View {
     
     var dataPoints: [AnalyticDatapoint]
-    
-    init(dataPoints: [AnalyticDatapoint]) {
+    let selectedOption: String
+    init(dataPoints: [AnalyticDatapoint], selectedOption: String) {
         self.dataPoints = dataPoints
+        self.selectedOption = selectedOption
     }
     
     var body: some View {
-        GraphView(dataPoints: dataPoints)
+        GraphView(dataPoints: dataPoints, selectedOption: selectedOption)
     }
 }
 
@@ -33,29 +34,21 @@ struct GraphView: View {
     @State private var isImageVisible: Bool = false
     
     let dataPoints: [AnalyticDatapoint]
+    let selectedOption: String
     let yAxisRange: ClosedRange<CGFloat> = 0...1000
     let yAxisStep: CGFloat = 200
     let lineColor: Color = .green
     let gradientColors: [Color] = [.green, .red]
-    let xAxisTimestamps: [String]
     
-    init(dataPoints: [AnalyticDatapoint]) {
+    init(dataPoints: [AnalyticDatapoint], selectedOption: String) {
         
         self.dataPoints = dataPoints
+        self.selectedOption = selectedOption
         let lastPoint = dataPoints.last ?? AnalyticDatapoint(datapoint: 0.0, timestamp: Date())
         let yCoordinate = (180 - lastPoint.datapoint * 0.18) + 30
         let point = CGPoint(x: CGFloat(27), y: yCoordinate)
         circlePosition = point
         circleColor = lineColor
-        
-        // Generate x-axis timestamps for the last 60 minutes
-        let currentTime = Date()
-        xAxisTimestamps = (0..<6).map { index in
-            let time = Calendar.current.date(byAdding: .minute, value: -index * 10, to: currentTime) ?? currentTime
-            let timeFormatter = DateFormatter()
-            timeFormatter.dateFormat = "HH:mm"
-            return timeFormatter.string(from: time)
-        }.reversed()
     }
     
     var body: some View {
@@ -82,7 +75,7 @@ struct GraphView: View {
 //                let dataPointNumericals = dataPoints.map { analyticDatapoint in
 //                    analyticDatapoint.datapoint
 //                }
-                GraphLine(dataPoints: dataPoints, yAxisRange: yAxisRange, lineColor: lineColor) { point in
+                GraphLine(selectedOption: selectedOption, dataPoints: dataPoints, yAxisRange: yAxisRange, lineColor: lineColor) { point in
                     circlePosition = point
                 }
                 .stroke(
@@ -137,17 +130,20 @@ struct GraphView: View {
     }
     
     func findNearestPoint(on dataPoints: [AnalyticDatapoint], at touchLocation: CGPoint, in size: CGSize) -> CGPoint {
+        
         let xScale = size.width / CGFloat(dataPoints.count - 1)
+        
         var index = Int((touchLocation.x) / xScale)
         index = index >= dataPoints.count ? (dataPoints.count - 1) : index
         index = index < 0 ? 0 : index
+        
         updateMessage(point: dataPoints[index])
-        let y = getYCoordinate(for: dataPoints[index].datapoint, in: yAxisRange, with: size.height)
         
         let x = self.getSecondsIntoDate(dataPoints[index].timestamp)  // CGFloat(index) * xScale
+        let y = getYCoordinate(for: dataPoints[index].datapoint, in: yAxisRange, with: size.height)
         
         let currentTime = Date().timeIntervalSince1970
-        let pastTime = currentTime - 3600 * 24 * 30 // 30 days ago
+        let pastTime = currentTime - self.setTotalSeconds(selectedOptions: selectedOption)
         let totalTimeRange = CGFloat(currentTime - pastTime)
         let xAxisLength = size.width
         let xPosition = (CGFloat(x) / totalTimeRange) * xAxisLength
@@ -239,6 +235,24 @@ struct GraphView: View {
 
         return blendedColor
     }
+    
+    func setTotalSeconds(selectedOptions: String) -> Double {
+            
+        if selectedOptions == "10 Min" {
+            return 600
+        } else if selectedOptions == "1 Hour" {
+            return 3600
+        } else if selectedOptions == "1 Day" {
+            return 3600 * 24
+        } else if selectedOptions == "1 Week" {
+            return 3600 * 24 * 7
+        } else if selectedOptions == "1 Month" {
+            return 3600 * 24 * 31
+        } else if selectedOptions == "1 Year" {
+            return 3600 * 24 * 365
+        }
+        return 0
+    }
 }
 
 extension View {
@@ -266,17 +280,19 @@ extension View {
 }
 
 struct GraphLine: Shape {
+    
+    var selectedOption: String
     var dataPoints: [AnalyticDatapoint]
     var yAxisRange: ClosedRange<CGFloat>
     var lineColor: Color
     var onTap: (CGPoint) -> Void
     
     func point(for value: CGFloat, at index: Int, in rect: CGRect) -> CGPoint {
-//        let xScale = rect.width / CGFloat(dataPoints.count - 1)
+
         let x = self.getSecondsIntoDate(dataPoints[index].timestamp)  // CGFloat(index) * xScale
         
         let currentTime = Date().timeIntervalSince1970
-        let pastTime = currentTime - 3600 * 24 * 30 // 30 days ago
+        let pastTime = currentTime - self.setTotalSeconds(selectedOptions: selectedOption)
         let totalTimeRange = CGFloat(currentTime - pastTime)
         let xAxisLength = rect.width
         let xPosition = (CGFloat(x) / totalTimeRange) * xAxisLength
@@ -289,12 +305,11 @@ struct GraphLine: Shape {
         var path = Path()
         
         guard dataPoints.count > 1 else { return path }
-        
-//        let xScale = rect.width / CGFloat(dataPoints.count - 1)
+
         let yScale = rect.height / 1000
         
         let currentTime = Date().timeIntervalSince1970
-        let pastTime = currentTime - 3600 * 24 * 30 // 30 days ago
+        let pastTime = currentTime - self.setTotalSeconds(selectedOptions: selectedOption)
         let totalTimeRange = CGFloat(currentTime - pastTime)
         let xAxisLength = rect.width
         let x = self.getSecondsIntoDate(dataPoints[0].timestamp)
@@ -350,6 +365,24 @@ struct GraphLine: Shape {
     func getYCoordinate(for value: CGFloat, in range: ClosedRange<CGFloat>, with height: CGFloat) -> CGFloat {
         let normalizedValue = (value - range.lowerBound) / (range.upperBound - range.lowerBound)
         return height - normalizedValue * height
+    }
+    
+    func setTotalSeconds(selectedOptions: String) -> Double {
+            
+        if selectedOptions == "10 Min" {
+            return 600
+        } else if selectedOptions == "1 Hour" {
+            return 3600
+        } else if selectedOptions == "1 Day" {
+            return 3600 * 24
+        } else if selectedOptions == "1 Week" {
+            return 3600 * 24 * 7
+        } else if selectedOptions == "1 Month" {
+            return 3600 * 24 * 31
+        } else if selectedOptions == "1 Year" {
+            return 3600 * 24 * 365
+        }
+        return 0
     }
 }
 
