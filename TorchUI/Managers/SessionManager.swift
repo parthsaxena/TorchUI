@@ -1070,21 +1070,7 @@ final class SessionManager: ObservableObject {
         for i in 0..<self.properties.count {
             for j in 0..<self.properties[i].detectors.count {
                 let deviceId = self.properties[i].detectors[j].id
-//                Task {
-//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .tenMinutes)
-//                }
-//                Task {
-//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneHour)
-//                }
-//                Task {
-//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneDay)
-//                }
-//                Task {
-//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneWeek)
-//                }
-//                Task {
-//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneMonth)
-//                }
+
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.tenMinutes)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneHour)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneDay)
@@ -1125,12 +1111,7 @@ final class SessionManager: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-//        let endDateTestString = "2023-10-19T00:10:00Z"
-//        
-//        
-//        guard let endDate = dateFormatter.date(from: endDateTestString) else {
-//            fatalError("Invalid date format")
-//        }
+
         let endDate = Date()
         if let startDate = Calendar.current.date(byAdding: .second, value: timespan.timeInterval, to: endDate) {
             
@@ -1178,38 +1159,26 @@ final class SessionManager: ObservableObject {
                             }
                             
                             for _ in parsedMeasurements..<60 {
-                                data.insert(AnalyticDatapoint(datapoint: 0.0, timestamp: Date()), at: 0)
+                                data.insert(AnalyticDatapoint(datapoint: 0.0, timestamp: self.getCurrentDateInUTC()), at: 0)
                             }
-                            
-//                            print("array data for graph before loop: \(measurement)")
-//                            print("array data for graph: \(data)")
-//                            var chartParameters = LineChartParameters(
-//                                data: data,
-//                                labelColor: .primary,
-//                                secondaryLabelColor: .secondary,
-//                                labelsAlignment: .left,
-//                                dataPrecisionLength: 0,
-//                                dataPrefix: nil,
-//                                dataSuffix: " C",
-//                                indicatorPointColor: .red,
-//                                indicatorPointSize: 15,
-//                                lineColor: .green,
-//                                lineSecondColor: .red,
-//                                lineWidth: 3,
-//                                dotsWidth: 0,
-//                                displayMode: .default,
-//                                dragGesture: true,
-//                                hapticFeedback: false
-//                            )
-                            
+
                             self.deviceAnalytics[deviceId]?[timespan.stringSpan]?[k] = data
                         }
                     }
-                    
-//                    print("device ann \(self.deviceAnalytics)")
+                    NotificationCenter.default.post(name: NSNotification.updatedData, object: nil, userInfo: nil)
                 })
-//            print("Sending analytics request: \(request.data)")
             WebSocketManager.shared.sendData(socketRequest: request)
         }
+    }
+    
+    func getCurrentDateInUTC() -> Date {
+        let currentDate = Date()
+        let localTimeZone = TimeZone.current
+        let utcTimeZone = TimeZone(identifier: "UTC")!
+        let currentOffset = localTimeZone.secondsFromGMT(for: currentDate)
+        let utcOffset = utcTimeZone.secondsFromGMT(for: currentDate)
+        let interval = TimeInterval(utcOffset - currentOffset)
+        let utcDate = currentDate.addingTimeInterval(interval)
+        return utcDate
     }
 }
