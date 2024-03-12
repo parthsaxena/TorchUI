@@ -111,11 +111,11 @@ struct GraphView: View {
                     .opacity(dataPoints.count > 0 ? 1.0 : 0.0)
                     .gesture(DragGesture()
                         .onChanged { value in
+                            
                             let touchLocation = CGPoint(x: value.location.x, y: 0)
-
                             let returnRespone = findNearestPoint(on: dataPoints, at: touchLocation, in: geometry.size)
                             let nearestPoint = returnRespone.0
-                            print("Circle Index findNearestPoint \(returnRespone.1)")
+                            
                             if segmentationSelection == .thermalCameras {
                                 GraphCirclePositionManager.shared.termalCameraCirclePositions[circleIndex] = returnRespone.1
                             } else if segmentationSelection == .spectralAnalysis {
@@ -152,9 +152,9 @@ struct GraphView: View {
                                 index = GraphCirclePositionManager.shared.temperatureHumidityCirclePositions[circleIndex]
                             }
                             let totalTimeRange = self.setTotalSeconds(selectedOptions: selectedOption)
-                            let x = self.getSecondsIntoDate(dataPoints[index].timestamp, totalSeconds: totalTimeRange)
-                            let xAxisLength = geometry.size.width
-                            let xPosition = (xAxisLength / totalTimeRange) * CGFloat(x)
+                            let x = self.getSecondsIntoDate(dataPoints[index < 0 ? 0 : index].timestamp, totalSeconds: totalTimeRange)
+                            let xAxisLength = geometry.size.width - 27
+                            let xPosition = ((xAxisLength / totalTimeRange) * CGFloat(x)) + 27
                             updatePostion(x: xPosition, circleIndex: circleIndex) // CGFloat(geometry.size.width - 2.5)
                         }
                     }
@@ -186,7 +186,7 @@ struct GraphView: View {
     
     func findNearestPoint(on dataPoints: [AnalyticDatapoint], at touchLocation: CGPoint, in size: CGSize) -> (CGPoint, Int) {
         
-        let xScale = size.width / CGFloat(dataPoints.count - 1)
+        let xScale = (size.width - 27) / CGFloat(dataPoints.count - 1)
         
         var index = Int((touchLocation.x) / xScale)
         index = index >= dataPoints.count ? (dataPoints.count - 1) : index
@@ -197,8 +197,8 @@ struct GraphView: View {
         let x = self.getSecondsIntoDate(dataPoints[index].timestamp, totalSeconds: totalTimeRange)  // CGFloat(index) * xScale
         let y = getYCoordinate(for: dataPoints[index].datapoint, in: yAxisRange, with: size.height)
         
-        let xAxisLength = size.width
-        let xPosition = (xAxisLength / totalTimeRange) * CGFloat(x)
+        let xAxisLength = size.width - 27
+        let xPosition = ((xAxisLength / totalTimeRange) * CGFloat(x)) + 27
         
         return (CGPoint(x: xPosition, y: y), index)
     }
@@ -274,7 +274,7 @@ struct GraphView: View {
     }
     
     func getGradientColor(touchX: CGFloat, totalWidth: CGFloat) -> Color {
-        let xScale = totalWidth / CGFloat(dataPoints.count - 1)
+        let xScale = (totalWidth - 27) / CGFloat(dataPoints.count - 1)
         let index = Int((touchX) / xScale)
         return index >= 0 && index < dataPoints.count ? interpolateColor(dataPoints[index].datapoint, gradientColors: [.green, .red]) : lineColor
     }
@@ -354,7 +354,7 @@ extension View {
         return (x * -0.11)
     }
 }
-
+ 
 struct GraphLine: Shape {
     
     var selectedOption: String
@@ -362,13 +362,14 @@ struct GraphLine: Shape {
     var yAxisRange: ClosedRange<CGFloat>
     var lineColor: Color
     var onTap: (CGPoint) -> Void
+    var startPoint: CGFloat = 27.0
     
     func point(for value: CGFloat, at index: Int, in rect: CGRect) -> CGPoint {
         
         let totalTimeRange = self.setTotalSeconds(selectedOptions: selectedOption)
-        let xAxisLength = rect.width
+        let xAxisLength = rect.width - startPoint
         let x = self.getSecondsIntoDate(dataPoints[index].timestamp, totalSeconds: totalTimeRange)  // CGFloat(index) * xScale
-        let xPosition = (xAxisLength / totalTimeRange) * CGFloat(x)
+        let xPosition = ((xAxisLength / totalTimeRange) * CGFloat(x)) + startPoint
         
         let y = getYCoordinate(for: value, in: yAxisRange, with: rect.height)
         return CGPoint(x: xPosition, y: y)
@@ -382,16 +383,16 @@ struct GraphLine: Shape {
         let yScale = rect.height / 1000
 
         let totalTimeRange = self.setTotalSeconds(selectedOptions: selectedOption) // CGFloat(currentTime - pastTime)
-        let xAxisLength = rect.width
+        let xAxisLength = rect.width - startPoint
         let x = self.getSecondsIntoDate(dataPoints[0].timestamp, totalSeconds: totalTimeRange)
         
-        path.move(to: CGPoint(x: ((xAxisLength / totalTimeRange) * CGFloat(x)), y: rect.height - dataPoints[0].datapoint * yScale))
+        path.move(to: CGPoint(x: ((xAxisLength / totalTimeRange) * CGFloat(x)) + startPoint, y: rect.height - dataPoints[0].datapoint * yScale))
         
         for i in 1..<dataPoints.count {
             
             let x = self.getSecondsIntoDate(dataPoints[i].timestamp, totalSeconds: totalTimeRange)
             let xPosition = (xAxisLength / totalTimeRange) * CGFloat(x) // CGFloat(i) * xScale
-            path.addLine(to: CGPoint(x: xPosition, y: rect.height - dataPoints[i].datapoint * yScale))
+            path.addLine(to: CGPoint(x: xPosition + startPoint, y: rect.height - dataPoints[i].datapoint * yScale))
         }
         
         return path
@@ -415,6 +416,7 @@ struct GraphLine: Shape {
     }
     
     func getCurrentDateInUTC() -> Date {
+        
         let currentDate = Date()
         let localTimeZone = TimeZone.current
         let utcTimeZone = TimeZone(identifier: "UTC")!
@@ -426,6 +428,7 @@ struct GraphLine: Shape {
     }
     
     func body(in rect: CGRect) -> some View {
+        
         let tapGesture = TapGesture()
             .onEnded { _ in
                 let touchLocation = CGPoint(x: 0, y: 0) // Get the touch location
@@ -447,6 +450,7 @@ struct GraphLine: Shape {
     }
     
     func getYCoordinate(for value: CGFloat, in range: ClosedRange<CGFloat>, with height: CGFloat) -> CGFloat {
+        
         let normalizedValue = (value - range.lowerBound) / (range.upperBound - range.lowerBound)
         return height - normalizedValue * height
     }

@@ -11,12 +11,12 @@ import LineChartView
 
 struct AnalyticsCellView: View {
     
-    @State var selectedOptions: AnalyticsTimespanSelection = .tenMinutes
+    @State var selectedOptions: AnalyticsTimespanSelection = .oneHour
     @State var segmentationSelection : AnalyticsTypeSelection
     
     @State private var isDropdownExpanded = false
     
-    var timeIntervals: [AnalyticsTimespanSelection] = [.tenMinutes, .oneHour, .oneDay, .oneWeek, .oneMonth, .oneYear]
+    var timeIntervals: [AnalyticsTimespanSelection] = [.oneHour, .oneDay, .oneWeek, .oneMonth, .oneYear] //.tenMinutes,
     var item: Item
     var circleIndex: Int
     var action: (_ selectedOption: AnalyticsTimespanSelection) -> Void

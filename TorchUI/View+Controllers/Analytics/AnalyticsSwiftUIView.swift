@@ -11,7 +11,7 @@ struct AnalyticsSwiftUIView: View {
     
     @Environment(\.colorScheme) var colorScheme
     @State var segmentationSelection : AnalyticsTypeSelection = .thermalCameras
-    @State var timespanSelection: AnalyticsTimespanSelection = .tenMinutes
+    @State var timespanSelection: AnalyticsTimespanSelection = .oneHour
     
     @State private var thermalCameraItems: [Item] = []
     @State private var spectralAnalysisItems: [Item] = []
@@ -19,10 +19,10 @@ struct AnalyticsSwiftUIView: View {
     @State private var temperatureHumidityItems: [Item] = []
     @Binding var viewAnalytics: Bool
     
-    @State private var termalCameraTimeSpam: [AnalyticsTimespanSelection] = [.tenMinutes , .tenMinutes, .tenMinutes]
-    @State private var spectralAnalysisTimeSpam: [AnalyticsTimespanSelection] = [.tenMinutes , .tenMinutes, .tenMinutes]
-    @State private var smokeTimeSpam: [AnalyticsTimespanSelection] = [.tenMinutes , .tenMinutes, .tenMinutes]
-    @State private var temperatureHumidityTimeSpam: [AnalyticsTimespanSelection] = [.tenMinutes , .tenMinutes]
+    @State private var termalCameraTimeSpam: [AnalyticsTimespanSelection] = [.oneHour , .oneHour, .oneHour]
+    @State private var spectralAnalysisTimeSpam: [AnalyticsTimespanSelection] = [.oneHour , .oneHour, .oneHour]
+    @State private var smokeTimeSpam: [AnalyticsTimespanSelection] = [.oneHour , .oneHour, .oneHour]
+    @State private var temperatureHumidityTimeSpam: [AnalyticsTimespanSelection] = [.oneHour , .oneHour]
     
     func getThermalCameraItems(timespan: AnalyticsTimespanSelection) -> [Item] {
         
