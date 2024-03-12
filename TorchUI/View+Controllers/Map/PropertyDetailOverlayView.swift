@@ -43,6 +43,8 @@ struct PropertyDetailOverlayView: View {
     
     @Binding var showRedOverlay: Bool
     
+    @State private var shouldShowMenu: Bool = false
+    
     var body: some View {
         VStack {
             Spacer()
@@ -131,10 +133,13 @@ struct PropertyDetailOverlayView: View {
                                     )
                                     .contentShape(Rectangle())// Makes the entire padded area tappable
                                     .onTapGesture {
-                                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                        impactMed.impactOccurred()
-                                        print("Dots tapped")
-                                        showingOptions.toggle()
+//                                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
+//                                        impactMed.impactOccurred()
+//                                        print("Dots tapped")
+//                                        showingOptions.toggle()
+//                                        if shouldShowMenu {
+                                        shouldShowMenu = true
+//                                        }
                                     }
                             }
                             .padding(.horizontal, 18.0)
@@ -601,6 +606,9 @@ struct PropertyDetailOverlayView: View {
                                 }
                                 Spacer()
                             }
+                        }
+                        if shouldShowMenu {
+                            PropertyOverlayMenu(sessionManager: SessionManager(), showMenu: $shouldShowMenu)
                         }
                     }
                 }

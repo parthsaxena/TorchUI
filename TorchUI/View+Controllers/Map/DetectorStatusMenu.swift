@@ -19,9 +19,8 @@ struct DetectorStatusMenu: View {
     
     
     var body: some View {
-//                if showDetectorMenu {
-        HStack {
-            Spacer()
+//        HStack {
+//            Spacer()
             VStack(alignment: .leading, spacing: 0) {
                 
                 Button(action: {
@@ -29,10 +28,6 @@ struct DetectorStatusMenu: View {
                     impactMed.impactOccurred()
                     showDetectorMenu = false
                     annotationsStatus = .fire
-                    
-//                    let selectedPropertyID  = sessionManager.properties[sessionManager.selectedPropertyIndex].id
-//                    let selectedDetectorID  = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].id
-//                    SessionManager.shared.muteSensor(device_id: selectedDetectorID, property_id: selectedPropertyID)
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image("Icon")
@@ -191,16 +186,18 @@ struct DetectorStatusMenu: View {
             .cornerRadius(16)
             .shadow(color: Color(red: 0.18, green: 0.21, blue: 0.22).opacity(0.4), radius: 90, x: 0, y: 32)
             .position(x: width - 156, y: 130)
-            Spacer()
-        }
-        .frame(width: width)
-        .background(Color.gray.opacity(0.05))
-        .gesture(
-            TapGesture()
-                .onEnded { _ in
-                    showDetectorMenu = false
-                }
-        )
+//            .allowsHitTesting(true)
+//            Spacer()
+//        }
+//        .frame(width: width)
+//        .background(Color.gray.opacity(0.05))
+////        .allowsHitTesting(false)
+//        .gesture(
+//            TapGesture()
+//                .onEnded { _ in
+//                    showDetectorMenu = false
+//                }
+//        )
         
     }
     //    }
