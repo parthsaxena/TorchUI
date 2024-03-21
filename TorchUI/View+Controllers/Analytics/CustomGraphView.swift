@@ -11,19 +11,20 @@ struct CustomGraphView: View {
     
     var dataPoints: [AnalyticDatapoint]
     let selectedOption: String
-    init(dataPoints: [AnalyticDatapoint], selectedOption: String) {
-        self.dataPoints = dataPoints
+    var circleIndex: Int
+    @State var segmentationSelection: AnalyticsTypeSelection
+
+    init(dataPoints: [AnalyticDatapoint], selectedOption: String, circleIndex: Int, segmentationSelection: AnalyticsTypeSelection) {
+        self.dataPoints = dataPoints.reversed()
         self.selectedOption = selectedOption
+        self.circleIndex = circleIndex
+        self.segmentationSelection = segmentationSelection
     }
     
     var body: some View {
-        GraphView(dataPoints: dataPoints, selectedOption: selectedOption)
+        GraphView(dataPoints: dataPoints, selectedOption: selectedOption, circleIndex: circleIndex, segmentationSelection: segmentationSelection)
     }
 }
-
-//#Preview {
-//    CustomGraphView(dataPoints: [])
-//}
 
 struct GraphView: View {
     
@@ -33,22 +34,31 @@ struct GraphView: View {
     @State private var circleColor: Color = .green
     @State private var isImageVisible: Bool = false
     
-    let dataPoints: [AnalyticDatapoint]
+    var dataPoints: [AnalyticDatapoint]
     let selectedOption: String
+    @State var circleIndex: Int
+    @State var segmentationSelection: AnalyticsTypeSelection
     let yAxisRange: ClosedRange<CGFloat> = 0...1000
     let yAxisStep: CGFloat = 200
     let lineColor: Color = .green
     let gradientColors: [Color] = [.green, .red]
     
-    init(dataPoints: [AnalyticDatapoint], selectedOption: String) {
+    init(dataPoints: [AnalyticDatapoint], selectedOption: String, circleIndex: Int, segmentationSelection: AnalyticsTypeSelection) {
         
         self.dataPoints = dataPoints
         self.selectedOption = selectedOption
-        let lastPoint = dataPoints.last ?? AnalyticDatapoint(datapoint: 0.0, timestamp: Date())
+        self.circleIndex = circleIndex
+        self.segmentationSelection = segmentationSelection
+        let lastPoint = dataPoints.last ?? AnalyticDatapoint(datapoint: 0.0, timestamp: getCurrentDateInUTC())
         let yCoordinate = (180 - lastPoint.datapoint * 0.18) + 30
         let point = CGPoint(x: CGFloat(27), y: yCoordinate)
-        circlePosition = point
-        circleColor = lineColor
+        self.circlePosition = point
+        self.circleColor = lineColor
+        
+        if let datePoint = dataPoints.first?.datapoint {
+            let date = AnalyticDatapoint(datapoint: datePoint, timestamp: self.addInitialPoint())
+            self.dataPoints.insert(date, at: 0)
+        }
     }
     
     var body: some View {
@@ -72,9 +82,6 @@ struct GraphView: View {
                     }
                 }
                 .frame(height: 240)
-//                let dataPointNumericals = dataPoints.map { analyticDatapoint in
-//                    analyticDatapoint.datapoint
-//                }
                 GraphLine(selectedOption: selectedOption, dataPoints: dataPoints, yAxisRange: yAxisRange, lineColor: lineColor) { point in
                     circlePosition = point
                 }
@@ -87,7 +94,6 @@ struct GraphView: View {
                     lineWidth: 3
                 )
                 .frame(height: 180)
-                //                .padding(.leading, 27)
                 
                 if isImageVisible {
                     Image("horizontalLine")
@@ -95,7 +101,6 @@ struct GraphView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 15, height: 180)
                         .position(x: circlePosition.x, y: 120)
-                        .animation(.easeInOut)
                 }
                 Circle()
                     .fill(circleColor)
@@ -106,64 +111,124 @@ struct GraphView: View {
                     .opacity(dataPoints.count > 0 ? 1.0 : 0.0)
                     .gesture(DragGesture()
                         .onChanged { value in
+                            
                             let touchLocation = CGPoint(x: value.location.x, y: 0)
-                            let dataPointNumericals = dataPoints.map { analyticDatapoint in
-                                analyticDatapoint.datapoint
+                            let returnRespone = findNearestPoint(on: dataPoints, at: touchLocation, in: geometry.size)
+                            let nearestPoint = returnRespone.0
+                            
+                            if segmentationSelection == .thermalCameras {
+                                GraphCirclePositionManager.shared.termalCameraCirclePositions[circleIndex] = returnRespone.1
+                            } else if segmentationSelection == .spectralAnalysis {
+                                GraphCirclePositionManager.shared.spectralAnalysisCirclePositions[circleIndex] = returnRespone.1
+                            } else if segmentationSelection == .smoke {
+                                GraphCirclePositionManager.shared.smokeCirclePositions[circleIndex] = returnRespone.1
+                            } else if segmentationSelection == .temperatureHumidity {
+                                GraphCirclePositionManager.shared.temperatureHumidityCirclePositions[circleIndex] = returnRespone.1
                             }
-                            let nearestPoint = findNearestPoint(on: dataPoints, at: touchLocation, in: geometry.size)
                             circlePosition = nearestPoint
-                            let nearestColor = getGradientColor(dataPoints: dataPointNumericals, touchX: value.location.x, totalWidth: geometry.size.width)
+                            let nearestColor = getGradientColor(touchX: value.location.x, totalWidth: geometry.size.width)
                             circleColor = nearestColor
                             isImageVisible = true
+                            GraphCirclePositionManager.shared.isMoveCircle = true
                         }
                         .onEnded { _ in
                             isImageVisible = false
+                            GraphCirclePositionManager.shared.isMoveCircle = false
                         }
                     )
+                    .animation(nil)
                     .toast(isPresented: $showToast, message: toastMessage, coordinates: circlePosition)
                     .onAppear {
-                        updatePostion(x: CGFloat(geometry.size.width - 2.5))
+                        if dataPoints.count > 0 {
+                            
+                            var index = 0
+                            if segmentationSelection == .thermalCameras {
+                                index = GraphCirclePositionManager.shared.termalCameraCirclePositions[circleIndex]
+                            } else if segmentationSelection == .spectralAnalysis {
+                                index = GraphCirclePositionManager.shared.spectralAnalysisCirclePositions[circleIndex]
+                            } else if segmentationSelection == .smoke {
+                                index = GraphCirclePositionManager.shared.smokeCirclePositions[circleIndex]
+                            } else if segmentationSelection == .temperatureHumidity {
+                                index = GraphCirclePositionManager.shared.temperatureHumidityCirclePositions[circleIndex]
+                            }
+                            let totalTimeRange = self.setTotalSeconds(selectedOptions: selectedOption)
+                            let x = self.getSecondsIntoDate(dataPoints[index < 0 ? 0 : index].timestamp, totalSeconds: totalTimeRange)
+                            let xAxisLength = geometry.size.width - 27
+                            let xPosition = ((xAxisLength / totalTimeRange) * CGFloat(x)) + 27
+                            updatePostion(x: xPosition, circleIndex: circleIndex) // CGFloat(geometry.size.width - 2.5)
+                        }
                     }
             }
             .padding(.top, -30)
         }
     }
     
-    func findNearestPoint(on dataPoints: [AnalyticDatapoint], at touchLocation: CGPoint, in size: CGSize) -> CGPoint {
+    func addInitialPoint() -> Date {
         
-        let xScale = size.width / CGFloat(dataPoints.count - 1)
+        let totalSeconds = self.setTotalSeconds(selectedOptions: selectedOption)
+        let initialDatePoint = self.getInitialDate(totalSeconds: totalSeconds)
+        return initialDatePoint // dataPoints.insert(dataPoint, at: 0)
+    }
+    
+    func getInitialDate(totalSeconds: CGFloat) -> Date {
+
+        let currentDate = getCurrentDateInUTC()
+
+        var dateComponents = DateComponents()
+        dateComponents.second = -Int(totalSeconds)
+
+        var calendar = Calendar.current
+        
+        calendar.timeZone = TimeZone(identifier: "UTC")!
+        let startTime = calendar.date(byAdding: dateComponents, to: currentDate) ?? currentDate
+        return startTime
+    }
+    
+    func findNearestPoint(on dataPoints: [AnalyticDatapoint], at touchLocation: CGPoint, in size: CGSize) -> (CGPoint, Int) {
+        
+        let xScale = (size.width - 27) / CGFloat(dataPoints.count - 1)
         
         var index = Int((touchLocation.x) / xScale)
         index = index >= dataPoints.count ? (dataPoints.count - 1) : index
         index = index < 0 ? 0 : index
-        
         updateMessage(point: dataPoints[index])
         
-        let x = self.getSecondsIntoDate(dataPoints[index].timestamp)  // CGFloat(index) * xScale
+        let totalTimeRange = self.setTotalSeconds(selectedOptions: selectedOption)
+        let x = self.getSecondsIntoDate(dataPoints[index].timestamp, totalSeconds: totalTimeRange)  // CGFloat(index) * xScale
         let y = getYCoordinate(for: dataPoints[index].datapoint, in: yAxisRange, with: size.height)
         
-        let currentTime = Date().timeIntervalSince1970
-        let pastTime = currentTime - self.setTotalSeconds(selectedOptions: selectedOption)
-        let totalTimeRange = CGFloat(currentTime - pastTime)
-        let xAxisLength = size.width
-        let xPosition = (CGFloat(x) / totalTimeRange) * xAxisLength
+        let xAxisLength = size.width - 27
+        let xPosition = ((xAxisLength / totalTimeRange) * CGFloat(x)) + 27
         
-        return CGPoint(x: xPosition, y: y)
+        return (CGPoint(x: xPosition, y: y), index)
     }
     
-    func getSecondsIntoDate(_ xAxisAsTime: Date) -> CGFloat {
+    func getSecondsIntoDate(_ xAxisAsTime: Date, totalSeconds: CGFloat) -> CGFloat {
 
-        let currentDate = Date()
+        let currentDate = getCurrentDateInUTC()
 
         var dateComponents = DateComponents()
-        dateComponents.day = 0
+        dateComponents.second = -Int(totalSeconds)
 
-        let calendar = Calendar.current
-        if let thirtyDaysAgo = calendar.date(byAdding: dateComponents, to: xAxisAsTime) {
-            let secondsBetweenDates = currentDate.timeIntervalSince(thirtyDaysAgo)
+        var calendar = Calendar.current
+        
+        calendar.timeZone = TimeZone(identifier: "UTC")!
+        if let startTime = calendar.date(byAdding: dateComponents, to: currentDate) {
+            let secondsBetweenDates = xAxisAsTime.timeIntervalSince(startTime)
             return secondsBetweenDates
         }
         return 0.0
+    }
+    
+    func getCurrentDateInUTC() -> Date {
+        let currentDate = Date()
+        let localTimeZone = TimeZone.current
+        let utcTimeZone = TimeZone(identifier: "UTC")!
+        let currentOffset = localTimeZone.secondsFromGMT(for: currentDate)
+        let utcOffset = utcTimeZone.secondsFromGMT(for: currentDate)
+        let interval = TimeInterval(utcOffset - currentOffset)
+        let utcDate = currentDate.addingTimeInterval(interval)
+        return utcDate
     }
     
     func getYCoordinate(for value: CGFloat, in range: ClosedRange<CGFloat>, with height: CGFloat) -> CGFloat {
@@ -176,16 +241,26 @@ struct GraphView: View {
         return normalizedValue * (range.upperBound - range.lowerBound) + range.lowerBound
     }
     
-    func updatePostion(x: CGFloat) {
+    func updatePostion(x: CGFloat, circleIndex: Int) {
         
-        let dataPointNumericals = dataPoints.map { analyticDatapoint in
-            analyticDatapoint.datapoint
-        }
-        let lastPoint = dataPointNumericals.last ?? 0
-        let yCoordinate = (180 - lastPoint * 0.18)
-        let point = CGPoint(x: x, y: yCoordinate)
-        circlePosition = point
-        if let last = dataPoints.last {
+        if dataPoints.count > 0 {
+            
+            var index = 0
+            if segmentationSelection == .thermalCameras {
+                index = GraphCirclePositionManager.shared.termalCameraCirclePositions[circleIndex]
+            } else if segmentationSelection == .spectralAnalysis {
+                index = GraphCirclePositionManager.shared.spectralAnalysisCirclePositions[circleIndex]
+            } else if segmentationSelection == .smoke {
+                index = GraphCirclePositionManager.shared.smokeCirclePositions[circleIndex]
+            } else if segmentationSelection == .temperatureHumidity {
+                index = GraphCirclePositionManager.shared.temperatureHumidityCirclePositions[circleIndex]
+            }
+            
+            let lastPoint = dataPoints[index].datapoint
+            let yCoordinate = (180 - lastPoint * 0.18)
+            let point = CGPoint(x: x, y: yCoordinate)
+            circlePosition = point
+            let last = dataPoints[index]
             updateMessage(point: last)
         }
     }
@@ -198,10 +273,10 @@ struct GraphView: View {
         toastMessage = "\(timeString) - \(Double(point.datapoint).rounded(toPlaces: 2)) C"
     }
     
-    func getGradientColor(dataPoints: [CGFloat], touchX: CGFloat, totalWidth: CGFloat) -> Color {
-        let xScale = totalWidth / CGFloat(dataPoints.count - 1)
+    func getGradientColor(touchX: CGFloat, totalWidth: CGFloat) -> Color {
+        let xScale = (totalWidth - 27) / CGFloat(dataPoints.count - 1)
         let index = Int((touchX) / xScale)
-        return index >= 0 && index < dataPoints.count ? interpolateColor(dataPoints[index], gradientColors: [.green, .red]) : lineColor
+        return index >= 0 && index < dataPoints.count ? interpolateColor(dataPoints[index].datapoint, gradientColors: [.green, .red]) : lineColor
     }
     
     func interpolateColor(_ value: CGFloat, gradientColors: [Color]) -> Color {
@@ -270,6 +345,7 @@ extension View {
                 .position(x: CGFloat(coordinates.x + adjustLeadingTrailing(coordinates.x)), y: coordinates.y)
             }
         }
+        .animation(nil)
     }
     
     func adjustLeadingTrailing(_ x: CGFloat) -> CGFloat {
@@ -278,7 +354,7 @@ extension View {
         return (x * -0.11)
     }
 }
-
+ 
 struct GraphLine: Shape {
     
     var selectedOption: String
@@ -286,16 +362,14 @@ struct GraphLine: Shape {
     var yAxisRange: ClosedRange<CGFloat>
     var lineColor: Color
     var onTap: (CGPoint) -> Void
+    var startPoint: CGFloat = 27.0
     
     func point(for value: CGFloat, at index: Int, in rect: CGRect) -> CGPoint {
-
-        let x = self.getSecondsIntoDate(dataPoints[index].timestamp)  // CGFloat(index) * xScale
         
-        let currentTime = Date().timeIntervalSince1970
-        let pastTime = currentTime - self.setTotalSeconds(selectedOptions: selectedOption)
-        let totalTimeRange = CGFloat(currentTime - pastTime)
-        let xAxisLength = rect.width
-        let xPosition = (CGFloat(x) / totalTimeRange) * xAxisLength
+        let totalTimeRange = self.setTotalSeconds(selectedOptions: selectedOption)
+        let xAxisLength = rect.width - startPoint
+        let x = self.getSecondsIntoDate(dataPoints[index].timestamp, totalSeconds: totalTimeRange)  // CGFloat(index) * xScale
+        let xPosition = ((xAxisLength / totalTimeRange) * CGFloat(x)) + startPoint
         
         let y = getYCoordinate(for: value, in: yAxisRange, with: rect.height)
         return CGPoint(x: xPosition, y: y)
@@ -307,41 +381,54 @@ struct GraphLine: Shape {
         guard dataPoints.count > 1 else { return path }
 
         let yScale = rect.height / 1000
+
+        let totalTimeRange = self.setTotalSeconds(selectedOptions: selectedOption) // CGFloat(currentTime - pastTime)
+        let xAxisLength = rect.width - startPoint
+        let x = self.getSecondsIntoDate(dataPoints[0].timestamp, totalSeconds: totalTimeRange)
         
-        let currentTime = Date().timeIntervalSince1970
-        let pastTime = currentTime - self.setTotalSeconds(selectedOptions: selectedOption)
-        let totalTimeRange = CGFloat(currentTime - pastTime)
-        let xAxisLength = rect.width
-        let x = self.getSecondsIntoDate(dataPoints[0].timestamp)
-        
-        path.move(to: CGPoint(x: x, y: rect.height - dataPoints[0].datapoint * yScale))
+        path.move(to: CGPoint(x: ((xAxisLength / totalTimeRange) * CGFloat(x)) + startPoint, y: rect.height - dataPoints[0].datapoint * yScale))
         
         for i in 1..<dataPoints.count {
             
-            let x = self.getSecondsIntoDate(dataPoints[i].timestamp)
-            let xPosition = (CGFloat(x) / totalTimeRange) * xAxisLength // CGFloat(i) * xScale
-            path.addLine(to: CGPoint(x: xPosition, y: rect.height - dataPoints[i].datapoint * yScale))
+            let x = self.getSecondsIntoDate(dataPoints[i].timestamp, totalSeconds: totalTimeRange)
+            let xPosition = (xAxisLength / totalTimeRange) * CGFloat(x) // CGFloat(i) * xScale
+            path.addLine(to: CGPoint(x: xPosition + startPoint, y: rect.height - dataPoints[i].datapoint * yScale))
         }
         
         return path
     }
     
-    func getSecondsIntoDate(_ xAxisAsTime: Date) -> CGFloat {
+    func getSecondsIntoDate(_ xAxisAsTime: Date, totalSeconds: CGFloat) -> CGFloat {
 
-        let currentDate = Date()
+        let currentDate = getCurrentDateInUTC()
 
         var dateComponents = DateComponents()
-        dateComponents.day = 0
+        dateComponents.second = -Int(totalSeconds)
 
-        let calendar = Calendar.current
-        if let thirtyDaysAgo = calendar.date(byAdding: dateComponents, to: xAxisAsTime) {
-            let secondsBetweenDates = currentDate.timeIntervalSince(thirtyDaysAgo)
+        var calendar = Calendar.current
+        
+        calendar.timeZone = TimeZone(identifier: "UTC")!
+        if let startTime = calendar.date(byAdding: dateComponents, to: currentDate) {
+            let secondsBetweenDates = xAxisAsTime.timeIntervalSince(startTime)
             return secondsBetweenDates
         }
         return 0.0
     }
     
+    func getCurrentDateInUTC() -> Date {
+        
+        let currentDate = Date()
+        let localTimeZone = TimeZone.current
+        let utcTimeZone = TimeZone(identifier: "UTC")!
+        let currentOffset = localTimeZone.secondsFromGMT(for: currentDate)
+        let utcOffset = utcTimeZone.secondsFromGMT(for: currentDate)
+        let interval = TimeInterval(utcOffset - currentOffset)
+        let utcDate = currentDate.addingTimeInterval(interval)
+        return utcDate
+    }
+    
     func body(in rect: CGRect) -> some View {
+        
         let tapGesture = TapGesture()
             .onEnded { _ in
                 let touchLocation = CGPoint(x: 0, y: 0) // Get the touch location
@@ -363,6 +450,7 @@ struct GraphLine: Shape {
     }
     
     func getYCoordinate(for value: CGFloat, in range: ClosedRange<CGFloat>, with height: CGFloat) -> CGFloat {
+        
         let normalizedValue = (value - range.lowerBound) / (range.upperBound - range.lowerBound)
         return height - normalizedValue * height
     }

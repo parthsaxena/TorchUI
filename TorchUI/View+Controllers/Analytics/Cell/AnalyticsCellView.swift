@@ -11,13 +11,16 @@ import LineChartView
 
 struct AnalyticsCellView: View {
     
+    @State var selectedOptions: AnalyticsTimespanSelection = .oneHour
+    @State var segmentationSelection : AnalyticsTypeSelection
+    
     @State private var isDropdownExpanded = false
-    @State var selectedOptions: String = ""
-
-    var timeIntervals: [String] = ["10 Min", "1 Hour", "1 Day", "1 Week", "1 Month", "1 Year"]
+    
+    var timeIntervals: [AnalyticsTimespanSelection] = [.oneHour, .oneDay, .oneWeek, .oneMonth, .oneYear] //.tenMinutes,
     var item: Item
-    var action: (_ selectedOption: String) -> Void
-
+    var circleIndex: Int
+    var action: (_ selectedOption: AnalyticsTimespanSelection) -> Void
+    
     var body: some View {
         VStack {
             HStack {
@@ -33,7 +36,7 @@ struct AnalyticsCellView: View {
                 }
                 Spacer()
                 HStack {
-                    Text("\(selectedOptions)")
+                    Text("\(selectedOptions.stringTimeSpan)")
                         .background(.clear)
                         .foregroundColor(.gray)
                         .font(Font.custom("Manrope-SemiBold", size: 14.0))
@@ -50,14 +53,13 @@ struct AnalyticsCellView: View {
             .padding()
             ZStack {
                 VStack {
-                    let _ = item.graphLineParam.map { analyticDatapoint in
-                        analyticDatapoint.datapoint
-                    }
-
-                    var graphLineParam = self.sortListAccordingToDate()
-                    CustomGraphView(dataPoints: graphLineParam, selectedOption: selectedOptions)
-                        .frame(height: 180)
-                    Text("\(selectedOptions)")
+//                    let _ = item.graphLineParam.map { analyticDatapoint in
+//                        analyticDatapoint.datapoint
+//                    }
+                    let graphLineParam = self.sortListAccordingToDate()
+                    CustomGraphView(dataPoints: graphLineParam, selectedOption: selectedOptions.stringTimeSpan, circleIndex: circleIndex, segmentationSelection: segmentationSelection)
+                    .frame(height: 180)
+                    Text("\(selectedOptions.stringTimeSpan)")
                         .background(.clear)
                         .foregroundColor(CustomColors.TorchGreen)
                         .font(Font.custom("Manrope-SemiBold", size: 14.0))
@@ -73,7 +75,7 @@ struct AnalyticsCellView: View {
 
                                 }) {
                                     HStack {
-                                        Text(option)
+                                        Text(option.stringTimeSpan)
                                             .padding(.trailing, 10)
                                             .background(.clear)
                                             .foregroundColor(CustomColors.TorchGreen)
@@ -114,8 +116,3 @@ struct AnalyticsCellView: View {
         return list
     }
 }
-
-//#Preview {
-//    
-//    AnalyticsCellView(item: Item(itemName: "Item 1", itemDescription: "Description for Item 1"), action: {})
-//}

@@ -134,9 +134,11 @@
 		C864BE9F2B3C53660078C742 /* AnalyticsSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */; };
 		C864BEA02B3C53660078C742 /* AnalyticsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */; };
 		C864BEA32B3C54EF0078C742 /* LineChartView in Frameworks */ = {isa = PBXBuildFile; productRef = C864BEA22B3C54EF0078C742 /* LineChartView */; };
+		C86FD6D02B9B2AD1009C3E6E /* GraphCirclePostionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */; };
 		C88417C32B55CDD0005A9DDB /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88417C22B55CDD0005A9DDB /* Double+Extension.swift */; };
 		C8B50EEC2B618DF8001059F9 /* NickNameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B50EEB2B618DF8001059F9 /* NickNameUIView.swift */; };
 		C8C0BAA32B46C8F70022EC77 /* CustomGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0BAA22B46C8F70022EC77 /* CustomGraphView.swift */; };
+		C8C279C22B892FAC00337C2A /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C279C12B892FAC00337C2A /* NSNotification+Extension.swift */; };
 		FADFD6D29C0D959575FAAFCB /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = CE715C78ED08B54E16060133 /* awsconfiguration.json */; };
 /* End PBXBuildFile section */
 
@@ -279,9 +281,11 @@
 		C864BE982B3C53660078C742 /* ScrollableSegmentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentsView.swift; sourceTree = "<group>"; };
 		C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsSwiftUIView.swift; sourceTree = "<group>"; };
 		C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsCellView.swift; sourceTree = "<group>"; };
+		C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCirclePostionManager.swift; sourceTree = "<group>"; };
 		C88417C22B55CDD0005A9DDB /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		C8B50EEB2B618DF8001059F9 /* NickNameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameUIView.swift; sourceTree = "<group>"; };
 		C8C0BAA22B46C8F70022EC77 /* CustomGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGraphView.swift; sourceTree = "<group>"; };
+		C8C279C12B892FAC00337C2A /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		CE715C78ED08B54E16060133 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -685,6 +689,7 @@
 				C855B5322B10883E007DA332 /* WebSocketManager.swift */,
 				C855B5332B10883E007DA332 /* SessionManager.swift */,
 				C827EA4F2B234571009E6EC8 /* LocationManager.swift */,
+				C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -699,6 +704,7 @@
 				C855B5392B10883E007DA332 /* View+Extension.swift */,
 				3094CF562B1CB00A00C7984B /* Date+Extension.swift */,
 				C88417C22B55CDD0005A9DDB /* Double+Extension.swift */,
+				C8C279C12B892FAC00337C2A /* NSNotification+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -957,6 +963,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C86FD6D02B9B2AD1009C3E6E /* GraphCirclePostionManager.swift in Sources */,
 				C855B5722B10883F007DA332 /* DetectorIconView.swift in Sources */,
 				8B00A11B2B2174240080534F /* GlassyTabbar.swift in Sources */,
 				C855B58C2B10883F007DA332 /* PropertyViewModel.swift in Sources */,
@@ -987,6 +994,7 @@
 				C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */,
 				C855B5852B10883F007DA332 /* Color+Extension.swift in Sources */,
 				C864BE9D2B3C53660078C742 /* SegmentView.swift in Sources */,
+				C8C279C22B892FAC00337C2A /* NSNotification+Extension.swift in Sources */,
 				C855B5682B10883F007DA332 /* BatteryView.swift in Sources */,
 				C855B56F2B10883F007DA332 /* MapboxPlaceSensorViewWrapper.swift in Sources */,
 				30ACFC0D2B442030007BCC22 /* GrowingArcIndicatorView.swift in Sources */,
