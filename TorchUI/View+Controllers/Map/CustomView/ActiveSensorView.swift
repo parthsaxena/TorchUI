@@ -72,6 +72,7 @@ struct RightCustomAnnotationView: View {
     var showText: Bool = false
     @StateObject var sessionManager = SessionManager.shared
     var detectorIdx: Int
+    @Binding var annotationsStatus: DetectorInfoStatus
 //    @Binding var beamWidth: CGFloat
     
     var body: some View {
@@ -101,10 +102,92 @@ struct RightCustomAnnotationView: View {
                                 .frame(width: 100, height: 100)
                         }
                         
-                        Image($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].threat.wrappedValue == Threat.Red ? redImageIcon : ($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].threat.wrappedValue == Threat.Yellow ? yellowImageIcon : "DetectorIcons/\(max($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].sensorIdx.wrappedValue ?? 0, 1))"))
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30) // Adjust the size as needed
+                        if (self.annotationsStatus == DetectorInfoStatus.battery) {
+                            if ($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].deviceBattery.wrappedValue < 10.0) {
+                                // Red Battery
+                                Image("DetectorIcons/BatteryRed")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
+                            } else if ($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].deviceBattery.wrappedValue < 40.0) {
+                                // Yellow Battery
+                                Image("DetectorIcons/BatteryYellow")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
+                            } else {
+                                // Green Battery
+                                Image("DetectorIcons/BatteryGreen")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
+                            }
+                        } else if (self.annotationsStatus == DetectorInfoStatus.connection) {
+                            if ($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].connected.wrappedValue) {
+                                // Green Connected
+                                Image("DetectorIcons/ConnectionGreen")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
+                            } else {
+                                // Red Connected
+                                Image("DetectorIcons/ConnectionRed")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
+                            }
+                        } else if (self.annotationsStatus == DetectorInfoStatus.humidity) {
+                            let humidity = Double($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].measurements["humidity"].wrappedValue!)
+                            if (humidity! <= 20.0) {
+                                // Red Humidity
+                                Image("DetectorIcons/HumidityRed")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
+                            } else if (humidity! <= 50.0) {
+                                // Yellow Humidity
+                                Image("DetectorIcons/HumidityYellow")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
+                            } else {
+                                // Green Humidity
+                                Image("DetectorIcons/HumidityGreen")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
+                            }
+                        } else if (self.annotationsStatus == DetectorInfoStatus.temperature) {
+                            let _ = print("XOOOO: \($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].measurements)")
+                            if (Double($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].measurements["temperature"].wrappedValue!)! > 35.0) {
+                                // Red Temperature
+                                Image("DetectorIcons/TemperatureRed")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
+                            } else if (Double($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].measurements["temperature"].wrappedValue!)! > 25.0) {
+                                // Yellow Temperature
+                                Image("DetectorIcons/TemperatureYellow")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
+                            } else {
+                                // Green Temperature
+                                Image("DetectorIcons/TemperatureGreen")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30, height: 30)
+                            }
+                        } else if (self.annotationsStatus == DetectorInfoStatus.fire) {
+                            Image($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].threat.wrappedValue == Threat.Red ? redImageIcon : ($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].threat.wrappedValue == Threat.Yellow ? yellowImageIcon : "DetectorIcons/\(max($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].sensorIdx.wrappedValue ?? 0, 1))"))
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30, height: 30)
+                        }
+//                        Image($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].threat.wrappedValue == Threat.Red ? redImageIcon : ($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].threat.wrappedValue == Threat.Yellow ? yellowImageIcon : "DetectorIcons/\(max($sessionManager.properties[SessionManager.shared.selectedPropertyIndex].detectors[detectorIdx].sensorIdx.wrappedValue ?? 0, 1))"))
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                            .frame(width: 30, height: 30) // Adjust the size as needed
                     }
                     .frame(width: 50, height: 50) // Adjust the frame size as needed
                     
@@ -121,7 +204,8 @@ struct RightCustomAnnotationView: View {
             .frame(width: 50, height: 17) // Set the frame for the entire view
             .compositingGroup()
             .shadow(radius: 10)
-            .background(Color.clear) // Use a clear background for the actual view
+            .background(Color.clear)
+//            .ignoresSafeArea(.all)// Use a clear background for the actual view
         }
     }
 }

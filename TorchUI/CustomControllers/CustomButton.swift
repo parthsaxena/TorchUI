@@ -77,6 +77,7 @@ struct PropertiesBackButton: View {
 struct HamburgerButton: View {
     @Environment(\.colorScheme) var colorScheme
     @Binding var hideOverlay: Bool
+    var menuTapAction: () -> Void
     
     var body: some View {
         ZStack {
@@ -89,6 +90,8 @@ struct HamburgerButton: View {
             Button {
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
+                
+                menuTapAction()
                 
                 withAnimation {
                 }

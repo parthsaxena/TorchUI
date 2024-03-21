@@ -556,7 +556,7 @@ struct DetectorDetailOverlayView: View {
                                             showDetectorDetails = false
                                             needsLocationPin = true
                                             shouldHideOnPositionSelection = true
-                                            self.didChangeSensorPosition = true
+//                                            self.didChangeSensorPosition = true
                                             
                                         }) {
                                             HStack(alignment: .center, spacing: 8) {

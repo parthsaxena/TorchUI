@@ -43,6 +43,9 @@ struct PropertyDetailOverlayView: View {
     
     @Binding var showRedOverlay: Bool
     @Binding var shouldHideOnPositionSelection: Bool
+    @Binding var didChangeSensorPosition: Bool
+    
+    @Binding var needsLocationPin: Bool
     
     var body: some View {
         VStack {
@@ -588,19 +591,25 @@ struct PropertyDetailOverlayView: View {
                                             if let detector = SessionManager.shared.selectedProperty?.detectors.last {
                                                 SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors.append(detector)
                                             }
+                                        } else {
+                                            print("Update sensor, failed check before \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].coordinate)")
+                                            SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].coordinate = self.pin
+                                            print("Update sensor, failed check after \(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].coordinate)")
                                         }
+                                        self.needsLocationPin = false
                                         self.isConfirmingLocation = true
                                         self.shouldHideOnPositionSelection = false
-                                        var pointAnnotation = PointAnnotation(id: newDetector?.id ?? "", coordinate: self.pin)
-                                        let annotationIcon = "NewSensorIcon\(newDetector?.sensorIdx ?? 0)"
-                                        if let annotationImage = UIImage(named: annotationIcon) {
-                                            pointAnnotation.image = .init(image: annotationImage, name: annotationIcon)
-                                        }
-                                        pointAnnotation.iconAnchor = .bottom
-                                        pointAnnotation.iconSize = 0.25
-                                        pointAnnotation.iconOffset = [40, 0]
-                                        self.annotations.append(pointAnnotation)
-                                        print("Created new sensor annotation with id: \(pointAnnotation.id)")
+//                                        var pointAnnotation = PointAnnotation(id: newDetector?.id ?? "", coordinate: self.pin)
+//                                        let annotationIcon = "NewSensorIcon\(newDetector?.sensorIdx ?? 0)"
+//                                        if let annotationImage = UIImage(named: annotationIcon) {
+//                                            pointAnnotation.image = .init(image: annotationImage, name: annotationIcon)
+//                                        }
+//                                        pointAnnotation.iconAnchor = .bottom
+//                                        pointAnnotation.iconSize = 0.25
+//                                        pointAnnotation.iconOffset = [40, 0]
+//                                        self.annotations.append(pointAnnotation)
+//                                        print("Created new sensor annotation with id: \(pointAnnotation.id)")
+                                        didChangeSensorPosition = true
                                     }) {
                                         let setPostionText = newDetector?.coordinate == nil ? "Set position" : "Set position for sensor \(newDetector?.deviceName ?? "")"
                                         Text(setPostionText)

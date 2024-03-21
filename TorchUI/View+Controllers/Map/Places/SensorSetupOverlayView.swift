@@ -93,7 +93,8 @@ struct SensorSetupOverlayView: View {
                                                         .foregroundColor(fontColor)
                                                     Button {
                                                         self.selectedSensor = detector
-                                                        self.selectedDetector = detector
+//                                                        self.selectedDetector = detector
+                                                        SessionManager.shared.setSelectedDetectorNewProperty(detector: detector)
                                                         self.sensorTapped = true
                                                     } label: {
                                                         Circle()
@@ -157,6 +158,13 @@ struct SensorSetupOverlayView: View {
                                     Button(action: {
                                         let impactMed = UIImpactFeedbackGenerator(style: .medium)
                                         impactMed.impactOccurred()
+                                        
+                                        for i in 0..<SessionManager.shared.newProperty!.detectors.count {
+                                            if (SessionManager.shared.newProperty!.detectors[i].id == selectedSensor!.id) {
+                                                selectedSensor!.coordinate = self.pin
+                                                SessionManager.shared.newProperty!.detectors[i].coordinate = self.pin
+                                            }
+                                        }
                                         
                                         var pointAnnotation = PointAnnotation(id: selectedSensor?.id ?? "", coordinate: self.pin)
                                         let annotationIcon = "NewSensorIcon\(selectedSensor?.sensorIdx ?? 0)"

@@ -12,6 +12,14 @@ struct AnalyticDatapoint: Hashable {
     var timestamp: Date
 }
 
+enum DetectorInfoStatus {
+    case fire
+    case battery
+    case connection
+    case temperature
+    case humidity
+}
+
 enum Threat {
     case Red
     case Yellow

@@ -65,6 +65,9 @@ struct MainMapView: View {
     
     @State var showingDeletePropertyOptions: Bool = false
     @State var showingDeleteDetectorOptions: Bool = false
+
+    @State private var shouldShowMenu: Bool = false
+    @State var annotationsStatus: DetectorInfoStatus = .fire
     
     @State var isNickName: Bool = false
     @State var name: String = ""
@@ -95,7 +98,7 @@ struct MainMapView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                MapboxMapViewWrapper(showDetectorDetails: $showDetectorDetails, zoomLevel: $zoomLevel, selectedDetectorIndex: $selectedDetectorIndex, annotations: $annotations, pin: self.$pin, needsLocationPin: $needsLocationPin, sensorTapped: $sensorTapped, moveToUserTapped: $moveToUserTapped, mapLayerTapped: $mapLayerTapped, zoomChanged: $zoomChanged, mapOffset: $mapOffset.height, dragOffset: $dragOffset, didChangeSensorPosition: $didChangeSensorPosition, isOnSatellite: $isOnSatellite)
+                MapboxMapViewWrapper(showDetectorDetails: $showDetectorDetails, zoomLevel: $zoomLevel, selectedDetectorIndex: $selectedDetectorIndex, annotations: $annotations, pin: self.$pin, needsLocationPin: $needsLocationPin, sensorTapped: $sensorTapped, moveToUserTapped: $moveToUserTapped, mapLayerTapped: $mapLayerTapped, zoomChanged: $zoomChanged, mapOffset: $mapOffset.height, dragOffset: $dragOffset, didChangeSensorPosition: $didChangeSensorPosition, isOnSatellite: $isOnSatellite, annotationsStatus: $annotationsStatus)
                     .ignoresSafeArea()
                     .animation(.easeIn)
 
@@ -228,7 +231,7 @@ struct MainMapView: View {
                         }
 //                    }
                     if let selectedProperty = sessionManager.selectedProperty {
-                        PropertyDetailOverlayView(isPresentingScanner: $isPresentingScanner, zoomLevel: $zoomLevel, property: selectedProperty, mapOffset: $mapOffset, size: $propertyOverlaySize, sessionManager: sessionManager, selectedDetectorIndex: $selectedDetectorIndex, showDetectorDetails: $showDetectorDetails,selectedDetector: $selectedDetector, selectedMarker: $selectedMarker, detectors: MainMapView.detectors, annotations: $annotations, newDetector: $newDetector, isConfirmingLocation: $isConfirmingLocation, pin: self.$pin, sensorTapped: $sensorTapped, showingOptions: $showingDeletePropertyOptions, dragOffset: $dragOffset, showRedOverlay: $showRedOverlay, shouldHideOnPositionSelection: $shouldHideOnPositionSelection)
+                        PropertyDetailOverlayView(isPresentingScanner: $isPresentingScanner, zoomLevel: $zoomLevel, property: selectedProperty, mapOffset: $mapOffset, size: $propertyOverlaySize, sessionManager: sessionManager, selectedDetectorIndex: $selectedDetectorIndex, showDetectorDetails: $showDetectorDetails,selectedDetector: $selectedDetector, selectedMarker: $selectedMarker, detectors: MainMapView.detectors, annotations: $annotations, newDetector: $newDetector, isConfirmingLocation: $isNickName, pin: self.$pin, sensorTapped: $sensorTapped, showingOptions: $showingDeletePropertyOptions, dragOffset: $dragOffset, showRedOverlay: $showRedOverlay, shouldHideOnPositionSelection: $shouldHideOnPositionSelection, didChangeSensorPosition: self.$didChangeSensorPosition, needsLocationPin: $needsLocationPin)
                         .offset(x: 0, y: showDetectorDetails ? UIScreen.main.bounds.height : self.dragOffset.height)
                         .gesture(
                             DragGesture()
@@ -295,13 +298,14 @@ struct MainMapView: View {
                                             return
                                         }
                                         // create detector model
-                                        var detector = Detector(id: result.string, deviceName: String((sessionManager.selectedProperty?.detectors.count ?? 0) + 1), deviceBattery: 0.0, coordinate: nil, selected: true, sensorIdx: SessionManager.shared.properties[index].detectors.count + 1)
+                                        var detector = Detector(id: result.string, deviceName: String((SessionManager.shared.properties[index].detectors.count ?? 0) + 1), deviceBattery: 0.0, coordinate: nil, selected: true, sensorIdx: SessionManager.shared.properties[index].detectors.count + 1)
                                         detector.isNewlyInstalled = true
                                         self.newDetector = detector
                                         self.newDetectorIndex = SessionManager.shared.properties[index].detectors.count
                                         needsLocationPin = true
                                         // manually appending since selected==False already for all other detectors
                                         SessionManager.shared.properties[index].detectors.append(detector)
+                                        SessionManager.shared.selectedDetectorIndex = SessionManager.shared.properties[index].detectors.count - 1
                                         sessionManager.selectedProperty?.detectors.append(detector)
                                     }
                                 }
@@ -445,7 +449,9 @@ struct MainMapView: View {
                         HStack {
                             Spacer()
                             VStack(spacing: 0) {
-                                HamburgerButton(hideOverlay: $hideOverlay)
+                                HamburgerButton(hideOverlay: $hideOverlay) {
+                                    self.shouldShowMenu = true
+                                }
                                 
                                 Spacer()
                                 
@@ -493,7 +499,9 @@ struct MainMapView: View {
                     HStack {
                         Spacer()
                         VStack(spacing: 1) {
-                            HamburgerButton(hideOverlay: $hideOverlay)
+                            HamburgerButton(hideOverlay: $hideOverlay) {
+                                self.shouldShowMenu = true
+                            }
                             
                             Spacer()
                                 .frame(height: 150)
@@ -556,13 +564,17 @@ struct MainMapView: View {
                 }
                 
                 if isNickName {
-                    NickNameUIView(name: $name, isNickName: $isNickName)
+                    NickNameUIView(name: $name, isNickName: $isNickName, newDetector: $newDetector)
                 }
                 
                 if viewAnalytics {
                     AnalyticsSwiftUIView(viewAnalytics: $viewAnalytics)
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
                         .zIndex(2)
+                }
+                
+                if shouldShowMenu {
+                    DetectorStatusMenu(sessionManager: SessionManager(), showDetectorMenu: $shouldShowMenu, annotationsStatus: $annotationsStatus)
                 }
             }
         }

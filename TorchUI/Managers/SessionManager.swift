@@ -821,7 +821,7 @@ final class SessionManager: ObservableObject {
         WebSocketManager.shared.sendData(socketRequest: req)
     }
     
-    func updateSensor(property_id: String, device_id: String, coordinate: CLLocationCoordinate2D?) {
+    func updateSensor(property_id: String, device_id: String, coordinate: CLLocationCoordinate2D?, deviceName: String?) {
         // print("Registering new device")
         
         //        // print("Got new property id: \(self.newProperty!.id) from \(self)")
@@ -831,7 +831,8 @@ final class SessionManager: ObservableObject {
                                     "property_id": property_id,
                                     "device_id": device_id,
                                     "latitude": coordinate!.latitude,
-                                    "longitude": coordinate!.longitude
+                                    "longitude": coordinate!.longitude,
+                                    "device_name": deviceName!
                                 ],
                                 completion: { data in
             
@@ -1026,6 +1027,16 @@ final class SessionManager: ObservableObject {
             self.newProperty?.detectors[i].selected = false
         }
         self.newProperty?.detectors.append(detector)
+    }
+    
+    func setSelectedDetectorNewProperty(detector: Detector) {
+        for i in 0..<(self.newProperty?.detectors.count ?? 0) {
+            if (self.newProperty!.detectors[i].id == detector.id) {
+                self.newProperty!.detectors[i].selected = true
+            } else {
+                self.newProperty!.detectors[i].selected = false
+            }
+        }
     }
     
     func deleteNewDetector(detector: Detector) {

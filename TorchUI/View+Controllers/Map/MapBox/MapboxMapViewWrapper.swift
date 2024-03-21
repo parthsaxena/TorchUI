@@ -31,6 +31,7 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
     @State var isHighZoom: Bool = true
     
     @Binding var isOnSatellite: Bool
+    @Binding var annotationsStatus: DetectorInfoStatus
     let ICON_SMALL_ZOOM_THRESHOLD = 12.0
     
     func makeUIViewController(context: Context) -> MapboxViewController {
@@ -309,8 +310,8 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                 let propertyIdx = SessionManager.shared.selectedPropertyIndex
                 let sensorIdx = SessionManager.shared.selectedDetectorIndex
                 
-                SessionManager.shared.updateSensor(property_id: SessionManager.shared.properties[propertyIdx].id, device_id: SessionManager.shared.properties[propertyIdx].detectors[sensorIdx].id, coordinate: uiViewController.mapView.location.latestLocation?.coordinate)
-                SessionManager.shared.properties[propertyIdx].detectors[sensorIdx].coordinate = uiViewController.mapView.location.latestLocation?.coordinate
+//                SessionManager.shared.updateSensor(property_id: SessionManager.shared.properties[propertyIdx].id, device_id: SessionManager.shared.properties[propertyIdx].detectors[sensorIdx].id, coordinate: uiViewController.mapView.location.latestLocation?.coordinate, deviceName: SessionManager.shared.properties[propertyIdx].detectors[sensorIdx].deviceName)
+//                SessionManager.shared.properties[propertyIdx].detectors[sensorIdx].coordinate = uiViewController.mapView.location.latestLocation?.coordinate
                 print("SENS UPDATE1 \(SessionManager.shared.properties[propertyIdx].detectors[sensorIdx].id) \(uiViewController.mapView.location.latestLocation?.coordinate)")
 //                cameraOptions.padding = UIEdgeInsets(top: 0.0, left: 0.0, bottom: self.mapOffset, right: 0.0)
 //                var cameraOptions = CameraOptions(zoom: zoomLevel, bearing: 0.0, pitch: 0.0)
@@ -338,6 +339,15 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
 
         print("updating annots: \(uiViewController.annotationManager.annotations)")
         self.updateAnnotations(uiViewController: uiViewController)
+        
+//        uiViewController.mapView.viewAnnotations.annotations.forEach { (key: UIView, value: ViewAnnotationOptions) in
+//            if key.frame.minY < 150 {
+//                key.isHidden = true
+//            } else {
+//                key.isHidden = false
+//            }
+//        }
+        
 //        self.makeAnnotations(uiViewController: uiViewController)
 //        uiViewController.annotationManager.annotations = []
 //        if (SessionManager.shared.selectedPropertyIndex >= 0 && SessionManager.shared.selectedPropertyIndex < SessionManager.shared.properties.count) {
@@ -504,8 +514,8 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                 // Use right
                 if (leftFlag) {
                     print("custom annot: leftcustom")
-                    let customAnnotationView = UIHostingController(rootView: LeftCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, imageIcon: imageIcon, beamColor: beamColor, showText: showText, detectorIdx: i))
-                    customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 90, height: 17)
+                    let customAnnotationView = UIHostingController(rootView: LeftCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, imageIcon: imageIcon, beamColor: beamColor, showText: showText, detectorIdx: i, annotationsStatus: $annotationsStatus))
+//                    customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 90, height: 17)
                     customAnnotationView.view.backgroundColor = .clear
                     customAnnotationView.view.sizeToFit()
 
@@ -529,8 +539,8 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                 } else {
                     
                     print("custom annot: rightcustom")
-                    let customAnnotationView = UIHostingController(rootView: RightCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, showText: showText, detectorIdx: i))
-                    customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 50, height: 17)
+                    let customAnnotationView = UIHostingController(rootView: RightCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, showText: showText, detectorIdx: i, annotationsStatus: $annotationsStatus))
+//                    customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 50, height: 17)
                     customAnnotationView.view.backgroundColor = .clear
                     customAnnotationView.view.sizeToFit()
 
@@ -669,8 +679,8 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                         // Use right
                         if (leftFlag) {
                             print("custom annot: leftcustom")
-                            let customAnnotationView = UIHostingController(rootView: LeftCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, imageIcon: imageIcon, beamColor: beamColor, showText: showText, detectorIdx: i))
-                            customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 90, height: 17)
+                            let customAnnotationView = UIHostingController(rootView: LeftCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, imageIcon: imageIcon, beamColor: beamColor, showText: showText, detectorIdx: i, annotationsStatus: $annotationsStatus))
+//                            customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 90, height: 17)
                             customAnnotationView.view.backgroundColor = .clear
                             customAnnotationView.view.sizeToFit()
 
@@ -694,8 +704,8 @@ struct MapboxMapViewWrapper: UIViewControllerRepresentable {
                         } else {
                             
                             print("custom annot: rightcustom")
-                            let customAnnotationView = UIHostingController(rootView: RightCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, showText: showText, detectorIdx: i))
-                            customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 50, height: 17)
+                            let customAnnotationView = UIHostingController(rootView: RightCustomAnnotationView(text: "\(max(detector.sensorIdx ?? 0, 1))", beams: $irHot, showText: showText, detectorIdx: i, annotationsStatus: $annotationsStatus))
+//                            customAnnotationView.view.frame = CGRect(x: 0, y: 0, width: 50, height: 17)
                             customAnnotationView.view.backgroundColor = .clear
                             customAnnotationView.view.sizeToFit()
 

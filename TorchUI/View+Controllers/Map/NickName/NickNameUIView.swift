@@ -21,6 +21,9 @@ struct NickNameUIView: View {
     @State private var nextButtonEnabled: Bool = false
 
     @FocusState private var focusedField: FocusField?
+    @Binding var newDetector: Detector?
+    
+    var isNewPropertySensor: Bool = false
     
     var body: some View {
         let binding = Binding<String>(get: {
@@ -69,7 +72,7 @@ struct NickNameUIView: View {
                     Spacer()
                     Button(action: {
                         // Handle button action here
-                        isNickName = false
+                        isNickName = false                        
                     }) {
                         Image(systemName: "xmark")
                             .foregroundColor(.gray)
@@ -117,6 +120,18 @@ struct NickNameUIView: View {
                     impactMed.impactOccurred()
                     withAnimation {
                         isNickName = false
+                        self.newDetector = nil
+                        if (isNewPropertySensor) {
+                            for i in 0..<SessionManager.shared.newProperty!.detectors.count {
+                                if SessionManager.shared.newProperty!.detectors[i].selected {
+                                    SessionManager.shared.newProperty!.detectors[i].deviceName = binding.wrappedValue
+                                }
+                            }
+//                            SessionManager.shared.newProperty!.detectors[SessionManager.shared.newProperty!.detectors.count - 1].deviceName = binding.wrappedValue
+                        } else {
+                            SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].deviceName = binding.wrappedValue
+                            SessionManager.shared.updateSensor(property_id: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].id, device_id: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id, coordinate: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].coordinate, deviceName: binding.wrappedValue)
+                        }
                     }
                 }) {
                     Text("Done")
@@ -140,6 +155,7 @@ struct NickNameUIView: View {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
                     withAnimation {
+                        self.newDetector = nil
                         isNickName = false
                     }
                 }) {
