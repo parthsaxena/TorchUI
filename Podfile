@@ -10,8 +10,7 @@ target 'TorchUI' do
   pod 'Google-Maps-iOS-Utils', '~> 4.2.2'
   pod 'Starscream'
   pod 'MapboxMaps', '10.16.0'
-  pod 'SwiftUI-Shimmer', :git => 
-'https://github.com/markiv/SwiftUI-Shimmer.git'
+  pod 'SwiftUI-Shimmer', :git => 'https://github.com/markiv/SwiftUI-Shimmer.git'
   pod 'AWSPinpoint'
   pod 'AWSMobileClient'
   pod 'AWSS3'

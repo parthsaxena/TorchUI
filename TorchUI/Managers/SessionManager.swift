@@ -322,6 +322,7 @@ final class SessionManager: ObservableObject {
                                 let deviceMeasurements = new_device["measurements"] as? [String: Any] ?? [:]
                                 let latitude = new_device["latitude"] as? Double ?? 0.0
                                 let longitude = new_device["longitude"] as? Double ?? 0.0
+                                let muted = new_device["mute"] as? Bool ?? false
                                 
                                 var deviceBattery = 0.0
                                 var fireRatingNumber = 0
@@ -332,7 +333,8 @@ final class SessionManager: ObservableObject {
                                 var spectralStatus = Threat.Green
                                 var smokeStatus = Threat.Green
                                 var overallStatus = Threat.Green
-                                var lastTimestamp = Date()
+                                var lastTimestamp: Date? = nil
+                                var irHot: [[Double]] = []
                                 
                                 
                                 if let batteryString = deviceMeasurements["battery"] as? String {
@@ -380,7 +382,12 @@ final class SessionManager: ObservableObject {
                                     }
                                 }
                                 
-                                if let timeString = deviceMeasurements["time"] as? String {
+                                if let irHotTmp = deviceMeasurements["ir_hot"] as? [[Double]] {
+                                    irHot = irHotTmp
+                                    print("Got irHot: \(irHot) for device id \(deviceID)")
+                                }
+                                
+                                if let timeString = deviceMeasurements["sensor_time"] as? String {
                                     let timestamp = String(timeString)
                                     
                                     let formatter = DateFormatter()
@@ -391,7 +398,7 @@ final class SessionManager: ObservableObject {
                                     
                                     if let date = formatter.date(from: timestamp) {
                                         lastTimestamp = date
-                                        // print("Converted timestamp from \(timestamp) to \(lastTimestamp)")
+                                         print("Converted timestamp from \(timestamp) to \(lastTimestamp)")
                                         // Now you can use this 'date' object as needed in your app
                                     } else {
                                         // print("Failed to parse date")
@@ -427,11 +434,15 @@ final class SessionManager: ObservableObject {
                                 self.properties[i].detectors[j].measurements["fire_rating"] = fireRating
                                 self.properties[i].detectors[j].measurements["temperature"] = temperature
                                 self.properties[i].detectors[j].measurements["humidity"] = humidity
+//                                self.properties[i].detectors[j].muted = muted
+                                self.properties[i].detectors[j].irHot = irHot
                                 self.properties[i].detectors[j].spectralStatus = spectralStatus
                                 self.properties[i].detectors[j].smokeStatus = smokeStatus
                                 self.properties[i].detectors[j].thermalStatus = thermalStatus
-                                self.properties[i].detectors[j].coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+//                                self.properties[i].detectors[j].coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                                print("SENS UPDATE SESS \(deviceID) \(self.properties[i].detectors[j].coordinate)")
                                 self.properties[i].detectors[j].deviceBattery = deviceBattery
+                                self.properties[i].detectors[j].irHot = irHot
                                 //                                self.properties[i].detectors[j].lastTimestamp = lastTimestamp
                                 self.latestTimestampDict[deviceID] = lastTimestamp
                                 
@@ -465,6 +476,7 @@ final class SessionManager: ObservableObject {
                             let deviceMeasurements = new_device["measurements"] as? [String: Any] ?? [:]
                             let latitude = new_device["latitude"] as? Double ?? 0.0
                             let longitude = new_device["longitude"] as? Double ?? 0.0
+                            let muted = new_device["mute"] as? Bool ?? false
                             
                             var deviceBattery = 0.0
                             var fireRatingNumber = 0
@@ -475,7 +487,8 @@ final class SessionManager: ObservableObject {
                             var spectralStatus = Threat.Green
                             var smokeStatus = Threat.Green
                             var overallStatus = Threat.Green
-                            var lastTimestamp = Date()
+                            var lastTimestamp: Date? = nil
+                            var irHot: [[Double]] = []
                             
                             
                             if let batteryString = deviceMeasurements["battery"] as? String {
@@ -522,7 +535,12 @@ final class SessionManager: ObservableObject {
                                 }
                             }
                             
-                            if let timeString = deviceMeasurements["time"] as? String {
+                            if let irHotTmp = deviceMeasurements["ir_hot"] as? [[Double]] {
+                                irHot = irHotTmp
+                                print("Got irHot: \(irHot) for device id \(deviceID)")
+                            }
+                            
+                            if let timeString = deviceMeasurements["sensor_time"] as? String {
                                 let timestamp = String(timeString)
                                 
                                 let formatter = DateFormatter()
@@ -533,7 +551,7 @@ final class SessionManager: ObservableObject {
                                 
                                 if let date = formatter.date(from: timestamp) {
                                     lastTimestamp = date
-                                    //                                    // print("Converted timestamp from \(timestamp) to \(lastTimestamp)")
+                                     print("Converted timestamp from \(timestamp) to \(lastTimestamp)")
                                     // Now you can use this 'date' object as needed in your app
                                 } else {
                                     // print("Failed to parse date")
@@ -561,10 +579,13 @@ final class SessionManager: ObservableObject {
                             detector.measurements["fire_rating"] = fireRating
                             detector.measurements["temperature"] = temperature
                             detector.measurements["humidity"] = humidity
+                            detector.muted = muted
+                            detector.irHot = irHot
                             detector.spectralStatus = spectralStatus
                             detector.smokeStatus = smokeStatus
                             detector.thermalStatus = thermalStatus
                             detector.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                            print("SENS UPDATE SESS \(deviceID) \(detector.coordinate)")
                             detector.sensorIdx = self.properties[i].detectors.count + 1
                             detector.deviceBattery = deviceBattery
                             //                            detector.lastTimestamp = lastTimestamp
@@ -668,6 +689,36 @@ final class SessionManager: ObservableObject {
         }
     }
     
+    func muteProperty(property_id: String) {
+        for (i, property) in SessionManager.shared.properties.enumerated() {
+            if property.id == property_id {
+                // iterate over property sensors and mute each
+                var count = 0
+                for detector in property.detectors {
+                    SessionManager.shared.muteSensor(device_id: detector.id, property_id: property.id)
+                    count += 1
+                }
+//                SessionManager.shared.properties[i].muted = true
+                print("[MuteProperty] Sent mute requests for \(count) sensors for property_id \(property_id)")
+            }
+        }
+    }
+    
+    func unmuteProperty(property_id: String) {
+        for (i, property) in SessionManager.shared.properties.enumerated() {
+            if property.id == property_id {
+                // iterate over property sensors and unmute each
+                var count = 0
+                for detector in property.detectors {
+                    SessionManager.shared.unmuteSensor(device_id: detector.id, property_id: property.id)
+                    count += 1
+                }
+//                SessionManager.shared.properties[i].muted = false
+                print("[MuteProperty] Sent unmute requests for \(count) sensors for property_id \(property_id)")
+            }
+        }
+    }
+    
     func muteSensor(device_id: String, property_id: String) {
         let req = SocketRequest(route: "muteSensor",
                                 data: [
@@ -676,11 +727,23 @@ final class SessionManager: ObservableObject {
                                     "mute": true
                                 ],
                                 completion: { data in
-            print("MuteProperty: \(data)")
+            print("MuteSensor: \(data)")
         })
         
         // Send request through socket
         WebSocketManager.shared.sendData(socketRequest: req)
+        
+        for (property_idx, property) in SessionManager.shared.properties.enumerated() {
+            if (property_id == property.id) {
+                for (detector_idx, detector) in SessionManager.shared.properties[property_idx].detectors.enumerated() {
+                    if (detector.id == device_id) {
+                        SessionManager.shared.properties[property_idx].detectors[detector_idx].muted = true
+                        print("[MuteSensor] Complete")
+                        return
+                    }
+                }
+            }
+        }
     }
     
     func unmuteSensor(device_id: String, property_id: String) {
@@ -691,11 +754,23 @@ final class SessionManager: ObservableObject {
                                     "mute": false
                                 ],
                                 completion: { data in
-            print("UnmuteProperty: \(data)")
+            print("UnmuteSensor: \(data)")
         })
         
         // Send request through socket
         WebSocketManager.shared.sendData(socketRequest: req)
+        
+        for (property_idx, property) in SessionManager.shared.properties.enumerated() {
+            if (property_id == property.id) {
+                for (detector_idx, detector) in SessionManager.shared.properties[property_idx].detectors.enumerated() {
+                    if (detector.id == device_id) {
+                        SessionManager.shared.properties[property_idx].detectors[detector_idx].muted = false
+                        print("[UnmuteSensor] Complete")
+                        return
+                    }
+                }
+            }
+        }
     }
     
     func registerUserEndpoint(deviceToken: String, userID: String) {
@@ -805,6 +880,29 @@ final class SessionManager: ObservableObject {
         WebSocketManager.shared.sendData(socketRequest: req)
     }
     
+    func updateSensor(property_id: String, device_id: String, coordinate: CLLocationCoordinate2D?, deviceName: String?) {
+        // print("Registering new device")
+        
+        //        // print("Got new property id: \(self.newProperty!.id) from \(self)")
+        
+        let req = SocketRequest(route: "updateSensor",
+                                data: [
+                                    "property_id": property_id,
+                                    "device_id": device_id,
+                                    "latitude": coordinate!.latitude,
+                                    "longitude": coordinate!.longitude,
+                                    "device_name": deviceName!
+                                ],
+                                completion: { data in
+            
+//            detector.sensorIdx = property.detectors.count
+//            self.loadUserProperties()
+            print("UpdateSensor: \(data)")
+        })
+        // Send request through socket
+        WebSocketManager.shared.sendData(socketRequest: req)
+    }
+    
     func parseProperty(id: String, property: [String: Any]) {
         
         guard let devices = property["devices"] as? [[String: Any]] else {
@@ -849,6 +947,7 @@ final class SessionManager: ObservableObject {
                 let deviceMeasurements = device["measurements"] as? [String: Any]
                 let latitude = device["latitude"] as? Double
                 let longitude = device["longitude"] as? Double
+                let muted = device["mute"] as? Bool ?? false
                 
                 var deviceBattery = 0.0
                 var fireRatingNumber = 0
@@ -859,7 +958,8 @@ final class SessionManager: ObservableObject {
                 var spectralStatus = Threat.Green
                 var smokeStatus = Threat.Green
                 var overallStatus = Threat.Green
-                var lastTimestamp = Date()
+                var lastTimestamp: Date? = nil
+                var irHot: [[Double]] = []
                 
                 if let batteryString = deviceMeasurements?["battery"] as? String {
                     deviceBattery = Double(batteryString) ?? 0.0
@@ -905,7 +1005,7 @@ final class SessionManager: ObservableObject {
                     }
                 }
                 
-                if let timeString = deviceMeasurements?["time"] as? String {
+                if let timeString = deviceMeasurements?["sensor_time"] as? String {
                     
                     let timestamp = String(timeString)
                     let formatter = DateFormatter()
@@ -914,7 +1014,13 @@ final class SessionManager: ObservableObject {
                     
                     if let date = formatter.date(from: timestamp) {
                         lastTimestamp = date
+                        print("Converted timestamp from \(timestamp) to \(lastTimestamp)")
                     }
+                }
+                
+                if let irHotTmp = deviceMeasurements?["ir_hot"] as? [[Double]] {
+                    irHot = irHotTmp
+                    print("Got irHot: \(irHot) for device id \(deviceID)")
                 }
                 
                 var redFlag = false
@@ -937,10 +1043,13 @@ final class SessionManager: ObservableObject {
                 detector.measurements["fire_rating"] = fireRating
                 detector.measurements["temperature"] = temperature
                 detector.measurements["humidity"] = humidity
+                detector.muted = muted
+                detector.irHot = irHot
                 detector.spectralStatus = spectralStatus
                 detector.smokeStatus = smokeStatus
                 detector.thermalStatus = thermalStatus
                 detector.coordinate = CLLocationCoordinate2D(latitude: latitude ?? 0.0, longitude: longitude ?? 0.0)
+//                print("SENS UPDATE SESS \(deviceID) \(detector.coordinate)")
                 detector.sensorIdx = sensorIdx
                 detector.deviceBattery = deviceBattery
                 self.latestTimestampDict[deviceID ?? ""] = lastTimestamp
@@ -979,6 +1088,16 @@ final class SessionManager: ObservableObject {
             self.newProperty?.detectors[i].selected = false
         }
         self.newProperty?.detectors.append(detector)
+    }
+    
+    func setSelectedDetectorNewProperty(detector: Detector) {
+        for i in 0..<(self.newProperty?.detectors.count ?? 0) {
+            if (self.newProperty!.detectors[i].id == detector.id) {
+                self.newProperty!.detectors[i].selected = true
+            } else {
+                self.newProperty!.detectors[i].selected = false
+            }
+        }
     }
     
     func deleteNewDetector(detector: Detector) {
@@ -1023,22 +1142,8 @@ final class SessionManager: ObservableObject {
         for i in 0..<self.properties.count {
             for j in 0..<self.properties[i].detectors.count {
                 let deviceId = self.properties[i].detectors[j].id
-//                Task {
-//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .tenMinutes)
-//                }
-//                Task {
-//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneHour)
-//                }
-//                Task {
-//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneDay)
-//                }
-//                Task {
-//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneWeek)
-//                }
-//                Task {
-//                    await self.getDeviceAnalyticsData(deviceId: deviceId, timespan: .oneMonth)
-//                }
-                self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.tenMinutes)
+
+//                self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.tenMinutes)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneHour)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneDay)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneWeek)
@@ -1078,11 +1183,7 @@ final class SessionManager: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let endDateTestString = "2023-10-19T00:10:00Z"
-        
-//        guard let endDate = dateFormatter.date(from: endDateTestString) else {
-//            fatalError("Invalid date format")
-//        }
+
         let endDate = Date()
         if let startDate = Calendar.current.date(byAdding: .second, value: timespan.timeInterval, to: endDate) {
             
@@ -1130,38 +1231,26 @@ final class SessionManager: ObservableObject {
                             }
                             
                             for _ in parsedMeasurements..<60 {
-                                data.insert(AnalyticDatapoint(datapoint: 0.0, timestamp: Date()), at: 0)
+                                data.insert(AnalyticDatapoint(datapoint: 0.0, timestamp: self.getCurrentDateInUTC()), at: 0)
                             }
-                            
-                            print("array data for graph before loop: \(measurement)")
-                            print("array data for graph: \(data)")
-//                            var chartParameters = LineChartParameters(
-//                                data: data,
-//                                labelColor: .primary,
-//                                secondaryLabelColor: .secondary,
-//                                labelsAlignment: .left,
-//                                dataPrecisionLength: 0,
-//                                dataPrefix: nil,
-//                                dataSuffix: " C",
-//                                indicatorPointColor: .red,
-//                                indicatorPointSize: 15,
-//                                lineColor: .green,
-//                                lineSecondColor: .red,
-//                                lineWidth: 3,
-//                                dotsWidth: 0,
-//                                displayMode: .default,
-//                                dragGesture: true,
-//                                hapticFeedback: false
-//                            )
-                            
+
                             self.deviceAnalytics[deviceId]?[timespan.stringSpan]?[k] = data
                         }
                     }
-                    
-                    print("device ann \(self.deviceAnalytics)")
+                    NotificationCenter.default.post(name: NSNotification.updatedData, object: nil, userInfo: nil)
                 })
-            print("Sending analytics request: \(request.data)")
             WebSocketManager.shared.sendData(socketRequest: request)
         }
+    }
+    
+    func getCurrentDateInUTC() -> Date {
+        let currentDate = Date()
+        let localTimeZone = TimeZone.current
+        let utcTimeZone = TimeZone(identifier: "UTC")!
+        let currentOffset = localTimeZone.secondsFromGMT(for: currentDate)
+        let utcOffset = utcTimeZone.secondsFromGMT(for: currentDate)
+        let interval = TimeInterval(utcOffset - currentOffset)
+        let utcDate = currentDate.addingTimeInterval(interval)
+        return utcDate
     }
 }

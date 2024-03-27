@@ -16,7 +16,7 @@ struct PropertyOverlayMenu: View {
     private let height = UIScreen.main.bounds.height
     
     @Binding var showMenu: Bool
-    @State var isPropertyMuted: Bool = false
+    @State var isPropertyMuted: Bool = SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].muted
     
     var body: some View {
         HStack {
@@ -26,21 +26,27 @@ struct PropertyOverlayMenu: View {
                 Button(action: {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
-                    isPropertyMuted.toggle()
+//                    isPropertyMuted.toggle()
                     print(SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyName)
+                    if (isPropertyMuted) {
+                        print("Unmute property action tapped")
+                        SessionManager.shared.unmuteProperty(property_id: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].id)
+                    } else {
+                        print("Mute property action tapped")
+                        SessionManager.shared.muteProperty(property_id: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].id)
+                    }
                     showMenu = false
                 }) {
                     HStack(alignment: .center, spacing: 12) {
-                        Image("volume-x")
+                        Image(isPropertyMuted ? "volume-max" : "volume-x")
                             .resizable()
                             .renderingMode(.template)
-                        //TODO: - Replace the 'isPropertyMuted' with the muted state flag of selected property
-                            .foregroundColor(isPropertyMuted ? CustomColors.torchBlue : CustomColors.TorchGreen)
+                            .foregroundColor(isPropertyMuted ? CustomColors.TorchBlue : CustomColors.TorchGreen)
                             .frame(width: 20, height: 20)
                         HStack(spacing: 2) {
                             Text(isPropertyMuted ? "Unmute property" : "Mute property")
                                 .font(.custom("Manrope-SemiBold", size: 16))
-                                .foregroundColor(isPropertyMuted ? CustomColors.torchBlue : CustomColors.TorchGreen)
+                                .foregroundColor(isPropertyMuted ? CustomColors.TorchBlue : CustomColors.TorchGreen)
 //                                .kerning(-0.7)
                         }
                         Spacer(minLength: 4)

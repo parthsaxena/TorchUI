@@ -20,10 +20,17 @@ struct MainPropertiesView: View {
     
     @Environment(\.colorScheme) var colorScheme
     @Binding var showingSheet: Bool
-    @State private var properties: [PropertyRow] = []
+//    @State private var properties: [PropertyRow] = []
     @ObservedObject var sessionManager = SessionManager.shared
-    @State private var lastProps: [Property] = []
-    @State private var isSwipeGestureActive = false
+//    @State private var lastProps: [Property] = []
+//    @State private var isSwipeGestureActive = false
+    @State private var propertiesIsSwipeGestureActive: [String: Bool]
+    
+    init(showingSheet: Binding<Bool>) {
+        self._showingSheet = showingSheet
+        let initialStates = SessionManager.shared.properties.map { ($0.id, false) }
+        self._propertiesIsSwipeGestureActive = State(initialValue: Dictionary(uniqueKeysWithValues: initialStates))
+    }
     
     var body: some View {
         VStack {
@@ -71,17 +78,17 @@ struct MainPropertiesView: View {
                         
                         VStack(spacing: 0) {
                             
-                            ForEach(properties.indices, id: \.self) { index in
+                            ForEach(SessionManager.shared.properties.indices, id: \.self) { index in
                                 HStack(spacing: 0) {
-                                    PropertyView(property: properties[index].property)
+                                    PropertyView(property: SessionManager.shared.properties[index])
                                         .equatable()
-                                        .padding(.leading, properties[index].isSwipeGestureActive ? -168 : 0)
+                                        .padding(.leading, self.propertiesIsSwipeGestureActive[SessionManager.shared.properties[index].id, default: false] ? -168 : 0)
                                         .animation(.default)
                                         .contentShape(Rectangle())
                                         .onTapGesture {
                                             let impactMed = UIImpactFeedbackGenerator(style: .medium)
                                             impactMed.impactOccurred()
-                                            SessionManager.shared.selectedProperty = properties[index].property
+                                            SessionManager.shared.selectedProperty = SessionManager.shared.properties[index]
                                             SessionManager.shared.selectedPropertyIndex = index
                                             withAnimation {
                                                 SessionManager.shared.appState = .viewProperty
@@ -91,9 +98,9 @@ struct MainPropertiesView: View {
                                             DragGesture()
                                                 .onChanged { value in
                                                     if value.translation.width < 0 {
-                                                        properties[index].isSwipeGestureActive = true
+                                                        self.propertiesIsSwipeGestureActive[SessionManager.shared.properties[index].id] = true
                                                     } else {
-                                                        properties[index].isSwipeGestureActive = false
+                                                        self.propertiesIsSwipeGestureActive[SessionManager.shared.properties[index].id] = false
                                                     }
                                                 }
                                                 .onEnded { value in
@@ -107,8 +114,8 @@ struct MainPropertiesView: View {
                                         .frame(width: 16)
                                     
                                         Button(action: {
-                                            print("First action tapped")
-                                            SessionManager.shared.selectedProperty = properties[index].property
+                                            print("Delete property action tapped")
+                                            SessionManager.shared.selectedProperty = SessionManager.shared.properties[index]
                                             SessionManager.shared.selectedPropertyIndex = index
                                             SessionManager.shared.deleteProperty()
                                             withAnimation {
@@ -126,36 +133,134 @@ struct MainPropertiesView: View {
                                                     .foregroundColor(.white)
                                             }
                                         }
-                                        .frame(width: properties[index].isSwipeGestureActive ? 84 : 0, height: 84)
-                                        .opacity(properties[index].isSwipeGestureActive ? 1 : 0)
+                                        .frame(width: self.propertiesIsSwipeGestureActive[SessionManager.shared.properties[index].id, default: false] ? 84 : 0, height: 84)
+                                        .opacity(self.propertiesIsSwipeGestureActive[SessionManager.shared.properties[index].id, default: false] ? 1 : 0)
                                         .background(CustomColors.TorchRed)
                                         .animation(.default)
                                         
                                         Button(action: {
-                                            print("Second action tapped")
+                                            if (SessionManager.shared.properties[index].muted) {
+                                                print("Unmute property action tapped")
+                                                SessionManager.shared.unmuteProperty(property_id: SessionManager.shared.properties[index].id)
+                                            } else {
+                                                print("Mute property action tapped")
+                                                SessionManager.shared.muteProperty(property_id: SessionManager.shared.properties[index].id)
+                                            }
                                         }) {
                                             VStack {
-                                                Image("volume-x")
+                                                Image(SessionManager.shared.properties[index].muted ? "volume-max" : "volume-x")
                                                     .resizable()
                                                     .renderingMode(.template)
                                                     .foregroundColor(.white)
                                                     .frame(width: 20, height: 20)
-                                                Text("Mute")
+                                                Text(SessionManager.shared.properties[index].muted ? "Unmute" : "Mute")
                                                     .font(.custom("Manrope-SemiBold", size: 16))
                                                     .foregroundColor(.white)
                                             }
                                         }
-                                        .frame(width: properties[index].isSwipeGestureActive ? 84 : 0, height: 84)
-                                        .opacity(properties[index].isSwipeGestureActive ? 1 : 0)
+                                        .frame(width: self.propertiesIsSwipeGestureActive[SessionManager.shared.properties[index].id, default: false] ? 84 : 0, height: 84)
+                                        .opacity(self.propertiesIsSwipeGestureActive[SessionManager.shared.properties[index].id, default: false] ? 1 : 0)
                                         .background(CustomColors.WarningYellow)
                                         .animation(.default)
                                 }
                                 .frame(height: 84)
-                                if index < properties.count - 1 {
+                                if index < SessionManager.shared.properties.count - 1 {
                                     Divider()
                                         .padding(.vertical, 0)
                                 }
                             }
+                            
+//                            ForEach(properties.indices, id: \.self) { index in
+//                                HStack(spacing: 0) {
+//                                    PropertyView(property: properties[index].property)
+//                                        .equatable()
+//                                        .padding(.leading, properties[index].isSwipeGestureActive ? -168 : 0)
+//                                        .animation(.default)
+//                                        .contentShape(Rectangle())
+//                                        .onTapGesture {
+//                                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+//                                            impactMed.impactOccurred()
+//                                            SessionManager.shared.selectedProperty = properties[index].property
+//                                            SessionManager.shared.selectedPropertyIndex = index
+//                                            withAnimation {
+//                                                SessionManager.shared.appState = .viewProperty
+//                                            }
+//                                        }
+//                                        .gesture(
+//                                            DragGesture()
+//                                                .onChanged { value in
+//                                                    if value.translation.width < 0 {
+//                                                        properties[index].isSwipeGestureActive = true
+//                                                    } else {
+//                                                        properties[index].isSwipeGestureActive = false
+//                                                    }
+//                                                }
+//                                                .onEnded { value in
+//                                                    if value.translation.width < -50 {
+//                                                        print("Left swipe action")
+//                                                    }
+//                                                }
+//                                        )
+//                                    
+//                                    Spacer()
+//                                        .frame(width: 16)
+//                                    
+//                                        Button(action: {
+//                                            print("Delete property action tapped")
+//                                            SessionManager.shared.selectedProperty = properties[index].property
+//                                            SessionManager.shared.selectedPropertyIndex = index
+//                                            SessionManager.shared.deleteProperty()
+//                                            withAnimation {
+//                                                SessionManager.shared.appState = .properties
+//                                            }
+//                                        }) {
+//                                            VStack {
+//                                                Image("trash-03")
+//                                                    .resizable()
+//                                                    .renderingMode(.template)
+//                                                    .foregroundColor(.white)
+//                                                    .frame(width: 20, height: 20)
+//                                                Text("Delete")
+//                                                    .font(.custom("Manrope-SemiBold", size: 16))
+//                                                    .foregroundColor(.white)
+//                                            }
+//                                        }
+//                                        .frame(width: properties[index].isSwipeGestureActive ? 84 : 0, height: 84)
+//                                        .opacity(properties[index].isSwipeGestureActive ? 1 : 0)
+//                                        .background(CustomColors.TorchRed)
+//                                        .animation(.default)
+//                                        
+//                                        Button(action: {
+//                                            if (properties[index].property.muted) {
+//                                                print("Mute property action tapped")
+//                                                SessionManager.shared.muteProperty(property_id: properties[index].property.id)
+//                                            } else {
+//                                                print("Unmute property action tapped")
+//                                                SessionManager.shared.unmuteProperty(property_id: properties[index].property.id)
+//                                            }
+//                                        }) {
+//                                            VStack {
+//                                                Image(properties[index].property.muted ? "volume-max" : "volume-x")
+//                                                    .resizable()
+//                                                    .renderingMode(.template)
+//                                                    .foregroundColor(.white)
+//                                                    .frame(width: 20, height: 20)
+//                                                Text(properties[index].property.muted ? "Unmute" : "Mute")
+//                                                    .font(.custom("Manrope-SemiBold", size: 16))
+//                                                    .foregroundColor(.white)
+//                                            }
+//                                        }
+//                                        .frame(width: properties[index].isSwipeGestureActive ? 84 : 0, height: 84)
+//                                        .opacity(properties[index].isSwipeGestureActive ? 1 : 0)
+//                                        .background(CustomColors.WarningYellow)
+//                                        .animation(.default)
+//                                }
+//                                .frame(height: 84)
+//                                if index < properties.count - 1 {
+//                                    Divider()
+//                                        .padding(.vertical, 0)
+//                                }
+//                            }
                         }
 
                         //                        List {
@@ -206,11 +311,10 @@ struct MainPropertiesView: View {
                     .contentShape(Rectangle())
             }
             .onReceive(sessionManager.$properties) { properties in
-//                if properties.count != lastProps.count {
-                if properties != lastProps {
-                    print("******************** \n \(properties) \n \(properties)")
-                    self.properties = properties.map { PropertyRow(property: $0) }
-                    self.lastProps = properties
+                for property in properties {
+                    if (self.propertiesIsSwipeGestureActive[property.id] == nil) {
+                        self.propertiesIsSwipeGestureActive[property.id] = false
+                    }
                 }
             }
         }

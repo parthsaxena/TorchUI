@@ -19,6 +19,11 @@ struct Property: Hashable, Identifiable, Equatable {
     var threat: Threat = Threat.Green
     var propertyDescription: String = ""
     var loadingData: Bool = false
+//    var muted: Bool?
+    
+    var muted: Bool {
+        return detectors.allSatisfy { $0.muted ?? false }
+    }
 }
 
 struct SearchResult: Hashable, Identifiable {

@@ -16,8 +16,8 @@ struct DataItem: Identifiable {
     var offset = CGSize.zero
 }
 
-struct Item: Identifiable, Hashable {
-    var id = UUID()
+struct Item: Hashable, Equatable {
+    
     var itemName: String
     var itemDescription: String
     var selectedTimeSpan: String

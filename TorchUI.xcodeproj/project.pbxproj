@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00BEAA65305D4CD1D1CC1D06 /* Pods_TorchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD25A1332D3DB003BB41769 /* Pods_TorchUITests.framework */; };
-		00C9E5C9A3B0B095BE8C9F4A /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F321CB5B74305D4605F94C2 /* Pods_TorchUI.framework */; };
+		2DCB96D65DC7BFAE9C06B429 /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8346BD0EE8EAA2D6A5ECAE0B /* Pods_TorchUI_TorchUIUITests.framework */; };
 		302F95C92B8DAB0800728DDF /* PropertyOverlayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302F95C82B8DAB0800728DDF /* PropertyOverlayMenu.swift */; };
 		308BDC0E2B70D3D700ED99F6 /* DetectorStatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308BDC0D2B70D3D700ED99F6 /* DetectorStatusMenu.swift */; };
 		3094CF572B1CB00A00C7984B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3094CF562B1CB00A00C7984B /* Date+Extension.swift */; };
@@ -31,17 +30,20 @@
 		30ACFC1D2B44220A007BCC22 /* DefaultIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC142B44220A007BCC22 /* DefaultIndicatorView.swift */; };
 		30ACFC1E2B44220A007BCC22 /* RotatingDotsIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC152B44220A007BCC22 /* RotatingDotsIndicatorView.swift */; };
 		30ACFC1F2B44220A007BCC22 /* EqualizerIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ACFC162B44220A007BCC22 /* EqualizerIndicatorView.swift */; };
-		58C44D4DCA90DCB52EAA925E /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C62597BD492BA071359897 /* Pods_TorchUI_TorchUIUITests.framework */; };
+		496E76328BD01AC3FFD6B6A0 /* Pods_TorchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC8B38A611960186AF756AE /* Pods_TorchUITests.framework */; };
 		7264CE919C89CB52F285A91A /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */; };
 		8B00A11A2B2174240080534F /* TabDropDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00A1172B2174230080534F /* TabDropDownModifier.swift */; };
 		8B00A11B2B2174240080534F /* GlassyTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B00A1192B2174240080534F /* GlassyTabbar.swift */; };
 		8B25BD032B1DA13100681342 /* AWSPinpointPushNotificationsPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 8B25BD022B1DA13100681342 /* AWSPinpointPushNotificationsPlugin */; };
 		8B25BD052B1DA13100681342 /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 8B25BD042B1DA13100681342 /* Amplify */; };
+		8B6AFDB82B4A8F1900433051 /* ActiveSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AFDB72B4A8F1900433051 /* ActiveSensorView.swift */; };
 		8B88C8FE2A70450F008B90A2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 8B88C8FD2A70450F008B90A2 /* CodeScanner */; };
 		8BA867BF2A80869D00BEED38 /* PinCodeTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 8BA867BE2A80869D00BEED38 /* PinCodeTextField */; };
+		8BAE82C72B4B6699000F3D1C /* LeftActiveSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAE82C62B4B6699000F3D1C /* LeftActiveSensorView.swift */; };
 		8BB4FD4D2B47C91E00CBA5B8 /* UpdatePropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB4FD4C2B47C91E00CBA5B8 /* UpdatePropertyView.swift */; };
 		8BC224842A859A07000958AA /* ZXCodeTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC224832A859A07000958AA /* ZXCodeTextField */; };
 		8BC37B5D2B490F0800C7635B /* UpdatePropertyAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC37B5C2B490F0800C7635B /* UpdatePropertyAddressView.swift */; };
+		8BF3B40B2B969CB900B0AAA3 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		8BF7FC5A2A4D1489005D1160 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC592A4D1489005D1160 /* Preview Assets.xcassets */; };
 		8BF7FC642A4D1489005D1160 /* TorchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC632A4D1489005D1160 /* TorchUITests.swift */; };
 		8BF7FC6E2A4D1489005D1160 /* TorchUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7FC6D2A4D1489005D1160 /* TorchUIUITests.swift */; };
@@ -136,8 +138,12 @@
 		C864BE9F2B3C53660078C742 /* AnalyticsSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */; };
 		C864BEA02B3C53660078C742 /* AnalyticsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */; };
 		C864BEA32B3C54EF0078C742 /* LineChartView in Frameworks */ = {isa = PBXBuildFile; productRef = C864BEA22B3C54EF0078C742 /* LineChartView */; };
+		C86FD6D02B9B2AD1009C3E6E /* GraphCirclePostionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */; };
 		C88417C32B55CDD0005A9DDB /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88417C22B55CDD0005A9DDB /* Double+Extension.swift */; };
+		C8B50EEC2B618DF8001059F9 /* NickNameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B50EEB2B618DF8001059F9 /* NickNameUIView.swift */; };
 		C8C0BAA32B46C8F70022EC77 /* CustomGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0BAA22B46C8F70022EC77 /* CustomGraphView.swift */; };
+		C8C279C22B892FAC00337C2A /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C279C12B892FAC00337C2A /* NSNotification+Extension.swift */; };
+		CBA2C737C70DCADAFA0DC43C /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13569758AFB0B7E90C699210 /* Pods_TorchUI.framework */; };
 		FADFD6D29C0D959575FAAFCB /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = CE715C78ED08B54E16060133 /* awsconfiguration.json */; };
 /* End PBXBuildFile section */
 
@@ -159,9 +165,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		036F141EE4BF5563800CD726 /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
-		0CD25A1332D3DB003BB41769 /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E834EEC9B798065390155F3 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
+		13569758AFB0B7E90C699210 /* Pods_TorchUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		302F95C82B8DAB0800728DDF /* PropertyOverlayMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyOverlayMenu.swift; sourceTree = "<group>"; };
 		308BDC0D2B70D3D700ED99F6 /* DetectorStatusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectorStatusMenu.swift; sourceTree = "<group>"; };
 		3094CF562B1CB00A00C7984B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -178,16 +182,17 @@
 		30ACFC142B44220A007BCC22 /* DefaultIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultIndicatorView.swift; sourceTree = "<group>"; };
 		30ACFC152B44220A007BCC22 /* RotatingDotsIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotatingDotsIndicatorView.swift; sourceTree = "<group>"; };
 		30ACFC162B44220A007BCC22 /* EqualizerIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualizerIndicatorView.swift; sourceTree = "<group>"; };
-		38DC7287B4B6A2835C8BF641 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		3DD3336D4A07D7ABE31B71D4 /* Pods-TorchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		47F8BF45391FF1E96E64EC01 /* Pods-TorchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.release.xcconfig"; sourceTree = "<group>"; };
-		70C62597BD492BA071359897 /* Pods_TorchUI_TorchUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI_TorchUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		75842F8686BDAAE8265A6876 /* Pods-TorchUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.release.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.release.xcconfig"; sourceTree = "<group>"; };
+		485C05A1577A75F5E4DA0DE5 /* Pods-TorchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		50614A022F2DE21DB688171F /* Pods-TorchUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.debug.xcconfig"; sourceTree = "<group>"; };
+		7F99E4AB104A08DDA7F7475F /* Pods-TorchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUITests/Pods-TorchUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8346BD0EE8EAA2D6A5ECAE0B /* Pods_TorchUI_TorchUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI_TorchUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B00A1142B1ED1D50080534F /* TorchUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TorchUI.entitlements; sourceTree = "<group>"; };
 		8B00A1172B2174230080534F /* TabDropDownModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabDropDownModifier.swift; sourceTree = "<group>"; };
 		8B00A1182B2174230080534F /* TabbarAsset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabbarAsset.xcassets; sourceTree = "<group>"; };
 		8B00A1192B2174240080534F /* GlassyTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassyTabbar.swift; sourceTree = "<group>"; };
 		8B4A07AE2AE1FB81005731F6 /* ZXCodeTextfield */ = {isa = PBXFileReference; lastKnownFileType = text; path = ZXCodeTextfield; sourceTree = SOURCE_ROOT; };
+		8B6AFDB72B4A8F1900433051 /* ActiveSensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSensorView.swift; sourceTree = "<group>"; };
+		8BAE82C62B4B6699000F3D1C /* LeftActiveSensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftActiveSensorView.swift; sourceTree = "<group>"; };
 		8BB4FD4C2B47C91E00CBA5B8 /* UpdatePropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePropertyView.swift; sourceTree = "<group>"; };
 		8BC37B5C2B490F0800C7635B /* UpdatePropertyAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePropertyAddressView.swift; sourceTree = "<group>"; };
 		8BF7FC4F2A4D1488005D1160 /* TorchUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TorchUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,7 +210,10 @@
 		8BF7FC822A4D14D0005D1160 /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Regular.ttf"; sourceTree = "<group>"; };
 		8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Medium.ttf"; sourceTree = "<group>"; };
 		8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
-		9F321CB5B74305D4605F94C2 /* Pods_TorchUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0CE2D91B82402F3C0C8D00 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		AB74A7A17AD22705DAF7E97C /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AE14DC93743A113302C75CFF /* Pods-TorchUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.release.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.release.xcconfig"; sourceTree = "<group>"; };
+		BDC8B38A611960186AF756AE /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C827EA4B2B146935009E6EC8 /* SocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRequest.swift; sourceTree = "<group>"; };
 		C827EA4F2B234571009E6EC8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPropertiesView.swift; sourceTree = "<group>"; };
@@ -288,8 +296,11 @@
 		C864BE982B3C53660078C742 /* ScrollableSegmentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentsView.swift; sourceTree = "<group>"; };
 		C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsSwiftUIView.swift; sourceTree = "<group>"; };
 		C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsCellView.swift; sourceTree = "<group>"; };
+		C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCirclePostionManager.swift; sourceTree = "<group>"; };
 		C88417C22B55CDD0005A9DDB /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		C8B50EEB2B618DF8001059F9 /* NickNameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameUIView.swift; sourceTree = "<group>"; };
 		C8C0BAA22B46C8F70022EC77 /* CustomGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGraphView.swift; sourceTree = "<group>"; };
+		C8C279C12B892FAC00337C2A /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		CE715C78ED08B54E16060133 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		DC238A696F0F1B1FB1829220 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -312,7 +323,7 @@
 				30A7CE362B31100000D29B4A /* AWSS3StoragePlugin in Frameworks */,
 				30A7CE382B3110F600D29B4A /* AWSS3StoragePlugin in Frameworks */,
 				30A7CE3E2B31194400D29B4A /* AWSS3StoragePlugin in Frameworks */,
-				00C9E5C9A3B0B095BE8C9F4A /* Pods_TorchUI.framework in Frameworks */,
+				CBA2C737C70DCADAFA0DC43C /* Pods_TorchUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00BEAA65305D4CD1D1CC1D06 /* Pods_TorchUITests.framework in Frameworks */,
+				496E76328BD01AC3FFD6B6A0 /* Pods_TorchUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +339,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58C44D4DCA90DCB52EAA925E /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */,
+				2DCB96D65DC7BFAE9C06B429 /* Pods_TorchUI_TorchUIUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,12 +365,12 @@
 			path = LoadingIndicator;
 			sourceTree = "<group>";
 		};
-		7406BC449B3D88D0E8138947 /* Frameworks */ = {
+		4059315325E03F5D68C85AF7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9F321CB5B74305D4605F94C2 /* Pods_TorchUI.framework */,
-				70C62597BD492BA071359897 /* Pods_TorchUI_TorchUIUITests.framework */,
-				0CD25A1332D3DB003BB41769 /* Pods_TorchUITests.framework */,
+				13569758AFB0B7E90C699210 /* Pods_TorchUI.framework */,
+				8346BD0EE8EAA2D6A5ECAE0B /* Pods_TorchUI_TorchUIUITests.framework */,
+				BDC8B38A611960186AF756AE /* Pods_TorchUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -381,6 +392,15 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		8B6AFDB62B4A8EFF00433051 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				8B6AFDB72B4A8F1900433051 /* ActiveSensorView.swift */,
+				8BAE82C62B4B6699000F3D1C /* LeftActiveSensorView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		8B9429E42B47C8CD00BF84A9 /* UpdateProperty */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,7 +420,7 @@
 				CF081936F4D134B31F7A7C3F /* Pods */,
 				A9CB98324B1AAF2DCBCD81BB /* AmplifyConfig */,
 				8B4DEC6D2B493065000EAEA6 /* Recovered References */,
-				7406BC449B3D88D0E8138947 /* Frameworks */,
+				4059315325E03F5D68C85AF7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -498,8 +518,8 @@
 		C855B4E92B10883D007DA332 /* Property */ = {
 			isa = PBXGroup;
 			children = (
-				30A84EF22B3E9611003A3409 /* ImagePicker.swift */,
 				8B9429E42B47C8CD00BF84A9 /* UpdateProperty */,
+				30A84EF22B3E9611003A3409 /* ImagePicker.swift */,
 				C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */,
 				C855B4EB2B10883D007DA332 /* PropertyIconView.xib */,
 				C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */,
@@ -550,6 +570,8 @@
 		C855B5012B10883E007DA332 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				8B6AFDB62B4A8EFF00433051 /* CustomView */,
+				C8B50EEA2B618DCF001059F9 /* NickName */,
 				C855B5022B10883E007DA332 /* PropertyDetailOverlayView.swift */,
 				C855B5032B10883E007DA332 /* HalfCircleShape.swift */,
 				C855B5042B10883E007DA332 /* MainMapView.swift */,
@@ -697,6 +719,7 @@
 				C855B5322B10883E007DA332 /* WebSocketManager.swift */,
 				C855B5332B10883E007DA332 /* SessionManager.swift */,
 				C827EA4F2B234571009E6EC8 /* LocationManager.swift */,
+				C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -711,6 +734,7 @@
 				C855B5392B10883E007DA332 /* View+Extension.swift */,
 				3094CF562B1CB00A00C7984B /* Date+Extension.swift */,
 				C88417C22B55CDD0005A9DDB /* Double+Extension.swift */,
+				C8C279C12B892FAC00337C2A /* NSNotification+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -789,15 +813,23 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		C8B50EEA2B618DCF001059F9 /* NickName */ = {
+			isa = PBXGroup;
+			children = (
+				C8B50EEB2B618DF8001059F9 /* NickNameUIView.swift */,
+			);
+			path = NickName;
+			sourceTree = "<group>";
+		};
 		CF081936F4D134B31F7A7C3F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				036F141EE4BF5563800CD726 /* Pods-TorchUI.debug.xcconfig */,
-				75842F8686BDAAE8265A6876 /* Pods-TorchUI.release.xcconfig */,
-				38DC7287B4B6A2835C8BF641 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */,
-				1E834EEC9B798065390155F3 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */,
-				3DD3336D4A07D7ABE31B71D4 /* Pods-TorchUITests.debug.xcconfig */,
-				47F8BF45391FF1E96E64EC01 /* Pods-TorchUITests.release.xcconfig */,
+				50614A022F2DE21DB688171F /* Pods-TorchUI.debug.xcconfig */,
+				AE14DC93743A113302C75CFF /* Pods-TorchUI.release.xcconfig */,
+				AB0CE2D91B82402F3C0C8D00 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */,
+				AB74A7A17AD22705DAF7E97C /* Pods-TorchUI-TorchUIUITests.release.xcconfig */,
+				485C05A1577A75F5E4DA0DE5 /* Pods-TorchUITests.debug.xcconfig */,
+				7F99E4AB104A08DDA7F7475F /* Pods-TorchUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -809,12 +841,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BF7FC732A4D1489005D1160 /* Build configuration list for PBXNativeTarget "TorchUI" */;
 			buildPhases = (
-				7360521332932BD97EB69D4A /* [CP] Check Pods Manifest.lock */,
+				BBC8B0D42AFBE3A44A025369 /* [CP] Check Pods Manifest.lock */,
 				8BF7FC4B2A4D1488005D1160 /* Sources */,
 				8BF7FC4C2A4D1488005D1160 /* Frameworks */,
 				8BF7FC4D2A4D1488005D1160 /* Resources */,
-				F26CF8FC0BF0B30FF620B722 /* [CP] Embed Pods Frameworks */,
-				3B38C730BC1DA20C8C033EE5 /* [CP] Copy Pods Resources */,
+				D34A900A4EF3CD30108922B1 /* [CP] Embed Pods Frameworks */,
+				7D553473730043B347174C90 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -844,7 +876,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BF7FC762A4D1489005D1160 /* Build configuration list for PBXNativeTarget "TorchUITests" */;
 			buildPhases = (
-				FDA5D8385C73F723B39CCAFE /* [CP] Check Pods Manifest.lock */,
+				EBC6B55CEAE53A6906166F80 /* [CP] Check Pods Manifest.lock */,
 				8BF7FC5B2A4D1489005D1160 /* Sources */,
 				8BF7FC5C2A4D1489005D1160 /* Frameworks */,
 				8BF7FC5D2A4D1489005D1160 /* Resources */,
@@ -863,12 +895,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BF7FC792A4D1489005D1160 /* Build configuration list for PBXNativeTarget "TorchUIUITests" */;
 			buildPhases = (
-				681FFA8CE8B5D091629C8D2B /* [CP] Check Pods Manifest.lock */,
+				F5CD28F59D92022E50E0EF1D /* [CP] Check Pods Manifest.lock */,
 				8BF7FC652A4D1489005D1160 /* Sources */,
 				8BF7FC662A4D1489005D1160 /* Frameworks */,
 				8BF7FC672A4D1489005D1160 /* Resources */,
-				78601E5ADCA4E726372AC523 /* [CP] Embed Pods Frameworks */,
-				B45D8DF3A4C142ED7FE50F1F /* [CP] Copy Pods Resources */,
+				CE706E00DE686C822769954F /* [CP] Embed Pods Frameworks */,
+				D1EEFC25F2D6A0CE25097120 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -970,7 +1002,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3B38C730BC1DA20C8C033EE5 /* [CP] Copy Pods Resources */ = {
+		7D553473730043B347174C90 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -987,29 +1019,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		681FFA8CE8B5D091629C8D2B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TorchUI-TorchUIUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7360521332932BD97EB69D4A /* [CP] Check Pods Manifest.lock */ = {
+		BBC8B0D42AFBE3A44A025369 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1031,7 +1041,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		78601E5ADCA4E726372AC523 /* [CP] Embed Pods Frameworks */ = {
+		CE706E00DE686C822769954F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1048,7 +1058,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B45D8DF3A4C142ED7FE50F1F /* [CP] Copy Pods Resources */ = {
+		D1EEFC25F2D6A0CE25097120 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1065,7 +1075,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F26CF8FC0BF0B30FF620B722 /* [CP] Embed Pods Frameworks */ = {
+		D34A900A4EF3CD30108922B1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1082,7 +1092,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TorchUI/Pods-TorchUI-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FDA5D8385C73F723B39CCAFE /* [CP] Check Pods Manifest.lock */ = {
+		EBC6B55CEAE53A6906166F80 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1104,6 +1114,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F5CD28F59D92022E50E0EF1D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TorchUI-TorchUIUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1111,6 +1143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C86FD6D02B9B2AD1009C3E6E /* GraphCirclePostionManager.swift in Sources */,
 				C855B5722B10883F007DA332 /* DetectorIconView.swift in Sources */,
 				8B00A11B2B2174240080534F /* GlassyTabbar.swift in Sources */,
 				C855B58C2B10883F007DA332 /* PropertyViewModel.swift in Sources */,
@@ -1139,9 +1172,11 @@
 				C855B58A2B10883F007DA332 /* DetectorModel.swift in Sources */,
 				C855B5932B10883F007DA332 /* CustomColors.swift in Sources */,
 				C855B57F2B10883F007DA332 /* AuthenticationManager.swift in Sources */,
+				8BF3B40B2B969CB900B0AAA3 /* (null) in Sources */,
 				C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */,
 				C855B5852B10883F007DA332 /* Color+Extension.swift in Sources */,
 				C864BE9D2B3C53660078C742 /* SegmentView.swift in Sources */,
+				C8C279C22B892FAC00337C2A /* NSNotification+Extension.swift in Sources */,
 				C855B5682B10883F007DA332 /* BatteryView.swift in Sources */,
 				C855B56F2B10883F007DA332 /* MapboxPlaceSensorViewWrapper.swift in Sources */,
 				30ACFC0D2B442030007BCC22 /* GrowingArcIndicatorView.swift in Sources */,
@@ -1162,8 +1197,10 @@
 				C855B56C2B10883F007DA332 /* MapboxMap.swift in Sources */,
 				C855B58E2B10883F007DA332 /* ViewSize.swift in Sources */,
 				C855B56B2B10883F007DA332 /* DetectorDetailOverlayView.swift in Sources */,
+				8B6AFDB82B4A8F1900433051 /* ActiveSensorView.swift in Sources */,
 				C855B5532B10883F007DA332 /* PropertyAddressView.swift in Sources */,
 				30ACFC1A2B44220A007BCC22 /* ScalingDotsIndicatorView.swift in Sources */,
+				8BAE82C72B4B6699000F3D1C /* LeftActiveSensorView.swift in Sources */,
 				C855B5612B10883F007DA332 /* MapViewController.swift in Sources */,
 				30ACFC182B44220A007BCC22 /* ArcsIndicatorView.swift in Sources */,
 				C855B55E2B10883F007DA332 /* PropertyDetailOverlayView.swift in Sources */,
@@ -1195,6 +1232,7 @@
 				C855B55B2B10883F007DA332 /* TabBarItemView.swift in Sources */,
 				C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */,
 				30ACFC192B44220A007BCC22 /* OpacityDotsIndicatorView.swift in Sources */,
+				C8B50EEC2B618DF8001059F9 /* NickNameUIView.swift in Sources */,
 				30ACFC1D2B44220A007BCC22 /* DefaultIndicatorView.swift in Sources */,
 				C855B5732B10883F007DA332 /* AccountEmailView.swift in Sources */,
 				C855B5642B10883F007DA332 /* PlaceSensorViewControllerBridge.swift in Sources */,
@@ -1363,16 +1401,16 @@
 		};
 		8BF7FC742A4D1489005D1160 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 036F141EE4BF5563800CD726 /* Pods-TorchUI.debug.xcconfig */;
+			baseConfigurationReference = 50614A022F2DE21DB688171F /* Pods-TorchUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = TorchUI/TorchUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
-				DEVELOPMENT_TEAM = GKWG38K5WC;
+				DEVELOPMENT_TEAM = CST8NBMAHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TorchUI/Info.plist;
@@ -1389,7 +1427,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1447,7 +1485,7 @@
 					"\"UIKit\"",
 					"-fprofile-instr-generate",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.torchsensors.TorchUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.torchsensors.torch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1460,16 +1498,16 @@
 		};
 		8BF7FC752A4D1489005D1160 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75842F8686BDAAE8265A6876 /* Pods-TorchUI.release.xcconfig */;
+			baseConfigurationReference = AE14DC93743A113302C75CFF /* Pods-TorchUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = TorchUI/TorchUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
-				DEVELOPMENT_TEAM = GKWG38K5WC;
+				DEVELOPMENT_TEAM = CST8NBMAHT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TorchUI/Info.plist;
@@ -1486,7 +1524,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1544,7 +1582,7 @@
 					"\"UIKit\"",
 					"-fprofile-instr-generate",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.torchsensors.TorchUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.torchsensors.torch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1557,7 +1595,7 @@
 		};
 		8BF7FC772A4D1489005D1160 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DD3336D4A07D7ABE31B71D4 /* Pods-TorchUITests.debug.xcconfig */;
+			baseConfigurationReference = 485C05A1577A75F5E4DA0DE5 /* Pods-TorchUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1578,7 +1616,7 @@
 		};
 		8BF7FC782A4D1489005D1160 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47F8BF45391FF1E96E64EC01 /* Pods-TorchUITests.release.xcconfig */;
+			baseConfigurationReference = 7F99E4AB104A08DDA7F7475F /* Pods-TorchUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1599,7 +1637,7 @@
 		};
 		8BF7FC7A2A4D1489005D1160 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38DC7287B4B6A2835C8BF641 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */;
+			baseConfigurationReference = AB0CE2D91B82402F3C0C8D00 /* Pods-TorchUI-TorchUIUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1618,7 +1656,7 @@
 		};
 		8BF7FC7B2A4D1489005D1160 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E834EEC9B798065390155F3 /* Pods-TorchUI-TorchUIUITests.release.xcconfig */;
+			baseConfigurationReference = AB74A7A17AD22705DAF7E97C /* Pods-TorchUI-TorchUIUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -12,10 +12,10 @@ import CoreLocation
 struct Detector: Hashable, Identifiable  {
     
     let id: String
-    let deviceName: String
+    var deviceName: String
     var deviceBattery: Double
     
-    var measurements: [String: String] = ["fire_rating":"80"]
+    var measurements: [String: String] = ["fire_rating":"0"]
     var coordinate: CLLocationCoordinate2D?
     var threat: Threat = Threat.Green
     var spectralStatus: Threat = Threat.Green
@@ -25,9 +25,11 @@ struct Detector: Hashable, Identifiable  {
     var selected: Bool = false
     var sensorIdx: Int?
     var connected: Bool = true
+    var irHot: [[Double]] = []
     
     var lastTimestamp: Date = Date()
     var isNewlyInstalled: Bool = false
+    var muted: Bool?
 }
 
 extension CLLocationCoordinate2D: Hashable {

@@ -12,6 +12,14 @@ struct AnalyticDatapoint: Hashable {
     var timestamp: Date
 }
 
+enum DetectorInfoStatus {
+    case fire
+    case battery
+    case connection
+    case temperature
+    case humidity
+}
+
 enum Threat {
     case Red
     case Yellow
@@ -70,7 +78,7 @@ enum AnalyticsTypeSelection: String, CaseIterable {
 }
 
 enum AnalyticsTimespanSelection: CaseIterable {
-    case tenMinutes
+//    case tenMinutes
     case oneHour
     case oneDay
     case oneWeek
@@ -79,7 +87,7 @@ enum AnalyticsTimespanSelection: CaseIterable {
     
     var stringSpan: String {
         switch self {
-            case .tenMinutes: return "10m"
+//            case .tenMinutes: return "10m"
             case .oneHour:    return "1h"
             case .oneDay:     return "1d"
             case .oneWeek:    return "1w"
@@ -90,7 +98,7 @@ enum AnalyticsTimespanSelection: CaseIterable {
     
     var stringTimeSpan: String {
         switch self {
-            case .tenMinutes: return "10 Min"
+//            case .tenMinutes: return "10 Min"
             case .oneHour:    return "1 Hour"
             case .oneDay:     return "1 Day"
             case .oneWeek:    return "1 Week"
@@ -101,7 +109,7 @@ enum AnalyticsTimespanSelection: CaseIterable {
     
     var stringStep: String {
         switch self {
-            case .tenMinutes: return "10s"
+//            case .tenMinutes: return "10s"
             case .oneHour:    return "1m"
             case .oneDay:     return "24m"
             case .oneWeek:    return "168m"
@@ -112,7 +120,7 @@ enum AnalyticsTimespanSelection: CaseIterable {
 
     var timeInterval: Int {
         switch self {
-            case .tenMinutes: return -10 * 60
+//            case .tenMinutes: return -10 * 60
             case .oneHour:    return -60 * 60
             case .oneDay:     return -24 * 60 * 60
             case .oneWeek:    return -7 * 24 * 60 * 60
@@ -120,12 +128,4 @@ enum AnalyticsTimespanSelection: CaseIterable {
             case .oneYear:    return -30 * 24 * 60 * 60 * 12
         }
     }
-}
-
-enum DetectorInfoStatus {
-    case fire
-    case battery
-    case connection
-    case temperature
-    case humidity
 }

@@ -41,6 +41,11 @@ struct PlaceSensorView: View {
     @State var needsLocationPin: Bool = false
     @State var moveToUserTapped: Bool = false
     @State var sensorTapped: Bool = false
+    @State var isNickName: Bool = false
+    @State var name: String = ""
+    @State var isShowSensorButtons: Bool = false
+    @State var isSetLocation: Bool = false
+    @State var newDetector: Detector? = nil
     
     init() {
     }
@@ -57,9 +62,9 @@ struct PlaceSensorView: View {
                     Spacer()
                     VStack {
                         if isConfirmingLocation {
-                            SensorConfirmLocationOverlayView(mapOffset: $mapOffset, size: $size, markers: $markers, pin: $pin, selectedSensor: $selectedSensor, isConfirmingLocation: $isConfirmingLocation)
+                            SensorConfirmLocationOverlayView(mapOffset: $mapOffset, size: $size, markers: $markers, pin: $pin, selectedSensor: $selectedSensor, isConfirmingLocation: $isConfirmingLocation, isNickName: $isNickName)
                         } else {
-                            SensorSetupOverlayView(mapOffset: $mapOffset, size: $size, markers: $markers, sessionManager: sessionManager, isPresentingScanner: $isPresentingScanner, isConfirmingLocation: $isConfirmingLocation, selectedSensor: $selectedSensor, selectedDetector: $selectedDetector, sensorTapped: $sensorTapped, annotations: $annotations, pin: $pin)
+                            SensorSetupOverlayView(mapOffset: $mapOffset, size: $size, markers: $markers, sessionManager: sessionManager, isPresentingScanner: $isPresentingScanner, isConfirmingLocation: $isNickName, selectedSensor: $selectedSensor, selectedDetector: $selectedDetector, sensorTapped: $sensorTapped, annotations: $annotations, pin: $pin, isShowSensorButtons: $isShowSensorButtons, isSetLocation: $isSetLocation)
                                 .sheet(isPresented: $isPresentingScanner) {
                                     VStack {
                                         HStack {
@@ -82,6 +87,8 @@ struct PlaceSensorView: View {
                                                 self.selectedSensor = detector
                                                 self.selectedDetector = detector
                                                 needsLocationPin = true
+                                                isShowSensorButtons = true
+                                                isSetLocation = true
                                             }
                                         }
                                         .ignoresSafeArea(.container)
@@ -95,12 +102,11 @@ struct PlaceSensorView: View {
                 // Heading saying Set up torch sensors
                 HStack {
                     Spacer()
-                    
-                    Text("Set up Torch sensors")
+                    let newName = isSetLocation ? "Sensor \(selectedSensor?.sensorIdx ?? 0)" : sessionManager.newProperty?.propertyName ?? "" // selectedSensor == nil ?
+                    Text(String(newName))
                         .font(Font.custom("Manrope-SemiBold", fixedSize: 20))
                         .foregroundColor(CustomColors.TorchGreen)
                         .padding(.top, 25)
-                    
                     Spacer()
                 }
                 
@@ -124,10 +130,15 @@ struct PlaceSensorView: View {
                     }
                     .padding(.trailing, 10)
                     .padding(.bottom, 10)
+                    let height = (sessionManager.newProperty?.detectors.count ?? 0) > 0 && selectedSensor != nil && !isSetLocation ? 165.0 : 0.0
                     Spacer()
-                        .frame(height: self.size.height)
+                        .frame(height: self.size.height + height)
                 }
                 .opacity(isConfirmingLocation ? 0.0 : 1.0)
+                
+                if isNickName {
+                    NickNameUIView(name: $name, isNickName: $isNickName, newDetector: $newDetector, isNewPropertySensor: true)
+                }
             }
             .confirmationDialog("Select a color", isPresented: $showingOptions, titleVisibility: .hidden) {
                 Button("Save & Exit") {
@@ -143,7 +154,6 @@ struct PlaceSensorView: View {
                     dismiss()
                     SessionManager.shared.newProperty = nil
                 }
-                
                 
                 Button("Quit without saving", role: .destructive) {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)

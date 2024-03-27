@@ -8,26 +8,31 @@
 import SwiftUI
 
 struct DetectorStatusMenu: View {
-    
+
     @ObservedObject var sessionManager: SessionManager
-    
+
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
-    
+
     @Binding var showDetectorMenu: Bool
     @Binding var annotationsStatus: DetectorInfoStatus
-    
-    
+
+
     var body: some View {
-//        HStack {
-//            Spacer()
+//                if showDetectorMenu {
+        HStack {
+            Spacer()
             VStack(alignment: .leading, spacing: 0) {
-                
+
                 Button(action: {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
                     showDetectorMenu = false
                     annotationsStatus = .fire
+
+//                    let selectedPropertyID  = sessionManager.properties[sessionManager.selectedPropertyIndex].id
+//                    let selectedDetectorID  = sessionManager.properties[sessionManager.selectedPropertyIndex].detectors[sessionManager.selectedDetectorIndex].id
+//                    SessionManager.shared.muteSensor(device_id: selectedDetectorID, property_id: selectedPropertyID)
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image("Icon")
@@ -35,16 +40,10 @@ struct DetectorStatusMenu: View {
                             .renderingMode(.template)
                             .foregroundColor(CustomColors.TorchGreen)
                             .frame(width: 20, height: 20)
-                        HStack(spacing: 2) {
-                            Text("Fire detection")
-                                .font(.custom("Manrope-SemiBold", size: 16))
-                                .foregroundColor(CustomColors.TorchGreen)
-                                .kerning(-0.7)
-                            Text("(Default)")
-                                .font(.custom("Manrope-SemiBold", size: 16))
-                                .foregroundColor(CustomColors.UltraLightGray)
-                                .kerning(-0.7)
-                        }
+                        Text("Fire detection")
+                            .font(.custom("Manrope-SemiBold", size: 16))
+                            .foregroundColor(CustomColors.TorchGreen)
+                            .kerning(-0.7)
                         Spacer(minLength: 4)
                         Image(annotationsStatus == .fire ? "Checkbox-selected" : "Checkbox-unselected")
                             .resizable()
@@ -56,13 +55,11 @@ struct DetectorStatusMenu: View {
                     .padding(.vertical, 12)
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
-                
                 Button(action: {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
                     showDetectorMenu = false
                     annotationsStatus = .battery
-                    
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image("battery-mid")
@@ -85,13 +82,11 @@ struct DetectorStatusMenu: View {
                     .padding(.vertical, 12)
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
-                
                 Button(action: {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
                     showDetectorMenu = false
                     annotationsStatus = .connection
-                    
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image("wifi 1")
@@ -114,7 +109,6 @@ struct DetectorStatusMenu: View {
                     .padding(.vertical, 12)
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
-                
                 Button(action: {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
@@ -146,7 +140,6 @@ struct DetectorStatusMenu: View {
                     .padding(.vertical, 12)
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
-                
                 Button(action: {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
@@ -155,7 +148,6 @@ struct DetectorStatusMenu: View {
                     //                                        DispatchQueue.main.async {
                     //                                            SessionManager.shared.deleteDetector()
                     //                                        }
-                                        
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image("Humidity")
@@ -181,39 +173,34 @@ struct DetectorStatusMenu: View {
             }
             //                                .padding(.horizontal, 16)
             .padding(.vertical, 4)
-            .frame(width: 280, alignment: .topLeading)
+            .frame(width: 250, alignment: .topLeading)
             .background(.white)
             .cornerRadius(16)
             .shadow(color: Color(red: 0.18, green: 0.21, blue: 0.22).opacity(0.4), radius: 90, x: 0, y: 32)
-            .position(x: width - 156, y: 130)
-//            .allowsHitTesting(true)
-//            Spacer()
-//        }
-//        .frame(width: width)
-//        .background(Color.gray.opacity(0.05))
-////        .allowsHitTesting(false)
-//        .gesture(
-//            TapGesture()
-//                .onEnded { _ in
-//                    showDetectorMenu = false
-//                }
-//        )
-        
+            .position(x: width - 141, y: 130)
+            Spacer()
+        }
+        .frame(width: width)
+        .background(Color.gray.opacity(0.05))
+        .gesture(
+            TapGesture()
+                .onEnded { _ in
+                    showDetectorMenu = false
+                }
+        )
+
     }
     //    }
 }
 
 #Preview {
-    
     let showDetectorMenu = Binding<Bool>(
         get: { false },
         set: { _ in }
     )
-    
     let annotationsStatus = Binding<DetectorInfoStatus>(
         get: { .fire },
         set: { _ in }
     )
-    
     return DetectorStatusMenu(sessionManager: SessionManager(), showDetectorMenu: showDetectorMenu, annotationsStatus: annotationsStatus)
 }

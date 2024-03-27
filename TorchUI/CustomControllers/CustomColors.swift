@@ -11,7 +11,7 @@ struct CustomColors {
     /*background: rgba(21, 112, 239, 1);*/
     static let TorchRed = Color(red: 0.94, green: 0.27, blue: 0.22)
     static let TorchGreen = Color(red: 0.27, green: 0.32, blue: 0.33)
-    static let torchBlue = Color(red: 0.08301673084, green: 0.4385043383, blue: 0.9358554482)
+    static let TorchBlue = Color(red: 0.08301673084, green: 0.4385043383, blue: 0.9358554482)
 
     static let LightGray = Color(red: 0.56, green: 0.63, blue: 0.64)
     static let UltraLightGray = Color(red: 0.67, green: 0.72, blue: 0.73)
