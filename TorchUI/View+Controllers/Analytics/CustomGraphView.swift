@@ -30,7 +30,7 @@ struct GraphView: View {
     
     @State private var showToast = true
     @State private var toastMessage = ""
-    @State private var circlePosition: CGPoint = CGPoint(x: 27, y: 0)
+    @State private var circlePosition: CGPoint = CGPoint(x: 0, y: 0)
     @State private var circleColor: Color = .green
     @State private var isImageVisible: Bool = false
     
@@ -49,10 +49,17 @@ struct GraphView: View {
         self.selectedOption = selectedOption
         self.circleIndex = circleIndex
         self.segmentationSelection = segmentationSelection
-        let lastPoint = dataPoints.last ?? AnalyticDatapoint(datapoint: 0.0, timestamp: getCurrentDateInUTC())
-        let yCoordinate = (180 - lastPoint.datapoint * 0.18) + 30
-        let point = CGPoint(x: CGFloat(27), y: yCoordinate)
-        self.circlePosition = point
+//        let lastPoint = dataPoints.last ?? AnalyticDatapoint(datapoint: 0.0, timestamp: getCurrentDateInUTC())
+//        let yCoordinate = (180 - lastPoint.datapoint * 0.18) + 30
+//        
+//        let totalTimeRange = self.setTotalSeconds(selectedOptions: selectedOption)
+//        let x = self.getSecondsIntoDate(lastPoint.timestamp, totalSeconds: totalTimeRange)
+//        
+//        let xAxisLength = 285.0
+//        let xPosition = ((xAxisLength / totalTimeRange) * CGFloat(x)) + 27
+//        
+//        let point = CGPoint(x: xPosition, y: yCoordinate)
+//        self.circlePosition = point
         self.circleColor = lineColor
         
         if let datePoint = dataPoints.first?.datapoint {
@@ -101,6 +108,7 @@ struct GraphView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 15, height: 180)
                         .position(x: circlePosition.x, y: 120)
+                        .animation(nil)
                 }
                 Circle()
                     .fill(circleColor)
@@ -256,6 +264,7 @@ struct GraphView: View {
                 index = GraphCirclePositionManager.shared.temperatureHumidityCirclePositions[circleIndex]
             }
             
+            index = index < 0 ? 0 : index
             let lastPoint = dataPoints[index].datapoint
             let yCoordinate = (180 - lastPoint * 0.18)
             let point = CGPoint(x: x, y: yCoordinate)

@@ -27,7 +27,6 @@ struct AnalyticsSwiftUIView: View {
     func getThermalCameraItems(timespan: AnalyticsTimespanSelection) -> [Item] {
         
         var list: [Item] = []
-        
         if let lineChartParameter = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["ir1_tmax"] {
             let item = Item(itemName: "Camera 1", itemDescription: "Temperature and time", selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter)
             list.append(item)
@@ -53,15 +52,17 @@ struct AnalyticsSwiftUIView: View {
     func updateThermalCameraItems(timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
         
         var list = thermalCameraItems
-        if selectedIndex == 0 {
-            let item = self.setupCustomAnalyticsList(itemName: "Camera 1", itemDescription: "Temperature and time", timespan: timespan, tableBasisOnTabAndIndex: "ir1_tmax")
-            list[selectedIndex] = item
-        } else if selectedIndex == 1 {
-            let item = self.setupCustomAnalyticsList(itemName: "Camera 2", itemDescription: "Temperature and time", timespan: timespan, tableBasisOnTabAndIndex: "ir2_tmax")
-            list[selectedIndex] = item
-        } else if selectedIndex == 2 {
-            let item = self.setupCustomAnalyticsList(itemName: "Camera 3", itemDescription: "Temperature and time", timespan: timespan, tableBasisOnTabAndIndex: "ir3_tmax")
-            list[selectedIndex] = item
+        if list.count > 0 {
+            if selectedIndex == 0 {
+                let item = self.setupCustomAnalyticsList(itemName: "Camera 1", itemDescription: "Temperature and time", timespan: timespan, tableBasisOnTabAndIndex: "ir1_tmax")
+                list[selectedIndex] = item
+            } else if selectedIndex == 1 {
+                let item = self.setupCustomAnalyticsList(itemName: "Camera 2", itemDescription: "Temperature and time", timespan: timespan, tableBasisOnTabAndIndex: "ir2_tmax")
+                list[selectedIndex] = item
+            } else if selectedIndex == 2 {
+                let item = self.setupCustomAnalyticsList(itemName: "Camera 3", itemDescription: "Temperature and time", timespan: timespan, tableBasisOnTabAndIndex: "ir3_tmax")
+                list[selectedIndex] = item
+            }
         }
         return list
     }
@@ -95,15 +96,17 @@ struct AnalyticsSwiftUIView: View {
     func updateSpectralAnalysisItems(timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
         
         var list = spectralAnalysisItems
-        if selectedIndex == 0 {
-            let item = self.setupCustomAnalyticsList(itemName: "Camera 1", itemDescription: "VPixels above threshold", timespan: timespan, tableBasisOnTabAndIndex: "rgb1_pix_abvthl")
-            list[selectedIndex] = item
-        } else if selectedIndex == 1 {
-            let item = self.setupCustomAnalyticsList(itemName: "Camera 2", itemDescription: "Pixels above threshold", timespan: timespan, tableBasisOnTabAndIndex: "rgb2_pix_abvthl")
-            list[selectedIndex] = item
-        } else if selectedIndex == 2 {
-            let item = self.setupCustomAnalyticsList(itemName: "Camera 3", itemDescription: "Pixels above threshold", timespan: timespan, tableBasisOnTabAndIndex: "rgb3_pix_abvthl")
-            list[selectedIndex] = item
+        if list.count > 0 {
+            if selectedIndex == 0 {
+                let item = self.setupCustomAnalyticsList(itemName: "Camera 1", itemDescription: "VPixels above threshold", timespan: timespan, tableBasisOnTabAndIndex: "rgb1_pix_abvthl")
+                list[selectedIndex] = item
+            } else if selectedIndex == 1 {
+                let item = self.setupCustomAnalyticsList(itemName: "Camera 2", itemDescription: "Pixels above threshold", timespan: timespan, tableBasisOnTabAndIndex: "rgb2_pix_abvthl")
+                list[selectedIndex] = item
+            } else if selectedIndex == 2 {
+                let item = self.setupCustomAnalyticsList(itemName: "Camera 3", itemDescription: "Pixels above threshold", timespan: timespan, tableBasisOnTabAndIndex: "rgb3_pix_abvthl")
+                list[selectedIndex] = item
+            }
         }
         return list
     }
@@ -136,15 +139,17 @@ struct AnalyticsSwiftUIView: View {
     
     func updateSmokeItems(timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
         var list = smokeItems
-        if selectedIndex == 0 {
-            let item = self.setupCustomAnalyticsList(itemName: "CO", itemDescription: "Value per time", timespan: timespan, tableBasisOnTabAndIndex: "tgs5141_co")
-            list[selectedIndex] = item
-        } else if selectedIndex == 1 {
-            let item = self.setupCustomAnalyticsList(itemName: "CO2", itemDescription: "Value per time", timespan: timespan, tableBasisOnTabAndIndex: "scd41_co2")
-            list[selectedIndex] = item
-        } else if selectedIndex == 2 {
-            let item = self.setupCustomAnalyticsList(itemName: "VOC", itemDescription: "Value per time", timespan: timespan, tableBasisOnTabAndIndex: "sgp40_raw")
-            list[selectedIndex] = item
+        if list.count > 0 {
+            if selectedIndex == 0 {
+                let item = self.setupCustomAnalyticsList(itemName: "CO", itemDescription: "Value per time", timespan: timespan, tableBasisOnTabAndIndex: "tgs5141_co")
+                list[selectedIndex] = item
+            } else if selectedIndex == 1 {
+                let item = self.setupCustomAnalyticsList(itemName: "CO2", itemDescription: "Value per time", timespan: timespan, tableBasisOnTabAndIndex: "scd41_co2")
+                list[selectedIndex] = item
+            } else if selectedIndex == 2 {
+                let item = self.setupCustomAnalyticsList(itemName: "VOC", itemDescription: "Value per time", timespan: timespan, tableBasisOnTabAndIndex: "sgp40_raw")
+                list[selectedIndex] = item
+            }
         }
         return list
     }
@@ -171,12 +176,14 @@ struct AnalyticsSwiftUIView: View {
     
     func updateTemperatureHumidityItems(timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
         var list = temperatureHumidityItems
-        if selectedIndex == 0 {
-            let item = self.setupCustomAnalyticsList(itemName: "Temperature", itemDescription: "Temperature and time", timespan: timespan, tableBasisOnTabAndIndex: "aht20_t")
-            list[selectedIndex] = item
-        } else if selectedIndex == 1 {
-            let item = self.setupCustomAnalyticsList(itemName: "Humidity", itemDescription: "Humidity and time", timespan: timespan, tableBasisOnTabAndIndex: "aht20_h")
-            list[selectedIndex] = item
+        if list.count > 0 {
+            if selectedIndex == 0 {
+                let item = self.setupCustomAnalyticsList(itemName: "Temperature", itemDescription: "Temperature and time", timespan: timespan, tableBasisOnTabAndIndex: "aht20_t")
+                list[selectedIndex] = item
+            } else if selectedIndex == 1 {
+                let item = self.setupCustomAnalyticsList(itemName: "Humidity", itemDescription: "Humidity and time", timespan: timespan, tableBasisOnTabAndIndex: "aht20_h")
+                list[selectedIndex] = item
+            }
         }
         return list
     }
