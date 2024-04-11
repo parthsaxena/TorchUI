@@ -518,11 +518,11 @@ struct DetectorDetailOverlayView: View {
                                                 Image(muted ? "volume-max" : "volume-x")
                                                     .resizable()
                                                     .renderingMode(.template)
-                                                    .foregroundColor(CustomColors.TorchGreen)
+                                                    .foregroundColor(muted ? CustomColors.TorchBlue : CustomColors.TorchGreen)
                                                     .frame(width: 20, height: 20)
                                                 Text(muted ? "Unmute sensor" : "Mute sensor")
                                                     .font(.custom("Manrope-SemiBold", size: 16))
-                                                    .foregroundColor(CustomColors.TorchGreen)
+                                                    .foregroundColor(muted ? CustomColors.TorchBlue : CustomColors.TorchGreen)
                                                 Spacer()
                                             }
                                             .padding(.leading, 16)
