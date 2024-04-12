@@ -89,7 +89,7 @@ struct MainPropertiesView: View {
                                                     .resizable()
                                                     .renderingMode(.template)
                                                     .foregroundColor(.white)
-                                                    .font(.custom("Manrope-SemiBold", size: 16))
+                                                    .font(.custom("Manrope-SemiBold", size: 14))
                                             }
                                             .tint(CustomColors.TorchRed)
                                             Button {
@@ -200,6 +200,6 @@ struct MuteIcon: View {
         .resizable()
         .renderingMode(.template)
         .foregroundColor(.white)
-        .font(.custom("Manrope-SemiBold", size: 16))
+        .font(.custom("Manrope-SemiBold", size: 14))
     }
 }
