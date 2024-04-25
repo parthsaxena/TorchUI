@@ -21,3 +21,28 @@ extension View {
         }
     }
 }
+
+extension View {
+    
+    func toast(isPresented: Binding<Bool>, message: String, coordinates: CGPoint) -> some View {
+        ZStack {
+            self
+            if isPresented.wrappedValue {
+                VStack {
+                    HStack {
+                        ToastView(message: message)
+                    }
+                }
+                .edgesIgnoringSafeArea(.all)
+                .position(x: CGFloat(coordinates.x + adjustLeadingTrailing(coordinates.x)), y: coordinates.y)
+            }
+        }
+        .animation(nil)
+    }
+    
+    func adjustLeadingTrailing(_ x: CGFloat) -> CGFloat {
+        
+        if x < 40 { return 30 }
+        return (x * -0.11)
+    }
+}

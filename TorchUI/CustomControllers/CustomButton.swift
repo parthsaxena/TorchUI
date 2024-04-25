@@ -29,9 +29,10 @@ struct BackButton: View {
                 
                 withAnimation(.easeIn(duration: 2.0)) {
                     self.dragOffset = .zero
-                }
-                withAnimation {
-                    showDetectorDetails.toggle(); dragOffset = .zero
+//                }
+//                withAnimation {
+                    showDetectorDetails.toggle()
+                    dragOffset = .zero
                     showRedOverlay = false
                 }
                 selectedDetector = nil
@@ -47,7 +48,7 @@ struct BackButton: View {
 
 struct PropertiesBackButton: View {
     @Environment(\.colorScheme) var colorScheme
-    @Binding var showDetectorDetails: Bool
+//    @Binding var showDetectorDetails: Bool
     
     var body: some View {
         ZStack {

@@ -20,10 +20,7 @@ struct MainPropertiesView: View {
     
     @Environment(\.colorScheme) var colorScheme
     @Binding var showingSheet: Bool
-//    @State private var properties: [PropertyRow] = []
     @ObservedObject var sessionManager = SessionManager.shared
-//    @State private var lastProps: [Property] = []
-//    @State private var isSwipeGestureActive = false
     @State private var propertiesIsSwipeGestureActive: [String: Bool]
     
     init(showingSheet: Binding<Bool>) {

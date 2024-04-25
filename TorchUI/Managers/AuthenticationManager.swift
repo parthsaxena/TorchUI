@@ -28,7 +28,7 @@ class AuthenticationManager: ObservableObject {
     static let shared = AuthenticationManager()
     
     @Published var authState: AuthState = .welcome
-    @Published var authUser: AuthUser!
+    @Published var authUser: AuthUser?
     @Published var authStateLoaded: Bool = false
     
     var email: String?
@@ -54,12 +54,13 @@ class AuthenticationManager: ObservableObject {
                     print("Identified user to Pinpoint0: \(user.userId)")
                 }
                 // print("Got user")
-                DispatchQueue.main.async {
-                    self.authUser = user
-                    self.authState = .authenticated
-                    self.authStateLoaded = true
+                    DispatchQueue.main.async {
+                        self.authUser = user
+                        self.authState = .authenticated
+                        self.authStateLoaded = true
+                    }
                     SessionManager.shared.loadUserProperties()
-                }
+//                }
             } else {
                 DispatchQueue.main.async {
                     self.authStateLoaded = true
@@ -87,8 +88,9 @@ class AuthenticationManager: ObservableObject {
                     self.authUser = user
                     self.authState = .authenticated
                     // Load property & device data
-                    SessionManager.shared.loadUserProperties()
                 }
+                SessionManager.shared.loadUserProperties()
+//                }
             }
         } catch let error as AuthError {
              print("Sign in failed \(error)")

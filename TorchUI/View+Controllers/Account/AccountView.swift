@@ -20,7 +20,7 @@ struct AccountView: View {
     @State var accountPassword: String = ""
     
     var body: some View {
-        Group {
+        NavigationView {
             if !authenticationManager.authStateLoaded {
                 PropertiesView()
             } else if authenticationManager.authState == .welcome {
@@ -38,10 +38,8 @@ struct AccountView: View {
             } else if authenticationManager.authState == .accountVerificationCode {
                 AccountVerificationCodeView(accountEmail: $accountEmail, accountPassword: $accountPassword)
             } else if authenticationManager.authState == .authenticated {
-                
                 if sessionManager.appState == .properties {
                     if !sessionManager.firstTransition {
-                        let x = print("2")
                         PropertiesView()
                             .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
                             .zIndex(1)
@@ -49,31 +47,16 @@ struct AccountView: View {
                         PropertiesView()
                     }
                 } else if sessionManager.appState == .viewProperty {
-//                    if sessionManager.lastAppState != nil && sessionManager.lastAppState == .updateProperty {
-//                        MainMapView()
-//                            .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
-//                            .zIndex(2)
-//                    } else {
-//                        MainMapView()
-//                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
-//                            .zIndex(2)
-//                    }
                     MainMapView()
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
                         .zIndex(2)
-                } 
-//                else if sessionManager.appState == .viewAnalytics {
-//                    AnalyticsSwiftUIView()
-//                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
-//                        .zIndex(2)
-//                } 
-                else if sessionManager.appState == .updateProperty {
+                } else if sessionManager.appState == .updateProperty {
                     UpdatePropertyView()
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
                         .zIndex(2)
                 }
             }
         }
-        .animation(.easeInOut)
+//        .animation(.easeInOut)
     }
 }

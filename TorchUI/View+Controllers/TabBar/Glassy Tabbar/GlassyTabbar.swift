@@ -24,12 +24,9 @@ struct CustomTabBar: View {
             HStack {
                 HStack(alignment: .center, spacing: 16) {
                     TabItem(tab: .home, selectedTab: $selectedTab)
-                       
                     TabItem(tab: .search, selectedTab: $selectedTab)
-                        
                 }
                 .padding(.leading, 20)
-                
                 ZStack {
                     Image("\(Tab.sensor.self)")
                         .frame(width: 70, height: 70)
@@ -43,24 +40,18 @@ struct CustomTabBar: View {
                 }
                 .dropShadow(type: .color(c: Color("mainColor").opacity(0.07)), radius: 7, offset: .init(x: 0, y: -2), spread: CGSize(width: -4, height: -4))
                 .dropShadow(type: .color(c: Color("mainColor").opacity(0.07)), radius: 20, offset: .init(x: 0, y: 14), spread: CGSize(width: -4, height: -4))
-                
-                
                 HStack(alignment: .center, spacing: 16) {
                     TabItem(tab: .notification, selectedTab: $selectedTab)
-                       
-                    
                     TabItem(tab: .setting, selectedTab: $selectedTab)
-                       
                 }
                 .padding(.trailing, 20)
             }
             .frame(width: UIScreen.main.bounds.width - 32, height: 48)
-            
             .padding(.vertical, 10)
             .background(
                 GlassyEffectView(effect: UIBlurEffect(style: (colorScheme == .dark) ? .dark : .light), cornerRadius: 36.0)
             )
-            .dropShadow(type: .color(c: Color("fillColor").opacity(0.03)), radius: 8, offset: .init(x: 0, y: 8), spread: CGSize(width: 4, height: 4))
+//            .dropShadow(type: .color(c: Color("fillColor").opacity(0.03)), radius: 8, offset: .init(x: 0, y: 8), spread: CGSize(width: 4, height: 4))
             .dropShadow(type: .color(c: Color("fillColor").opacity(0.08)), radius: 24, offset: .init(x: 0, y: 20), spread: CGSize(width: 4, height: 4))
         }
     }

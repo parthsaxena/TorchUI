@@ -121,7 +121,7 @@ final class SessionManager: ObservableObject {
         var req = SocketRequest(
             route: "createUserDB",
             data: [
-                "user_id": AuthenticationManager.shared.authUser.userId,
+                "user_id": AuthenticationManager.shared.authUser?.userId ?? "",
                 "email": email
             ], 
             completion: { data in
@@ -139,17 +139,17 @@ final class SessionManager: ObservableObject {
     
     func loadUserProperties() {
         
-        let userID = AuthenticationManager.shared.authUser.userId
+        let userID = AuthenticationManager.shared.authUser?.userId ?? ""
         let req = SocketRequest(
             route: "getPropertiesDevicesData",
             data: [
                 "user_id": userID
             ],
             completion: { data in
-
-            guard let result = data["result"] as? [String: Any] else {
-
-                DispatchQueue.main.async {
+                
+                guard let result = data["result"] as? [String: Any] else {
+                    
+                    //                DispatchQueue.main.async {
                     print("couldn't parse:", data)
                     guard let resultString = data["result"] as? String else {
                         self.propertiesLoaded = true
@@ -163,50 +163,50 @@ final class SessionManager: ObservableObject {
                     
                     self.propertiesLoaded = true
                     self.loadUserProperties()
+                    //                }
+                    return
                 }
-                return
-            }
-            
-            guard let properties = result["properties"] as? [String : [String: Any]] else {
-                DispatchQueue.main.async {
+                
+                guard let properties = result["properties"] as? [String : [String: Any]] else {
+                    //                DispatchQueue.main.async {
                     print("couldn't parse:", data)
                     self.propertiesLoaded = true
                     self.loadUserProperties()
+                    //                }
+                    return
                 }
-                return
-            }
-
-            if self.firstTimeLoaded && self.properties.count == properties.count {
-                self.updateDevices(properties: properties)
-                Task {
-                    await self.pullDeviceAnalytics(properties: properties)
-                }
-            } else {
-                if (self.newProperty == nil) {
-                    print("DIFF PROPERTIES, \(self.properties.count), \(properties.count), \(self.properties), \(properties)")
-                    self.clearProperties()
-                    var deletedProperties = 0
-                    for (id, property) in properties {
-                        
-                        if (self.deletedProperties.contains(id)) {
-                            deletedProperties += 1
-                            continue
-                        }
-                        self.parseProperty(id: id, property: property)
-                    }
+                
+                if self.firstTimeLoaded && self.properties.count == properties.count {
+                    self.updateDevices(properties: properties)
                     Task {
-                        await self.pullDeviceAnalytics(properties: properties)
+                        self.pullDeviceAnalytics(properties: properties)
                     }
-                    
-                    self.unparsedProperties = properties.count - deletedProperties
-                    DispatchQueue.main.async {
+                } else {
+                    if (self.newProperty == nil) {
+                        print("DIFF PROPERTIES, \(self.properties.count), \(properties.count), \(self.properties), \(properties)")
+                        self.clearProperties()
+                        var deletedProperties = 0
+                        for (id, property) in properties {
+                            
+                            if (self.deletedProperties.contains(id)) {
+                                deletedProperties += 1
+                                continue
+                            }
+                            self.parseProperty(id: id, property: property)
+                        }
+                        Task {
+                            self.pullDeviceAnalytics(properties: properties)
+                        }
+                        
+                        self.unparsedProperties = properties.count - deletedProperties
+                        //                    DispatchQueue.main.async {
                         self.propertiesLoaded = true
                         self.firstTimeLoaded = true
+                        //                    }
                     }
                 }
-            }
-            self.loadUserProperties() // mubashir
-        })
+                self.loadUserProperties() // mubashir
+            })
         
         // Send request through socket
         WebSocketManager.shared.sendData(socketRequest: req)
@@ -214,7 +214,7 @@ final class SessionManager: ObservableObject {
     
     func uploadNewProperty() {
 
-        let userID = AuthenticationManager.shared.authUser.userId
+        let userID = AuthenticationManager.shared.authUser?.userId ?? ""
         if let property = self.newProperty {
         
             let req = SocketRequest(
@@ -263,15 +263,15 @@ final class SessionManager: ObservableObject {
             
             let value = try await uploadTask.value
             print("Completed: \(value)")
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 completion(.success(value))
-            }
+//            }
             
         } catch {
             print("Error: \(error)")
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 completion(.failure(error))
-            }
+//            }
         }
     }
     
@@ -279,14 +279,14 @@ final class SessionManager: ObservableObject {
         do {
             let url = try await Amplify.Storage.getURL(key: imageKey)
             print("Completed: \(url)")
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 completion(.success(url))
-            }
+//            }
         } catch {
             print("Error: \(error)")
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 completion(.failure(error))
-            }
+//            }
         }
         
     }
@@ -790,7 +790,7 @@ final class SessionManager: ObservableObject {
     func uploadNewDetectors() {
         //        SessionManager.shared.properties[selectedPropertyIndex].loadingData = true
         self.newProperty?.loadingData = true
-        var user_id = AuthenticationManager.shared.authUser.userId
+        var user_id = AuthenticationManager.shared.authUser?.userId ?? ""
         if let detectors = self.newProperty?.detectors {
             for newDetector in detectors {
                 if let newProperty = self.newProperty {
@@ -803,7 +803,7 @@ final class SessionManager: ObservableObject {
     func deleteProperty() {
 
         let property_id = self.properties[self.selectedPropertyIndex].id
-        let user_id = AuthenticationManager.shared.authUser.userId
+        let user_id = AuthenticationManager.shared.authUser?.userId ?? ""
         
         let req = SocketRequest(
             route: "deleteProperty",
@@ -828,12 +828,12 @@ final class SessionManager: ObservableObject {
         let property_id = self.properties[self.selectedPropertyIndex].id
         let device_id = self.properties[self.selectedPropertyIndex].detectors[self.selectedDetectorIndex].id
 
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             self.deletedDetectors.insert(device_id)
             print("deleting detector: \(device_id)")
             self.selectedDetectorIndex -= 1
             self.properties[self.selectedPropertyIndex].detectors.remove(at: self.selectedDetectorIndex + 1)
-        }
+//        }
         
         let req = SocketRequest(
             route: "deleteDevice",
@@ -1187,7 +1187,7 @@ final class SessionManager: ObservableObject {
         let endDate = Date()
         if let startDate = Calendar.current.date(byAdding: .second, value: timespan.timeInterval, to: endDate) {
             
-            let userID = AuthenticationManager.shared.authUser.userId
+            let userID = AuthenticationManager.shared.authUser?.userId ?? ""
             let request = SocketRequest(
                 route: "getHistoricalDeviceAnalytics",
                 data: [
@@ -1230,9 +1230,10 @@ final class SessionManager: ObservableObject {
                                 }
                             }
                             
-                            for _ in parsedMeasurements..<60 {
-                                data.insert(AnalyticDatapoint(datapoint: 0.0, timestamp: self.getCurrentDateInUTC()), at: 0)
-                            }
+//                            for _ in parsedMeasurements..<60 {
+//                                data.insert(AnalyticDatapoint(datapoint: 0.0, timestamp: self.getCurrentDateInUTC()), at: 0)
+//                                break
+//                            }
 
                             self.deviceAnalytics[deviceId]?[timespan.stringSpan]?[k] = data
                         }

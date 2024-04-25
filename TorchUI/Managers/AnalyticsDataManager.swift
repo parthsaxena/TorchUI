@@ -1,30 +1,16 @@
 //
-//  AnalyticsSwiftUIView.swift
+//  AnalyticsDataManager.swift
 //  TorchUI
 //
-//  Created by Mubashir Mushir on 22/12/2023.
+//  Created by Mubashir Mushir on 23/04/2024.
 //
 
-import SwiftUI
+import Foundation
 
-struct AnalyticsSwiftUIView: View {
+
+class AnalyticsDataManager {
     
-    @Environment(\.scenePhase) private var scenePhase
-    @Environment(\.colorScheme) var colorScheme
-    @State var segmentationSelection : AnalyticsTypeSelection = .thermalCameras
-    @State var timespanSelection: AnalyticsTimespanSelection = .oneMonth
-    
-    @State private var thermalCameraItems: [Item] = []
-    @State private var spectralAnalysisItems: [Item] = []
-    @State private var smokeItems: [Item] = []
-    @State private var temperatureHumidityItems: [Item] = []
-    @Binding var viewAnalytics: Bool
-    @State private var isForeground: Bool = true
-    
-    @State private var termalCameraTimeSpam: [AnalyticsTimespanSelection] = [.oneHour , .oneHour, .oneHour]
-    @State private var spectralAnalysisTimeSpam: [AnalyticsTimespanSelection] = [.oneHour , .oneHour, .oneHour]
-    @State private var smokeTimeSpam: [AnalyticsTimespanSelection] = [.oneHour , .oneHour, .oneHour]
-    @State private var temperatureHumidityTimeSpam: [AnalyticsTimespanSelection] = [.oneHour , .oneHour]
+    static var shared = AnalyticsDataManager()
     
     func getThermalCameraItems(timespan: AnalyticsTimespanSelection) -> [Item] {
         
@@ -54,7 +40,7 @@ struct AnalyticsSwiftUIView: View {
         return list
     }
     
-    func updateThermalCameraItems(timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
+    func updateThermalCameraItems(thermalCameraItems: [Item], timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
         
         var list = thermalCameraItems
         if list.count > 0 {
@@ -98,7 +84,7 @@ struct AnalyticsSwiftUIView: View {
         return list
     }
     
-    func updateSpectralAnalysisItems(timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
+    func updateSpectralAnalysisItems(spectralAnalysisItems: [Item],timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
         
         var list = spectralAnalysisItems
         if list.count > 0 {
@@ -142,7 +128,7 @@ struct AnalyticsSwiftUIView: View {
         return list
     }
     
-    func updateSmokeItems(timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
+    func updateSmokeItems(smokeItems: [Item], timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
         var list = smokeItems
         if list.count > 0 {
             if selectedIndex == 0 {
@@ -179,7 +165,7 @@ struct AnalyticsSwiftUIView: View {
         return list
     }
     
-    func updateTemperatureHumidityItems(timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
+    func updateTemperatureHumidityItems(temperatureHumidityItems: [Item], timespan: AnalyticsTimespanSelection, selectedIndex: Int) -> [Item] {
         var list = temperatureHumidityItems
         if list.count > 0 {
             if selectedIndex == 0 {
@@ -198,149 +184,4 @@ struct AnalyticsSwiftUIView: View {
         let lintChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?[tableBasisOnTabAndIndex]
         return Item(itemName: itemName, itemDescription: itemDescription, selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lintChart1 ?? [])
     }
-    
-    var body: some View {
-        GeometryReader { geometry in
-            let propertyIndex = SessionManager.shared.selectedPropertyIndex
-            let detectorIndex = SessionManager.shared.selectedDetectorIndex
-            let analyticsId = SessionManager.shared.properties[propertyIndex].detectors[detectorIndex].id
-            if (SessionManager.shared.deviceAnalytics.keys.contains(analyticsId)) {
-                VStack {
-                    ZStack {
-                        HStack {
-                            AnalyticsBackButton(viewAnalytics: $viewAnalytics)
-                            Spacer()
-                        }
-                        HStack {
-                            Spacer()
-                            VStack {
-                                Text("Analytics")
-                                    .font(Font.custom("Manrope-SemiBold", size: 18.0))
-                                    .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                                    .padding(.top, 0)
-                                Text("Sensor 3 hours Napa")
-                                    .font(Font.custom("Manrope-SemiBold", size: 14.0))
-                                    .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.LightGray)
-                                    .padding(.top, 0)
-                            }
-                            Spacer()
-                        }
-                    }
-                    .padding(.top, 10)
-                    .padding(.horizontal, 15)
-                    ScrollableSegmentsView(selectedSegment: $segmentationSelection)
-                    NavigationView {
-                        ScrollView(showsIndicators: false) {
-                            if (segmentationSelection == .thermalCameras) {
-                                ForEach(Array(thermalCameraItems.enumerated()), id: \.element) { index, item in
-                                    AnalyticsCellView(selectedOptions: self.termalCameraTimeSpam[index], segmentationSelection: segmentationSelection, item: item, circleIndex: index, action: { selectedOption in
-                                        
-                                        self.termalCameraTimeSpam[index] = selectedOption
-                                        thermalCameraItems = updateThermalCameraItems(timespan: self.termalCameraTimeSpam[index], selectedIndex: index)
-                                        print("graph length: \(item.graphLineParam.count - 1)")
-                                        GraphCirclePositionManager.shared.termalCameraCirclePositions[index] = thermalCameraItems[index].graphLineParam.count - 1 // item.graphLineParam.count - 1
-                                    })
-                                }
-                            } else if (segmentationSelection == .spectralAnalysis) {
-                                ForEach(Array(spectralAnalysisItems.enumerated()), id: \.element) { index, item in
-                                    AnalyticsCellView(selectedOptions: self.spectralAnalysisTimeSpam[index], segmentationSelection: segmentationSelection, item: item, circleIndex: index, action: { selectedOption in
-                                        
-                                        self.spectralAnalysisTimeSpam[index] = selectedOption
-                                        spectralAnalysisItems = updateSpectralAnalysisItems(timespan: self.spectralAnalysisTimeSpam[index], selectedIndex: index)
-                                        GraphCirclePositionManager.shared.spectralAnalysisCirclePositions[index] = spectralAnalysisItems[index].graphLineParam.count - 1
-                                    })
-                                }
-                            } else if (segmentationSelection == .smoke) {
-                                ForEach(Array(smokeItems.enumerated()), id: \.element) { index, item in
-                                    AnalyticsCellView(selectedOptions: self.smokeTimeSpam[index], segmentationSelection: segmentationSelection, item: item, circleIndex: index, action: { selectedOption in
-                                        
-                                        self.smokeTimeSpam[index] = selectedOption
-                                        smokeItems = updateSmokeItems(timespan: self.smokeTimeSpam[index], selectedIndex: index)
-                                        GraphCirclePositionManager.shared.smokeCirclePositions[index] = smokeItems[index].graphLineParam.count - 1
-                                    })
-                                }
-                            } else if (segmentationSelection == .temperatureHumidity) {
-                                ForEach(Array(temperatureHumidityItems.enumerated()), id: \.element) { index, item in
-                                    AnalyticsCellView(selectedOptions: self.temperatureHumidityTimeSpam[index], segmentationSelection: segmentationSelection, item: item, circleIndex: index, action: { selectedOption in
-                                        
-                                        self.temperatureHumidityTimeSpam[index] = selectedOption
-                                        temperatureHumidityItems = updateTemperatureHumidityItems(timespan: self.temperatureHumidityTimeSpam[index], selectedIndex: index)
-                                        GraphCirclePositionManager.shared.temperatureHumidityCirclePositions[index] = temperatureHumidityItems[index].graphLineParam.count - 1
-                                    })
-                                }
-                            }
-                        }
-                        .padding([.top, .leading, .trailing])
-                        .background(Color.gray.opacity(0.15))
-                        .onChange(of: scenePhase) { newPhase in
-                            switch newPhase {
-                            case .active:
-                                isForeground = true
-                            case .inactive:
-                                print("App is inactive")
-                            case .background:
-                                isForeground = false
-                            @unknown default:
-                                print("Unknown state")
-                            }
-                        }
-                    }
-                    .padding(.top, -8)
-                    Spacer()
-                }
-                .background(colorScheme == .dark ? CustomColors.DarkModeBackground : Color.white)
-                .onAppear {
-                    setupWidth(width: geometry.size.width)
-                    loadGraphData()
-                }
-                .onReceive(NotificationCenter.default.publisher(for: NSNotification.updatedData)) { obj in
-                    if !GraphCirclePositionManager.shared.isMoveCircle, isForeground {
-                        updateGraphData()
-                    }
-                }
-                .navigationBarHidden(true)
-                .navigationBarTitle("")
-            }
-        }
-    }
-    
-    func setupWidth(width: Double) {
-        GraphCirclePositionManager.shared.graphViewWidth = width
-    }
-    
-    func loadGraphData() {
-        
-        GraphCirclePositionManager.shared.termalCameraCirclePositions = []
-        GraphCirclePositionManager.shared.spectralAnalysisCirclePositions = []
-        GraphCirclePositionManager.shared.smokeCirclePositions = []
-        GraphCirclePositionManager.shared.temperatureHumidityCirclePositions = []
-        
-        thermalCameraItems = getThermalCameraItems(timespan: timespanSelection)
-        spectralAnalysisItems = getSpectralAnalysisItems(timespan: timespanSelection)
-        smokeItems = getSmokeItems(timespan: timespanSelection)
-        temperatureHumidityItems = getTemperatureHumidityItems(timespan: timespanSelection)
-    }
-    
-    func updateGraphData() {
-        
-        for (index, termalCameraTime) in termalCameraTimeSpam.enumerated() {
-            thermalCameraItems = updateThermalCameraItems(timespan: termalCameraTime, selectedIndex: index)
-        }
-        
-        for (index, spectralAnalysisTime) in spectralAnalysisTimeSpam.enumerated() {
-            spectralAnalysisItems = updateSpectralAnalysisItems(timespan: spectralAnalysisTime, selectedIndex: index)
-        }
-        
-        for (index, smokeTime) in smokeTimeSpam.enumerated() {
-            smokeItems = updateSmokeItems(timespan: smokeTime, selectedIndex: index)
-        }
-        
-        for (index, temperatureHumidityTime) in temperatureHumidityTimeSpam.enumerated() {
-            temperatureHumidityItems = updateTemperatureHumidityItems(timespan: temperatureHumidityTime, selectedIndex: index)
-        }
-    }
 }
-
-//#Preview {
-//    AnalyticsSwiftUIView(, viewAnalytics: <#Binding<Bool>#>)
-//}

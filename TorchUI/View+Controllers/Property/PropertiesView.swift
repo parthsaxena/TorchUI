@@ -27,7 +27,6 @@ struct PropertiesView: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack {
-                
                 if SessionManager.shared.showSplashScreen {
                     LoadingSplashScreen()
                         .onAppear(perform: hideSplashScreen)
@@ -36,9 +35,7 @@ struct PropertiesView: View {
                     VStack {
                         HeadingView()
                             .frame(alignment: .top)
-                        
-                        Spacer()                        
-                            //                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
+                        Spacer()
                         CustomTabBar(selectedTab: $selectedTab)
                             .frame(alignment: .bottom)
                     }
@@ -47,10 +44,7 @@ struct PropertiesView: View {
                     VStack {
                         HeadingView()
                             .frame(alignment: .top)
-                        
                         Spacer()
-                        
-                            //                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
                         CustomTabBar(selectedTab: $selectedTab)
                             .frame(alignment: .bottom)
                     }
@@ -59,10 +53,7 @@ struct PropertiesView: View {
                     VStack {
                         HeadingView()
                             .frame(alignment: .top)
-                        
                         Spacer()
-                        
-                            //                    TabBarView(tabBarItems: tabs, selectedIndex: $selectedIndex)
                         CustomTabBar(selectedTab: $selectedTab)
                             .frame(alignment: .bottom)
                     }

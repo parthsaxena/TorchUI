@@ -16,4 +16,6 @@ class GraphCirclePositionManager {
     var spectralAnalysisCirclePositions: [Int] = []
     var smokeCirclePositions: [Int] = []
     var temperatureHumidityCirclePositions: [Int] = []
+    
+    var graphViewWidth = 0.0
 }

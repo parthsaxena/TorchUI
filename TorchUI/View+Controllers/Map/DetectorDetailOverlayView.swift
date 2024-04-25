@@ -588,7 +588,6 @@ struct DetectorDetailOverlayView: View {
                                             print("View detailed analytics")
                                             isSecondViewActive = true
                                             self.selection = 1
-//                                            SessionManager.shared.appState = .viewAnalytics
                                             viewAnalytics = true
                                         }) {
                                             HStack(alignment: .center, spacing: 8) {
