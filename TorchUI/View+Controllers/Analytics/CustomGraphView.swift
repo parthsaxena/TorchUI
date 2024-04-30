@@ -79,6 +79,7 @@ struct GraphView: View {
                     }
                 }
                 .frame(height: 240)
+                let _ = print("load graph line 1")
                 GraphLine(selectedOption: selectedOption, dataPoints: dataPoints, yAxisRange: yAxisRange, lineColor: lineColor) { point in
                     circlePosition = point
                 }

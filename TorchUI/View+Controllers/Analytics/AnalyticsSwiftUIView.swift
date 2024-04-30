@@ -12,7 +12,7 @@ struct AnalyticsSwiftUIView: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.colorScheme) var colorScheme
     @State var segmentationSelection : AnalyticsTypeSelection = .thermalCameras
-    @State var timespanSelection: AnalyticsTimespanSelection = .oneMonth
+    @State var timespanSelection: AnalyticsTimespanSelection = .oneHour
     
     @State private var thermalCameraItems: [Item] = []
     @State private var spectralAnalysisItems: [Item] = []
@@ -34,22 +34,33 @@ struct AnalyticsSwiftUIView: View {
         let id = SessionManager.shared.properties[propertyIndex].detectors[detectorIndex].id
         let description = "Temperature and time"
         
-        if let lineChartParameter = SessionManager.shared.deviceAnalytics[id]?[timespan.stringSpan]?["ir1_tmax"] {
-            let item = Item(itemName: "Camera 1", itemDescription: description, selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter)
-            list.append(item)
-            GraphCirclePositionManager.shared.termalCameraCirclePositions.append(lineChartParameter.count - 1)
+        let lineChartParameter = SessionManager.shared.deviceAnalytics[id]?[timespan.stringSpan]?["ir1_tmax"]
+        let item = Item(itemName: "Camera 1", itemDescription: description, selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter ?? [])
+        list.append(item)
+        
+        if (lineChartParameter?.count ?? 0) > 0 {
+            GraphCirclePositionManager.shared.termalCameraCirclePositions.append((lineChartParameter?.count ?? 0) - 1)
+        } else {
+            GraphCirclePositionManager.shared.termalCameraCirclePositions.append(0)
         }
         
-        if let lineChartParameter1 = SessionManager.shared.deviceAnalytics[id]?[timespan.stringSpan]?["ir2_tmax"] {
-            let item = Item(itemName: "Camera 2", itemDescription: description, selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter1)
-            list.append(item)
-            GraphCirclePositionManager.shared.termalCameraCirclePositions.append(lineChartParameter1.count - 1)
+        let lineChartParameter1 = SessionManager.shared.deviceAnalytics[id]?[timespan.stringSpan]?["ir2_tmax"]
+        let item1 = Item(itemName: "Camera 2", itemDescription: description, selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter1 ?? [])
+        list.append(item1)
+
+        if (lineChartParameter1?.count ?? 0) > 0 {
+            GraphCirclePositionManager.shared.termalCameraCirclePositions.append((lineChartParameter1?.count ?? 0) - 1)
+        } else {
+            GraphCirclePositionManager.shared.termalCameraCirclePositions.append(0)
         }
         
-        if let lineChartParameter2 = SessionManager.shared.deviceAnalytics[id]?[timespan.stringSpan]?["ir3_tmax"] {
-            let item = Item(itemName: "Camera 3", itemDescription: description, selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter2)
-            list.append(item)
-            GraphCirclePositionManager.shared.termalCameraCirclePositions.append(lineChartParameter2.count - 1)
+        let lineChartParameter2 = SessionManager.shared.deviceAnalytics[id]?[timespan.stringSpan]?["ir3_tmax"]
+        let item3 = Item(itemName: "Camera 3", itemDescription: description, selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter2 ?? [])
+        list.append(item3)
+        if (lineChartParameter2?.count ?? 0) > 0 {
+            GraphCirclePositionManager.shared.termalCameraCirclePositions.append((lineChartParameter2?.count ?? 0) - 1)
+        } else {
+            GraphCirclePositionManager.shared.termalCameraCirclePositions.append(0)
         }
         return list
     }
@@ -75,26 +86,37 @@ struct AnalyticsSwiftUIView: View {
     func getSpectralAnalysisItems(timespan: AnalyticsTimespanSelection) -> [Item] {
         
         var list: [Item] = []
-        if let lineChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb1_pix_abvthl"] {
+        let lineChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb1_pix_abvthl"]
             let item = Item(itemName: "Camera 1", itemDescription: "Pixels above threshold",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart1)
+                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart1 ?? [])
             list.append(item)
-            GraphCirclePositionManager.shared.spectralAnalysisCirclePositions.append(lineChart1.count - 1)
+        
+        if (lineChart1?.count ?? 0) > 0 {
+            GraphCirclePositionManager.shared.spectralAnalysisCirclePositions.append((lineChart1?.count ?? 0) - 1)
+        } else {
+            GraphCirclePositionManager.shared.spectralAnalysisCirclePositions.append(0)
         }
         
-        if let lineChart2 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb2_pix_abvthl"] {
-            let item2 = Item(itemName: "Camera 2", itemDescription: "Pixels above threshold",
-                             selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart2)
-            list.append(item2)
-            GraphCirclePositionManager.shared.spectralAnalysisCirclePositions.append(lineChart2.count - 1)
+        let lineChart2 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb2_pix_abvthl"]
+        let item2 = Item(itemName: "Camera 2", itemDescription: "Pixels above threshold",
+                             selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart2 ?? [])
+        list.append(item2)
+        if (lineChart2?.count ?? 0) > 0 {
+            GraphCirclePositionManager.shared.spectralAnalysisCirclePositions.append((lineChart2?.count ?? 0) - 1)
+        } else {
+            GraphCirclePositionManager.shared.spectralAnalysisCirclePositions.append(0)
         }
         
-        if let lineChart3 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb3_pix_abvthl"] {
-            let item3 = Item(itemName: "Camera 3", itemDescription: "Pixels above threshold",
-                             selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart3)
-            list.append(item3)
-            GraphCirclePositionManager.shared.spectralAnalysisCirclePositions.append(lineChart3.count - 1)
+        let lineChart3 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["rgb3_pix_abvthl"]
+        let item3 = Item(itemName: "Camera 3", itemDescription: "Pixels above threshold",
+                             selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart3 ?? [])
+        list.append(item3)
+        if (lineChart3?.count ?? 0) > 0 {
+            GraphCirclePositionManager.shared.spectralAnalysisCirclePositions.append((lineChart3?.count ?? 0) - 1)
+        } else {
+            GraphCirclePositionManager.shared.spectralAnalysisCirclePositions.append(0)
         }
+    
         return list
     }
     
@@ -119,25 +141,36 @@ struct AnalyticsSwiftUIView: View {
     func getSmokeItems(timespan: AnalyticsTimespanSelection) -> [Item] {
         
         var list: [Item] = []
-        if let lineChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["tgs5141_co"] {
-            let item = Item(itemName: "CO", itemDescription: "Value per time",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart1)
-            list.append(item)
-            GraphCirclePositionManager.shared.smokeCirclePositions.append(lineChart1.count - 1)
+        let lineChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["tgs5141_co"]
+        let item = Item(itemName: "CO", itemDescription: "Value per time", selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart1 ?? [])
+        list.append(item)
+        
+        if (lineChart1?.count ?? 0) > 0 {
+            GraphCirclePositionManager.shared.smokeCirclePositions.append((lineChart1?.count ?? 0) - 1)
+        } else {
+            GraphCirclePositionManager.shared.smokeCirclePositions.append(0)
         }
         
-        if let lineChart2 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["scd41_co2"] {
-            let item2 = Item(itemName: "CO2", itemDescription: "Value per time",
-                             selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart2)
-            list.append(item2)
-            GraphCirclePositionManager.shared.smokeCirclePositions.append(lineChart2.count - 1)
+        let lineChart2 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["scd41_co2"]
+        let item2 = Item(itemName: "CO2", itemDescription: "Value per time",
+                         selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart2 ?? [])
+        list.append(item2)
+        
+        if (lineChart2?.count ?? 0) > 0 {
+            GraphCirclePositionManager.shared.smokeCirclePositions.append((lineChart2?.count ?? 0) - 1)
+        } else {
+            GraphCirclePositionManager.shared.smokeCirclePositions.append(0)
         }
         
-        if let lineChart3 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["sgp40_raw"] {
-            let item3 = Item(itemName: "VOC", itemDescription: "Value per time",
-                             selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart3)
-            list.append(item3)
-            GraphCirclePositionManager.shared.smokeCirclePositions.append(lineChart3.count - 1)
+        let lineChart3 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["sgp40_raw"]
+        let item3 = Item(itemName: "VOC", itemDescription: "Value per time",
+                             selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChart3 ?? [])
+        list.append(item3)
+
+        if (lineChart3?.count ?? 0) > 0 {
+            GraphCirclePositionManager.shared.smokeCirclePositions.append((lineChart3?.count ?? 0) - 1)
+        } else {
+            GraphCirclePositionManager.shared.smokeCirclePositions.append(0)
         }
         return list
     }
@@ -163,18 +196,26 @@ struct AnalyticsSwiftUIView: View {
         
         var list: [Item] = []
         
-        if let lintChart = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["aht20_t"] {
-            let item = Item(itemName: "Temperature", itemDescription: "Temperature and time",
-                            selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lintChart)
-            list.append(item)
-            GraphCirclePositionManager.shared.temperatureHumidityCirclePositions.append(lintChart.count - 1)
+        let lintChart = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["aht20_t"]
+        let item = Item(itemName: "Temperature", itemDescription: "Temperature and time",
+                        selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lintChart ?? [])
+        list.append(item)
+        
+        if (lintChart?.count ?? 0) > 0 {
+            GraphCirclePositionManager.shared.temperatureHumidityCirclePositions.append((lintChart?.count ?? 0) - 1)
+        } else {
+            GraphCirclePositionManager.shared.temperatureHumidityCirclePositions.append(0)
         }
         
-        if let lintChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["aht20_h"] {
-            let item1 = Item(itemName: "Humidity", itemDescription: "Humidity and time",
-                             selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lintChart1)
-            list.append(item1)
-            GraphCirclePositionManager.shared.temperatureHumidityCirclePositions.append(lintChart1.count - 1)
+        let lintChart1 = SessionManager.shared.deviceAnalytics[SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id]?[timespan.stringSpan]?["aht20_h"]
+        let item1 = Item(itemName: "Humidity", itemDescription: "Humidity and time",
+                         selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lintChart1 ?? [])
+        list.append(item1)
+        
+        if (lintChart1?.count ?? 0) > 0 {
+            GraphCirclePositionManager.shared.temperatureHumidityCirclePositions.append((lintChart1?.count ?? 0) - 1)
+        } else {
+            GraphCirclePositionManager.shared.temperatureHumidityCirclePositions.append(0)
         }
         return list
     }

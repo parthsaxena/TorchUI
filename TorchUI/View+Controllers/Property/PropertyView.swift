@@ -51,7 +51,6 @@ struct PropertyView: View, Equatable {
     
     var body: some View {
         let x = print("Property loading: \(self.property.loadingData)")
-        
         HStack {
             if loading {
                 Rectangle()

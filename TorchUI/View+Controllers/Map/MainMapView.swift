@@ -12,7 +12,7 @@ import CodeScanner
 import MapboxMaps
 
 struct MainMapView: View {
-
+    
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     @State private var showingAlert = false
@@ -104,12 +104,12 @@ struct MainMapView: View {
                 ZStack(alignment: .top) {
                     MapboxMapViewWrapper(showDetectorDetails: $showDetectorDetails, zoomLevel: $zoomLevel, selectedDetectorIndex: $selectedDetectorIndex, annotations: $annotations, pin: self.$pin, needsLocationPin: $needsLocationPin, sensorTapped: $sensorTapped, moveToUserTapped: $moveToUserTapped, mapLayerTapped: $mapLayerTapped, zoomChanged: $zoomChanged, mapOffset: $mapOffset.height, dragOffset: $dragOffset, didChangeSensorPosition: $didChangeSensorPosition, isOnSatellite: $isOnSatellite, annotationsStatus: $annotationsStatus)
                         .ignoresSafeArea()
-                        .animation(.easeIn)
+                    //                        .animation(.easeIn)
                     
                     let DETECTOR_MIN_OFFSET = 50.0
                     let PROPERTY_MIN_OFFSET = 75.0
                     let THRESHOLD = 150.0
-                    let ANIMATION_DURATION = 2.0
+                    let ANIMATION_DURATION = 0.20
                     let slideTransition: AnyTransition = AnyTransition.move(edge: .bottom)
                     // Heading saying Set up torch sensors
                     HStack {
@@ -155,7 +155,7 @@ struct MainMapView: View {
                                             print("Gesture: \(gesture.translation), size: \(self.detectorOverlaySize)")
                                             if gesture.translation.height < 0 && self.dragOffset.height > 0 {
                                                 print("Dragging up")
-                                                self.dragOffset.height = (self.detectorOverlaySize.height - DETECTOR_MIN_OFFSET) - fabs(gesture.translation.height)
+                                                self.dragOffset = .zero // gesture.translation // (self.detectorOverlaySize.height - DETECTOR_MIN_OFFSET) - fabs(gesture.translation.height)
                                                 self.mapOffset.height = DETECTOR_MIN_OFFSET + fabs(gesture.translation.height)
                                             } else if gesture.translation.height > 0 && gesture.translation.height <= self.detectorOverlaySize.height {
                                                 print("Dragging down")
@@ -241,15 +241,16 @@ struct MainMapView: View {
                                     DragGesture()
                                         .onChanged { gesture in
                                             if !showDetectorDetails {
-                                                print("Gesture: \(gesture.translation), size: \(self.propertyOverlaySize)")
+                                                //                                                print("Dragging: \(gesture.translation), \(self.propertyOverlaySize)")
                                                 if gesture.translation.height < 0 && self.dragOffset.height > 0 {
                                                     print("Dragging up")
-                                                    self.dragOffset.height = (self.propertyOverlaySize.height - PROPERTY_MIN_OFFSET) - fabs(gesture.translation.height)
+                                                    
+                                                    self.dragOffset = .zero// gesture.translation //(self.propertyOverlaySize.height - PROPERTY_MIN_OFFSET) - fabs(gesture.translation.height)
                                                     self.mapOffset.height = PROPERTY_MIN_OFFSET + fabs(gesture.translation.height)
                                                 } else if gesture.translation.height > 0 && gesture.translation.height <= self.propertyOverlaySize.height {
                                                     print("Dragging down")
                                                     self.dragOffset = gesture.translation
-                                                    self.mapOffset.height = (self.propertyOverlaySize.height - gesture.translation.height)
+                                                    self.mapOffset.height = (self.propertyOverlaySize.height )
                                                 }
                                             }
                                         }
@@ -466,7 +467,7 @@ struct MainMapView: View {
                             }
                             Spacer()
                             Spacer()
-                                .frame(height: self.mapOffset.height - 10)
+                                .frame(height: self.detectorOverlaySize.height + 10)
                         }
                         
                     }  else if isConfirmingLocation {
@@ -518,7 +519,7 @@ struct MainMapView: View {
                             .padding(.trailing, 10)
                             .padding(.bottom, 50)
                             Spacer()
-                                .frame(height: self.mapOffset.height)
+                                .frame(height: self.propertyOverlaySize.height + 10)
                         }
                     }
                     if isCopied {
@@ -556,7 +557,7 @@ struct MainMapView: View {
                 .navigationBarTitle("")
                 .navigationBarItems(
                     trailing: NavigationLink(destination: AnalyticsSwiftUIView(viewAnalytics: $viewAnalytics), isActive: $viewAnalytics) {
-                })
+                    })
             }
         }
         .alert(isPresented: $showingAlert) {

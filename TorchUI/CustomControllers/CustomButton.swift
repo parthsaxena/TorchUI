@@ -27,7 +27,7 @@ struct BackButton: View {
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
                 
-                withAnimation(.easeIn(duration: 2.0)) {
+                withAnimation(.easeIn(duration: 0.75)) {
                     self.dragOffset = .zero
 //                }
 //                withAnimation {

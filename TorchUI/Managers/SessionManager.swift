@@ -25,7 +25,7 @@ final class SessionManager: ObservableObject {
     @Published var selectedDetectorIndex = 0
     
     @Published var newProperty: Property?
-//    @Published var deviceAnalytics: [String : [String: [[String: String]]]] = [:]
+    //    @Published var deviceAnalytics: [String : [String: [[String: String]]]] = [:]
     @Published var deviceAnalytics: [String : [String: [String: [AnalyticDatapoint]]]] = [:]
     
     @Published var lastAppState: AppState? = nil
@@ -73,9 +73,9 @@ final class SessionManager: ObservableObject {
     func dummyUserSetup() {
         let property = Property(id: "0", propertyName: "House in Napa", propertyAddress: "2237 Kamp Court", propertyImage: "Property", detectors: [
             Detector(id: "1", deviceName: "Backyard", deviceBattery: 13.0, measurements: ["fire_rating" : "93","temperature" : "47"], coordinate: CLLocationCoordinate2D(latitude: 37.656434, longitude: -121.972), threat: .Red, spectralStatus: .Yellow, thermalStatus: .Red, smokeStatus: .Green, connected: true, lastTimestamp: Date()),
-//            Detector(id: "1", deviceName: "Backyard", deviceBattery: 13.0,
-//                     measurements: ["fire_rating" : "93"],
-//                     coordinate: CLLocationCoordinate2D(latitude: 37.656434, longitude: -121.972), spectralStatus: .Red, thermalStatus: .Yellow, smokeStatus: .Green),
+            //            Detector(id: "1", deviceName: "Backyard", deviceBattery: 13.0,
+            //                     measurements: ["fire_rating" : "93"],
+            //                     coordinate: CLLocationCoordinate2D(latitude: 37.656434, longitude: -121.972), spectralStatus: .Red, thermalStatus: .Yellow, smokeStatus: .Green),
             Detector(id: "2", deviceName: "Frontyard", deviceBattery: 91.0,
                      measurements: ["fire_rating" : "81"],
                      coordinate: CLLocationCoordinate2D(latitude: 37.655521, longitude: -121.962646), threat: Threat.Red),
@@ -116,17 +116,17 @@ final class SessionManager: ObservableObject {
     
     func createUserData(email: String, deviceToken: String?) {
         // print("Creating user data")
-                
+        
         
         var req = SocketRequest(
             route: "createUserDB",
             data: [
                 "user_id": AuthenticationManager.shared.authUser?.userId ?? "",
                 "email": email
-            ], 
+            ],
             completion: { data in
                 AuthenticationManager.shared.authState = .authenticated
-        })
+            })
         if deviceToken != nil {
             req.data["device_token"] = deviceToken!
         }
@@ -148,29 +148,30 @@ final class SessionManager: ObservableObject {
             completion: { data in
                 
                 guard let result = data["result"] as? [String: Any] else {
-                    
-                    //                DispatchQueue.main.async {
-                    print("couldn't parse:", data)
-                    guard let resultString = data["result"] as? String else {
-                        self.propertiesLoaded = true
-                        return
+                    DispatchQueue.main.async {
+                        print("couldn't parse:", data)
+                        guard let resultString = data["result"] as? String else {
+                            self.propertiesLoaded = true
+                            return
+                        }
+                        
+                        if resultString.contains("properties not found") {
+                            self.propertiesLoaded = true
+                            self.properties = []
+                            self.alerts = []
+                        }
+//                        self.propertiesLoaded = true
                     }
-                    
-                    if resultString.contains("properties not found") {
-                        self.properties = []
-                        self.alerts = []
-                    }
-                    
-                    self.propertiesLoaded = true
                     self.loadUserProperties()
                     //                }
                     return
                 }
                 
                 guard let properties = result["properties"] as? [String : [String: Any]] else {
-                    //                DispatchQueue.main.async {
-                    print("couldn't parse:", data)
-                    self.propertiesLoaded = true
+                    DispatchQueue.main.async {
+                        print("couldn't parse:", data)
+                        self.propertiesLoaded = true
+                    }
                     self.loadUserProperties()
                     //                }
                     return
@@ -187,7 +188,6 @@ final class SessionManager: ObservableObject {
                         self.clearProperties()
                         var deletedProperties = 0
                         for (id, property) in properties {
-                            
                             if (self.deletedProperties.contains(id)) {
                                 deletedProperties += 1
                                 continue
@@ -199,10 +199,10 @@ final class SessionManager: ObservableObject {
                         }
                         
                         self.unparsedProperties = properties.count - deletedProperties
-                        //                    DispatchQueue.main.async {
-                        self.propertiesLoaded = true
-                        self.firstTimeLoaded = true
-                        //                    }
+                        DispatchQueue.main.async {
+                            self.propertiesLoaded = true
+                            self.firstTimeLoaded = true
+                        }
                     }
                 }
                 self.loadUserProperties() // mubashir
@@ -213,10 +213,10 @@ final class SessionManager: ObservableObject {
     }
     
     func uploadNewProperty() {
-
+        
         let userID = AuthenticationManager.shared.authUser?.userId ?? ""
         if let property = self.newProperty {
-        
+            
             let req = SocketRequest(
                 route: "createPropertyDB",
                 data: [
@@ -226,23 +226,23 @@ final class SessionManager: ObservableObject {
                     "property_image": property.propertyImage,
                 ],
                 completion: { data in
-                
-                guard let result = data["result"] as? [String: Any] else {
-                    return
-                }
-                
-                guard let property_id = result["property_id"] as? String else {
-                    return
-                }
-                
-                self.newProperty?.id = property_id
-                if let newProperty = self.newProperty {
-                    self.properties.append(newProperty)
-                }
-                self.properties[self.properties.count - 1].loadingData = true
-                self.selectedPropertyIndex = self.properties.count - 1
-                print("Set property index: \(self.selectedPropertyIndex) \(self.properties.count)")
-            })
+                    
+                    guard let result = data["result"] as? [String: Any] else {
+                        return
+                    }
+                    
+                    guard let property_id = result["property_id"] as? String else {
+                        return
+                    }
+                    
+                    self.newProperty?.id = property_id
+                    if let newProperty = self.newProperty {
+                        self.properties.append(newProperty)
+                    }
+                    self.properties[self.properties.count - 1].loadingData = true
+                    self.selectedPropertyIndex = self.properties.count - 1
+                    print("Set property index: \(self.selectedPropertyIndex) \(self.properties.count)")
+                })
             
             // Send request through socket
             WebSocketManager.shared.sendData(socketRequest: req)
@@ -263,15 +263,15 @@ final class SessionManager: ObservableObject {
             
             let value = try await uploadTask.value
             print("Completed: \(value)")
-//            DispatchQueue.main.async {
-                completion(.success(value))
-//            }
+            //            DispatchQueue.main.async {
+            completion(.success(value))
+            //            }
             
         } catch {
             print("Error: \(error)")
-//            DispatchQueue.main.async {
-                completion(.failure(error))
-//            }
+            //            DispatchQueue.main.async {
+            completion(.failure(error))
+            //            }
         }
     }
     
@@ -279,14 +279,14 @@ final class SessionManager: ObservableObject {
         do {
             let url = try await Amplify.Storage.getURL(key: imageKey)
             print("Completed: \(url)")
-//            DispatchQueue.main.async {
-                completion(.success(url))
-//            }
+            //            DispatchQueue.main.async {
+            completion(.success(url))
+            //            }
         } catch {
             print("Error: \(error)")
-//            DispatchQueue.main.async {
-                completion(.failure(error))
-//            }
+            //            DispatchQueue.main.async {
+            completion(.failure(error))
+            //            }
         }
         
     }
@@ -317,7 +317,7 @@ final class SessionManager: ObservableObject {
                     for j in 0..<self.properties[i].detectors.count {
                         for new_device in devices {
                             if self.properties[i].detectors[j].id == new_device["device_id"] as? String {
-
+                                
                                 let deviceID = new_device["device_id"] as? String ?? ""
                                 let deviceMeasurements = new_device["measurements"] as? [String: Any] ?? [:]
                                 let latitude = new_device["latitude"] as? Double ?? 0.0
@@ -398,7 +398,7 @@ final class SessionManager: ObservableObject {
                                     
                                     if let date = formatter.date(from: timestamp) {
                                         lastTimestamp = date
-                                         print("Converted timestamp from \(timestamp) to \(lastTimestamp)")
+                                        print("Converted timestamp from \(timestamp) to \(lastTimestamp)")
                                         // Now you can use this 'date' object as needed in your app
                                     } else {
                                         // print("Failed to parse date")
@@ -434,12 +434,12 @@ final class SessionManager: ObservableObject {
                                 self.properties[i].detectors[j].measurements["fire_rating"] = fireRating
                                 self.properties[i].detectors[j].measurements["temperature"] = temperature
                                 self.properties[i].detectors[j].measurements["humidity"] = humidity
-//                                self.properties[i].detectors[j].muted = muted
+                                //                                self.properties[i].detectors[j].muted = muted
                                 self.properties[i].detectors[j].irHot = irHot
                                 self.properties[i].detectors[j].spectralStatus = spectralStatus
                                 self.properties[i].detectors[j].smokeStatus = smokeStatus
                                 self.properties[i].detectors[j].thermalStatus = thermalStatus
-//                                self.properties[i].detectors[j].coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                                //                                self.properties[i].detectors[j].coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                                 print("SENS UPDATE SESS \(deviceID) \(self.properties[i].detectors[j].coordinate)")
                                 self.properties[i].detectors[j].deviceBattery = deviceBattery
                                 self.properties[i].detectors[j].irHot = irHot
@@ -453,7 +453,7 @@ final class SessionManager: ObservableObject {
                             }
                         }
                     }
-
+                    
                     for new_device in devices {
                         var found = false
                         for j in 0..<self.properties[i].detectors.count {
@@ -551,7 +551,7 @@ final class SessionManager: ObservableObject {
                                 
                                 if let date = formatter.date(from: timestamp) {
                                     lastTimestamp = date
-                                     print("Converted timestamp from \(timestamp) to \(lastTimestamp)")
+                                    print("Converted timestamp from \(timestamp) to \(lastTimestamp)")
                                     // Now you can use this 'date' object as needed in your app
                                 } else {
                                     // print("Failed to parse date")
@@ -606,7 +606,7 @@ final class SessionManager: ObservableObject {
                             }
                         }
                     }
-
+                    
                     if yellowAlert != nil {
                         alertsAdded = true
                     }
@@ -698,7 +698,7 @@ final class SessionManager: ObservableObject {
                     SessionManager.shared.muteSensor(device_id: detector.id, property_id: property.id)
                     count += 1
                 }
-//                SessionManager.shared.properties[i].muted = true
+                //                SessionManager.shared.properties[i].muted = true
                 print("[MuteProperty] Sent mute requests for \(count) sensors for property_id \(property_id)")
             }
         }
@@ -713,7 +713,7 @@ final class SessionManager: ObservableObject {
                     SessionManager.shared.unmuteSensor(device_id: detector.id, property_id: property.id)
                     count += 1
                 }
-//                SessionManager.shared.properties[i].muted = false
+                //                SessionManager.shared.properties[i].muted = false
                 print("[MuteProperty] Sent unmute requests for \(count) sensors for property_id \(property_id)")
             }
         }
@@ -801,7 +801,7 @@ final class SessionManager: ObservableObject {
     }
     
     func deleteProperty() {
-
+        
         let property_id = self.properties[self.selectedPropertyIndex].id
         let user_id = AuthenticationManager.shared.authUser?.userId ?? ""
         
@@ -813,7 +813,7 @@ final class SessionManager: ObservableObject {
             ],
             completion: { data in
                 print("DeleteProperty: \(data)")
-        })
+            })
         
         // Send request through socket
         WebSocketManager.shared.sendData(socketRequest: req)
@@ -824,16 +824,16 @@ final class SessionManager: ObservableObject {
     }
     
     func deleteDetector() {
-
+        
         let property_id = self.properties[self.selectedPropertyIndex].id
         let device_id = self.properties[self.selectedPropertyIndex].detectors[self.selectedDetectorIndex].id
-
-//        DispatchQueue.main.async {
-            self.deletedDetectors.insert(device_id)
-            print("deleting detector: \(device_id)")
-            self.selectedDetectorIndex -= 1
-            self.properties[self.selectedPropertyIndex].detectors.remove(at: self.selectedDetectorIndex + 1)
-//        }
+        
+        //        DispatchQueue.main.async {
+        self.deletedDetectors.insert(device_id)
+        print("deleting detector: \(device_id)")
+        self.selectedDetectorIndex -= 1
+        self.properties[self.selectedPropertyIndex].detectors.remove(at: self.selectedDetectorIndex + 1)
+        //        }
         
         let req = SocketRequest(
             route: "deleteDevice",
@@ -843,7 +843,7 @@ final class SessionManager: ObservableObject {
             ],
             completion: { data in
                 print("DeleteDetector: \(data)")
-        })
+            })
         
         print("Deleting detector", req)
         
@@ -895,8 +895,8 @@ final class SessionManager: ObservableObject {
                                 ],
                                 completion: { data in
             
-//            detector.sensorIdx = property.detectors.count
-//            self.loadUserProperties()
+            //            detector.sensorIdx = property.detectors.count
+            //            self.loadUserProperties()
             print("UpdateSensor: \(data)")
         })
         // Send request through socket
@@ -929,9 +929,11 @@ final class SessionManager: ObservableObject {
         
         geocoder.geocodeAddressString(address) {
             placemarks, error in
-            guard let placemark = placemarks?.first else { return }
-            let lat = (placemark.location?.coordinate.latitude) ?? 0.0
-            let lon = (placemark.location?.coordinate.longitude) ?? 0.0
+            if error != nil {
+                print("GEOCODER ERROR \(address) \(error?.localizedDescription ?? "unkown error")")
+            }
+            let lat = (placemarks?.first?.location?.coordinate.latitude) ?? 0.0
+            let lon = (placemarks?.first?.location?.coordinate.longitude) ?? 0.0
             
             var parsedProperty = Property(id: id, propertyName: name, propertyAddress: address, propertyImage: image, coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon))
             var sensorIdx = 0
@@ -941,7 +943,7 @@ final class SessionManager: ObservableObject {
             
             for device in devices {
                 sensorIdx += 1
-
+                
                 let deviceID = device["device_id"] as? String
                 let deviceName = device["device_name"] as? String
                 let deviceMeasurements = device["measurements"] as? [String: Any]
@@ -1049,7 +1051,7 @@ final class SessionManager: ObservableObject {
                 detector.smokeStatus = smokeStatus
                 detector.thermalStatus = thermalStatus
                 detector.coordinate = CLLocationCoordinate2D(latitude: latitude ?? 0.0, longitude: longitude ?? 0.0)
-//                print("SENS UPDATE SESS \(deviceID) \(detector.coordinate)")
+                //                print("SENS UPDATE SESS \(deviceID) \(detector.coordinate)")
                 detector.sensorIdx = sensorIdx
                 detector.deviceBattery = deviceBattery
                 self.latestTimestampDict[deviceID ?? ""] = lastTimestamp
@@ -1132,7 +1134,7 @@ final class SessionManager: ObservableObject {
             data: ["device_id" : deviceId],
             completion: { data in
                 print(data)
-        })
+            })
         WebSocketManager.shared.sendData(socketRequest: request)
     }
     
@@ -1142,8 +1144,8 @@ final class SessionManager: ObservableObject {
         for i in 0..<self.properties.count {
             for j in 0..<self.properties[i].detectors.count {
                 let deviceId = self.properties[i].detectors[j].id
-
-//                self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.tenMinutes)
+                
+                //                self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.tenMinutes)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneHour)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneDay)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneWeek)
@@ -1171,10 +1173,10 @@ final class SessionManager: ObservableObject {
                 self.properties[self.selectedPropertyIndex].propertyAddress = propertyAddress
                 self.properties[self.selectedPropertyIndex].propertyImage = propertyImage
                 self.propertyUpdated = true
-        })
+            })
         WebSocketManager.shared.sendData(socketRequest: request)
     }
-
+    
     
     func getDeviceAnalyticsData(deviceId: String, timespan: AnalyticsTimespanSelection) {
         
@@ -1183,7 +1185,7 @@ final class SessionManager: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-
+        
         let endDate = Date()
         if let startDate = Calendar.current.date(byAdding: .second, value: timespan.timeInterval, to: endDate) {
             
@@ -1230,11 +1232,11 @@ final class SessionManager: ObservableObject {
                                 }
                             }
                             
-//                            for _ in parsedMeasurements..<60 {
-//                                data.insert(AnalyticDatapoint(datapoint: 0.0, timestamp: self.getCurrentDateInUTC()), at: 0)
-//                                break
-//                            }
-
+                            //                            for _ in parsedMeasurements..<60 {
+                            //                                data.insert(AnalyticDatapoint(datapoint: 0.0, timestamp: self.getCurrentDateInUTC()), at: 0)
+                            //                                break
+                            //                            }
+                            
                             self.deviceAnalytics[deviceId]?[timespan.stringSpan]?[k] = data
                         }
                     }

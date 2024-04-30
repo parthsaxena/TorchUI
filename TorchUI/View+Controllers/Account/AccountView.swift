@@ -20,7 +20,7 @@ struct AccountView: View {
     @State var accountPassword: String = ""
     
     var body: some View {
-        NavigationView {
+        Group {
             if !authenticationManager.authStateLoaded {
                 PropertiesView()
             } else if authenticationManager.authState == .welcome {

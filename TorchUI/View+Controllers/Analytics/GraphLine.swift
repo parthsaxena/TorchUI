@@ -17,7 +17,7 @@ struct GraphLine: Shape {
    var startPoint: CGFloat = 27.0
    
    func point(for value: CGFloat, at index: Int, in rect: CGRect) -> CGPoint {
-       
+       let _ = print("load graph line 2")
        let totalTimeRange = self.setTotalSeconds(selectedOptions: selectedOption)
        let xAxisLength = rect.width - startPoint
        let x = self.getSecondsIntoDate(dataPoints[index].timestamp, totalSeconds: totalTimeRange)  // CGFloat(index) * xScale
@@ -29,7 +29,7 @@ struct GraphLine: Shape {
    
    func path(in rect: CGRect) -> Path {
        var path = Path()
-       
+       let _ = print("load graph line 3")
        guard dataPoints.count > 1 else { return path }
 
        let yScale = rect.height / 1000
@@ -51,7 +51,7 @@ struct GraphLine: Shape {
    }
    
    func getSecondsIntoDate(_ xAxisAsTime: Date, totalSeconds: CGFloat) -> CGFloat {
-
+       let _ = print("load graph line 4")
        let currentDate = getCurrentDateInUTC()
 
        var dateComponents = DateComponents()
@@ -68,7 +68,7 @@ struct GraphLine: Shape {
    }
    
    func getCurrentDateInUTC() -> Date {
-       
+       let _ = print("load graph line 5")
        let currentDate = Date()
        let localTimeZone = TimeZone.current
        let utcTimeZone = TimeZone(identifier: "UTC")!
@@ -80,7 +80,7 @@ struct GraphLine: Shape {
    }
    
    func body(in rect: CGRect) -> some View {
-       
+       let _ = print("load graph line 6")
        let tapGesture = TapGesture()
            .onEnded { _ in
                let touchLocation = CGPoint(x: 0, y: 0) // Get the touch location
@@ -102,13 +102,13 @@ struct GraphLine: Shape {
    }
    
    func getYCoordinate(for value: CGFloat, in range: ClosedRange<CGFloat>, with height: CGFloat) -> CGFloat {
-       
+       let _ = print("load graph line 7")
        let normalizedValue = (value - range.lowerBound) / (range.upperBound - range.lowerBound)
        return height - normalizedValue * height
    }
    
    func setTotalSeconds(selectedOptions: String) -> Double {
-           
+       let _ = print("load graph line 8")
        if selectedOptions == "10 Min" {
            return 600
        } else if selectedOptions == "1 Hour" {
