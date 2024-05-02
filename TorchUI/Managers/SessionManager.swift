@@ -194,18 +194,21 @@ final class SessionManager: ObservableObject {
                         }
                         self.parseProperty(id: id, property: property)
                     }
+                    print("donezo1")
                     Task {
                         await self.pullDeviceAnalytics(properties: properties)
                     }
-                    
+                    print("donezo2")
                     self.unparsedProperties = properties.count - deletedProperties
                     DispatchQueue.main.async {
+                        print("donezo3")
                         self.propertiesLoaded = true
                         self.firstTimeLoaded = true
+                        print("donezo4 \(self.propertiesLoaded) \(self.unparsedProperties) \(properties.count) \(deletedProperties)")
                     }
                 }
             }
-            self.loadUserProperties() // mubashir
+//            self.loadUserProperties() // mubashir
         })
         
         // Send request through socket
@@ -880,6 +883,199 @@ final class SessionManager: ObservableObject {
         WebSocketManager.shared.sendData(socketRequest: req)
     }
     
+    func subscribeToDevice(device_ids: [String]) {
+        let req = SocketRequest(route: "subscribeToDevice",
+                                data: [
+                                    "device_ids": device_ids
+                                ],
+                                completion: { data in
+            
+            print("SubcribeToDevice: \(data)")
+        })
+        // Send request through socket
+        WebSocketManager.shared.sendData(socketRequest: req)
+        
+        print("SENT SUB: \(req)")
+    }
+    
+    func updateDeviceData(jsonDict: [String: Any]) {
+        guard let message = jsonDict["message"] as? [String: Any],
+              let deviceEUI = message["device_eui"] as? String else {
+            print("Invalid JSON structure")
+            return
+        }
+        
+        print("GOOTT message: \(message)")
+        
+        // Assume SessionManager has a properties array that contains all properties and their devices (detectors)
+        for property_idx in 0..<SessionManager.shared.properties.count {
+            let property = SessionManager.shared.properties[property_idx]
+            for i in 0..<property.detectors.count {
+                let property_id = property.id
+                let detector = property.detectors[i]
+                
+                // Check if this update is for the current detector
+                if detector.id == deviceEUI {
+                    // Update device properties based on JSON data, leaving values unchanged if not present
+                    SessionManager.shared.properties[property_idx].detectors[i].measurements["temperature"] = message["temperature"] as? String ?? SessionManager.shared.properties[property_idx].detectors[i].measurements["temperature"]
+                    SessionManager.shared.properties[property_idx].detectors[i].measurements["humidity"] = message["humidity"] as? String ?? SessionManager.shared.properties[property_idx].detectors[i].measurements["humidity"]
+                    SessionManager.shared.properties[property_idx].detectors[i].thermalStatus = Threat(statusString: message["thermal_status"] as? String) ?? SessionManager.shared.properties[property_idx].detectors[i].thermalStatus
+                    SessionManager.shared.properties[property_idx].detectors[i].spectralStatus = Threat(statusString: message["spectral_status"] as? String) ?? SessionManager.shared.properties[property_idx].detectors[i].spectralStatus
+                    SessionManager.shared.properties[property_idx].detectors[i].smokeStatus = Threat(statusString: message["smoke_status"] as? String) ?? SessionManager.shared.properties[property_idx].detectors[i].smokeStatus
+                    SessionManager.shared.properties[property_idx].detectors[i].threat = Threat(statusString: message["overall_status"] as? String) ?? SessionManager.shared.properties[property_idx].detectors[i].threat
+                    
+                    var deviceBattery = 0.0
+                    var fireRatingNumber = 0
+                    var fireRating = "0"
+                    var lastTimestamp: Date? = nil
+                    var irHot: [[Double]] = []
+                    
+                    if let batteryString = message["battery"] as? String {
+                        deviceBattery = Double(batteryString) ?? 0.0
+                        SessionManager.shared.properties[property_idx].detectors[i].deviceBattery = deviceBattery
+                    }
+                    if let fireRatingString = message["risk_probability"] as? Int {
+//                        fireRatingNumber = Int(Double(fireRatingString) ?? 0)
+                        fireRating = String(fireRatingString)
+                        SessionManager.shared.properties[property_idx].detectors[i].measurements["fire_rating"] = fireRating
+                        
+                        print("GOT FIRE: \(fireRating)")
+                    } else {
+                        print("UNABLE TO GOT FIRE: \(fireRating)")
+                    }
+                    
+                    if let irHotTmp = message["ir_hot"] as? [[Double]] {
+                        irHot = irHotTmp
+                        SessionManager.shared.properties[property_idx].detectors[i].irHot = irHot
+                        print("Got irHot: \(irHot) for device id \(deviceEUI)")
+                    }
+                    
+                    if let timeString = message["sensor_time"] as? String {
+                        let timestamp = String(timeString)
+                        
+                        let formatter = DateFormatter()
+                        formatter.timeZone = TimeZone(abbreviation: "UTC")
+                        
+                        // Set the format to match your timestamp
+                        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSSSSS"
+                        
+                        if let date = formatter.date(from: timestamp) {
+                            lastTimestamp = date
+                            self.latestTimestampDict[deviceEUI] = lastTimestamp
+                             print("Converted timestamp from \(timestamp) to \(lastTimestamp)")
+                            // Now you can use this 'date' object as needed in your app
+                        } else {
+                            // print("Failed to parse date")
+                        }
+                        
+                    }
+                    
+                    var redAlert: AlertModel? = nil
+                    var yellowAlert: AlertModel? = nil
+                    var propertyStatus = "All sensors are normal"
+                    if let overallStatusString = message["overall_status"] as? String {
+                        let tmp = String(overallStatusString)
+                        // print("[OverallStatusString] \(tmp)")
+                        if tmp == "YELLOW" {
+//                            overallStatus = Threat.Yellow
+                            propertyStatus = "Warning"
+                            yellowAlert = AlertModel(property: SessionManager.shared.properties[property_idx], detector: SessionManager.shared.properties[property_idx].detectors[i], threat: Threat.Yellow)
+                        }
+                        if tmp == "RED" {
+                            propertyStatus = "Red alert"
+                            redAlert = AlertModel(property: SessionManager.shared.properties[property_idx], detector: SessionManager.shared.properties[property_idx].detectors[i], threat: Threat.Red)
+                        }
+                        if tmp == "GREEN" {
+                            for (idx, alert) in self.alerts.enumerated() {
+                                let alert_prop_id = alert.property.id
+                                if SessionManager.shared.properties[property_idx].id == alert_prop_id {
+                                    self.alerts.remove(at: idx)
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Show red alert, if none then show yellow alert
+                    if redAlert != nil {
+                        
+//                        redAlert?.property = self.properties[i]
+                        
+                        var flag = true
+                        for (idx, alert) in self.alerts.enumerated() {
+                            let alert_prop_id = alert.property.id
+                            if redAlert?.property.id == alert_prop_id {
+                                flag = false
+                                
+                                if let redAlert = redAlert, redAlert.threat != alert.threat {
+                                    self.alerts.remove(at: idx)
+                                    self.alerts.append(redAlert);
+                                }
+                                break
+                            }
+                        }
+                        
+                        if flag {
+                            if let redAlert = redAlert {
+                                self.alerts.append(redAlert)
+                            }
+                        }
+                    } else if var yellowAlert = yellowAlert {
+//                        yellowAlert.property = self.properties[i]
+                        
+                        var flag = true
+                        for (idx, alert) in self.alerts.enumerated() {
+                            let alert_prop_id = alert.property.id
+                            if yellowAlert.property.id == alert_prop_id {
+                                flag = false
+                                
+                                if yellowAlert.threat != alert.threat {
+                                    self.alerts.remove(at: idx)
+                                    self.alerts.append(yellowAlert)
+                                }
+                                
+                                break
+                            }
+                        }
+                        
+                        if flag {
+                            self.alerts.append(yellowAlert)
+                        }
+                    }
+                    
+//                    var redFlag = false
+//                    var yellowFlag = false
+//                    if let overallStatusString = message["overall_status"] as? String {
+//                        let tmp = String(overallStatusString)
+//                        // print("[OverallStatusString] \(tmp)")
+//                        if tmp == "YELLOW" {
+////                            overallStatus = Threat.Yellow
+//                            propertyStatus = "Warning"
+//                            yellowFlag = true
+//                        } else if tmp == "RED" {
+////                            overallStatus = Threat.Red
+//                            propertyStatus = "Red alert"
+//                            redFlag = true
+//                        }
+//                    }
+//                    
+//                    if redFlag {
+//                        redAlert = AlertModel(property: self.properties[i], detector: self.properties[i].detectors[j], threat: Threat.Red)
+//                        self.properties[property_idx].threat = Threat.Red
+//                        //                                    print("RED FLAG TRUE")
+//                    }
+//                    if yellowFlag {
+//                        yellowAlert = AlertModel(property: self.properties[i], detector: self.properties[i].detectors[j], threat: Threat.Yellow)
+//                        self.properties[property_idx].threat = Threat.Yellow
+//                        //                                    print("YELLOW FLAG TRUE")
+//                    }
+                    
+                    print("Updated detector \(detector.id) with new data")
+                    break
+                }
+            }
+        }
+    }
+    
     func updateSensor(property_id: String, device_id: String, coordinate: CLLocationCoordinate2D?, deviceName: String?) {
         // print("Registering new device")
         
@@ -929,9 +1125,11 @@ final class SessionManager: ObservableObject {
         
         geocoder.geocodeAddressString(address) {
             placemarks, error in
-            guard let placemark = placemarks?.first else { return }
-            let lat = (placemark.location?.coordinate.latitude) ?? 0.0
-            let lon = (placemark.location?.coordinate.longitude) ?? 0.0
+            if error != nil {
+                print("GEOCODER ERROR \(address) \(error?.localizedDescription)")
+            }
+            let lat = (placemarks?.first?.location?.coordinate.latitude) ?? 0.0
+            let lon = (placemarks?.first?.location?.coordinate.longitude) ?? 0.0
             
             var parsedProperty = Property(id: id, propertyName: name, propertyAddress: address, propertyImage: image, coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon))
             var sensorIdx = 0
@@ -939,6 +1137,7 @@ final class SessionManager: ObservableObject {
             var yellowAlert: AlertModel? = nil
             var propertyStatus = "All sensors are normal"
             
+            var device_ids: [String] = []
             for device in devices {
                 sensorIdx += 1
 
@@ -1063,7 +1262,9 @@ final class SessionManager: ObservableObject {
                     yellowAlert = AlertModel(property: parsedProperty, detector: detector, threat: Threat.Yellow)
                 }
                 parsedProperty.detectors.append(detector)
+                device_ids.append(detector.id)
             }
+            self.subscribeToDevice(device_ids: device_ids)
             
             // Show red alert, if none then show yellow alert
             if var redAlert = redAlert {
@@ -1076,6 +1277,8 @@ final class SessionManager: ObservableObject {
             self.properties.append(parsedProperty)
             self.unparsedProperties -= 1
         }
+        
+        print("donezo4")
     }
     
     func checkRedAlert(property: Property) {
@@ -1252,5 +1455,21 @@ final class SessionManager: ObservableObject {
         let interval = TimeInterval(utcOffset - currentOffset)
         let utcDate = currentDate.addingTimeInterval(interval)
         return utcDate
+    }
+}
+
+extension Threat {
+    init?(statusString: String?) {
+        guard let statusString = statusString else { return nil }
+        switch statusString {
+        case "GREEN":
+            self = .Green
+        case "YELLOW":
+            self = .Yellow
+        case "RED":
+            self = .Red
+        default:
+            return nil
+        }
     }
 }
