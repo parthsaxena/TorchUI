@@ -471,6 +471,7 @@ struct MainMapView: View {
                         }
                         
                     }  else if isConfirmingLocation {
+                        let x = print("isConfirmingLocation")
                         AddDetectorConfirmLocationOverlayView(size: $detectorOverlaySize, annotations: $annotations, pin: $pin, newDetector: $newDetector, isConfirmingLocation: $isConfirmingLocation, needsLocationPin: $needsLocationPin, newDetectorIndex: self.$newDetectorIndex, isNickName: $isNickName)
                     } else if !hideOverlay {
                         
@@ -546,6 +547,7 @@ struct MainMapView: View {
                     }
                     
                     if isNickName {
+                        let x = print("showing isNickname")
                         NickNameUIView(name: $name, isNickName: $isNickName, newDetector: $newDetector)
                     }
                     

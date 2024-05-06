@@ -125,12 +125,14 @@ struct NickNameUIView: View {
                             for i in 0..<SessionManager.shared.newProperty!.detectors.count {
                                 if SessionManager.shared.newProperty!.detectors[i].selected {
                                     SessionManager.shared.newProperty!.detectors[i].deviceName = binding.wrappedValue
+//                                    SessionManager.shared.subscribeToDevice(device_ids: [SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id])
                                 }
                             }
 //                            SessionManager.shared.newProperty!.detectors[SessionManager.shared.newProperty!.detectors.count - 1].deviceName = binding.wrappedValue
                         } else {
                             SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].deviceName = binding.wrappedValue
                             SessionManager.shared.updateSensor(property_id: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].id, device_id: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id, coordinate: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].coordinate, deviceName: binding.wrappedValue)
+                            SessionManager.shared.subscribeToDevice(device_ids: [SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].detectors[SessionManager.shared.selectedDetectorIndex].id])
                         }
                     }
                 }) {

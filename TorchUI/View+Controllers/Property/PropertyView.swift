@@ -210,6 +210,8 @@ struct PropertyView: View, Equatable {
                 }
             }
         }
+        .alignmentGuide(.listRowSeparatorLeading) { d in d[.leading] - 20 }
+        .alignmentGuide(.listRowSeparatorTrailing) { d in d[.trailing] + 20 }
     }
 }
 

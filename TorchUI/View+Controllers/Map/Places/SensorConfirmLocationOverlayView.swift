@@ -158,6 +158,7 @@ struct SensorConfirmLocationOverlayView: View {
                 }
             }
             
+            print("REGISTER!!!!111")
             self.markers.append(sensorMarker)
             self.isConfirmingLocation = false
             self.isNickName = true

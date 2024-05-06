@@ -42,6 +42,8 @@ class WebSocketManager {
     
     func sendData(socketRequest: SocketRequest) {
         
+        print("XXXXYYYY: \(socketRequest)")
+        
         let requestID = generateRequestID()
         requests[requestID] = socketRequest
         
@@ -130,6 +132,7 @@ extension WebSocketManager: WebSocketDelegate {
     func loadConnectedCase() {
         
         isConnected = true
+        
         for (id, request) in requests {
             self.requests.removeValue(forKey: id)
             self.sendData(socketRequest: request)
@@ -142,17 +145,36 @@ extension WebSocketManager: WebSocketDelegate {
             if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) {
                 
                 let jsonDict = jsonObject as? [String: Any] ?? [:]
-                guard let requestID = jsonDict["request_id"] as? String else {
-                    return
+//                print("XXXXYYYY1: \(jsonObject)")
+                
+                guard let type = jsonDict["type"] as? String else {
+                    print("got jsonDict1")
+                    return handleResponse(jsonDict: jsonDict)
                 }
-                if self.requests.keys.contains(requestID) {
-                    guard let completion = self.requests[requestID]?.completion else {
-                        return
-                    }
-                    self.requests.removeValue(forKey: requestID)
-                    completion(jsonDict)
+                
+                if (type == "backend") {
+                    print("updating backend device data")
+                    SessionManager.shared.updateDeviceData(jsonDict: jsonDict)
+                } else {
+                    return handleResponse(jsonDict: jsonDict)
                 }
             }
+        }
+    }
+    
+    func handleResponse(jsonDict: [String : Any]) {
+        print("Handling response....")
+        
+        guard let requestID = jsonDict["request_id"] as? String else {
+            return
+        }
+        if self.requests.keys.contains(requestID) {
+            guard let completion = self.requests[requestID]?.completion else {
+                return
+            }
+            self.requests.removeValue(forKey: requestID)
+//            print("XXXXYYYY1: \(requestID): \(jsonDict)")
+            completion(jsonDict)
         }
     }
 }
