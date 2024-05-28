@@ -57,6 +57,16 @@
 		8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */; };
 		C827EA4C2B146935009E6EC8 /* SocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4B2B146935009E6EC8 /* SocketRequest.swift */; };
 		C827EA502B234571009E6EC8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4F2B234571009E6EC8 /* LocationManager.swift */; };
+		C83F8EDA2BE1838B00CA6700 /* TabBarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83F8ED92BE1838B00CA6700 /* TabBarsView.swift */; };
+		C83F8EE32BE1844E00CA6700 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83F8EE22BE1844E00CA6700 /* HomeView.swift */; };
+		C83F8EE92BE184C100CA6700 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83F8EE82BE184C100CA6700 /* NotificationsView.swift */; };
+		C83F8EEB2BE184D100CA6700 /* TorchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83F8EEA2BE184D100CA6700 /* TorchView.swift */; };
+		C83F8EED2BE184EC00CA6700 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83F8EEC2BE184EC00CA6700 /* SettingsView.swift */; };
+		C840D2532BE5909400373C57 /* AddSensorOrPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840D2522BE5909400373C57 /* AddSensorOrPropertyView.swift */; };
+		C840D2552BE6E5CC00373C57 /* EmptyPropertyOrSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840D2542BE6E5CB00373C57 /* EmptyPropertyOrSensorView.swift */; };
+		C840D2582BE95FF400373C57 /* PropertyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840D2572BE95FF400373C57 /* PropertyCard.swift */; };
+		C840D25A2BEAB9BE00373C57 /* SensorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840D2592BEAB9BE00373C57 /* SensorCard.swift */; };
+		C840D25D2BF69DD800373C57 /* CircleGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840D25C2BF69DD700373C57 /* CircleGridView.swift */; };
 		C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */; };
 		C855B54B2B10883F007DA332 /* PropertyIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C855B4EB2B10883D007DA332 /* PropertyIconView.xib */; };
 		C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */; };
@@ -132,6 +142,8 @@
 		C855B5922B10883F007DA332 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5482B10883F007DA332 /* CustomButton.swift */; };
 		C855B5932B10883F007DA332 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5492B10883F007DA332 /* CustomColors.swift */; };
 		C855B5952B11100A007DA332 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B5942B11100A007DA332 /* Strings.swift */; };
+		C85A41F32BFD66A4000811EC /* SwipeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85A41F22BFD66A3000811EC /* SwipeItem.swift */; };
+		C85A41F52BFE896B000811EC /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85A41F42BFE896B000811EC /* PickerView.swift */; };
 		C864BE9C2B3C53660078C742 /* DropDownUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE952B3C53660078C742 /* DropDownUIView.swift */; };
 		C864BE9D2B3C53660078C742 /* SegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE972B3C53660078C742 /* SegmentView.swift */; };
 		C864BE9E2B3C53660078C742 /* ScrollableSegmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE982B3C53660078C742 /* ScrollableSegmentsView.swift */; };
@@ -139,6 +151,7 @@
 		C864BEA02B3C53660078C742 /* AnalyticsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */; };
 		C864BEA32B3C54EF0078C742 /* LineChartView in Frameworks */ = {isa = PBXBuildFile; productRef = C864BEA22B3C54EF0078C742 /* LineChartView */; };
 		C86FD6D02B9B2AD1009C3E6E /* GraphCirclePostionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */; };
+		C87EFB822BE2CBDB00225431 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87EFB812BE2CBDB00225431 /* GoogleMapView.swift */; };
 		C88417C32B55CDD0005A9DDB /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88417C22B55CDD0005A9DDB /* Double+Extension.swift */; };
 		C89489EC2BD6EF2A00B013B3 /* AnalyticsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89489EB2BD6EF2A00B013B3 /* AnalyticsDataManager.swift */; };
 		C89489EE2BD6F77700B013B3 /* GraphLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89489ED2BD6F77700B013B3 /* GraphLine.swift */; };
@@ -219,6 +232,16 @@
 		BDC8B38A611960186AF756AE /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C827EA4B2B146935009E6EC8 /* SocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRequest.swift; sourceTree = "<group>"; };
 		C827EA4F2B234571009E6EC8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		C83F8ED92BE1838B00CA6700 /* TabBarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarsView.swift; sourceTree = "<group>"; };
+		C83F8EE22BE1844E00CA6700 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C83F8EE82BE184C100CA6700 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		C83F8EEA2BE184D100CA6700 /* TorchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorchView.swift; sourceTree = "<group>"; };
+		C83F8EEC2BE184EC00CA6700 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C840D2522BE5909400373C57 /* AddSensorOrPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSensorOrPropertyView.swift; sourceTree = "<group>"; };
+		C840D2542BE6E5CB00373C57 /* EmptyPropertyOrSensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPropertyOrSensorView.swift; sourceTree = "<group>"; };
+		C840D2572BE95FF400373C57 /* PropertyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCard.swift; sourceTree = "<group>"; };
+		C840D2592BEAB9BE00373C57 /* SensorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorCard.swift; sourceTree = "<group>"; };
+		C840D25C2BF69DD700373C57 /* CircleGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGridView.swift; sourceTree = "<group>"; };
 		C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPropertiesView.swift; sourceTree = "<group>"; };
 		C855B4EB2B10883D007DA332 /* PropertyIconView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyIconView.xib; sourceTree = "<group>"; };
 		C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPropertiesView.swift; sourceTree = "<group>"; };
@@ -294,12 +317,15 @@
 		C855B5482B10883F007DA332 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		C855B5492B10883F007DA332 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		C855B5942B11100A007DA332 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		C85A41F22BFD66A3000811EC /* SwipeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeItem.swift; sourceTree = "<group>"; };
+		C85A41F42BFE896B000811EC /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		C864BE952B3C53660078C742 /* DropDownUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownUIView.swift; sourceTree = "<group>"; };
 		C864BE972B3C53660078C742 /* SegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentView.swift; sourceTree = "<group>"; };
 		C864BE982B3C53660078C742 /* ScrollableSegmentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentsView.swift; sourceTree = "<group>"; };
 		C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsSwiftUIView.swift; sourceTree = "<group>"; };
 		C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsCellView.swift; sourceTree = "<group>"; };
 		C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCirclePostionManager.swift; sourceTree = "<group>"; };
+		C87EFB812BE2CBDB00225431 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		C88417C22B55CDD0005A9DDB /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		C89489EB2BD6EF2A00B013B3 /* AnalyticsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsDataManager.swift; sourceTree = "<group>"; };
 		C89489ED2BD6F77700B013B3 /* GraphLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLine.swift; sourceTree = "<group>"; };
@@ -507,9 +533,101 @@
 			name = AmplifyConfig;
 			sourceTree = "<group>";
 		};
+		C83F8ED52BE182D800CA6700 /* NewDesign */ = {
+			isa = PBXGroup;
+			children = (
+				C83F8ED62BE182E400CA6700 /* TabBarView */,
+			);
+			path = NewDesign;
+			sourceTree = "<group>";
+		};
+		C83F8ED62BE182E400CA6700 /* TabBarView */ = {
+			isa = PBXGroup;
+			children = (
+				C83F8EE12BE1843A00CA6700 /* Home */,
+				C83F8EE42BE1847400CA6700 /* Notifications */,
+				C83F8EE52BE1848300CA6700 /* Torch */,
+				C83F8EE62BE1848F00CA6700 /* Analytics */,
+				C83F8EE72BE1849C00CA6700 /* Settings */,
+				C83F8ED92BE1838B00CA6700 /* TabBarsView.swift */,
+			);
+			path = TabBarView;
+			sourceTree = "<group>";
+		};
+		C83F8EE12BE1843A00CA6700 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C840D25B2BF69DB800373C57 /* CustomViews */,
+				C840D2562BE95F1700373C57 /* Cell */,
+				C840D2512BE5904D00373C57 /* AddSensorOrProperty */,
+				C83F8EE22BE1844E00CA6700 /* HomeView.swift */,
+				C85A41F42BFE896B000811EC /* PickerView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C83F8EE42BE1847400CA6700 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				C83F8EE82BE184C100CA6700 /* NotificationsView.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		C83F8EE52BE1848300CA6700 /* Torch */ = {
+			isa = PBXGroup;
+			children = (
+				C83F8EEA2BE184D100CA6700 /* TorchView.swift */,
+			);
+			path = Torch;
+			sourceTree = "<group>";
+		};
+		C83F8EE62BE1848F00CA6700 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		C83F8EE72BE1849C00CA6700 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C83F8EEC2BE184EC00CA6700 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		C840D2512BE5904D00373C57 /* AddSensorOrProperty */ = {
+			isa = PBXGroup;
+			children = (
+				C840D2522BE5909400373C57 /* AddSensorOrPropertyView.swift */,
+				C840D2542BE6E5CB00373C57 /* EmptyPropertyOrSensorView.swift */,
+			);
+			path = AddSensorOrProperty;
+			sourceTree = "<group>";
+		};
+		C840D2562BE95F1700373C57 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C840D2572BE95FF400373C57 /* PropertyCard.swift */,
+				C840D2592BEAB9BE00373C57 /* SensorCard.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C840D25B2BF69DB800373C57 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				C840D25C2BF69DD700373C57 /* CircleGridView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		C855B4E82B10883D007DA332 /* View+Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C87EFB802BE2CBB100225431 /* TestMapViewWithBottomSheet */,
+				C83F8ED52BE182D800CA6700 /* NewDesign */,
 				C855B4E92B10883D007DA332 /* Property */,
 				C855B4FB2B10883E007DA332 /* Heading */,
 				C855B4FD2B10883E007DA332 /* TabBar */,
@@ -778,6 +896,7 @@
 				C855B5472B10883F007DA332 /* Enums.swift */,
 				C855B5482B10883F007DA332 /* CustomButton.swift */,
 				C855B5492B10883F007DA332 /* CustomColors.swift */,
+				C85A41F22BFD66A3000811EC /* SwipeItem.swift */,
 				C855B5942B11100A007DA332 /* Strings.swift */,
 			);
 			path = CustomControllers;
@@ -820,6 +939,14 @@
 				C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		C87EFB802BE2CBB100225431 /* TestMapViewWithBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				C87EFB812BE2CBDB00225431 /* GoogleMapView.swift */,
+			);
+			path = TestMapViewWithBottomSheet;
 			sourceTree = "<group>";
 		};
 		C8B50EEA2B618DCF001059F9 /* NickName */ = {
@@ -1175,6 +1302,7 @@
 				C855B5782B10883F007DA332 /* AccountCompanyNameView.swift in Sources */,
 				C855B5702B10883F007DA332 /* MapboxPlaceSensorViewController.swift in Sources */,
 				C855B57B2B10883F007DA332 /* TorchUIApp.swift in Sources */,
+				C840D25A2BEAB9BE00373C57 /* SensorCard.swift in Sources */,
 				C855B57E2B10883F007DA332 /* AppDelegate.swift in Sources */,
 				C855B5892B10883F007DA332 /* PropertyAddressViewModel.swift in Sources */,
 				C855B5632B10883F007DA332 /* SensorIconView.swift in Sources */,
@@ -1196,6 +1324,8 @@
 				C855B54D2B10883F007DA332 /* SearchResultView.swift in Sources */,
 				C855B5752B10883F007DA332 /* AccountVerificationCodeView.swift in Sources */,
 				C855B5862B10883F007DA332 /* View+Extension.swift in Sources */,
+				C840D2532BE5909400373C57 /* AddSensorOrPropertyView.swift in Sources */,
+				C840D2552BE6E5CC00373C57 /* EmptyPropertyOrSensorView.swift in Sources */,
 				C864BE9C2B3C53660078C742 /* DropDownUIView.swift in Sources */,
 				C855B5832B10883F007DA332 /* UIImage+Extension.swift in Sources */,
 				C855B5872B10883F007DA332 /* City.swift in Sources */,
@@ -1207,9 +1337,12 @@
 				C855B56C2B10883F007DA332 /* MapboxMap.swift in Sources */,
 				C855B58E2B10883F007DA332 /* ViewSize.swift in Sources */,
 				C855B56B2B10883F007DA332 /* DetectorDetailOverlayView.swift in Sources */,
+				C85A41F52BFE896B000811EC /* PickerView.swift in Sources */,
+				C83F8EE92BE184C100CA6700 /* NotificationsView.swift in Sources */,
 				8B6AFDB82B4A8F1900433051 /* ActiveSensorView.swift in Sources */,
 				C855B5532B10883F007DA332 /* PropertyAddressView.swift in Sources */,
 				30ACFC1A2B44220A007BCC22 /* ScalingDotsIndicatorView.swift in Sources */,
+				C83F8EDA2BE1838B00CA6700 /* TabBarsView.swift in Sources */,
 				8BAE82C72B4B6699000F3D1C /* LeftActiveSensorView.swift in Sources */,
 				C855B5612B10883F007DA332 /* MapViewController.swift in Sources */,
 				C89489F02BD6F7D900B013B3 /* ToastView.swift in Sources */,
@@ -1221,9 +1354,13 @@
 				C855B55A2B10883F007DA332 /* HeadingView.swift in Sources */,
 				C855B5662B10883F007DA332 /* SensorConfirmLocationOverlayView.swift in Sources */,
 				C864BEA02B3C53660078C742 /* AnalyticsCellView.swift in Sources */,
+				C840D25D2BF69DD800373C57 /* CircleGridView.swift in Sources */,
+				C87EFB822BE2CBDB00225431 /* GoogleMapView.swift in Sources */,
 				30ACFC1F2B44220A007BCC22 /* EqualizerIndicatorView.swift in Sources */,
 				C855B55A2B10883F007DA332 /* HeadingView.swift in Sources */,
+				C83F8EEB2BE184D100CA6700 /* TorchView.swift in Sources */,
 				C855B5662B10883F007DA332 /* SensorConfirmLocationOverlayView.swift in Sources */,
+				C83F8EED2BE184EC00CA6700 /* SettingsView.swift in Sources */,
 				30ACFC1E2B44220A007BCC22 /* RotatingDotsIndicatorView.swift in Sources */,
 				C855B5672B10883F007DA332 /* PlaceSensorView.swift in Sources */,
 				C855B5502B10883F007DA332 /* PropertyView.swift in Sources */,
@@ -1241,8 +1378,10 @@
 				C855B5812B10883F007DA332 /* SessionManager.swift in Sources */,
 				C855B5692B10883F007DA332 /* AddDetectorConfirmLocationOverlayView.swift in Sources */,
 				C855B55B2B10883F007DA332 /* TabBarItemView.swift in Sources */,
+				C85A41F32BFD66A4000811EC /* SwipeItem.swift in Sources */,
 				C89489EE2BD6F77700B013B3 /* GraphLine.swift in Sources */,
 				C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */,
+				C83F8EE32BE1844E00CA6700 /* HomeView.swift in Sources */,
 				30ACFC192B44220A007BCC22 /* OpacityDotsIndicatorView.swift in Sources */,
 				C8B50EEC2B618DF8001059F9 /* NickNameUIView.swift in Sources */,
 				30ACFC1D2B44220A007BCC22 /* DefaultIndicatorView.swift in Sources */,
@@ -1258,6 +1397,7 @@
 				C855B55D2B10883F007DA332 /* VisualEffectView.swift in Sources */,
 				C855B5802B10883F007DA332 /* WebSocketManager.swift in Sources */,
 				C855B5922B10883F007DA332 /* CustomButton.swift in Sources */,
+				C840D2582BE95FF400373C57 /* PropertyCard.swift in Sources */,
 				C855B5742B10883F007DA332 /* LoginView.swift in Sources */,
 				C855B5582B10883F007DA332 /* AddPropertySheetView.swift in Sources */,
 				C855B5792B10883F007DA332 /* AccountPasswordView.swift in Sources */,

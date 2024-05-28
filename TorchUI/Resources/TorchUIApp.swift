@@ -25,9 +25,9 @@ struct TorchUIApp: App {
             case .login:
                 AccountView()
             case .authenticated:
-                AccountView()
+                TabBarsView()
             default:
-                AccountView()
+                TabBarsView()
             }
         }
     }

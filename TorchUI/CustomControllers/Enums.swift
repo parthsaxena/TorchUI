@@ -7,6 +7,13 @@
 
 import Foundation
 
+enum PropertyStates {
+    case highAlert
+    case warning
+    case normal
+    case disable
+}
+
 struct AnalyticDatapoint: Hashable {
     var datapoint: CGFloat
     var timestamp: Date

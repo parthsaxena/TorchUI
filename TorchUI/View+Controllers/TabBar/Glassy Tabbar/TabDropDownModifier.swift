@@ -41,10 +41,10 @@ public struct DropShadowModifier: ViewModifier {
                         content.opacity(opacity)
                     }
                 }
-                    .padding(.horizontal, -spread.width / 2)
-                    .padding(.vertical, -spread.height / 2)
-                    .offset(x: offset.x, y: offset.y)
-                    .blur(radius: radius)
+                .padding(.horizontal, -spread.width / 2)
+                .padding(.vertical, -spread.height / 2)
+                .offset(x: offset.x, y: offset.y)
+                .blur(radius: radius)
             )
     }
 }
