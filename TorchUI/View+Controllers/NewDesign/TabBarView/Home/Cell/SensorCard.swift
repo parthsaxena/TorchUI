@@ -116,7 +116,6 @@ struct SensorCard: View {
     }
     
     func onAppearSetup() {
-        self.textImage = self.textToImage(text: "12")
         
         if propertyState == .normal {
             self.titleColor = CustomColors.darkGray
@@ -137,6 +136,7 @@ struct SensorCard: View {
             self.imageBackgroundColor = CustomColors.torchDardRed
             self.imageBorderColor = CustomColors.torchDardRed
         }
+        self.textImage = self.textToImage(text: "12")
     }
     
     func textToImage(text: String) -> UIImage {

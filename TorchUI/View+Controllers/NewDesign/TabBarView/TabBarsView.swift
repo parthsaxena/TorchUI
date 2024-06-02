@@ -49,6 +49,7 @@ struct TabBarsView: View {
             UITabBar.appearance().backgroundColor = UIColor(CustomColors.tabBarBackground.opacity(0.7))
             UITabBar.appearance().barTintColor = UIColor(CustomColors.tabBarBackground.opacity(0.7))
             UITabBar.appearance().unselectedItemTintColor = UIColor(CustomColors.darkGray)
+            UITabBar.appearance().selectionIndicatorImage = nil
         }
     }
 }

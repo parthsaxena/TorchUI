@@ -67,6 +67,11 @@
 		C840D2582BE95FF400373C57 /* PropertyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840D2572BE95FF400373C57 /* PropertyCard.swift */; };
 		C840D25A2BEAB9BE00373C57 /* SensorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840D2592BEAB9BE00373C57 /* SensorCard.swift */; };
 		C840D25D2BF69DD800373C57 /* CircleGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840D25C2BF69DD700373C57 /* CircleGridView.swift */; };
+		C85535A12C08A3B100B8AC14 /* CustomShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85535A02C08A3B100B8AC14 /* CustomShapes.swift */; };
+		C85535A32C08A42300B8AC14 /* SearchableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85535A22C08A42300B8AC14 /* SearchableList.swift */; };
+		C85535A52C09126300B8AC14 /* SwipeActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85535A42C09126300B8AC14 /* SwipeActionsView.swift */; };
+		C85535A72C09165400B8AC14 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85535A62C09165400B8AC14 /* EmptyListView.swift */; };
+		C85535A92C09168800B8AC14 /* HomeHeadertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85535A82C09168800B8AC14 /* HomeHeadertView.swift */; };
 		C855B54A2B10883F007DA332 /* LoadingPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */; };
 		C855B54B2B10883F007DA332 /* PropertyIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C855B4EB2B10883D007DA332 /* PropertyIconView.xib */; };
 		C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */; };
@@ -242,6 +247,11 @@
 		C840D2572BE95FF400373C57 /* PropertyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCard.swift; sourceTree = "<group>"; };
 		C840D2592BEAB9BE00373C57 /* SensorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorCard.swift; sourceTree = "<group>"; };
 		C840D25C2BF69DD700373C57 /* CircleGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGridView.swift; sourceTree = "<group>"; };
+		C85535A02C08A3B100B8AC14 /* CustomShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapes.swift; sourceTree = "<group>"; };
+		C85535A22C08A42300B8AC14 /* SearchableList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableList.swift; sourceTree = "<group>"; };
+		C85535A42C09126300B8AC14 /* SwipeActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionsView.swift; sourceTree = "<group>"; };
+		C85535A62C09165400B8AC14 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
+		C85535A82C09168800B8AC14 /* HomeHeadertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeadertView.swift; sourceTree = "<group>"; };
 		C855B4EA2B10883D007DA332 /* LoadingPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPropertiesView.swift; sourceTree = "<group>"; };
 		C855B4EB2B10883D007DA332 /* PropertyIconView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyIconView.xib; sourceTree = "<group>"; };
 		C855B4EC2B10883D007DA332 /* NoPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPropertiesView.swift; sourceTree = "<group>"; };
@@ -561,7 +571,12 @@
 				C840D2562BE95F1700373C57 /* Cell */,
 				C840D2512BE5904D00373C57 /* AddSensorOrProperty */,
 				C83F8EE22BE1844E00CA6700 /* HomeView.swift */,
+				C85A41F22BFD66A3000811EC /* SwipeItem.swift */,
 				C85A41F42BFE896B000811EC /* PickerView.swift */,
+				C85535A22C08A42300B8AC14 /* SearchableList.swift */,
+				C85535A42C09126300B8AC14 /* SwipeActionsView.swift */,
+				C85535A62C09165400B8AC14 /* EmptyListView.swift */,
+				C85535A82C09168800B8AC14 /* HomeHeadertView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -896,8 +911,8 @@
 				C855B5472B10883F007DA332 /* Enums.swift */,
 				C855B5482B10883F007DA332 /* CustomButton.swift */,
 				C855B5492B10883F007DA332 /* CustomColors.swift */,
-				C85A41F22BFD66A3000811EC /* SwipeItem.swift */,
 				C855B5942B11100A007DA332 /* Strings.swift */,
+				C85535A02C08A3B100B8AC14 /* CustomShapes.swift */,
 			);
 			path = CustomControllers;
 			sourceTree = "<group>";
@@ -1308,6 +1323,7 @@
 				C855B5632B10883F007DA332 /* SensorIconView.swift in Sources */,
 				C855B58A2B10883F007DA332 /* DetectorModel.swift in Sources */,
 				C855B5932B10883F007DA332 /* CustomColors.swift in Sources */,
+				C85535A32C08A42300B8AC14 /* SearchableList.swift in Sources */,
 				C855B57F2B10883F007DA332 /* AuthenticationManager.swift in Sources */,
 				8BF3B40B2B969CB900B0AAA3 /* (null) in Sources */,
 				C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */,
@@ -1322,6 +1338,7 @@
 				C855B5622B10883F007DA332 /* PlaceSensorMapViewController.swift in Sources */,
 				C855B5652B10883F007DA332 /* SensorSetupOverlayView.swift in Sources */,
 				C855B54D2B10883F007DA332 /* SearchResultView.swift in Sources */,
+				C85535A72C09165400B8AC14 /* EmptyListView.swift in Sources */,
 				C855B5752B10883F007DA332 /* AccountVerificationCodeView.swift in Sources */,
 				C855B5862B10883F007DA332 /* View+Extension.swift in Sources */,
 				C840D2532BE5909400373C57 /* AddSensorOrPropertyView.swift in Sources */,
@@ -1336,6 +1353,7 @@
 				C855B57A2B10883F007DA332 /* AccountNameView.swift in Sources */,
 				C855B56C2B10883F007DA332 /* MapboxMap.swift in Sources */,
 				C855B58E2B10883F007DA332 /* ViewSize.swift in Sources */,
+				C85535A92C09168800B8AC14 /* HomeHeadertView.swift in Sources */,
 				C855B56B2B10883F007DA332 /* DetectorDetailOverlayView.swift in Sources */,
 				C85A41F52BFE896B000811EC /* PickerView.swift in Sources */,
 				C83F8EE92BE184C100CA6700 /* NotificationsView.swift in Sources */,
@@ -1348,7 +1366,9 @@
 				C89489F02BD6F7D900B013B3 /* ToastView.swift in Sources */,
 				30ACFC182B44220A007BCC22 /* ArcsIndicatorView.swift in Sources */,
 				C855B55E2B10883F007DA332 /* PropertyDetailOverlayView.swift in Sources */,
+				C85535A12C08A3B100B8AC14 /* CustomShapes.swift in Sources */,
 				30A84EF32B3E9611003A3409 /* ImagePicker.swift in Sources */,
+				C85535A52C09126300B8AC14 /* SwipeActionsView.swift in Sources */,
 				C855B5822B10883F007DA332 /* UIApplication+Extension.swift in Sources */,
 				C827EA502B234571009E6EC8 /* LocationManager.swift in Sources */,
 				C855B55A2B10883F007DA332 /* HeadingView.swift in Sources */,

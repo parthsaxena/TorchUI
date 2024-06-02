@@ -7,7 +7,7 @@ struct SwipeItem<Content: View, SwipeActions: View>: View {
     var screenHeight: CGFloat
     
     @State var hoffset: CGFloat = 147
-    @State var anchor: CGFloat = 0
+    @State var anchor: CGFloat = 147
     @State private var swipeActionsOpacity = 0.0
     
     let screenWidth = UIScreen.main.bounds.width
@@ -26,14 +26,14 @@ struct SwipeItem<Content: View, SwipeActions: View>: View {
         GeometryReader { geo in
             HStack(spacing: 0) {
                 content()
-                    .frame(width: geo.size.width)
+                    .frame(width: geo.size.width - 10)
                     .zIndex(1)
                 swipeActions()
                     .zIndex(0)
                     .opacity(swipeActionsOpacity)
             }
         }
-        .offset(x: -anchorWidth + hoffset)
+        .offset(x: -anchorWidth + hoffset + 5)
         .listRowBackground(Color.clear)
         .listRowSeparator(.hidden)
         .frame(height: screenHeight)
@@ -41,7 +41,7 @@ struct SwipeItem<Content: View, SwipeActions: View>: View {
     }
     
     var drag: some Gesture {
-        DragGesture(minimumDistance: 30, coordinateSpace: .local)
+        DragGesture(minimumDistance: 15, coordinateSpace: .local)
             .onChanged { value in
                 withAnimation {
                     hoffset = anchor + value.translation.width
@@ -57,6 +57,7 @@ struct SwipeItem<Content: View, SwipeActions: View>: View {
                     } else {
                         leftPast = hoffset > swipeThreshold
                     }
+                    swipeActionsOpacity = (-hoffset / 147) + 1.0
                 }
             }
             .onEnded { value in

@@ -79,7 +79,7 @@ struct AddSensorOrPropertyView: View {
                 self.onCreatePropertyButtonTap()
             }
         }
-        .padding(.top, 0)
+        .padding(.top, -10)
     }
 }
 

@@ -72,7 +72,6 @@ struct PropertyCard: View {
                 HStack {
                     VStack {
                         Spacer()
-//                            .frame(height: 20)
                         Image("property-warning")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -81,6 +80,7 @@ struct PropertyCard: View {
                             .foregroundColor(CustomColors.WarningYellow)
                         Spacer()
                     }
+                    .padding(.leading, 5)
                     Text("Warning: a fire was detected within 5 miles of this property. Click to see sensor data")
                         .font(Font.custom("Manrope-Regular", size: 14))
                         .frame(height: 40)
@@ -90,7 +90,6 @@ struct PropertyCard: View {
                         .foregroundColor(CustomColors.WarningYellow)
                     VStack {
                         Spacer()
-//                            .frame(height: 20)
                         Image("warning-cross")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -99,9 +98,10 @@ struct PropertyCard: View {
                             .foregroundColor(CustomColors.WarningYellow)
                         Spacer()
                     }
+                    .padding(.trailing, 5)
                 }
                 .background(CustomColors.WarningYellow.opacity(0.1))
-                .padding(.horizontal, -5)
+                .padding(.horizontal, -8)
             }
         }
         .overlay(
