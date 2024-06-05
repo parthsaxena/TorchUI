@@ -26,7 +26,7 @@ class AnalyticsDataManager {
             GraphCirclePositionManager.shared.termalCameraCirclePositions.append(lineChartParameter.count - 1)
         }
         
-        if let lineChartParameter1 = SessionManager.shared.deviceAnalytics[id]?[timespan.stringSpan]?["ir2_tmax"] {
+        if let lineChartParameter1 = SessionManager.shared.deviceAnalytics[id]?[timespan.stringSpan]?["9"] {
             let item = Item(itemName: "Camera 2", itemDescription: description, selectedTimeSpan: timespan.stringTimeSpan, graphLineParam: lineChartParameter1)
             list.append(item)
             GraphCirclePositionManager.shared.termalCameraCirclePositions.append(lineChartParameter1.count - 1)

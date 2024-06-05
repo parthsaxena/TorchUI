@@ -140,6 +140,11 @@ final class SessionManager: ObservableObject {
     func loadUserProperties() {
         
         let userID = AuthenticationManager.shared.authUser?.userId ?? ""
+        if (userID == "") {
+            self.loadUserProperties()
+            return
+        }
+        print("sending load user with \(userID)")
         let req = SocketRequest(
             route: "getPropertiesDevicesData",
             data: [
@@ -155,14 +160,14 @@ final class SessionManager: ObservableObject {
                             return
                         }
                         
-                        if resultString.contains("properties not found") {
+                        if resultString.contains("properties not found") || resultString.contains("undefined is not iterable") {
                             self.propertiesLoaded = true
                             self.properties = []
                             self.alerts = []
                         }
 //                        self.propertiesLoaded = true
                     }
-                    self.loadUserProperties()
+//                    self.loadUserProperties()
                     //                }
                     return
                 }
@@ -172,7 +177,7 @@ final class SessionManager: ObservableObject {
                         print("couldn't parse:", data)
                         self.propertiesLoaded = true
                     }
-                    self.loadUserProperties()
+//                    self.loadUserProperties()
                     //                }
                     return
                 }
@@ -180,7 +185,7 @@ final class SessionManager: ObservableObject {
                 if self.firstTimeLoaded && self.properties.count == properties.count {
                     self.updateDevices(properties: properties)
                     Task {
-                        self.pullDeviceAnalytics(properties: properties)
+//                        self.pullDeviceAnalytics(properties: properties)
                     }
                 } else {
                     if (self.newProperty == nil) {
@@ -194,8 +199,9 @@ final class SessionManager: ObservableObject {
                             }
                             self.parseProperty(id: id, property: property)
                         }
+                        print("donezo5 \(self.properties.count)")
                         Task {
-                            self.pullDeviceAnalytics(properties: properties)
+//                            self.pullDeviceAnalytics(properties: properties)
                         }
                         
                         self.unparsedProperties = properties.count - deletedProperties
@@ -205,7 +211,7 @@ final class SessionManager: ObservableObject {
                         }
                     }
                 }
-                self.loadUserProperties() // mubashir
+                // self.loadUserProperties() // mubashir
             })
         
         // Send request through socket
@@ -878,6 +884,190 @@ final class SessionManager: ObservableObject {
         })
         // Send request through socket
         WebSocketManager.shared.sendData(socketRequest: req)
+        self.subscribeToDevice(device_ids: [detector.id])
+    }
+    
+    func subscribeToDevice(device_ids: [String]) {
+        let req = SocketRequest(route: "subscribeToDevice",
+                                data: [
+                                    "device_ids": device_ids
+                                ],
+                                completion: { data in
+            
+            print("SubcribeToDevice: \(data)")
+        })
+        // Send request through socket
+        WebSocketManager.shared.sendData(socketRequest: req)
+        
+        print("SENT SUB: \(req)")
+    }
+    
+    func updateDeviceData(jsonDict: [String: Any]) {
+        guard let message = jsonDict["message"] as? [String: Any],
+              let deviceEUI = message["device_eui"] as? String else {
+            print("Invalid JSON structure")
+            return
+        }
+        
+        print("GOOTT message: \(message)")
+        
+        // Assume SessionManager has a properties array that contains all properties and their devices (detectors)
+        for property_idx in 0..<SessionManager.shared.properties.count {
+            let property = SessionManager.shared.properties[property_idx]
+            for i in 0..<property.detectors.count {
+                let property_id = property.id
+                let detector = property.detectors[i]
+                
+                // Check if this update is for the current detector
+                if detector.id == deviceEUI {
+                    self.pullDeviceAnalytics(property: property)
+                    
+                    // Update device properties based on JSON data, leaving values unchanged if not present
+//                    print("Updating temp detector \(detector.id) on property \(property_id) with \(message["temperature"] as? String ?? SessionManager.shared.properties[property_idx].detectors[i].measurements["temperature"])")
+                                                            
+//                    SessionManager.shared.properties[property_idx].detectors[i].measurements["temperature"] = message["temperature"] as? String ?? SessionManager.shared.properties[property_idx].detectors[i].measurements["temperature"]
+                    SessionManager.shared.properties[property_idx].detectors[i].measurements["humidity"] = message["humidity"] as? String ?? SessionManager.shared.properties[property_idx].detectors[i].measurements["humidity"]
+                    SessionManager.shared.properties[property_idx].detectors[i].thermalStatus = Threat(statusString: message["thermal_status"] as? String) ?? SessionManager.shared.properties[property_idx].detectors[i].thermalStatus
+                    SessionManager.shared.properties[property_idx].detectors[i].spectralStatus = Threat(statusString: message["spectral_status"] as? String) ?? SessionManager.shared.properties[property_idx].detectors[i].spectralStatus
+                    SessionManager.shared.properties[property_idx].detectors[i].smokeStatus = Threat(statusString: message["smoke_status"] as? String) ?? SessionManager.shared.properties[property_idx].detectors[i].smokeStatus
+                    SessionManager.shared.properties[property_idx].detectors[i].threat = Threat(statusString: message["overall_status"] as? String) ?? SessionManager.shared.properties[property_idx].detectors[i].threat
+                    
+                    var deviceBattery = 0.0
+                    var fireRatingNumber = 0
+                    var fireRating = "0"
+                    var lastTimestamp: Date? = nil
+                    var irHot: [[Double]] = []
+                    
+                    if let batteryString = message["battery"] as? String {
+                        deviceBattery = Double(batteryString) ?? 0.0
+                        SessionManager.shared.properties[property_idx].detectors[i].deviceBattery = deviceBattery
+                    }
+                    
+                    if let temperatureDouble = message["temperature"] as? Double {
+                        let temperatureInt = Int(temperatureDouble)
+                        let temperature = String(temperatureInt)
+                        SessionManager.shared.properties[property_idx].detectors[i].measurements["temperature"] = temperature
+                    }
+                    
+                    if let humidityDouble = message["humidity"] as? Double {
+                        let humidityInt = Int(humidityDouble)
+                        let humidity = String(humidityInt)
+                        SessionManager.shared.properties[property_idx].detectors[i].measurements["humidity"] = humidity
+                    }
+                    
+                    if let fireRatingString = message["risk_probability"] as? Int {
+//                        fireRatingNumber = Int(Double(fireRatingString) ?? 0)
+                        fireRating = String(fireRatingString)
+                        SessionManager.shared.properties[property_idx].detectors[i].measurements["fire_rating"] = fireRating
+                        
+                        print("GOT FIRE: \(fireRating)")
+                    } else {
+                        print("UNABLE TO GOT FIRE: \(fireRating)")
+                    }
+                    
+                    if let irHotTmp = message["ir_hot"] as? [[Double]] {
+                        irHot = irHotTmp
+                        SessionManager.shared.properties[property_idx].detectors[i].irHot = irHot
+                        print("Got irHot: \(irHot) for device id \(deviceEUI)")
+                    }
+                    
+                    if let timeString = message["sensor_time"] as? String {
+                        let timestamp = String(timeString)
+                        
+                        let formatter = DateFormatter()
+                        formatter.timeZone = TimeZone(abbreviation: "UTC")
+                        
+                        // Set the format to match your timestamp
+                        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSSSSS"
+                        
+                        if let date = formatter.date(from: timestamp) {
+                            lastTimestamp = date
+                            self.latestTimestampDict[deviceEUI] = lastTimestamp
+                             print("Converted timestamp from \(timestamp) to \(lastTimestamp)")
+                            // Now you can use this 'date' object as needed in your app
+                        } else {
+                            // print("Failed to parse date")
+                        }
+                        
+                    }
+                    
+                    var redAlert: AlertModel? = nil
+                    var yellowAlert: AlertModel? = nil
+                    var propertyStatus = "All sensors are normal"
+                    if let overallStatusString = message["overall_status"] as? String {
+                        let tmp = String(overallStatusString)
+                        // print("[OverallStatusString] \(tmp)")
+                        if tmp == "YELLOW" {
+//                            overallStatus = Threat.Yellow
+                            propertyStatus = "Warning"
+                            yellowAlert = AlertModel(property: SessionManager.shared.properties[property_idx], detector: SessionManager.shared.properties[property_idx].detectors[i], threat: Threat.Yellow)
+                        }
+                        if tmp == "RED" {
+                            propertyStatus = "Red alert"
+                            redAlert = AlertModel(property: SessionManager.shared.properties[property_idx], detector: SessionManager.shared.properties[property_idx].detectors[i], threat: Threat.Red)
+                        }
+                        if tmp == "GREEN" {
+                            for (idx, alert) in self.alerts.enumerated() {
+                                let alert_prop_id = alert.property.id
+                                if SessionManager.shared.properties[property_idx].id == alert_prop_id && detector.id == alert.detector.id {
+                                    self.alerts.remove(at: idx)
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Show red alert, if none then show yellow alert
+                    if redAlert != nil {
+                        
+//                        redAlert?.property = self.properties[i]
+                        
+                        var flag = true
+                        for (idx, alert) in self.alerts.enumerated() {
+                            let alert_prop_id = alert.property.id
+                            if redAlert?.property.id == alert_prop_id {
+                                flag = false
+                                
+                                if let redAlert = redAlert, redAlert.threat != alert.threat {
+                                    self.alerts.remove(at: idx)
+                                    self.alerts.append(redAlert);
+                                }
+                                break
+                            }
+                        }
+                        
+                        if flag {
+                            if let redAlert = redAlert {
+                                self.alerts.append(redAlert)
+                            }
+                        }
+                    } else if var yellowAlert = yellowAlert {
+//                        yellowAlert.property = self.properties[i]
+                        
+                        var flag = true
+                        for (idx, alert) in self.alerts.enumerated() {
+                            let alert_prop_id = alert.property.id
+                            if yellowAlert.property.id == alert_prop_id {
+                                flag = false
+                                
+                                if yellowAlert.threat != alert.threat {
+                                    self.alerts.remove(at: idx)
+                                    self.alerts.append(yellowAlert)
+                                }
+                                
+                                break
+                            }
+                        }
+                        
+                        if flag {
+                            self.alerts.append(yellowAlert)
+                        }
+                    }
+                    
+                    print("Updated detector \(detector.id) on property \(property_id) with new data")
+                    break
+                }
+            }
+        }
     }
     
     func updateSensor(property_id: String, device_id: String, coordinate: CLLocationCoordinate2D?, deviceName: String?) {
@@ -941,6 +1131,7 @@ final class SessionManager: ObservableObject {
             var yellowAlert: AlertModel? = nil
             var propertyStatus = "All sensors are normal"
             
+            var device_ids: [String] = []
             for device in devices {
                 sensorIdx += 1
                 
@@ -1065,7 +1256,9 @@ final class SessionManager: ObservableObject {
                     yellowAlert = AlertModel(property: parsedProperty, detector: detector, threat: Threat.Yellow)
                 }
                 parsedProperty.detectors.append(detector)
+                device_ids.append(detector.id)
             }
+            self.subscribeToDevice(device_ids: device_ids)
             
             // Show red alert, if none then show yellow alert
             if var redAlert = redAlert {
@@ -1077,6 +1270,8 @@ final class SessionManager: ObservableObject {
             }
             self.properties.append(parsedProperty)
             self.unparsedProperties -= 1
+            
+            self.pullDeviceAnalytics(property: parsedProperty)
         }
     }
     
@@ -1138,20 +1333,20 @@ final class SessionManager: ObservableObject {
         WebSocketManager.shared.sendData(socketRequest: request)
     }
     
-    func pullDeviceAnalytics(properties: [String : [String: Any]]) {
-        print("pull device analytics \(self.properties.count)")
+    func pullDeviceAnalytics(property: Property) {
+        print("pull device analytics \(property.detectors.count)")
         
-        for i in 0..<self.properties.count {
-            for j in 0..<self.properties[i].detectors.count {
-                let deviceId = self.properties[i].detectors[j].id
+//        for i in 0..<self.properties.count {
+            for j in 0..<property.detectors.count {
+                let deviceId = property.detectors[j].id
                 
-                //                self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.tenMinutes)
+                self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.tenMinutes)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneHour)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneDay)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneWeek)
                 self.getDeviceAnalyticsData(deviceId: deviceId, timespan: AnalyticsTimespanSelection.oneMonth)
             }
-        }
+//        }
     }
     
     func updateProperty(propertyIndex: Int, propertyName: String, propertyAddress: String, propertyImage: String, placemark: CLLocationCoordinate2D) {
@@ -1186,8 +1381,8 @@ final class SessionManager: ObservableObject {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         
-        let endDate = Date()
-        if let startDate = Calendar.current.date(byAdding: .second, value: timespan.timeInterval, to: endDate) {
+        let endDate = Calendar.current.date(byAdding: .second, value: 60, to: Date())
+        if let startDate = Calendar.current.date(byAdding: .second, value: timespan.timeInterval, to: endDate!) {
             
             let userID = AuthenticationManager.shared.authUser?.userId ?? ""
             let request = SocketRequest(
@@ -1195,7 +1390,7 @@ final class SessionManager: ObservableObject {
                 data: [
                     "device_id": deviceId,
                     "start_interval": dateFormatter.string(from: startDate),
-                    "end_interval": dateFormatter.string(from: endDate),
+                    "end_interval": dateFormatter.string(from: endDate!),
                     "skip": timespan.stringStep
                 ],
                 completion: { data in
@@ -1255,5 +1450,21 @@ final class SessionManager: ObservableObject {
         let interval = TimeInterval(utcOffset - currentOffset)
         let utcDate = currentDate.addingTimeInterval(interval)
         return utcDate
+    }
+}
+
+extension Threat {
+    init?(statusString: String?) {
+        guard let statusString = statusString else { return nil }
+        switch statusString {
+        case "GREEN":
+            self = .Green
+        case "YELLOW":
+            self = .Yellow
+        case "RED":
+            self = .Red
+        default:
+            return nil
+        }
     }
 }

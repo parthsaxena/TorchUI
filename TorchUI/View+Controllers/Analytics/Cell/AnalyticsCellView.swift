@@ -16,7 +16,7 @@ struct AnalyticsCellView: View {
     
     @State private var isDropdownExpanded = false
     
-    var timeIntervals: [AnalyticsTimespanSelection] = [.oneHour, .oneDay, .oneWeek, .oneMonth, .oneYear] //.tenMinutes,
+    var timeIntervals: [AnalyticsTimespanSelection] = [.tenMinutes, .oneHour, .oneDay, .oneWeek, .oneMonth, .oneYear] //.tenMinutes,
     var item: Item
     var circleIndex: Int
     var action: (_ selectedOption: AnalyticsTimespanSelection) -> Void

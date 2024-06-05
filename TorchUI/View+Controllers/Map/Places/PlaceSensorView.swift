@@ -137,6 +137,7 @@ struct PlaceSensorView: View {
                 .opacity(isConfirmingLocation ? 0.0 : 1.0)
                 
                 if isNickName {
+                    let x = print("showing isNickname")
                     NickNameUIView(name: $name, isNickName: $isNickName, newDetector: $newDetector, isNewPropertySensor: true)
                 }
             }
