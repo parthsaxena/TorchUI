@@ -73,7 +73,7 @@ struct PickerView: View {
                         .stroke(CustomColors.tabBarBackground, lineWidth: 1)
                 )
             }
-            .animation(.default)
+            .animation(.default.speed(1.5))
         }
     }
     

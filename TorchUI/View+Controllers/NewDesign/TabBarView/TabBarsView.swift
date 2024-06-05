@@ -44,7 +44,8 @@ struct TabBarsView: View {
                         .renderingMode(.template)
                 }
         }
-        .accentColor(CustomColors.TorchRed)
+        .accentColor(.clear)
+        .tint(CustomColors.TorchRed)
         .onAppear() {
             UITabBar.appearance().backgroundColor = UIColor(CustomColors.tabBarBackground.opacity(0.7))
             UITabBar.appearance().barTintColor = UIColor(CustomColors.tabBarBackground.opacity(0.7))
