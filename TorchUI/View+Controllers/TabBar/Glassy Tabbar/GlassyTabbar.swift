@@ -51,7 +51,6 @@ struct CustomTabBar: View {
             .background(
                 GlassyEffectView(effect: UIBlurEffect(style: (colorScheme == .dark) ? .dark : .light), cornerRadius: 36.0)
             )
-//            .dropShadow(type: .color(c: Color("fillColor").opacity(0.03)), radius: 8, offset: .init(x: 0, y: 8), spread: CGSize(width: 4, height: 4))
             .dropShadow(type: .color(c: Color("fillColor").opacity(0.08)), radius: 24, offset: .init(x: 0, y: 20), spread: CGSize(width: 4, height: 4))
         }
     }
@@ -71,6 +70,7 @@ struct GlassyEffectView: UIViewRepresentable {
         uiView.clipsToBounds = true
         uiView.layer.borderWidth = 0.5
         uiView.layer.borderColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+        uiView.alpha = 0.5
     }
 }
 

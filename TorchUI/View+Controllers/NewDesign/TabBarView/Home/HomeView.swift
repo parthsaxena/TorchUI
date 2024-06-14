@@ -31,19 +31,19 @@ struct HomeView: View {
                         Spacer()
                     } else {
                         ZStack {
-                            SearchableList(selectedSegment: $selectedSegment)
+                            HomeViewList(selectedSegment: $selectedSegment)
                                 .frame(width: geometry.size.width)
-                                .offset(x: selectedSegment == 0 ? 0 : -geometry.size.width/*(selectedSegment > 0 ? 1 : -1)*/)
-                                .animation(.smooth, value: selectedSegment)
-                            SearchableList(selectedSegment: $selectedSegment)
+                                .offset(x: selectedSegment == 0 ? 0 : -geometry.size.width)
+                            HomeViewList(selectedSegment: $selectedSegment)
                                 .frame(width: geometry.size.width)
-                                .offset(x: selectedSegment == 1 ? 0 : geometry.size.width/*(selectedSegment > 0 ? 1 : -1)*/)
-                                .animation(.smooth, value: selectedSegment)
+                                .offset(x: selectedSegment == 1 ? 0 : geometry.size.width)
                         }
+                        .animation(.easeInOut, value: selectedSegment)
                     }
                 }
                 .background(CustomColors.lightGrayBackground)
             }
+            .background(Color.clear)
             .sheet(isPresented: $isSheetPresented) {
                 VStack {
                     AddSensorOrPropertyView(headerName: "Options", onCrossButtonTap: {

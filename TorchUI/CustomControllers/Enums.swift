@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum NotificationStates {
+    case highAlert
+    case warning
+    case lowBettery
+}
+
 enum PropertyStates {
     case highAlert
     case warning

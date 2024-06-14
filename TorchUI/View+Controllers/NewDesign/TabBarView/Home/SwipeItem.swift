@@ -41,7 +41,7 @@ struct SwipeItem<Content: View, SwipeActions: View>: View {
     }
     
     var drag: some Gesture {
-        DragGesture(minimumDistance: 15, coordinateSpace: .local)
+        DragGesture(minimumDistance: 25, coordinateSpace: .local)
             .onChanged { value in
                 withAnimation {
                     hoffset = anchor + value.translation.width

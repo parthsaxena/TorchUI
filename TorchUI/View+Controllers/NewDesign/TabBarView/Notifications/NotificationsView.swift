@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct NotificationsView: View {
+    
+    @State private var isSheetPresented = false
+    @State private var isEmpty = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader { geometry in
+            NavigationView {
+                VStack(spacing: 0) {
+                    NotificationsHeaderView()
+                    if isEmpty {
+                        Spacer()
+                        NotificationEmptyListView()
+                        Spacer()
+                    } else {
+                        NotificationListView()
+                            .frame(width: geometry.size.width)
+                    }
+                }
+                .background(CustomColors.lightGrayBackground)
+            }
+        }
     }
 }
 

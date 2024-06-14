@@ -55,6 +55,11 @@
 		8BF7FC892A4D14D0005D1160 /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC822A4D14D0005D1160 /* Manrope-Regular.ttf */; };
 		8BF7FC8A2A4D14D0005D1160 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC832A4D14D0005D1160 /* Manrope-Medium.ttf */; };
 		8BF7FC8B2A4D14D0005D1160 /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7FC842A4D14D0005D1160 /* Manrope-ExtraBold.ttf */; };
+		C81B566F2C17F64D0005C98D /* NotificationsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B566E2C17F64D0005C98D /* NotificationsHeaderView.swift */; };
+		C81B56712C17FAD40005C98D /* NotificationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B56702C17FAD40005C98D /* NotificationListView.swift */; };
+		C81B56732C17FB6A0005C98D /* NotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B56722C17FB6A0005C98D /* NotificationCard.swift */; };
+		C81B56752C17FF590005C98D /* NotificationEmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B56742C17FF590005C98D /* NotificationEmptyListView.swift */; };
+		C81B56772C18084D0005C98D /* NotificationSwipeActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B56762C18084C0005C98D /* NotificationSwipeActionView.swift */; };
 		C827EA4C2B146935009E6EC8 /* SocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4B2B146935009E6EC8 /* SocketRequest.swift */; };
 		C827EA502B234571009E6EC8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827EA4F2B234571009E6EC8 /* LocationManager.swift */; };
 		C83F8EDA2BE1838B00CA6700 /* TabBarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83F8ED92BE1838B00CA6700 /* TabBarsView.swift */; };
@@ -68,7 +73,7 @@
 		C840D25A2BEAB9BE00373C57 /* SensorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840D2592BEAB9BE00373C57 /* SensorCard.swift */; };
 		C840D25D2BF69DD800373C57 /* CircleGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C840D25C2BF69DD700373C57 /* CircleGridView.swift */; };
 		C85535A12C08A3B100B8AC14 /* CustomShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85535A02C08A3B100B8AC14 /* CustomShapes.swift */; };
-		C85535A32C08A42300B8AC14 /* SearchableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85535A22C08A42300B8AC14 /* SearchableList.swift */; };
+		C85535A32C08A42300B8AC14 /* HomeViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85535A22C08A42300B8AC14 /* HomeViewList.swift */; };
 		C85535A52C09126300B8AC14 /* SwipeActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85535A42C09126300B8AC14 /* SwipeActionsView.swift */; };
 		C85535A72C09165400B8AC14 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85535A62C09165400B8AC14 /* EmptyListView.swift */; };
 		C85535A92C09168800B8AC14 /* HomeHeadertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85535A82C09168800B8AC14 /* HomeHeadertView.swift */; };
@@ -158,6 +163,7 @@
 		C86FD6D02B9B2AD1009C3E6E /* GraphCirclePostionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */; };
 		C87EFB822BE2CBDB00225431 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87EFB812BE2CBDB00225431 /* GoogleMapView.swift */; };
 		C88417C32B55CDD0005A9DDB /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88417C22B55CDD0005A9DDB /* Double+Extension.swift */; };
+		C88D175D2C18FDAD0051268D /* NotificationSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88D175C2C18FDAD0051268D /* NotificationSectionHeader.swift */; };
 		C89489EC2BD6EF2A00B013B3 /* AnalyticsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89489EB2BD6EF2A00B013B3 /* AnalyticsDataManager.swift */; };
 		C89489EE2BD6F77700B013B3 /* GraphLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89489ED2BD6F77700B013B3 /* GraphLine.swift */; };
 		C89489F02BD6F7D900B013B3 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89489EF2BD6F7D900B013B3 /* ToastView.swift */; };
@@ -235,6 +241,11 @@
 		AB74A7A17AD22705DAF7E97C /* Pods-TorchUI-TorchUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI-TorchUIUITests.release.xcconfig"; path = "Target Support Files/Pods-TorchUI-TorchUIUITests/Pods-TorchUI-TorchUIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AE14DC93743A113302C75CFF /* Pods-TorchUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TorchUI.release.xcconfig"; path = "Target Support Files/Pods-TorchUI/Pods-TorchUI.release.xcconfig"; sourceTree = "<group>"; };
 		BDC8B38A611960186AF756AE /* Pods_TorchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TorchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C81B566E2C17F64D0005C98D /* NotificationsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsHeaderView.swift; sourceTree = "<group>"; };
+		C81B56702C17FAD40005C98D /* NotificationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListView.swift; sourceTree = "<group>"; };
+		C81B56722C17FB6A0005C98D /* NotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCard.swift; sourceTree = "<group>"; };
+		C81B56742C17FF590005C98D /* NotificationEmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationEmptyListView.swift; sourceTree = "<group>"; };
+		C81B56762C18084C0005C98D /* NotificationSwipeActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSwipeActionView.swift; sourceTree = "<group>"; };
 		C827EA4B2B146935009E6EC8 /* SocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRequest.swift; sourceTree = "<group>"; };
 		C827EA4F2B234571009E6EC8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C83F8ED92BE1838B00CA6700 /* TabBarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarsView.swift; sourceTree = "<group>"; };
@@ -248,7 +259,7 @@
 		C840D2592BEAB9BE00373C57 /* SensorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorCard.swift; sourceTree = "<group>"; };
 		C840D25C2BF69DD700373C57 /* CircleGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGridView.swift; sourceTree = "<group>"; };
 		C85535A02C08A3B100B8AC14 /* CustomShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapes.swift; sourceTree = "<group>"; };
-		C85535A22C08A42300B8AC14 /* SearchableList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableList.swift; sourceTree = "<group>"; };
+		C85535A22C08A42300B8AC14 /* HomeViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewList.swift; sourceTree = "<group>"; };
 		C85535A42C09126300B8AC14 /* SwipeActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionsView.swift; sourceTree = "<group>"; };
 		C85535A62C09165400B8AC14 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		C85535A82C09168800B8AC14 /* HomeHeadertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeadertView.swift; sourceTree = "<group>"; };
@@ -337,6 +348,7 @@
 		C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCirclePostionManager.swift; sourceTree = "<group>"; };
 		C87EFB812BE2CBDB00225431 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		C88417C22B55CDD0005A9DDB /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		C88D175C2C18FDAD0051268D /* NotificationSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSectionHeader.swift; sourceTree = "<group>"; };
 		C89489EB2BD6EF2A00B013B3 /* AnalyticsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsDataManager.swift; sourceTree = "<group>"; };
 		C89489ED2BD6F77700B013B3 /* GraphLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLine.swift; sourceTree = "<group>"; };
 		C89489EF2BD6F7D900B013B3 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -543,6 +555,15 @@
 			name = AmplifyConfig;
 			sourceTree = "<group>";
 		};
+		C81B566D2C17F0AB0005C98D /* NotificationRowItems */ = {
+			isa = PBXGroup;
+			children = (
+				C81B56722C17FB6A0005C98D /* NotificationCard.swift */,
+				C88D175C2C18FDAD0051268D /* NotificationSectionHeader.swift */,
+			);
+			path = NotificationRowItems;
+			sourceTree = "<group>";
+		};
 		C83F8ED52BE182D800CA6700 /* NewDesign */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,12 +589,12 @@
 			isa = PBXGroup;
 			children = (
 				C840D25B2BF69DB800373C57 /* CustomViews */,
-				C840D2562BE95F1700373C57 /* Cell */,
+				C840D2562BE95F1700373C57 /* HomeRowItems */,
 				C840D2512BE5904D00373C57 /* AddSensorOrProperty */,
 				C83F8EE22BE1844E00CA6700 /* HomeView.swift */,
 				C85A41F22BFD66A3000811EC /* SwipeItem.swift */,
 				C85A41F42BFE896B000811EC /* PickerView.swift */,
-				C85535A22C08A42300B8AC14 /* SearchableList.swift */,
+				C85535A22C08A42300B8AC14 /* HomeViewList.swift */,
 				C85535A42C09126300B8AC14 /* SwipeActionsView.swift */,
 				C85535A62C09165400B8AC14 /* EmptyListView.swift */,
 				C85535A82C09168800B8AC14 /* HomeHeadertView.swift */,
@@ -585,6 +606,11 @@
 			isa = PBXGroup;
 			children = (
 				C83F8EE82BE184C100CA6700 /* NotificationsView.swift */,
+				C81B566D2C17F0AB0005C98D /* NotificationRowItems */,
+				C81B566E2C17F64D0005C98D /* NotificationsHeaderView.swift */,
+				C81B56702C17FAD40005C98D /* NotificationListView.swift */,
+				C81B56742C17FF590005C98D /* NotificationEmptyListView.swift */,
+				C81B56762C18084C0005C98D /* NotificationSwipeActionView.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -621,13 +647,13 @@
 			path = AddSensorOrProperty;
 			sourceTree = "<group>";
 		};
-		C840D2562BE95F1700373C57 /* Cell */ = {
+		C840D2562BE95F1700373C57 /* HomeRowItems */ = {
 			isa = PBXGroup;
 			children = (
 				C840D2572BE95FF400373C57 /* PropertyCard.swift */,
 				C840D2592BEAB9BE00373C57 /* SensorCard.swift */,
 			);
-			path = Cell;
+			path = HomeRowItems;
 			sourceTree = "<group>";
 		};
 		C840D25B2BF69DB800373C57 /* CustomViews */ = {
@@ -1306,6 +1332,7 @@
 				8BC37B5D2B490F0800C7635B /* UpdatePropertyAddressView.swift in Sources */,
 				C855B54F2B10883F007DA332 /* AlertView.swift in Sources */,
 				8B00A11A2B2174240080534F /* TabDropDownModifier.swift in Sources */,
+				C81B56772C18084D0005C98D /* NotificationSwipeActionView.swift in Sources */,
 				C855B5772B10883F007DA332 /* AccountView.swift in Sources */,
 				C864BE9F2B3C53660078C742 /* AnalyticsSwiftUIView.swift in Sources */,
 				C855B56A2B10883F007DA332 /* MapViewControllerBridge.swift in Sources */,
@@ -1321,9 +1348,11 @@
 				C855B57E2B10883F007DA332 /* AppDelegate.swift in Sources */,
 				C855B5892B10883F007DA332 /* PropertyAddressViewModel.swift in Sources */,
 				C855B5632B10883F007DA332 /* SensorIconView.swift in Sources */,
+				C81B56752C17FF590005C98D /* NotificationEmptyListView.swift in Sources */,
+				C88D175D2C18FDAD0051268D /* NotificationSectionHeader.swift in Sources */,
 				C855B58A2B10883F007DA332 /* DetectorModel.swift in Sources */,
 				C855B5932B10883F007DA332 /* CustomColors.swift in Sources */,
-				C85535A32C08A42300B8AC14 /* SearchableList.swift in Sources */,
+				C85535A32C08A42300B8AC14 /* HomeViewList.swift in Sources */,
 				C855B57F2B10883F007DA332 /* AuthenticationManager.swift in Sources */,
 				8BF3B40B2B969CB900B0AAA3 /* (null) in Sources */,
 				C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */,
@@ -1348,6 +1377,7 @@
 				C855B5872B10883F007DA332 /* City.swift in Sources */,
 				C855B5542B10883F007DA332 /* PropertyNameView.swift in Sources */,
 				C855B5842B10883F007DA332 /* String+Extension.swift in Sources */,
+				C81B566F2C17F64D0005C98D /* NotificationsHeaderView.swift in Sources */,
 				C855B5592B10883F007DA332 /* PromptInstallationView.swift in Sources */,
 				C88417C32B55CDD0005A9DDB /* Double+Extension.swift in Sources */,
 				C855B57A2B10883F007DA332 /* AccountNameView.swift in Sources */,
@@ -1385,6 +1415,8 @@
 				C855B5672B10883F007DA332 /* PlaceSensorView.swift in Sources */,
 				C855B5502B10883F007DA332 /* PropertyView.swift in Sources */,
 				C855B54E2B10883F007DA332 /* PropertyIconView.swift in Sources */,
+				C81B56732C17FB6A0005C98D /* NotificationCard.swift in Sources */,
+				C81B56712C17FAD40005C98D /* NotificationListView.swift in Sources */,
 				C855B55C2B10883F007DA332 /* TabBarView.swift in Sources */,
 				C855B5562B10883F007DA332 /* PropertyPhotoView.swift in Sources */,
 				C855B5552B10883F007DA332 /* BubbleView.swift in Sources */,
@@ -1581,7 +1613,7 @@
 				CODE_SIGN_ENTITLEMENTS = TorchUI/TorchUI.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
 				DEVELOPMENT_TEAM = CST8NBMAHT;
 				ENABLE_PREVIEWS = YES;
@@ -1601,7 +1633,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1681,7 +1713,7 @@
 				CODE_SIGN_ENTITLEMENTS = TorchUI/TorchUI.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"TorchUI/Preview Content\"";
 				DEVELOPMENT_TEAM = CST8NBMAHT;
 				ENABLE_PREVIEWS = YES;
@@ -1701,7 +1733,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
