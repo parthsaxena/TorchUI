@@ -16,7 +16,6 @@ struct ScrollableSegmentsView: View {
             HStack(spacing: 0) {
                 ForEach(AnalyticsTypeSelection.allCases, id: \.self) { title in
                     SegmentView(title: title.rawValue, isSelected: selectedSegment == title) {
-                        print("Selected segment: \(title.rawValue)")
                         selectedSegment = title
                     }
                 }

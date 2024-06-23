@@ -161,6 +161,11 @@
 		C864BEA02B3C53660078C742 /* AnalyticsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */; };
 		C864BEA32B3C54EF0078C742 /* LineChartView in Frameworks */ = {isa = PBXBuildFile; productRef = C864BEA22B3C54EF0078C742 /* LineChartView */; };
 		C86FD6D02B9B2AD1009C3E6E /* GraphCirclePostionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */; };
+		C87ED5C72C22302A006C1382 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87ED5C62C22302A006C1382 /* AnalyticsView.swift */; };
+		C87ED5C92C22337C006C1382 /* AnalyticsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87ED5C82C22337C006C1382 /* AnalyticsHeaderView.swift */; };
+		C87ED5CB2C223B47006C1382 /* AnalyticsSegmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87ED5CA2C223B47006C1382 /* AnalyticsSegmentsView.swift */; };
+		C87ED5CE2C223EEB006C1382 /* AnalyticsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87ED5CD2C223EEB006C1382 /* AnalyticsCard.swift */; };
+		C87ED5D02C2241CF006C1382 /* AnalyticsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87ED5CF2C2241CF006C1382 /* AnalyticsListView.swift */; };
 		C87EFB822BE2CBDB00225431 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87EFB812BE2CBDB00225431 /* GoogleMapView.swift */; };
 		C88417C32B55CDD0005A9DDB /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88417C22B55CDD0005A9DDB /* Double+Extension.swift */; };
 		C88D175D2C18FDAD0051268D /* NotificationSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88D175C2C18FDAD0051268D /* NotificationSectionHeader.swift */; };
@@ -346,6 +351,11 @@
 		C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsSwiftUIView.swift; sourceTree = "<group>"; };
 		C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsCellView.swift; sourceTree = "<group>"; };
 		C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCirclePostionManager.swift; sourceTree = "<group>"; };
+		C87ED5C62C22302A006C1382 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		C87ED5C82C22337C006C1382 /* AnalyticsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHeaderView.swift; sourceTree = "<group>"; };
+		C87ED5CA2C223B47006C1382 /* AnalyticsSegmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsSegmentsView.swift; sourceTree = "<group>"; };
+		C87ED5CD2C223EEB006C1382 /* AnalyticsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCard.swift; sourceTree = "<group>"; };
+		C87ED5CF2C2241CF006C1382 /* AnalyticsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsListView.swift; sourceTree = "<group>"; };
 		C87EFB812BE2CBDB00225431 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		C88417C22B55CDD0005A9DDB /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		C88D175C2C18FDAD0051268D /* NotificationSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSectionHeader.swift; sourceTree = "<group>"; };
@@ -626,6 +636,11 @@
 		C83F8EE62BE1848F00CA6700 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				C87ED5CC2C223EAB006C1382 /* AnalyticsRowItems */,
+				C87ED5C62C22302A006C1382 /* AnalyticsView.swift */,
+				C87ED5C82C22337C006C1382 /* AnalyticsHeaderView.swift */,
+				C87ED5CA2C223B47006C1382 /* AnalyticsSegmentsView.swift */,
+				C87ED5CF2C2241CF006C1382 /* AnalyticsListView.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -982,6 +997,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		C87ED5CC2C223EAB006C1382 /* AnalyticsRowItems */ = {
+			isa = PBXGroup;
+			children = (
+				C87ED5CD2C223EEB006C1382 /* AnalyticsCard.swift */,
+			);
+			path = AnalyticsRowItems;
+			sourceTree = "<group>";
+		};
 		C87EFB802BE2CBB100225431 /* TestMapViewWithBottomSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -1335,9 +1358,11 @@
 				C81B56772C18084D0005C98D /* NotificationSwipeActionView.swift in Sources */,
 				C855B5772B10883F007DA332 /* AccountView.swift in Sources */,
 				C864BE9F2B3C53660078C742 /* AnalyticsSwiftUIView.swift in Sources */,
+				C87ED5CB2C223B47006C1382 /* AnalyticsSegmentsView.swift in Sources */,
 				C855B56A2B10883F007DA332 /* MapViewControllerBridge.swift in Sources */,
 				C855B58B2B10883F007DA332 /* AlertModel.swift in Sources */,
 				C855B5602B10883F007DA332 /* MainMapView.swift in Sources */,
+				C87ED5C92C22337C006C1382 /* AnalyticsHeaderView.swift in Sources */,
 				302F95C92B8DAB0800728DDF /* PropertyOverlayMenu.swift in Sources */,
 				C864BE9E2B3C53660078C742 /* ScrollableSegmentsView.swift in Sources */,
 				C855B55F2B10883F007DA332 /* HalfCircleShape.swift in Sources */,
@@ -1377,6 +1402,7 @@
 				C855B5872B10883F007DA332 /* City.swift in Sources */,
 				C855B5542B10883F007DA332 /* PropertyNameView.swift in Sources */,
 				C855B5842B10883F007DA332 /* String+Extension.swift in Sources */,
+				C87ED5D02C2241CF006C1382 /* AnalyticsListView.swift in Sources */,
 				C81B566F2C17F64D0005C98D /* NotificationsHeaderView.swift in Sources */,
 				C855B5592B10883F007DA332 /* PromptInstallationView.swift in Sources */,
 				C88417C32B55CDD0005A9DDB /* Double+Extension.swift in Sources */,
@@ -1387,6 +1413,7 @@
 				C855B56B2B10883F007DA332 /* DetectorDetailOverlayView.swift in Sources */,
 				C85A41F52BFE896B000811EC /* PickerView.swift in Sources */,
 				C83F8EE92BE184C100CA6700 /* NotificationsView.swift in Sources */,
+				C87ED5C72C22302A006C1382 /* AnalyticsView.swift in Sources */,
 				8B6AFDB82B4A8F1900433051 /* ActiveSensorView.swift in Sources */,
 				C855B5532B10883F007DA332 /* PropertyAddressView.swift in Sources */,
 				30ACFC1A2B44220A007BCC22 /* ScalingDotsIndicatorView.swift in Sources */,
@@ -1442,6 +1469,7 @@
 				C827EA4C2B146935009E6EC8 /* SocketRequest.swift in Sources */,
 				C855B56D2B10883F007DA332 /* MapboxViewController.swift in Sources */,
 				C855B5572B10883F007DA332 /* SensorSetupView.swift in Sources */,
+				C87ED5CE2C223EEB006C1382 /* AnalyticsCard.swift in Sources */,
 				30ACFC0B2B442023007BCC22 /* ActivityIndicatorView.swift in Sources */,
 				C855B5952B11100A007DA332 /* Strings.swift in Sources */,
 				C855B5522B10883F007DA332 /* PropertiesView.swift in Sources */,

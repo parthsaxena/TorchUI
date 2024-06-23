@@ -31,7 +31,7 @@ struct TabBarsView: View {
                         Text("")
                         Image("Main_nav")
                     }
-                AnalyticsSwiftUIView(viewAnalytics: $isViewAnalytics)
+                AnalyticsView()
                     .tabItem {
                         Text("")
                         Image("tabbar-linechart")
