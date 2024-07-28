@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import AmplifyImage
+//import AmplifyImage
 
 struct PropertyCard: View {
     

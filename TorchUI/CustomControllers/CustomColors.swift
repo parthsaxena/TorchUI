@@ -16,6 +16,7 @@ struct CustomColors {
     static let TorchBlue = Color(red: 0.08301673084, green: 0.4385043383, blue: 0.9358554482)
     static let green = Color(red: 22/255, green: 179/255, blue: 100/255).opacity(1.0)
     
+    static let lighterBackgroundGray = Color(red: 248/255, green: 248/255, blue: 248/255)
     static let pickerBackgroundGray = Color(red: 243/255, green: 246/255, blue: 246/255).opacity(1.0)
     static let lightGrayText = Color(red: 143/255, green: 160/255, blue: 163/255).opacity(1.0)
     static let tabBarBackground = Color(red: 227/255, green: 231/255, blue: 232/255).opacity(1.0)
@@ -28,7 +29,7 @@ struct CustomColors {
     static let DetectorDetailsShadow = Color(red: 0.18, green: 0.21, blue: 0.22).opacity(0.08)
     static let DetectorDetailsRedShadow = Color(red: 0.962533772, green: 0.3612903357, blue: 0.2801753879).opacity(0.51)
     static let GoodGreen = Color(red: 0.09, green: 0.7, blue: 0.39)
-    static let WarningYellow = Color(red: 0.97, green: 0.56, blue: 0.03)
+    static let WarningYellow = Color(red: 255/255, green: 168/255, blue: 18/255).opacity(1.0)
     
     static let DisabledButtonColor: Color = Color(red: 0.78, green: 0.81, blue: 0.82)
     static let EnabledButtonColor: Color = Color(red: 0.18, green: 0.21, blue: 0.22)

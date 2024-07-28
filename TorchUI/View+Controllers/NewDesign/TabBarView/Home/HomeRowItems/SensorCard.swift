@@ -68,7 +68,7 @@ struct SensorCard: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 20, height: 20)
                             .padding(.trailing, 15)
-                            .padding(.leading, 0)
+                            .padding(.leading, 5)
                             .foregroundColor(subTitleColor)
                     } else if propertyState == .disable {
                         Button(action: {
@@ -144,12 +144,12 @@ struct SensorCard: View {
         label.text = text
         label.textColor = UIColor(subTitleColor)
         label.backgroundColor = UIColor.clear
-        label.font = UIFont(name: "Manrope-SemiBold", size: 35)
+        label.font = UIFont(name: "Manrope-SemiBold", size: 30)
         label.textAlignment = .center
         label.numberOfLines = 0
         
         label.sizeToFit()
-        label.frame = label.frame.inset(by: UIEdgeInsets(top: -3, left: -15, bottom: 0, right: 0))
+        label.frame = label.frame.inset(by: UIEdgeInsets(top: -7.5, left: -20, bottom: 0, right: 0))
         
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 52, height: 52), false, 0.0)
         label.layer.render(in: UIGraphicsGetCurrentContext()!)

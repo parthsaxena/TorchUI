@@ -11,7 +11,7 @@ import SwiftUI
 struct HomeViewList: View {
     
     @Binding var selectedSegment: Int
-
+    var onItemTap: (_ index: Int) -> Void
     var body: some View {
         NavigationView {
             List {
@@ -27,6 +27,9 @@ struct HomeViewList: View {
                                     
                                 })
                             }, screenHeight: 60)
+                            .onTapGesture {
+                                onItemTap(index)
+                            }
                         } else if index == 1 {
                             SwipeItem(content: {
                                 PropertyCard(propertyState: .warning, index: index)
@@ -79,6 +82,9 @@ struct HomeViewList: View {
                                     
                                 })
                             }, screenHeight: 60)
+                            .onTapGesture {
+                                onItemTap(index)
+                            }
                         } else if index == 2 {
                             SwipeItem(content: {
                                 SensorCard(propertyState: .disable, index: index)

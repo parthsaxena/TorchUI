@@ -31,7 +31,7 @@ struct NotificationListView: View {
                                     NotificationSwipeActionView(onDeleteButtonTap: {
                                         
                                     })
-                                }, screenHeight: 70)
+                                }, screenHeight: 75)
                             } else if index == 1 {
                                 SwipeItem(content: {
                                     NotificationCard(notificationState: .warning, isRead: true)
@@ -39,7 +39,7 @@ struct NotificationListView: View {
                                     NotificationSwipeActionView(onDeleteButtonTap: {
                                         
                                     })
-                                }, screenHeight: 70)
+                                }, screenHeight: 75)
                             } else if index == 2 {
                                 SwipeItem(content: {
                                     NotificationCard(notificationState: .lowBettery, isRead: true)
@@ -47,7 +47,7 @@ struct NotificationListView: View {
                                     NotificationSwipeActionView(onDeleteButtonTap: {
                                         
                                     })
-                                }, screenHeight: 70)
+                                }, screenHeight: 75)
                             } else {
                                 SwipeItem(content: {
                                     NotificationCard(notificationState: .highAlert, isRead: false)
@@ -55,12 +55,13 @@ struct NotificationListView: View {
                                     NotificationSwipeActionView(onDeleteButtonTap: {
                                         
                                     })
-                                }, screenHeight: 70)
+                                }, screenHeight: 75)
                             }
                         }
                     }
                 }
             }
+            .padding(.top, -20)
             .padding(.horizontal)
             .listStyle(PlainListStyle())
             .scrollIndicators(.never, axes: .vertical)

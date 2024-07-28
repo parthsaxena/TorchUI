@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import SwiftUI_Shimmer
-import AmplifyImage
+//import AmplifyImage
 
 struct PropertyView: View, Equatable {
     
@@ -81,16 +81,16 @@ struct PropertyView: View, Equatable {
                         .foregroundColor(.clear)
                         .frame(width: 60, height: 60)
                         .background(
-                            AmplifyImage(key: property.propertyImage)
-                                .kfImage.placeholder({
-//                                    Image("Property")
-//                                        .opacity(0.6)
-                                    ProgressView()
-                                })
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 60, height: 60)
-                                .clipped()
+//                            AmplifyImage(key: property.propertyImage)
+//                                .kfImage.placeholder({
+////                                    Image("Property")
+////                                        .opacity(0.6)
+//                                    ProgressView()
+//                                })
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fill)
+//                                .frame(width: 60, height: 60)
+//                                .clipped()
                             
                         )
                         .cornerRadius(12)

@@ -35,22 +35,25 @@ struct NotificationCard: View {
                         .padding([.top, .leading])
                     Spacer()
                 }
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading, spacing: 2.5) {
                     HStack {
                         Text(alertTitle)
                             .font(.custom("Manrope-SemiBold", size: 16))
                             .foregroundColor(titleColor)
                             .kerning(-0.5)
                         Text("Neighborhood 1")
-                            .font(.custom("Manrope-Regular", size: 14))
+                            .font(.custom("Manrope-Regular", size: 16))
                             .foregroundColor(subTitleColor)
+                            .kerning(-0.3)
                     }
                     Text("Pacific Coast Hwy, Malibu")
-                        .font(.custom("Manrope-Regular", size: 14))
+                        .font(.custom("Manrope-Medium", size: 14))
                         .foregroundColor(subTitleColor)
+                        .kerning(-0.3)
                     Text("5 min ago")
                         .font(.custom("Manrope-Regular", size: 14))
                         .foregroundColor(subTitleColor)
+                        .kerning(-0.3)
                 }
                 Spacer()
                 if isRead {
@@ -65,7 +68,7 @@ struct NotificationCard: View {
                     }
                 }
             }
-            .frame(height: 86)
+            .frame(height: 91)
         }
         .overlay(
             RoundedRectangle(cornerRadius: 22)

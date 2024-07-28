@@ -391,79 +391,82 @@ struct AnalyticsBackButton: View {
 }
 
 struct CircleButtonWithAnimation: View {
-    
-    @State private var scale1: CGFloat = 0
-    @State private var scale2: CGFloat = 0
-    @State private var scale3: CGFloat = 0
-    
+
+    @State private var animate = false
     @Binding var isPresentingScanner: Bool
     
     var body: some View {
-        GeometryReader { geometry in
-            HStack {
-                Button(action: {
-                   
-                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                    impactMed.impactOccurred()
-                    isPresentingScanner = true
-                }) {
-                    ZStack {
+        HStack {
+            Button(action: {
+               
+                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                impactMed.impactOccurred()
+                isPresentingScanner = true
+            }) {
+                ZStack {
+                    Image(systemName: "plus")
+                        .foregroundColor(.orange)
+                        .font(.system(size: 24))
+                        .frame(width: 44, height: 44)
+                        .overlay(
+                            Circle()
+                                .stroke(Color.orange, lineWidth: 1)
+                        )
+                    ForEach(0..<3) { index in
                         Circle()
-                            .stroke(Color.orange.opacity(Double(1 - scale1)), lineWidth: 1)
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                            .scaleEffect(scale1)
+                            .stroke(Color.orange, lineWidth: 1)
+                            .scaleEffect(animate ? 1.6 : 1.0)
+                            .opacity(animate ? 0.0 : 1.0)
+                            .frame(width: 44, height: 44)
                             .animation(
                                 Animation.easeOut(duration: 2.0)
                                     .repeatForever(autoreverses: false)
-                                    .delay(0.0)
-                            )
-                            .onAppear {
-                                scale1 = 1.0
-                            }
-                        
-                        Circle()
-                            .stroke(Color.orange.opacity(Double(1 - scale2)), lineWidth: 1)
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                            .scaleEffect(scale2)
-                            .animation(
-                                Animation.easeOut(duration: 2.0)
-                                    .repeatForever(autoreverses: false )
-                                    .delay(0.5)
-                            )
-                            .onAppear {
-                                scale2 = 1.0
-                            }
-                        
-                        Circle()
-                            .stroke(Color.orange.opacity(Double(1 - scale3)), lineWidth: 1)
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                            .scaleEffect(scale3)
-                            .animation(
-                                Animation.easeOut(duration: 2.0)
-                                    .repeatForever(autoreverses: false)
-                                    .delay(1.0)
-                            )
-                            .onAppear {
-                                scale3 = 1.0
-                            }
-                        Image(systemName: "plus")
-                            .foregroundColor(.orange)
-                            .font(.system(size: 24))
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                            .overlay(
-                                Circle()
-                                    .stroke(Color.orange, lineWidth: 1)
+                                    .delay(Double(index) * 0.7)
                             )
                     }
-                    
                 }
-                Image("Tooltip")
-                    .foregroundColor(.orange)
-                    .font(.system(size: 24))
-                    .padding(.top, 5)
-                    .padding(.leading, -20)
+                .frame(maxWidth: 44, maxHeight: 44)
+            }
+            .onAppear {
+                self.animate = true
+            }
+            .padding(.leading, 10)
+            Image("Tooltip")
+                .foregroundColor(.orange)
+                .font(.system(size: 24))
+                .padding(.top, 5)
+                .padding(.leading, -20)
+            Spacer()
+        }
+    }
+}
+
+struct CustomRoundButton: View {
+    
+    @Environment(\.colorScheme) var colorScheme
+    var imageName: String
+    var onCustomButtonTap: () -> Void
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(colorScheme == .dark ? CustomColors.DarkModeOverlayBackground : Color.white)
+                .frame(width: 40.0, height: 40.0)
+            Image(imageName)
+                .frame(width: 40.0, height: 40.0)
+                .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
+            Button {
+                
+                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                impactMed.impactOccurred()
+                UIApplication.shared.endEditing()
+                onCustomButtonTap()
+            } label: {
+                Circle()
+                    .fill(Color.clear)
+                    .frame(width: 50.0, height: 50.0)
             }
         }
-        .frame(width: 60, height: 60)
+        .shadow(color: CustomColors.LightGray.opacity(0.3), radius: 5.0)
     }
 }

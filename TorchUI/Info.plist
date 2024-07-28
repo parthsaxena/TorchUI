@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Torch requires access to speech in order to provide better data-based services.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Torch requires access to your location in order to provide better location-based services.</string>
 	<key>MBXAccessToken</key>

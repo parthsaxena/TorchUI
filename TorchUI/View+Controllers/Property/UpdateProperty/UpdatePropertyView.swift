@@ -7,7 +7,7 @@
 
 import SwiftUI
 import CoreLocation
-import AmplifyImage
+//import AmplifyImage
 
 struct UpdatePropertyView: View {
     
@@ -207,16 +207,16 @@ struct UpdatePropertyView: View {
                                                     .frame(width: 120, height: 120)
                                                     .background(self.googleMapsImageSelected ? Color(red: 0.08, green: 0.44, blue: 0.94).opacity(0.1) : Color.clear)
                                                     .background(
-                                                        AmplifyImage(key: self.propertyImage)
-                                                            .kfImage.placeholder({
-                                                                //                                                    Image("Property")
-                                                                //                                                        .opacity(0.6)
-                                                                ProgressView()
-                                                            })
-                                                            .resizable()
-                                                            .aspectRatio(contentMode: .fill)
-                                                            .frame(width: 120, height: 120)
-                                                            .clipped()
+//                                                        AmplifyImage(key: self.propertyImage)
+//                                                            .kfImage.placeholder({
+//                                                                //                                                    Image("Property")
+//                                                                //                                                        .opacity(0.6)
+//                                                                ProgressView()
+//                                                            })
+//                                                            .resizable()
+//                                                            .aspectRatio(contentMode: .fill)
+//                                                            .frame(width: 120, height: 120)
+//                                                            .clipped()
                                                     )
                                                     .cornerRadius(24)
                                                     .overlay(
