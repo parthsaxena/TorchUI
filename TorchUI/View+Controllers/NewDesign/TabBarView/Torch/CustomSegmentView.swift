@@ -22,7 +22,7 @@ struct CustomSegmentView: View {
                         Text("My Sensors").tag(0)
                             .font(.custom("Manrope-SemiBold", size: 14))
                             .foregroundColor(selectedSegment == 1 ? CustomColors.darkGray: .white)
-                            .frame(width: 125, height: 36)
+                            .frame(width: 110, height: 36)
                             .background(
                               GeometryReader { geo in
                                   Color.clear.onAppear {
@@ -40,7 +40,7 @@ struct CustomSegmentView: View {
                         Text("All Torch Sensors").tag(1)
                             .font(.custom("Manrope-SemiBold", size: 14))
                             .foregroundColor(selectedSegment == 0 ? CustomColors.darkGray: .white)
-                            .frame(width: 125, height: 36)
+                            .frame(width: 140, height: 36)
                             .background(
                               GeometryReader { geo in
                                   Color.clear.onAppear {
@@ -59,7 +59,7 @@ struct CustomSegmentView: View {
                     .background(
                         Rectangle().fill(CustomColors.TorchRed)
                             .cornerRadius(20)
-                            .frame(width: 125, height: 34, alignment: .topLeading)
+                            .frame(width: selectedSegment == 1 ? 140 : 110, height: 34, alignment: .topLeading)
                             .offset(x: self.frames[self.selectedSegment].minX - self.frames[0].minX)
                             .padding(.horizontal, 4)
                       , alignment: .leading)

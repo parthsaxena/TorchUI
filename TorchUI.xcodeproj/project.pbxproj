@@ -165,6 +165,10 @@
 		C864BE9F2B3C53660078C742 /* AnalyticsSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */; };
 		C864BEA02B3C53660078C742 /* AnalyticsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */; };
 		C864BEA32B3C54EF0078C742 /* LineChartView in Frameworks */ = {isa = PBXBuildFile; productRef = C864BEA22B3C54EF0078C742 /* LineChartView */; };
+		C86F3F2A2C56E3E4009BA9AE /* AddNewPropertyName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F3F292C56E3E4009BA9AE /* AddNewPropertyName.swift */; };
+		C86F3F2C2C56E521009BA9AE /* AddNewPropertyAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F3F2B2C56E520009BA9AE /* AddNewPropertyAddress.swift */; };
+		C86F3F2E2C56E694009BA9AE /* AddNewPropertyPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F3F2D2C56E694009BA9AE /* AddNewPropertyPhoto.swift */; };
+		C86F3F302C56EB0A009BA9AE /* AddNewPropertyCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F3F2F2C56EB0A009BA9AE /* AddNewPropertyCreated.swift */; };
 		C86FD6D02B9B2AD1009C3E6E /* GraphCirclePostionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */; };
 		C87964022C289B3F0025BDEC /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = C87964012C289B3F0025BDEC /* AWSAPIPlugin */; };
 		C87964042C289B3F0025BDEC /* AWSCloudWatchLoggingPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = C87964032C289B3F0025BDEC /* AWSCloudWatchLoggingPlugin */; };
@@ -204,6 +208,9 @@
 		C8B50EEC2B618DF8001059F9 /* NickNameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B50EEB2B618DF8001059F9 /* NickNameUIView.swift */; };
 		C8C0BAA32B46C8F70022EC77 /* CustomGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0BAA22B46C8F70022EC77 /* CustomGraphView.swift */; };
 		C8C279C22B892FAC00337C2A /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C279C12B892FAC00337C2A /* NSNotification+Extension.swift */; };
+		C8CA7EF42C584310000C7BA2 /* AddSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CA7EF32C584310000C7BA2 /* AddSensorView.swift */; };
+		C8CA7EF62C58446F000C7BA2 /* SensorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CA7EF52C58446F000C7BA2 /* SensorListView.swift */; };
+		C8CA7EF82C5845A8000C7BA2 /* SelectSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CA7EF72C5845A8000C7BA2 /* SelectSensor.swift */; };
 		C8D6E2192C38A1D300F2F2BF /* SensorBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D6E2182C38A1D300F2F2BF /* SensorBottomSheet.swift */; };
 		C8E4B5662C31EF6500754CAC /* MenuBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4B5652C31EF6500754CAC /* MenuBottomSheet.swift */; };
 		C8E4B5682C31EF8D00754CAC /* LayerBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4B5672C31EF8D00754CAC /* LayerBottomSheet.swift */; };
@@ -391,6 +398,10 @@
 		C864BE982B3C53660078C742 /* ScrollableSegmentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSegmentsView.swift; sourceTree = "<group>"; };
 		C864BE992B3C53660078C742 /* AnalyticsSwiftUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsSwiftUIView.swift; sourceTree = "<group>"; };
 		C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsCellView.swift; sourceTree = "<group>"; };
+		C86F3F292C56E3E4009BA9AE /* AddNewPropertyName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPropertyName.swift; sourceTree = "<group>"; };
+		C86F3F2B2C56E520009BA9AE /* AddNewPropertyAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPropertyAddress.swift; sourceTree = "<group>"; };
+		C86F3F2D2C56E694009BA9AE /* AddNewPropertyPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPropertyPhoto.swift; sourceTree = "<group>"; };
+		C86F3F2F2C56EB0A009BA9AE /* AddNewPropertyCreated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPropertyCreated.swift; sourceTree = "<group>"; };
 		C86FD6CF2B9B2AD1009C3E6E /* GraphCirclePostionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCirclePostionManager.swift; sourceTree = "<group>"; };
 		C87ADFA52C4D921500CCFA6D /* AddNewSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSensor.swift; sourceTree = "<group>"; };
 		C87ADFA72C4DACAF00CCFA6D /* AddNewSensorProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSensorProperty.swift; sourceTree = "<group>"; };
@@ -412,6 +423,9 @@
 		C8B50EEB2B618DF8001059F9 /* NickNameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameUIView.swift; sourceTree = "<group>"; };
 		C8C0BAA22B46C8F70022EC77 /* CustomGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGraphView.swift; sourceTree = "<group>"; };
 		C8C279C12B892FAC00337C2A /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
+		C8CA7EF32C584310000C7BA2 /* AddSensorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorView.swift; sourceTree = "<group>"; };
+		C8CA7EF52C58446F000C7BA2 /* SensorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListView.swift; sourceTree = "<group>"; };
+		C8CA7EF72C5845A8000C7BA2 /* SelectSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSensor.swift; sourceTree = "<group>"; };
 		C8D6E2182C38A1D300F2F2BF /* SensorBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorBottomSheet.swift; sourceTree = "<group>"; };
 		C8E4B5652C31EF6500754CAC /* MenuBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBottomSheet.swift; sourceTree = "<group>"; };
 		C8E4B5672C31EF8D00754CAC /* LayerBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerBottomSheet.swift; sourceTree = "<group>"; };
@@ -693,6 +707,7 @@
 		C83F8EE12BE1843A00CA6700 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C86F3F282C56E3B0009BA9AE /* AddNewProperty */,
 				C825B7292C3887C7006A1FA2 /* SensorDetails */,
 				C8B1C71C2C28311C005A6C23 /* PropertyDetails */,
 				C840D25B2BF69DB800373C57 /* CustomViews */,
@@ -712,8 +727,8 @@
 		C83F8EE42BE1847400CA6700 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				C83F8EE82BE184C100CA6700 /* NotificationsView.swift */,
 				C81B566D2C17F0AB0005C98D /* NotificationRowItems */,
+				C83F8EE82BE184C100CA6700 /* NotificationsView.swift */,
 				C81B566E2C17F64D0005C98D /* NotificationsHeaderView.swift */,
 				C81B56702C17FAD40005C98D /* NotificationListView.swift */,
 				C81B56742C17FF590005C98D /* NotificationEmptyListView.swift */,
@@ -1093,6 +1108,20 @@
 				C864BE9B2B3C53660078C742 /* AnalyticsCellView.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		C86F3F282C56E3B0009BA9AE /* AddNewProperty */ = {
+			isa = PBXGroup;
+			children = (
+				C8CA7EF32C584310000C7BA2 /* AddSensorView.swift */,
+				C86F3F292C56E3E4009BA9AE /* AddNewPropertyName.swift */,
+				C86F3F2B2C56E520009BA9AE /* AddNewPropertyAddress.swift */,
+				C86F3F2D2C56E694009BA9AE /* AddNewPropertyPhoto.swift */,
+				C86F3F2F2C56EB0A009BA9AE /* AddNewPropertyCreated.swift */,
+				C8CA7EF52C58446F000C7BA2 /* SensorListView.swift */,
+				C8CA7EF72C5845A8000C7BA2 /* SelectSensor.swift */,
+			);
+			path = AddNewProperty;
 			sourceTree = "<group>";
 		};
 		C87ED5CC2C223EAB006C1382 /* AnalyticsRowItems */ = {
@@ -1478,6 +1507,7 @@
 				C855B58C2B10883F007DA332 /* PropertyViewModel.swift in Sources */,
 				C855B5762B10883F007DA332 /* WelcomeView.swift in Sources */,
 				C855B5512B10883F007DA332 /* MainPropertiesView.swift in Sources */,
+				C86F3F302C56EB0A009BA9AE /* AddNewPropertyCreated.swift in Sources */,
 				308BDC0E2B70D3D700ED99F6 /* DetectorStatusMenu.swift in Sources */,
 				C855B58F2B10883F007DA332 /* PropertyPhotoViewModel.swift in Sources */,
 				C855B58D2B10883F007DA332 /* PropertyModel.swift in Sources */,
@@ -1514,10 +1544,13 @@
 				8BF3B40B2B969CB900B0AAA3 /* (null) in Sources */,
 				C855B54C2B10883F007DA332 /* NoPropertiesView.swift in Sources */,
 				C855B5852B10883F007DA332 /* Color+Extension.swift in Sources */,
+				C86F3F2C2C56E521009BA9AE /* AddNewPropertyAddress.swift in Sources */,
+				C8CA7EF62C58446F000C7BA2 /* SensorListView.swift in Sources */,
 				C89489EC2BD6EF2A00B013B3 /* AnalyticsDataManager.swift in Sources */,
 				C864BE9D2B3C53660078C742 /* SegmentView.swift in Sources */,
 				C8C279C22B892FAC00337C2A /* NSNotification+Extension.swift in Sources */,
 				C855B5682B10883F007DA332 /* BatteryView.swift in Sources */,
+				C86F3F2E2C56E694009BA9AE /* AddNewPropertyPhoto.swift in Sources */,
 				C855B56F2B10883F007DA332 /* MapboxPlaceSensorViewWrapper.swift in Sources */,
 				30ACFC0D2B442030007BCC22 /* GrowingArcIndicatorView.swift in Sources */,
 				C825B72D2C388C4F006A1FA2 /* SensorDetails.swift in Sources */,
@@ -1573,7 +1606,9 @@
 				C8E6B8422C485D9200A6B350 /* EditSensor.swift in Sources */,
 				C87ADFA62C4D921600CCFA6D /* AddNewSensor.swift in Sources */,
 				30ACFC1F2B44220A007BCC22 /* EqualizerIndicatorView.swift in Sources */,
+				C8CA7EF82C5845A8000C7BA2 /* SelectSensor.swift in Sources */,
 				C855B55A2B10883F007DA332 /* HeadingView.swift in Sources */,
+				C86F3F2A2C56E3E4009BA9AE /* AddNewPropertyName.swift in Sources */,
 				C8D6E2192C38A1D300F2F2BF /* SensorBottomSheet.swift in Sources */,
 				C83F8EEB2BE184D100CA6700 /* TorchView.swift in Sources */,
 				C855B5662B10883F007DA332 /* SensorConfirmLocationOverlayView.swift in Sources */,
@@ -1593,6 +1628,7 @@
 				C87ADFAA2C4DB1D700CCFA6D /* AddSensorNickname.swift in Sources */,
 				C8C0BAA32B46C8F70022EC77 /* CustomGraphView.swift in Sources */,
 				8BB4FD4D2B47C91E00CBA5B8 /* UpdatePropertyView.swift in Sources */,
+				C8CA7EF42C584310000C7BA2 /* AddSensorView.swift in Sources */,
 				C80056582C471EE9005369FC /* EditProperty.swift in Sources */,
 				30ACFC1B2B44220A007BCC22 /* GradientIndicatorView.swift in Sources */,
 				3094CF572B1CB00A00C7984B /* Date+Extension.swift in Sources */,

@@ -1,18 +1,18 @@
 //
-//  AddSensorOrPropertyView.swift
+//  AddSensorView.swift
 //  TorchUI
 //
-//  Created by Mubashir Mushir on 04/05/2024.
+//  Created by Mubashir Mushir on 30/07/2024.
 //
 
 import SwiftUI
 
-struct AddSensorOrPropertyView: View {
+struct AddSensorView: View {
     
     let headerName: String
     var onCrossButtonTap: () -> Void
-    var onAddSensorButtonTap: () -> Void
-    var onCreatePropertyButtonTap: () -> Void
+    var onAddSensorTap: () -> Void
+    var onChooseExistingTap: () -> Void
     
     var body: some View {
         VStack {
@@ -39,7 +39,7 @@ struct AddSensorOrPropertyView: View {
             .frame(height: 60)
             .padding(.top, -5)
             HStack {
-                Text("Add Sensor")
+                Text("Add new sensors")
                     .font(Font.custom("Manrope-SemiBold", size: 16))
                     .padding()
                     .foregroundColor(CustomColors.darkGray)
@@ -56,10 +56,10 @@ struct AddSensorOrPropertyView: View {
             .padding(.bottom, 0)
             .padding([.horizontal])
             .onTapGesture {
-                self.onAddSensorButtonTap()
+                self.onAddSensorTap()
             }
             HStack {
-                Text("Create a property")
+                Text("Choose from existing")
                     .font(Font.custom("Manrope-SemiBold", size: 16))
                     .padding()
                     .foregroundColor(CustomColors.darkGray)
@@ -75,13 +75,9 @@ struct AddSensorOrPropertyView: View {
             .padding(.top, 0)
             .padding([.horizontal])
             .onTapGesture {
-                self.onCreatePropertyButtonTap()
+                self.onChooseExistingTap()
             }
         }
         .padding(.top, -10)
     }
 }
-
-//#Preview {
-//    AddSensorOrPropertyView()
-//}

@@ -1,40 +1,38 @@
 //
-//  AddNewSensor.swift
+//  AddNewPropertyAddress.swift
 //  TorchUI
 //
-//  Created by Mubashir Mushir on 21/07/2024.
+//  Created by Mubashir Mushir on 29/07/2024.
 //
 
 import SwiftUI
-import CodeScanner
 
-struct AddNewSensor: View {
+struct AddNewPropertyAddress: View {
     
     @Environment(\.colorScheme) var colorScheme
-    @Binding var sensorIdNumber: String
-    @Binding var addSensorViewState: AddSensorViewState
+    @Binding var propertyAddress: String
+    @Binding var addPropertyViewState: AddPropertyViewState
     var onCrossButtonTap: () -> Void
     
-    @State var fieldTextColor: Color = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0) // place holder text color
-    @State var nextButtonColor: Color = Color(red: 0.78, green: 0.81, blue: 0.82) // disabled button color
+    @State var fieldTextColor: Color = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
+    @State var nextButtonColor: Color = Color(red: 0.78, green: 0.81, blue: 0.82)
     @State var nextButtonEnabled: Bool = false
-    @State var isPresentingScanner: Bool = false
     
     @FocusState private var focusedField: FocusField?
     
     var body: some View {
         let binding = Binding<String>(get: {
-            self.sensorIdNumber
+            self.propertyAddress
         }, set: {
-            self.sensorIdNumber = $0
+            self.propertyAddress = $0
 
-            if $0 != "Sensor ID name" {
+            if $0 != "Enter your address" {
                 fieldTextColor = colorScheme == .dark ? Color.white : CustomColors.TorchGreen
             } else {
                 fieldTextColor = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
             }
             
-            if !self.sensorIdNumber.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            if !self.propertyAddress.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 nextButtonEnabled = true
                 nextButtonColor = Color(red: 0.18, green: 0.21, blue: 0.22)
             } else {
@@ -53,7 +51,7 @@ struct AddNewSensor: View {
                 
                 RoundedRectangle(cornerRadius: 5.0)
                     .frame(width: progressItemWidth, height: 4)
-                    .foregroundColor(Color(red: 227/255, green: 231/255, blue: 232/255))
+                    .foregroundColor(CustomColors.TorchGreen)
                 
                 RoundedRectangle(cornerRadius: 5.0)
                     .frame(width: progressItemWidth, height: 4)
@@ -80,10 +78,10 @@ struct AddNewSensor: View {
                         .opacity(0.0)
                     Spacer()
                     VStack {
-                        Text("Add new sensor")
+                        Text("Add new property")
                             .font(Font.custom("Manrope-SemiBold", size: 18.0))
                             .foregroundColor(colorScheme == .dark ? Color.white : CustomColors.TorchGreen)
-                        Text("Step 1: Sensor ID number")
+                        Text("Step 2: Address")
                             .font(Font.custom("Manrope-Regular", size: 16))
                             .foregroundColor(Color(red: 0.45, green: 0.53, blue: 0.55))
                     }
@@ -111,7 +109,7 @@ struct AddNewSensor: View {
             HStack {
                 Spacer()
                 VStack {
-                    TextField("Sensor ID name", text: binding)
+                    TextField("Enter your address", text: binding)
                         .font(Font.custom("Manrope-SemiBold", size: 30))
                         .minimumScaleFactor(0.7)
                         .foregroundColor(fieldTextColor)
@@ -122,33 +120,10 @@ struct AddNewSensor: View {
                         .onAppear {
 //                            self.focusedField = .field
                         }
-                    
-                    Text("Enter the sensor id number or scan with the camera")
+                    Text("Please enter your address")
                         .font(Font.custom("Manrope-Medium", size: 16.0))
                         .foregroundColor(Color(red: 0.45, green: 0.53, blue: 0.55))
                         .padding(.top, 5.0)
-                    Button(action: {
-                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                        impactMed.impactOccurred()
-                        withAnimation {
-                            isPresentingScanner = true
-                        }
-                    }) {
-                        HStack {
-                            Image("qrCode")
-                                .frame(width: 20, height: 20)
-//                                .padding(.trailing, 10)
-                            Text("Scan QR code")
-                                .font(.custom("Manrope-SemiBold", size: 16))
-                                .foregroundColor(colorScheme == .dark ? CustomColors.TorchGreen : .white)
-                        }
-                        .frame(width: 170, height: 50)
-                        .background(
-                            RoundedRectangle(cornerRadius: 250)
-                                .foregroundColor(CustomColors.torchOrange)
-                        )
-                    }
-                    .padding(.top, 10)
                 }
                 Spacer()
             }
@@ -160,7 +135,7 @@ struct AddNewSensor: View {
                 Button(action: {
                     let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred()
-                    addSensorViewState = .addSensorProperty
+                    addPropertyViewState = .addPropertyPhoto
                     
                 }) {
                     Text("Next")
@@ -183,13 +158,13 @@ struct AddNewSensor: View {
         .background(colorScheme == .dark ? CustomColors.DarkModeBackground : Color.white)
         .onAppear {
 
-            if self.sensorIdNumber != "Sensor ID name" {
+            if self.propertyAddress != "Enter your address" {
                 fieldTextColor = colorScheme == .dark ? Color.white : CustomColors.TorchGreen
             } else {
                 fieldTextColor = Color(red: 171.0/255.0, green: 183.0/255.0, blue: 186.0/255.0)
             }
             
-            if !self.sensorIdNumber.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            if !self.propertyAddress.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 nextButtonEnabled = true
                 nextButtonColor = Color(red: 0.18, green: 0.21, blue: 0.22)
             } else {
@@ -197,28 +172,5 @@ struct AddNewSensor: View {
                 nextButtonColor = Color(red: 0.78, green: 0.81, blue: 0.82)
             }
         }
-        .sheet(isPresented: $isPresentingScanner) {
-            VStack {
-                HStack {
-                    Spacer()
-                    Text("Scan the QR code on your Torch device")
-                        .font(Font.custom("Manrope-Medium", fixedSize: 20))
-                        .foregroundColor(CustomColors.TorchGreen)
-                        .padding(.top, 20)
-                    Spacer()
-                }
-                
-                CodeScannerView(codeTypes: [.qr], showViewfinder: true) { response in
-                    if case let .success(result) = response {
-                        
-                    }
-                }
-                .ignoresSafeArea(.container)
-            }
-        }
     }
 }
-
-//#Preview {
-//    AddNewSensor()
-//}

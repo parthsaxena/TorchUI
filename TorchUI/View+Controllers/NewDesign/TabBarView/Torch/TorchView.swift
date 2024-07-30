@@ -22,7 +22,7 @@ struct TorchView: View {
     @State private var mapType: GMSMapViewType = .normal
     
     @State var opacity: CGFloat = 1.0
-    @State private var sortText: String = ""
+    @State private var sortText: String = "Temperature"
     
     var body: some View {
         GeometryReader { geometry in
@@ -46,9 +46,11 @@ struct TorchView: View {
                             .padding(.vertical, 5)
                             if isSort {
                                 HStack {
-                                    Text("Sort: \(sortText)")
-                                        .font(.custom("Manrope-Bold", size: 14))
+                                    Text("Sort:\(sortText)")
+                                        .font(.custom("Manrope-SemiBold", size: 14))
                                         .foregroundColor(CustomColors.darkGray)
+                                        .padding(.leading, 5)
+                                        .kerning(-0.3)
                                     Button(action: {
                                         opacity = 1.0
                                         isSort = false
@@ -58,7 +60,7 @@ struct TorchView: View {
                                             .frame(width: 20, height: 20)
                                     }
                                 }
-                                .frame(height: 36)
+                                .frame(width: sortText == "Battery" || sortText == "Humidity" ? 125 : 150, height: 36)
                                 .padding(.horizontal, 10)
                                 .background(Color.white)
                                 .cornerRadius(8)

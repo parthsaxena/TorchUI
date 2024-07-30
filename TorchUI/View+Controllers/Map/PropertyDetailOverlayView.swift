@@ -10,7 +10,7 @@ import CoreLocation
 import GoogleMaps
 import CodeScanner
 import MapboxMaps
-import AmplifyImage
+//import AmplifyImage
 
 struct PropertyDetailOverlayView: View {
     
@@ -95,16 +95,16 @@ struct PropertyDetailOverlayView: View {
                                             .foregroundColor(.clear)
                                             .frame(width: 60, height: 60)
                                             .background(
-                                                AmplifyImage(key: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyImage)
-                                                    .kfImage.placeholder({
-                                                        //                                                    Image("Property")
-                                                        //                                                        .opacity(0.6)
-                                                        ProgressView()
-                                                    })
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fill)
-                                                    .frame(width: 60, height: 60)
-                                                    .clipped()
+//                                                AmplifyImage(key: SessionManager.shared.properties[SessionManager.shared.selectedPropertyIndex].propertyImage)
+//                                                    .kfImage.placeholder({
+//                                                        //                                                    Image("Property")
+//                                                        //                                                        .opacity(0.6)
+//                                                        ProgressView()
+//                                                    })
+//                                                    .resizable()
+//                                                    .aspectRatio(contentMode: .fill)
+//                                                    .frame(width: 60, height: 60)
+//                                                    .clipped()
                                                 
                                             )
                                             .cornerRadius(12)
