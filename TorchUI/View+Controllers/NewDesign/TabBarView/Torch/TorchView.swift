@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import GoogleMaps
+import MapboxMaps
 
 struct TorchView: View {
     
@@ -19,23 +19,25 @@ struct TorchView: View {
     @State private var isSort = false
     
     @State private var selectedLayerIndex = 0
-    @State private var mapType: GMSMapViewType = .normal
+//    @State private var mapType: GMSMapViewType = .normal
     
     @State var opacity: CGFloat = 1.0
     @State private var sortText: String = "Temperature"
+    @State private var selectedMapStyle: StyleURI = .streets
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                GoogleMapView(markers: $viewModel.markers, mapType: $mapType)
+//                GoogleMapView(markers: $viewModel.markers, mapType: $mapType)
+//                    .edgesIgnoringSafeArea(.all)
+                MapboxView(mapStyle: $selectedMapStyle)
                     .edgesIgnoringSafeArea(.all)
                 VStack {
-                    HStack {
+                    HStack(alignment: .center) {
                         VStack {
                             CustomRoundButton(imageName: "backButtonIcon", onCustomButtonTap: {
                                 dismiss()
                             })
-                            .opacity(0.0)
                             Spacer()
                         }
                         Spacer()
@@ -90,7 +92,7 @@ struct TorchView: View {
             .navigationBarHidden(true)
             .navigationBarTitle("")
             .onAppear {
-                viewModel.addMarker(latitude: 37.7749, longitude: -122.4194)
+//                viewModel.addMarker(latitude: 37.7749, longitude: -122.4194)
             }
             .background(.white)
             .sheet(isPresented: $isSheetPresent) {
@@ -154,7 +156,8 @@ struct TorchView: View {
                         isLayerSheetPresent = false
                     }, onSelectedViewTap: { index in
                         selectedLayerIndex = index
-                        mapType = index == 0 ? .normal : .satellite
+//                        mapType = index == 0 ? .normal : .satellite
+                        selectedMapStyle = index == 0 ? .streets : .satelliteStreets
                     })
                 }
                 .presentationDetents([.height(260.0), .height(260.0)])

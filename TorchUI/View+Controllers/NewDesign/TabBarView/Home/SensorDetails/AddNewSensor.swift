@@ -91,13 +91,17 @@ struct AddNewSensor: View {
                     Circle()
                         .stroke(CustomColors.lightGrayBorder, lineWidth: 1)
                         .frame(width: 40, height: 40)
+                        .background(Circle().fill(Color.white)) // Add a white fill background
+                        .shadow(color: .gray.opacity(0.15), radius: 5, x: 0, y: 2) // Add shadow
                         .padding()
                         .overlay(
                             Image("home-cross")
-                                .background(.white)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24) // Adjust image size
+                                .background(Color.white) // Set background of the image
+                                .clipShape(Circle()) // Ensure image background is circular
                         )
-                        .background(.clear)
-                        .shadow(color: Color.black.opacity(0.1), radius: 20, x: 0, y: 5)
                         .onTapGesture {
                             onCrossButtonTap()
                         }

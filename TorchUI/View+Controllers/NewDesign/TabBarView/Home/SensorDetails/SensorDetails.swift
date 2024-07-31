@@ -7,6 +7,7 @@
 
 import SwiftUI
 import GoogleMaps
+import MapboxMaps
 
 enum AddSensorViewState {
     case addSensorName
@@ -43,11 +44,12 @@ struct SensorDetails: View {
     @State private var nickName = ""
     
     @State private var addSensorViewState: AddSensorViewState = .addSensorName
+    @State private var selectedMapStyle: StyleURI = .streets
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                GoogleMapView(markers: $viewModel.markers, mapType: $mapType)
+                MapboxView(mapStyle: $selectedMapStyle)//(markers: $viewModel.markers, mapType: $mapType)
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     HStack {
@@ -465,6 +467,7 @@ struct SensorDetails: View {
                     }, onSelectedViewTap: { index in
                         selectedLayerIndex = index
                         mapType = index == 0 ? .normal : .satellite
+                        selectedMapStyle = index == 0 ? .streets : .satelliteStreets
                     })
                 }
                 .presentationDetents([.height(260.0), .height(260.0)])

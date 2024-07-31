@@ -215,6 +215,7 @@
 		C8E4B5662C31EF6500754CAC /* MenuBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4B5652C31EF6500754CAC /* MenuBottomSheet.swift */; };
 		C8E4B5682C31EF8D00754CAC /* LayerBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4B5672C31EF8D00754CAC /* LayerBottomSheet.swift */; };
 		C8E6B8422C485D9200A6B350 /* EditSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E6B8412C485D9200A6B350 /* EditSensor.swift */; };
+		C8EE90C42C5AE97200015710 /* MapboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EE90C32C5AE97200015710 /* MapboxView.swift */; };
 		C8F26A522C3C813900AE24CB /* CustomToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F26A512C3C813900AE24CB /* CustomToastView.swift */; };
 		C8F26A542C3C875800AE24CB /* CustomPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F26A532C3C875800AE24CB /* CustomPopupView.swift */; };
 		CBA2C737C70DCADAFA0DC43C /* Pods_TorchUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13569758AFB0B7E90C699210 /* Pods_TorchUI.framework */; };
@@ -430,6 +431,7 @@
 		C8E4B5652C31EF6500754CAC /* MenuBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBottomSheet.swift; sourceTree = "<group>"; };
 		C8E4B5672C31EF8D00754CAC /* LayerBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerBottomSheet.swift; sourceTree = "<group>"; };
 		C8E6B8412C485D9200A6B350 /* EditSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSensor.swift; sourceTree = "<group>"; };
+		C8EE90C32C5AE97200015710 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		C8F26A512C3C813900AE24CB /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
 		C8F26A532C3C875800AE24CB /* CustomPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupView.swift; sourceTree = "<group>"; };
 		CE715C78ED08B54E16060133 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
@@ -788,6 +790,7 @@
 			isa = PBXGroup;
 			children = (
 				C840D25C2BF69DD700373C57 /* CircleGridView.swift */,
+				C8EE90C32C5AE97200015710 /* MapboxView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1586,6 +1589,7 @@
 				30ACFC1A2B44220A007BCC22 /* ScalingDotsIndicatorView.swift in Sources */,
 				C83F8EDA2BE1838B00CA6700 /* TabBarsView.swift in Sources */,
 				C857F7192C45C420007B911E /* ConfirmationPopupView.swift in Sources */,
+				C8EE90C42C5AE97200015710 /* MapboxView.swift in Sources */,
 				8BAE82C72B4B6699000F3D1C /* LeftActiveSensorView.swift in Sources */,
 				C855B5612B10883F007DA332 /* MapViewController.swift in Sources */,
 				C8E4B5682C31EF8D00754CAC /* LayerBottomSheet.swift in Sources */,
