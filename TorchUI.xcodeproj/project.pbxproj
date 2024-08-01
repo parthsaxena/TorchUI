@@ -669,10 +669,7 @@
 				C8F26A512C3C813900AE24CB /* CustomToastView.swift */,
 				C8F26A532C3C875800AE24CB /* CustomPopupView.swift */,
 				C8E6B8412C485D9200A6B350 /* EditSensor.swift */,
-				C87ADFA52C4D921500CCFA6D /* AddNewSensor.swift */,
-				C87ADFA72C4DACAF00CCFA6D /* AddNewSensorProperty.swift */,
-				C87ADFA92C4DB1D700CCFA6D /* AddSensorNickname.swift */,
-				C87ADFAB2C4DB3FA00CCFA6D /* AddSensorPropertyList.swift */,
+				C8DC1BE62C5C3220002CC834 /* AddNewSensor */,
 			);
 			path = SensorDetails;
 			sourceTree = "<group>";
@@ -1163,6 +1160,17 @@
 				C8B50EEB2B618DF8001059F9 /* NickNameUIView.swift */,
 			);
 			path = NickName;
+			sourceTree = "<group>";
+		};
+		C8DC1BE62C5C3220002CC834 /* AddNewSensor */ = {
+			isa = PBXGroup;
+			children = (
+				C87ADFA52C4D921500CCFA6D /* AddNewSensor.swift */,
+				C87ADFA72C4DACAF00CCFA6D /* AddNewSensorProperty.swift */,
+				C87ADFA92C4DB1D700CCFA6D /* AddSensorNickname.swift */,
+				C87ADFAB2C4DB3FA00CCFA6D /* AddSensorPropertyList.swift */,
+			);
+			path = AddNewSensor;
 			sourceTree = "<group>";
 		};
 		CF081936F4D134B31F7A7C3F /* Pods */ = {

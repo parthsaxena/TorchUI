@@ -79,13 +79,17 @@ struct AddNewPropertyPhoto: View {
                     Circle()
                         .stroke(CustomColors.lightGrayBorder, lineWidth: 1)
                         .frame(width: 40, height: 40)
+                        .background(Circle().fill(Color.white))
+                        .shadow(color: .gray.opacity(0.15), radius: 5, x: 0, y: 2)
                         .padding()
                         .overlay(
                             Image("home-cross")
-                                .background(.white)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .background(Color.white)
+                                .clipShape(Circle())
                         )
-                        .background(.clear)
-                        .shadow(color: Color.black.opacity(0.1), radius: 20, x: 0, y: 5)
                         .onTapGesture {
                             onCrossButtonTap()
                         }
